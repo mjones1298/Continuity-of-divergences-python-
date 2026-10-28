@@ -20,7 +20,7 @@ These are then applied to adaptive channel discrimination. A chapter of proofs r
 
 Chapter 4 is a revised and extended version of M. Jones, *Continuity of certain quantum channel divergences*, arXiv:2610.16270.
 
-The built PDF has 262 pages: front matter, nine chapters and a bibliography.
+The built PDF has 263 pages: front matter, nine chapters and a bibliography.
 
 **Read the book:** [`monograph.pdf`](monograph.pdf), a 262-page PDF built from this source. It is also rebuilt by the GitHub Actions workflow on every push.
 
