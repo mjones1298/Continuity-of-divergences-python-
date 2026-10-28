@@ -1,0 +1,186 @@
+% Label prefix: op:
+% Merged from: the Conclusion of Chapter 4 (cont:sec:conclusion), the open problems of Chapters 5 and 6
+% (shA:sec:open, shB:sec:open), the Concluding Remarks of Chapter 7 (chn:sec:open) and the Discussion of
+% Chapter 1 (gate:sec:discussion), together with the open items stated inline in Chapters 1 and 8.
+\chapter{Open problems}\label{op:chapter}
+\begingroup
+
+This chapter collects the open problems and conjectures of Chapters~\ref{gate:chapter} and~\ref{cont:chapter}--\ref{gate:proofschapter}, grouped by theme. Problems that were raised in more than one chapter are stated once, with references to every place where they arise. Conjectures are stated as conjectures; each is supported by the partial results and numerical evidence described in the chapter cited, and none is claimed here. The problems are formulated in the notation of Chapter~\ref{nt:chapter}; where a chapter uses a different convention, for instance the squared Uhlmann fidelity in Chapter~\ref{chn:chapter}, we say so.
+
+\section{Sharp constants for the Kubo--Ando family}\label{op:sec:constants}
+
+The continuity estimates of Chapter~\ref{cont:chapter} are dimension-free, and several are known to be sharp: the constant and the exponent of Theorem~\ref{cont:main theorem}, the order $\lambda^{-1}$ of Theorem~\ref{cont:thm:choi floor} and the rate of Theorem~\ref{cont:thm:singular rate}. Others are not.
+
+\begin{problem}[Constants for pairs with different sums]\label{op:prob:one parameter}
+Lemma~\ref{cont:lem:one parameter} is sharp as $\delta\to0$. Is its factor $(1-4\delta^2)^{-1/2}$ optimal for finite $\delta$? The constants of Corollaries~\ref{cont:cor:BS} and~\ref{cont:cor:renyi large alpha}, for the Belavkin--Staszewski relative entropy and the geometric R\'enyi divergences of order $\alpha\in(1,2]$, are not optimised either. (Section~\ref{cont:sec:conclusion}.)
+\end{problem}
+
+\begin{question}[A Schur multiplier norm]\label{op:q:schur}
+The coefficient of the second term of Lemma~\ref{cont:lem:sandwich} is sharp as $\gamma\to0$. Can the second term be replaced by $2\gamma\|\varphi\|_\infty$ for all $\gamma$? By the proof of Lemma~\ref{cont:lem:sandwich}, this would follow if the Schur multiplier norm of the matrix $[\sin(\psi_i+\psi_j)]_{i,j}$, for $\psi_i\in[-\frac\pi4,\frac\pi4]$, were $\max_i|\sin2\psi_i|$. (Section~\ref{cont:sec:conclusion}.)
+\end{question}
+
+\begin{problem}[The local Lipschitz constant at noisy gates]\label{op:prob:local lipschitz}
+What is the exact local Lipschitz constant of $\log\widehat F$ near a pair of channels whose Choi matrices are bounded below by $\lambda$? When only one channel moves, the constant $d_X/(4\lambda)$ is attained, at every Pauli channel composed with a unitary (Theorem~\ref{gate:thm:floor}, Eq.~\eqref{gate:eq:sharp}). When both channels move, Theorem~\ref{cont:thm:choi floor} and Proposition~\ref{gate:smp:prop:twosided} give the constant $d_X/(2\lambda)$, and Example~\ref{cont:ex:choi floor sharp} leaves a factor $2$ between this constant and the best examples. Each of the two one-sided terms is sharp separately; whether $d_X/(2\lambda)$ is attained when both channels move and both floors are at least $\lambda$ is open. (Section~\ref{cont:sec:conclusion}; Section~\ref{gate:sec:floor}.)
+\end{problem}
+
+For the absolute rather than the logarithmic slope, Chapter~\ref{gate:proofschapter} computes the worst case over unitary channels at a depolarized qubit gate, and Chapters~\ref{gate:chapter} and~\ref{gate:proofschapter} conjecture that it is the worst case overall.
+
+\begin{conjecture}[Unitary channels are the worst case; Conjecture~\ref{gate:conj:L2}]\label{op:conj:L2}
+Let $\Psi=\mathcal D_p\circ\mathrm{Ad}_U$ be a depolarized qubit gate, and let $\Sigma(p)$ be the largest derivative $|\frac{d}{de}\widehat F(\Phi,\Psi+e\mathcal M)|_{e=0}$ over completely positive $\Phi$ and trace-annihilating $\mathcal M$ with $\|\mathcal M\|_\diamond=1$. Then $\Sigma(p)$ equals the same supremum restricted to unitary channels $\Phi$, which is given in closed form by Proposition~\ref{gate:prop:L2}.
+\end{conjecture}
+
+\noindent Chapter~\ref{gate:proofschapter} describes the numerical evidence for this conjecture as weak. A related problem concerns the condition number in Chapter~\ref{shA:chapter}.
+
+\begin{problem}[Condition numbers in the first argument]\label{op:prob:condition number}
+Can the condition number $\kappa(\Psi)$ of $J(\Psi)$ be removed from the constants of Theorems~\ref{shA:thm:firstarg} and~\ref{shA:thm:sandfirst}? (Section~\ref{shA:sec:open}.)
+\end{problem}
+
+\section{Singular pairs and the dichotomy within channels}\label{op:sec:singular}
+
+The dichotomy of Theorem~\ref{cont:thm:dichotomy} describes the continuity points of the Kubo--Ando family on pairs of completely positive maps. Chapters~\ref{gate:chapter}, \ref{cont:chapter} and~\ref{chn:chapter} all ask how much of it survives within channels, and what happens at the discontinuity points.
+
+\begin{problem}[Limit points at singular pairs]\label{op:prob:limit points}
+Let $c_\Omega=\dim\ker J(\Omega)$ with $\Omega=\Phi+\Psi$. When $1\le c_\Omega<\rank T(\mathbf 1-T)$, what is the exact set of limit points of $\widehat F$ at $(\Phi,\Psi)$? (Section~\ref{cont:sec:conclusion}.)
+\end{problem}
+
+\begin{problem}[Rates at pairs of zero fidelity]\label{op:prob:rates}
+At mutually singular pairs the fidelity is continuous at the sharp rate $d^{1/2}/\sin\theta$ (Theorem~\ref{cont:thm:singular rate}). At what rate is it continuous at pairs with $\widehat F=0$ that are not mutually singular, such as the amplitude-damping pairs $(\mathcal A_\gamma,\mathcal A_{\gamma'})$ of Example~\ref{cont:ex:amplitude damping}? (Section~\ref{cont:sec:conclusion}.)
+\end{problem}
+
+\begin{problem}[The dichotomy within channels]\label{op:prob:channel dichotomy}
+Within channels, the dichotomy holds at the diagonal pairs $(\Phi,\Phi)$ (Corollary~\ref{cont:cor:diagonal channels}). Does it hold at every pair of channels with $J(\Phi+\Psi)$ singular and $\widehat F(\Phi,\Psi)>0$? By Theorem~\ref{cont:thm:channel orbit}(a), it would suffice to find a Hermitian $H$ for which the short $[J(\Phi)\#J(\Psi)]_{\mathcal S_H}$ lowers $\lambda_{\min}\circ\Tr_{\mathcal Y}$. Is the bound of Theorem~\ref{cont:thm:channel orbit} an equality? (Section~\ref{cont:sec:conclusion}; the same question is stated in Section~\ref{gate:sec:regimes}.)
+\end{problem}
+
+The next problem asks for the same phenomenon at the level of converses, together with control of the operational exponent.
+
+\begin{problem}[Spurious fragility near every singular pair]\label{op:prob:dense}
+Does Theorem~\ref{chn:thm:fragile} hold near every pair of channels with $\dim\ker J(\Phi+\Psi)\ge1$ and $\widehat C<\infty$? That is, are there always nearby pairs of channels with trivially intersecting Choi ranges and bounded adaptive Chernoff exponent? Theorem~\ref{chn:thm:semicont}(c) excludes such jumps when $J(\Phi+\Psi)$ is invertible, and Theorem~\ref{cont:thm:dichotomy} provides completely positive approximants. Channel-valued approximants along which $\widehat F$ jumps are known at the diagonal pairs (Theorem~\ref{cont:thm:channel orbit} and Corollary~\ref{cont:cor:diagonal channels}, as in Problem~\ref{op:prob:channel dichotomy}) and within the amplitude-damping family (Example~\ref{cont:ex:amplitude damping} and Proposition~\ref{chn:prop:adlevels}(b)); there the Choi ranges intersect nontrivially, and Corollary~\ref{chn:cor:adfragile} shows that the adaptive exponent tends to $0$ as $\gamma'\to\gamma\in(0,1)$. (Question~\ref{chn:q:dense}.)
+\end{problem}
+
+\section{Beyond operator convex functions and finite dimensions}\label{op:sec:beyond}
+
+\begin{question}[Merely convex functions]\label{op:q:convex}
+For a convex but not operator convex $f$, the maximal $f$-divergence is still defined through reverse tests \cite{Matsumoto2018newf}, but the perspective formula need not hold. Is it still a function of the ARN derivative $T$, and of which function? (Section~\ref{cont:sec:conclusion}.)
+\end{question}
+
+\begin{problem}[The garbling between two shadows]\label{op:prob:garbling}
+By Theorem~\ref{shA:thm:Tlift}, the testing-region pair of $(\rho,\sigma)$ is a garbling of the reverse test. Find this garbling explicitly. Is it the rotation of the Helstrom projections in Theorem~\ref{shA:thm:structure}(b)? (Section~\ref{shA:sec:open}.)
+\end{problem}
+
+\begin{problem}[Other norms, von Neumann algebras and bosonic channels]\label{op:prob:infinite}
+By Ando's inequality in unitarily invariant norms, Proposition~\ref{cont:K6}(1) holds in every unitarily invariant norm, and Proposition~\ref{cont:K6}(2) becomes $\|g_\#(E)-g_\#(E')\|_p\le\|E-E'\|_{p/2}^{1/2}$ for $p\ge2$, but statements for maps need norms adapted to the Schatten classes. Extend the continuity theory of Chapter~\ref{cont:chapter} to normal completely positive maps between von Neumann algebras, with $T$ in the commutant of a Stinespring representation, as suggested by the framework of Okayasu \cite{Okayasu2026,Okayasu2026maxf}; the estimates there are already dimension-free. Extend the level decomposition of Chapter~\ref{chn:chapter} to normal channels between von Neumann algebras and to bosonic channels with energy constraints; adaptive quantum illumination is listed as open in \cite{NairGu2020}. Extend the noise-floor laws of Chapter~\ref{gate:chapter} to bosonic loss channels with energy constraints. (Section~\ref{cont:sec:conclusion}; Question~\ref{chn:q:vn}; Section~\ref{gate:sec:discussion}.)
+\end{problem}
+
+\section{Regularised channel divergences and one-shot formulas}\label{op:sec:regularised}
+
+\begin{question}[Continuity of regularised Petz divergences]\label{op:q:petz reg}
+Is $D^{\mathrm P,\mathrm{reg}}_\alpha(\cdot\|\Psi)$, for $\alpha<1$, continuous at every channel when $J(\Psi)$ is invertible? Theorem~\ref{shA:thm:petzfirst} reduces this to perturbations that rotate the support of a singular $J(\Phi)$ by a non-product unitary of $\mathcal X\otimes\mathcal Y$, and Example~\ref{shA:ex:petzobstruction} shows that a proof must use the $n$-fold structure, not a one-use bound. (Section~\ref{shA:sec:open}.)
+\end{question}
+
+\begin{question}[Optimal inputs for testing-region channel divergences]\label{op:q:iteration}
+Does the iteration $\theta\mapsto\Gamma_f(\theta)/\Tr\Gamma_f(\theta)$ of Theorem~\ref{shA:thm:oneshot} always converge to an optimal input? In the linear case of the reverse test the objective increases along the iteration, and in all the tests of Chapter~\ref{shA:chapter} the iteration converged to the optimum. For which pairs beyond the covariant ones of Proposition~\ref{shA:prop:covariant} is the maximally entangled input optimal, that is, when is the bracket of Theorem~\ref{shA:thm:oneshot}(c) scalar? (Section~\ref{shA:sec:open}.)
+\end{question}
+
+\section{Super-multiplicativity of testing-region quasi-entropies}\label{op:sec:supermult}
+
+The central conjecture of Chapter~\ref{shB:chapter} is the following.
+
+\begin{conjecture}[Super-multiplicativity; Conjecture~\ref{shB:conj:super}]\label{op:conj:super}
+For all $\alpha\in(0,1)\cup(1,\infty)$ and all pairs of states,
+\[
+Q^{\mathrm{HT}}_\alpha(\rho\otimes\rho'\|\sigma\otimes\sigma')\ge Q^{\mathrm{HT}}_\alpha(\rho\|\sigma)\,Q^{\mathrm{HT}}_\alpha(\rho'\|\sigma').
+\]
+\end{conjecture}
+
+\noindent It holds at $\alpha=2$ (Theorem~\ref{shB:thm:super2}), at every integer order for pure states and at $\alpha=3$ for sign-free pairs (Theorem~\ref{shB:thm:simplex}), at every integer order against pure partners (Theorem~\ref{shB:thm:purepartner}), at $\alpha=3$ whenever one of the reference states has at most two distinct eigenvalues (Corollary~\ref{shB:cor:twolevel}) and in the further cases of Corollaries~\ref{shB:cor:threelevel} and~\ref{shB:cor:negative}, at $\alpha=3$ to second order around trivial partners (Proposition~\ref{shB:prop:local3}), to first order at $\alpha=\infty$ (Theorem~\ref{shB:thm:superinf}), for $\alpha>1$ with one factor measured (Theorem~\ref{shB:thm:supermeas}) and for tensor powers with enough copies (Proposition~\ref{shB:prop:manycopies}). By Theorem~\ref{shB:thm:reduction} it would give independent proofs of the inequalities $D^{\mathrm{HT}}_\alpha\le\widetilde D_\alpha$ for $\alpha>1$ \cite{LiuHircheCheng2025} and $D^{\mathrm{HT}}_\alpha\ge D^{\mathrm P}_\alpha$ for $\alpha<1$ \cite{BeigiHircheTomamichel2025}. The conjecture is the family of moment inequalities of the convex-order statement~\eqref{shB:eq:cx} for Frenkel measures (Theorem~\ref{shB:thm:frenkel}), and the general problem is to prove that statement. Section~\ref{shB:sec:open} discusses the following routes and special cases in detail.
+
+\begin{problem}[Special cases of independent interest]\label{op:prob:super special}
+Prove Conjecture~\ref{op:conj:super} for pure states at non-integer orders, which is a R\'enyi-entropy submodularity for sums (Remark~\ref{shB:rem:superpure}); the stronger logarithmic form of the integer-order inequality is open for $n\ge3$. Prove the second-order case at $\alpha=1$, the superadditivity of the testing-region variance $\int\gamma\log^2\gamma\,d\mu-D^2$. Give a direct, non-greedy operator proof of Corollary~\ref{shB:cor:bathtub} for $\kappa>2$. (Section~\ref{shB:sec:open}, item~1.)
+\end{problem}
+
+\begin{question}[Dihedral Chebyshev inequality]\label{op:q:dihedral}
+Is $\mathrm{Cov}(\phi(U),\chi(U))\ge0$ for a uniform point $U$ of the simplex $\Delta_{n-1}$ and convex functions $\phi,\chi$ on $\Delta_{n-1}$ that are invariant only under the dihedral group $D_n$? This extension of Lemma~\ref{shB:lem:schur} would prove Conjecture~\ref{op:conj:super} at every integer order for all pairs with nonnegative cycle weights, in particular for all pairs of qubit pairs (Proposition~\ref{shB:prop:simplex}). Numerical tests support a positive answer. (Section~\ref{shB:sec:open}, item~2.)
+\end{question}
+
+\begin{problem}[Order three]\label{op:prob:order three}
+At $\alpha=3$ the open case has both reference states with at least three distinct eigenvalues, and both states may be taken singular (Corollary~\ref{shB:cor:singular}). Three targets would settle parts of it: Conjecture~\ref{shB:conj:TT}, an inequality for the kernel $K_3$ alone on twisted pure data, which by Proposition~\ref{shB:prop:twisted} covers every pair whose reference states have at most three eigenvalues; the chirality inequality~\eqref{shB:eq:chiral}, which gives $D_3\ge0$ in the polynomial criterion of Theorem~\ref{shB:thm:polycrit}, and more ambitiously $D_k\ge0$ for all $k\ge2$, which gives the conjecture at $\alpha=3$; and, for a qutrit $\rho$ against an arbitrary partner, the bound on the partner kernel stated in Section~\ref{shB:sec:open}, item~2(c). The local supermodularity of Theorem~\ref{shB:thm:flow} is a different route with the same first open cases. (Section~\ref{shB:sec:open}, item~2.)
+\end{problem}
+
+Pointwise comparison of profiles cannot prove Conjecture~\ref{op:conj:super}, because the profile difference changes sign for every two non-commuting pairs (Proposition~\ref{shB:prop:twosided}), and one-way LOCC tests never beat the classical product of the shadows (Proposition~\ref{shB:prop:oneway}). Chapter~\ref{shB:chapter} conjectures that the same holds for all separable tests, so that a proof must use entangled tests.
+
+\begin{conjecture}[Separable tests; Conjecture~\ref{shB:conj:sep}]\label{op:conj:sep}
+Let $e_{\mathrm{cl}}$ be the hockey-stick profile of the classical product $(P\otimes P',Q\otimes Q')$ of the testing-region shadows of $(\rho,\sigma)$ and $(\rho',\sigma')$. Every separable test $M$ satisfies $\Tr M(\rho\otimes\rho'-v\,\sigma\otimes\sigma')\le e_{\mathrm{cl}}(v)$ for all $v\ge0$.
+\end{conjecture}
+
+\noindent The conjecture holds for one-way LOCC tests (Proposition~\ref{shB:prop:oneway}) and was tested numerically with PPT tests. Whether it holds for two-way LOCC tests is open; in Blackwell form it asks whether every outcome experiment of a POVM with product elements is a garbling of $(P\otimes P',Q\otimes Q')$. (Section~\ref{shB:sec:open}, item~3.)
+
+\section{Adaptive discrimination of channels}\label{op:sec:discrimination}
+
+\begin{question}[When does adaptivity not help?]\label{op:q:prod}
+Is $\xi_{\mathrm{adapt}}=\xi_{\mathrm{prod}}$ whenever $d_T(\Phi,\Psi)<\infty$? This holds for classical channels, for classical--quantum channels \cite{SalekHayashiWinter2022} and in the cases of Theorems~\ref{chn:thm:tight} and~\ref{chn:thm:exact}, and the known separations \cite{HHLW2010,SalekHayashiWinter2022} have $d_T=\infty$. (Question~\ref{chn:q:prod}.)
+\end{question}
+
+Amplitude damping is a natural test case. For $0<\gamma<1$ and $\Delta=\gamma-\gamma'$, Corollary~\ref{chn:cor:adfragile} brackets the adaptive Chernoff exponent between the Bernoulli Chernoff information of the product input, $\Delta^2/(8\gamma(1-\gamma))+O(\Delta^3)$, and the program-simulation bound $-2\ln\mu_*=\Delta^2/(4\gamma^2(1-\gamma))+O(\Delta^3)$; the two differ by the factor $2/\gamma$ to leading order, and no program simulation can close the gap (Remark~\ref{chn:rem:adnosim}). With $f(\gamma,\gamma')=\sqrt{\gamma\gamma'}+\sqrt{(1-\gamma)(1-\gamma')}$, Chapter~\ref{chn:chapter} conjectures the following; the fidelity $F$ in it is the squared Uhlmann fidelity, as in that chapter.
+
+\begin{conjecture}[Fidelity of adaptive amplitude-damping strategies; Conjecture~\ref{chn:conj:adfid}]\label{op:conj:adfid}
+For every adaptive strategy with $n$ uses, $F\big(\rho^{(n)}_{\mathcal A_\gamma},\rho^{(n)}_{\mathcal A_{\gamma'}}\big)\ge f(\gamma,\gamma')^{2n}$, with equality for the product input $e_1^{\otimes n}$. Consequently
+\[
+\xi_{\mathrm{adapt}}(\mathcal A_\gamma,\mathcal A_{\gamma'})\le-2\ln f(\gamma,\gamma')=\frac{\Delta^2}{4\gamma(1-\gamma)}+O(\Delta^3)\le2\,\xi_{\mathrm{prod}}\,(1+O(\Delta)).
+\]
+\end{conjecture}
+
+\noindent For $\gamma=\frac12$, $n\le4$ and several values of $\gamma'$, exact semidefinite programs agree with the conjecture to the accuracy of the solver, and it cannot be proved by amortisation (Section~\ref{chn:sec:ad}; Section~\ref{gate:sec:ad}). A bound on the adaptive Fisher information suggests that $\xi_{\mathrm{adapt}}$ equals the product-input value to leading order (Remark~\ref{chn:rem:adfisher}); whether this is so is a further open question.
+
+\begin{problem}[A single-letter converse without spurious jumps]\label{op:prob:single letter}
+Find a single-letter converse for the adaptive Chernoff exponent that is at most $\min\{C_{\mathrm{bar}},\widehat C\}$ for all pairs. For replacement channels both exceed the true exponent, so such a converse should see the non-commutativity of the outputs, which every common decomposition hides (Proposition~\ref{chn:prop:canon}). By Theorem~\ref{chn:thm:fragile}, a converse within a bounded factor of $\xi_{\mathrm{adapt}}$ must be finite on pairs whose Choi ranges intersect trivially, so it cannot be built only from Choi-level geometric means or from divergences that require support inclusion. The program-simulation converse $-2\ln\mu_*$ of Theorem~\ref{chn:thm:pureprog} is finite on the pairs of Theorem~\ref{chn:thm:fragile} and on amplitude damping, which makes $\min\{\widehat C,C_{\mathrm{bar}},-2\ln\mu_*\}$ a natural candidate to study. (Question~\ref{chn:q:single}; Section~\ref{gate:sec:discussion}.)
+\end{problem}
+
+\begin{problem}[The local Chernoff coefficient]\label{op:prob:local chernoff}
+For nearby channels, is the adaptive Chernoff exponent $\frac{\delta^2}8F(\theta)+o(\delta^2)$ for an explicitly computable Fisher information $F$ between the one achieved by product inputs and $F_{\mathrm{RLD}}$? In this regime $T=\frac12\mathbf 1+O(\delta)$, and one expects the gap between $\xi_{\mathrm{prod}}$ and $\widehat C$ to be controlled by the commutator in Lemma~\ref{chn:lem:comm}. At a depolarized qubit gate with a coherent miscalibration $\delta$, Chapter~\ref{gate:chapter} states, and Chapter~\ref{gate:proofschapter} proves, that $\xi/\delta^2$ lies asymptotically between $F_\infty/8$ and $F_{\mathrm{RLD}}/8$ as $\delta\to0$ (Proposition~\ref{gate:prop:m1local}; the lower bound uses the error-corrected strategies of Zhou and Jiang \cite{ZhouJiang2021}); where in this bracket the coefficient lies is open, and no Chernoff analogue of Conjecture~\ref{op:conj:32} is stated. (Question~\ref{chn:q:local}; Section~\ref{gate:sec:discussion}.)
+\end{problem}
+
+\begin{problem}[A Hoeffding converse]\label{op:prob:hoeffding}
+Prove a Hoeffding converse for general pairs of channels. The random-walk structure of Proposition~\ref{chn:prop:walk} applies, but $s\mapsto\min_\rho\ln Q_s(\rho)$ need not be convex, so the natural candidate involves its convex envelope. (Question~\ref{chn:q:hoeffding}.)
+\end{problem}
+
+\begin{problem}[The Chernoff exponent from testing regions]\label{op:prob:chernoff testing}
+Is the adaptive Chernoff exponent $-\lim_n\frac1n\log\inf\eta_n(1)$, where $\eta_n$ is the error profile after $n$ adaptive uses, the minimum over $\alpha$ of a regularised testing-region cumulant function? Proposition~\ref{shB:prop:chernoff} gives one inequality for every strategy. (Section~\ref{shB:sec:open}, item~4.)
+\end{problem}
+
+\begin{problem}[Operational consequences for other tasks]\label{op:prob:operational}
+The geometric R\'enyi divergences with $\alpha\in(1,2]$ give converse bounds for channel capacities \cite{FangFawzi2021}, and geometric distinguishability measures limit channel discrimination and estimation \cite{KatariyaWilde2021}. Chapters~\ref{gate:chapter} and~\ref{chn:chapter} make the continuity and the discontinuity of the converses quantitative for discrimination: a converse valid on a neighbourhood of a model pair (Corollary~\ref{chn:cor:uncertain}), the Choi-floor law (Theorem~\ref{gate:thm:floor}) and the comparison with the Stein and Chernoff exponents (Section~\ref{gate:sec:physical}). The corresponding questions for capacity bounds and for estimation are open: how do these converses respond to model errors, and does the sensitivity belong to the task? (Section~\ref{cont:sec:conclusion}, item~4.)
+\end{problem}
+
+\section{Noisy gates and certification}\label{op:sec:gates}
+
+The local comparison of Chapter~\ref{gate:chapter} between the Belavkin--Staszewski converse and the adaptive Stein exponent at a depolarized qubit gate leaves the following conjecture.
+
+\begin{conjecture}[Local tightness of the Belavkin--Staszewski converse; Conjecture~\ref{gate:conj:32}]\label{op:conj:32}
+For the depolarized qubit gate,
+\[
+\lim_{\delta\to0}\frac{D_{\mathrm{BS}}(\mathcal N_{p,\delta}\|\mathcal N_p)}{\zeta(\mathcal N_{p,\delta}\|\mathcal N_p)}=\frac{F_{\mathrm{RLD}}}{F_\infty},
+\]
+which tends to $3/2$ as $p\to0$.
+\end{conjecture}
+
+\noindent Chapter~\ref{gate:chapter} proves that the ratio lies between $1$ and $F_{\mathrm{RLD}}/F_\infty<3/2$ in the limit (Eq.~\eqref{gate:eq:ratio}). It does not take a position on whether the conjecture holds: for the explicit strategies evaluated there, the relative-entropy rate exceeds the SLD rate of the same strategy, so the limit could lie strictly below $F_{\mathrm{RLD}}/F_\infty$.
+
+\begin{problem}[Correlated errors]\label{op:prob:correlated}
+For an $n$-qubit gate the fragile window of the geometric converses scales as $\delta\sim p^{w/2}$ for a miscalibration of weight $w$. For $w\ge2$ the local bracket between the converse and the Stein exponent widens, to $2/p$ for a two-qubit $ZZ$ miscalibration under local depolarizing noise and as $p^{-\lfloor w/2\rfloor}$ for weight $w$ (Corollary~\ref{gate:cor:Bstein}). Does $\zeta$ inherit the narrow window of the converse for correlated errors, or is that window a spurious fragility? (Sections~\ref{gate:sec:physical} and~\ref{gate:sec:biased}.)
+\end{problem}
+
+\begin{problem}[Certification with coherent learners]\label{op:prob:coherent}
+For learners that measure each channel output separately, certification of a geometric converse through a diamond-norm ball costs of order $1/(\eta\tilde\lambda)^2$ channel uses (Proposition~\ref{gate:prop:N12}). Can coherent learners certify through a diamond ball with fewer uses? The two-point argument behind the incoherent bound does not extend to them (Remark~\ref{gate:rem:coherent}). (Section~\ref{gate:sec:cert}.)
+\end{problem}
+
+\begin{problem}[Model-free certification on the converse side]\label{op:prob:model free}
+Variance-adaptive estimation of Pauli error rates in a known frame certifies a lower bound on $\widehat F$, hence an upper bound on the converse, with of order $1/(\eta^2\tilde\lambda)$ uses. Does model-free tomography attain this $1/\tilde\lambda$ law on the converse side? (Section~\ref{gate:sec:cert}.)
+\end{problem}
+
+\begin{conjecture}[Intrinsic certification cost; Conjecture~\ref{gate:conj:cert}]\label{op:conj:cert}
+For every pair of channels with Choi-state floor $\tilde\lambda$, the optimal number of uses for certifying $\widehat C$ or $\widehat F$ to relative accuracy $\eta$ is $\widetilde\Theta\big(\mathrm{poly}(d)/(\eta^2\tilde\lambda)\big)$.
+\end{conjecture}
+
+\noindent For local depolarizing noise, Proposition~\ref{gate:prop:N34} gives a lower bound of this order for one estimand and an estimator that attains it for Pauli channels in a known frame.
+
+\endgroup

@@ -1,0 +1,950 @@
+%% (see chapters/ch05_NOTES.md). Label prefix: shA:
+\chapter{Shadows of quantum divergences: testing regions, modular lifts and continuity}\label{shA:chapter}
+\chaptermark{Shadows of quantum divergences}%
+\begingroup
+\chapmacro{\HT}{\mathrm{HT}}
+\chapmacro{\Petz}{\mathrm{P}}
+\chapmacro{\meas}{\mathrm{M}}
+\chapmacro{\reg}{\mathrm{reg}}
+\chapmacro{\cH}{\mathcal H}
+\chapmacro{\cX}{\mathcal X}
+\chapmacro{\cY}{\mathcal Y}
+\chapmacro{\cR}{\mathcal R}
+\chapmacro{\dT}{d_{\mathrm T}}
+\chapmacro{\cp}{\le_{\mathrm{cp}}}
+
+\begin{chaptersummary}
+Divergences built from Kubo--Ando means are functionals of one positive contraction, the Arveson--Radon--Nikodym derivative, which also governs their continuity (Chapter~\ref{cont:chapter}). We study those that are not. To a pair of states we attach three classical shadows: the reverse test, the testing region encoded by the hockey-stick profile, and the Nussbaum--Szko{\l}a pair of the relative modular operator. The Umegaki relative entropy, the Hirche--Tomamichel $f$-divergences and the hypothesis-testing quantities are functionals of the testing region, whose shadow consists of atoms at the relative spectrum, dominated by those of the reverse test, and an absolutely continuous part given by the coupling of the second state across the Helstrom test. Consequently the measured, testing-region and maximal divergences of a strictly convex function coincide only for commuting pairs. Testing-region divergences with finite boundary values are uniformly continuous, with a dimension-free modulus, and the Umegaki relative entropy is continuous exactly when the second state is invertible or the entropy is infinite. The Petz divergences arise from the same construction applied to the relative modular operator and have the same boundary masses. Replacing the trace norm by the Thompson metric and the relative entropy by a conditional entropy, we show that the Stein exponent of adaptive channel discrimination is continuous exactly when the Choi matrix of the second channel is invertible or the exponent is infinite. We prove similar results for the strong-converse exponent and the regularised Petz divergences, and give a one-shot dual formula for testing-region channel divergences. Tensor products are treated in Chapter~\ref{shB:chapter}.
+\end{chaptersummary}
+
+\section{Introduction}\label{shA:sec:intro}
+
+The geometric fidelity, the geometric R\'enyi divergences and the maximal $f$-divergences of two channels are all of the form $\lambda_{\max}\big(\Tr_\cY W h(T)W^*\big)$, where $T$ is the Arveson--Radon--Nikodym (ARN) derivative of $\Phi$ with respect to $\Phi+\Psi$ (Theorems~\ref{cont:fundamental principle} and~\ref{cont:thm:all f} in Chapter~\ref{cont:chapter}). One positive contraction and one scalar function carry the whole theory: finiteness is a statement about the boundary values of $h$, continuity is the functional calculus of $T$, and the continuity points are characterised by a dichotomy (Theorem~\ref{cont:thm:dichotomy}). That program stops at the Kubo--Ando means. The Umegaki relative entropy is not a function of $T$, nor are the trace distance, the hypothesis-testing relative entropy, the Petz and sandwiched R\'enyi divergences, or the regularised channel divergences that govern adaptive discrimination.
+
+The guiding observation of this chapter is that $T$ is one of several \emph{classical shadows} of a quantum pair, each of which plays the role of $T$ for a different family of divergences. For states $\rho,\sigma$ with $\omega=\rho+\sigma$:
+\begin{enumerate}[label=(\Roman*)]
+\item the \emph{reverse test} $(p_T,q_T)$, the classical pair carried by the spectral measure of $T=\omega^{-1/2}\rho\,\omega^{-1/2}$ in the state $\omega$. Its divergences are the maximal $f$-divergences and the Kubo--Ando means \cite{Matsumoto2018newf} (Chapter~\ref{cont:chapter});
+\item the \emph{testing region}, encoded by the hockey-stick profile $e(\gamma)=\Tr(\rho-\gamma\sigma)_+$ and its second derivative $\mu=e''$. Its divergences are the hypothesis-testing quantities, the Hirche--Tomamichel $f$-divergences \cite{HircheTomamichel2024} and, by Frenkel's formula \cite{Frenkel2023}, the Umegaki relative entropy;
+\item the \emph{modular shadow}, the Nussbaum--Szko{\l}a pair of the relative modular operator \cite{NussbaumSzkola2009}. Its divergences are the Petz $f$-divergences.
+\end{enumerate}
+A fourth family, the measured divergences, is a supremum over many classical pairs, and a fifth, the sandwiched and regularised divergences, appears only after tensor powers. We carry the program of Chapter~\ref{cont:chapter} through families (II)--(V): a representation by a shadow, a finiteness criterion through boundary values, continuity moduli, the continuity points, and, where possible, channels. Three tools replace the functional calculus of $T$: the T-lift (Section~\ref{shA:sec:structure}), the modular lift (Section~\ref{shA:sec:petz}), and, where tensor products break the shadows, pinching, the Thompson metric and a conditional-entropy decomposition (Sections~\ref{shA:sec:tensor} and~\ref{shA:sec:channels}).
+
+\paragraph{Main results.}
+\begin{itemize}[leftmargin=1.5em]
+\item \emph{Structure of the testing region} (Theorem~\ref{shA:thm:structure}). The shadow $\mu$ has atoms exactly at the relative spectrum, of weight $\Tr\Pi_{\ker(\rho-\gamma\sigma)}\sigma$, and an absolutely continuous part with density
+\[
+2\sum_{\lambda>0>\lambda'}\frac{\Tr(Q_\lambda\sigma Q_{\lambda'}\sigma)}{\lambda-\lambda'},
+\]
+the coupling of $\sigma$ across the Helstrom test. The atoms are dominated by those of the reverse test (Theorem~\ref{shA:thm:Tlift}), the hockey-sticks of the reverse test dominate those of the pair, and
+\[
+D_{BS}(\rho\|\sigma)-D(\rho\|\sigma)=\int_1^\infty\Big(\frac{E^T_\gamma-E_\gamma}{\gamma}(\rho\|\sigma)+\frac{E^T_\gamma-E_\gamma}{\gamma^2}(\sigma\|\rho)\Big)d\gamma ,
+\]
+with a pointwise nonnegative integrand that vanishes identically exactly for commuting pairs. The measured, testing-region and maximal divergences of a strictly convex $f$ coincide only for commuting pairs (Corollary~\ref{shA:cor:rigidity}).
+\item \emph{Continuity without a dichotomy} (Theorems~\ref{shA:thm:bounded} and~\ref{shA:thm:unbounded}). Every testing-region $f$-divergence with $f(0^+),f'(\infty)<\infty$ satisfies
+\[
+|D_f(\rho\|\sigma)-D_f(\rho'\|\sigma')|\le\int_0^\infty\min\{\gamma,1,\varepsilon_1+\gamma\varepsilon_2\}\,f''(d\gamma)
+\]
+in every dimension. The perturbations of size $O(\sqrt t)$ that make the geometric fidelity jump from $1$ to $0$ move these divergences by $O(\sqrt t)$. The same modulus holds for the measured $f$-divergences. The Umegaki relative entropy is continuous at $(\rho,\sigma)$ if and only if $\sigma$ is invertible or $D(\rho\|\sigma)=\infty$.
+\item \emph{Tensor products} (Section~\ref{shA:sec:tensor}). Explicit single-shot sandwiches
+\begin{gather*}
+D^\Petz_\alpha\le D^\HT_\alpha\le D^\Petz_\alpha+\frac{\log 2}{1-\alpha}\quad\text{for }\alpha<1\quad\text{and}\\
+|D^\HT_\alpha-\widetilde D_\alpha|\le\frac{\alpha}{\alpha-1}\log v(\sigma)\quad\text{for }\alpha>1,
+\end{gather*}
+which give the regularisation theorem of \cite{HircheTomamichel2024} with rates.
+Their behaviour under tensor products beyond these sandwiches, including the question of super-multiplicativity, is studied in Chapter~\ref{shB:chapter}.
+\item \emph{The adaptive Stein exponent} (Theorems~\ref{shA:thm:thompson},~\ref{shA:thm:firstarg} and Corollary~\ref{shA:cor:stein}). For every divergence that is antitone and logarithmically homogeneous in the second argument, every $n$-use adaptive quantity is $n\,\dT$-Lipschitz in $\Psi$, where $\dT$ is the Thompson metric of the Choi matrices. For the Umegaki entropy we also control the first argument uniformly over all references, which gives
+\[
+|\zeta(\Phi,\Psi)-\zeta(\Phi',\Psi')|\le 2\varepsilon\log d_\cY+(1+\varepsilon)h\big(\tfrac{\varepsilon}{1+\varepsilon}\big)+\varepsilon\log\kappa(\Psi)+\dT\big(J(\Psi),J(\Psi')\big)
+\]
+for the Stein exponent $\zeta$ of adaptive discrimination, $\varepsilon=\frac12\|\Phi-\Phi'\|_\diamond$ and $\kappa(\Psi)$ the condition number of $J(\Psi)$. The exponent is continuous at $(\Phi,\Psi)$ if and only if $J(\Psi)$ is invertible or $\zeta(\Phi,\Psi)=\infty$.
+\item \emph{Petz divergences} (Section~\ref{shA:sec:petz}). Through the modular derivative $\widetilde T=\Delta(\mathbf 1+\Delta)^{-1}$ every Petz $f$-divergence is a functional of a commuting pair of the kind treated in Chapter~\ref{cont:chapter}. Its shadow has the boundary masses of the testing region, not those of the reverse test. Bounded Petz divergences are continuous everywhere,
+\[
+|Q^\Petz_\alpha(\rho\|\sigma)-Q^\Petz_\alpha(\rho'\|\sigma')|\le(2\varepsilon_1)^\alpha+(2\varepsilon_2)^{1-\alpha}
+\]
+in every dimension, and the testing-region and Petz R\'enyi divergences are ordered for every $\alpha\ne1$.
+\item \emph{Sandwiched and Petz exponents, and the one-shot formula} (Theorems~\ref{shA:thm:sandfirst}, \ref{shA:thm:petzfirst}, \ref{shA:thm:oneshot} and~\ref{shA:thm:htreg}, Corollary~\ref{shA:cor:sand}). For $\alpha>1$ and invertible $J(\Psi)$,
+\[
+|\widetilde D^\reg_\alpha(\Phi'\|\Psi)-\widetilde D^\reg_\alpha(\Phi\|\Psi)|\le\tfrac{\alpha}{\alpha-1}\,d_\cX d_\cY\big(m/\lambda_{\min}(J(\Psi))\big)^{\alpha-1}\|\Phi'-\Phi\|_\diamond ,
+\]
+so the strong-converse exponent of adaptive discrimination is continuous there. For the regularised Petz divergences, which lack a chain rule, Theorem~\ref{shA:thm:petzfirst} gives Thompson-Lipschitz dependence on $\Phi$, stability under local perturbations uniformly in the number of uses, and continuity at isometries and at invertible $J(\Phi)$. Testing-region channel divergences have the exact one-shot formula of Theorem~\ref{shA:thm:oneshot},
+\[
+D^\HT_f(\Phi\|\Psi)=\inf_{Y,Z}\lambda_{\max}\Big(\Tr_\cY\Big[\int Y_\gamma\,f''(d\gamma)+\int Z_\gamma\,\tilde f''(d\gamma)\Big]\Big),
+\]
+the infimum over families with $Y_\gamma\ge0$, $Y_\gamma\ge J(\Phi)-\gamma J(\Psi)$, $Z_\gamma\ge0$ and $Z_\gamma\ge J(\Psi)-\gamma J(\Phi)$, in which the reverse test of Chapter~\ref{cont:chapter} is one feasible family. An invertible input is optimal exactly when it solves $\Gamma_f(\theta)=D\theta$. Their regularisations are the Petz ($\alpha<1$), Umegaki ($\alpha=1$) and sandwiched ($\alpha>1$) channel divergences.
+\end{itemize}
+
+\paragraph{Related work.} The divergences of family (II) were introduced by Hirche and Tomamichel \cite{HircheTomamichel2024} and are also called hockey-stick $f$-divergences. Beigi, Hirche and Tomamichel \cite{BeigiHircheTomamichel2025} and Liu, Hirche and Cheng \cite{LiuHircheCheng2025} compared their R\'enyi members with the Petz and sandwiched families. Hiai, Mosonyi and Tomamichel \cite{HMT2026} have recently developed them in von Neumann algebras: a Neyman--Pearson representation, the detection of reversibility, the regularisation of the R\'enyi members to the Petz divergences below order one and to the sandwiched divergences above it, and partial results on when different quantum $f$-divergences coincide. Our setting is finite-dimensional, and our results are of a different kind: the structure of the shadow $\mu$, explicit regularisation rates and continuity moduli, the rigidity statement of Corollary~\ref{shA:cor:rigidity}, and the channel results; super-multiplicativity is treated in Chapter~\ref{shB:chapter}. Continuity bounds for entropies through hockey-stick integral representations were developed by Berta, Lami and Tomamichel \cite{BLT2024}, and Theorem~\ref{shA:thm:bounded} is in the spirit of that method.
+
+The analogy with Chapter~\ref{cont:chapter} is close but the answers differ in an instructive way. For Kubo--Ando means the obstruction to continuity is the invertibility of the \emph{sum} $J(\Phi+\Psi)$, because the reverse test can be destroyed by an $O(\sqrt t)$ coupling of its kernel to its range. For the testing region that mechanism is invisible, and the only obstruction is a support leak, which needs the invertibility of the \emph{second argument}.
+
+The quantitative claims were also checked numerically; the checks are summarised in Section~\ref{shA:sec:numerics}.
+
+The chapter is organised as follows. Section~\ref{shA:sec:shadows} introduces the three shadows and the testing-region $f$-divergences. Section~\ref{shA:sec:structure} determines the structure of the testing-region shadow and compares it with the reverse test, and Section~\ref{shA:sec:continuity} proves the continuity results on states. Section~\ref{shA:sec:petz} treats the modular shadow and the Petz divergences, and Section~\ref{shA:sec:tensor} compares the testing region with the two multiplicative shadows on tensor powers. Section~\ref{shA:sec:channels} contains the results on channels: Thompson stability, the adaptive Stein exponent, the sandwiched and regularised Petz divergences, and the one-shot formula. Section~\ref{shA:sec:summary} summarises the classification, Section~\ref{shA:sec:numerics} lists the numerical checks, and Section~\ref{shA:sec:open} collects open problems.
+
+\section{Three shadows of a pair of states}\label{shA:sec:shadows}
+
+Throughout, $\rho,\sigma$ are density operators on a finite-dimensional Hilbert space $\cH$, $\omega=\rho+\sigma$, and $\Pi_X$ denotes the support projection of a positive operator $X$, with $\Pi_X^\perp=\mathbf 1-\Pi_X$. All logarithms are natural.
+
+\begin{definition}\label{shA:def:profile}
+For $A,B\ge0$ and $\gamma\ge0$ the \emph{hockey-stick divergence} is
+\[
+E_\gamma(A\|B)=\Tr(A-\gamma B)_+=\max_{0\le M\le\mathbf 1}\Tr M(A-\gamma B).
+\]
+The \emph{profile} of $(\rho,\sigma)$ is $e(\gamma)=E_\gamma(\rho\|\sigma)$, the \emph{error profile} is
+\[
+\eta(\gamma)=1-e(\gamma)=\Tr\rho-\Tr(\rho-\gamma\sigma)_+,
+\]
+the minimal Bayesian error with weights $(1,\gamma)$, and the \emph{boundary masses} are $m_0=\Tr\Pi_\rho^\perp\sigma$ and $m_\infty=\Tr\Pi_\sigma^\perp\rho$.
+\end{definition}
+
+\begin{lemma}\label{shA:lem:profile}
+\begin{enumerate}[label=(\alph*)]
+\item $e$ is convex and nonincreasing on $[0,\infty)$ with $e'(\gamma)\to0$ as $\gamma\to\infty$, $e(0)=1$ and $(1-\gamma)_+\le e(\gamma)\le1$. Equivalently $\eta$ is concave and nondecreasing, $\eta(0)=0$, and $\gamma\mapsto\eta(\gamma)/\gamma$ is nonincreasing.
+\item For $A,B\ge0$, $\lim_{L\to\infty}\Tr(A-LB)_+=\Tr\Pi_B^\perp A$. Hence $e(\infty)=m_\infty$ and $e'(0^+)=-(1-m_0)$.
+\item $E_\gamma(\sigma\|\rho)=\gamma\,e(1/\gamma)-\gamma+1$ for $\gamma>0$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) $e$ is a supremum of affine functions of $\gamma$ with slopes $-\Tr M\sigma\le0$, and a convex nonincreasing function that is bounded below has $e'(\infty)=0$; the bounds follow from $M=\mathbf 1$, $M=0$ and $\Tr M(\rho-\gamma\sigma)\le\Tr M\rho\le1$. (b) The test $M=\Pi_B^\perp$ gives $\ge$. For $\delta>0$,
+\[
+A\le(1+\delta)\Pi_B^\perp A\Pi_B^\perp+(1+\delta^{-1})\Pi_BA\Pi_B,
+\]
+and $B\ge b\,\Pi_B$ with $b$ the smallest nonzero eigenvalue of $B$. For $L\ge(1+\delta^{-1})\|A\|/b$ we get $A-LB\le(1+\delta)\Pi_B^\perp A\Pi_B^\perp$, so $\Tr(A-LB)_+\le(1+\delta)\Tr\Pi_B^\perp A$. For the slope at $0$ write, using $(X)_+-(-X)_+=X$,
+\[
+\eta(\gamma)=\gamma-\Tr(\gamma\sigma-\rho)_+=\gamma\big(1-E_{1/\gamma}(\sigma\|\rho)\big),
+\]
+and apply the first statement to $(\sigma,\rho)$. (c) is the same identity.
+\end{proof}
+
+\begin{definition}[\cite{HircheTomamichel2024}]\label{shA:def:HT}
+Let $f:(0,\infty)\to\mathbb R$ be convex with $f(1)=0$, and let $f''$ denote its second distributional derivative, a positive Radon measure. The \emph{testing-region} (Hirche--Tomamichel) $f$-divergence is
+\[
+D^\HT_f(\rho\|\sigma)=\int_1^\infty\Big(E_\gamma(\rho\|\sigma)\,f''(d\gamma)+E_\gamma(\sigma\|\rho)\,\tilde f''(d\gamma)\Big),\qquad \tilde f(x)=xf(1/x).
+\]
+For $\alpha\in(0,1)\cup(1,\infty)$ and $f_\alpha(x)=\frac{x^\alpha-1}{\alpha-1}$ we write $Q^\HT_\alpha=1+(\alpha-1)D^\HT_{f_\alpha}$ and $D^\HT_\alpha=\frac{1}{\alpha-1}\log Q^\HT_\alpha$.
+\end{definition}
+
+For smooth $f$, $\tilde f''(d\gamma)=\gamma^{-3}f''(1/\gamma)\,d\gamma$, which is the form used in \cite{HircheTomamichel2024}. Since $D^\HT_f$ only depends on $f''$ we may and do assume $f'(1)=0$ whenever convenient, so that $f\ge0$. By \cite{Frenkel2023}, $D^\HT_{x\log x}$ is the Umegaki relative entropy $D(\rho\|\sigma)=\Tr\rho(\log\rho-\log\sigma)$.
+
+\begin{definition}\label{shA:def:shadow}
+The \emph{testing-region shadow} of $(\rho,\sigma)$ is the positive measure $\mu=e''$ on $(0,\infty)$, completed by the atoms $m_0$ at $0$ and $m_\infty$ at $\infty$.
+\end{definition}
+
+The profile is the Legendre dual of the quantum Neyman--Pearson curve, so it carries the same information as the testing region and the quantum relative Lorenz curve \cite{Renes2016,BuscemiGour2017}. For commuting $\rho=\sum_xp_x|x\rangle\langle x|$, $\sigma=\sum_xq_x|x\rangle\langle x|$ one has $e(\gamma)=\sum_xq_x(p_x/q_x-\gamma)_+$, so $\mu$ is the law of the likelihood ratio $p/q$ under $q$ on $\{q>0\}$, and $m_\infty=p(\{q=0\})$.
+
+\begin{proposition}[Representation]\label{shA:prop:rep}
+For every convex $f$ with $f(1)=0$,
+\[
+D^\HT_f(\rho\|\sigma)=\int_0^\infty\big(e(\gamma)-(1-\gamma)_+\big)f''(d\gamma)=\int_{(0,\infty)}f\,d\mu+f(0^+)\,m_0+f'(\infty)\,m_\infty,
+\]
+with $f'(\infty)=\lim_{x\to\infty}f(x)/x$ and the convention $0\cdot\infty=0$. Moreover $\mu((0,\infty))=1-m_0$ and $\int\gamma\,d\mu=1-m_\infty$.
+\end{proposition}
+
+\begin{proof}
+Write $g(\gamma)=e(\gamma)-(1-\gamma)_+\ge0$. Lemma~\ref{shA:lem:profile}(c) and the substitution $\gamma\mapsto1/\gamma$ turn the second term of Definition~\ref{shA:def:HT} into $\int_0^1g\,f''$, which gives the first formula. For the second, both sides are linear in $f''$ with nonnegative integrands, so by Tonelli it suffices to treat the extreme kernels $f=k_s$, $k_s(x)=(x-s)_+$ for $s\ge1$ and $k_s(x)=(s-x)_+$ for $s<1$, which have $f(1)=f'(1)=0$ and $f''=\delta_s$. Since $e$ is convex with $e'(\infty)=0$, $e(\infty)=m_\infty$ and $e'(0^+)=-(1-m_0)$ (Lemma~\ref{shA:lem:profile}),
+\[
+e(s)=m_\infty+\int_{(s,\infty)}(y-s)\,d\mu(y),\qquad e(s)=1-s(1-m_0)+\int_{(0,s]}(s-y)\,d\mu(y).
+\]
+For $s\ge1$ the first identity is $g(s)=\int k_s\,d\mu+k_s'(\infty)m_\infty$, and for $s<1$ the second is $g(s)=\int k_s\,d\mu+k_s(0)m_0$. A general $f$ with $f(1)=f'(1)=0$ is $\int k_s\,f''(ds)$ by Taylor's formula, and $f(0^+)$, $f'(\infty)$ are the corresponding integrals, by monotone convergence. The masses follow from the first identity: its derivative is $e'(s)=-\mu((s,\infty))$, so $\mu((0,\infty))=-e'(0^+)=1-m_0$, and at $s\to0$ it gives $1=m_\infty+\int y\,d\mu$. Adding $c(x-1)$ to $f$ changes the right-hand side by $c\big(\int(\gamma-1)d\mu-m_0+m_\infty\big)=0$, so the formula holds without the normalisation $f'(1)=0$ whenever no $\infty-\infty$ occurs.
+\end{proof}
+
+\begin{proposition}[Mellin formulas]\label{shA:prop:mellin}
+For $\alpha\in(0,1)$,
+\[
+Q^\HT_\alpha(\rho\|\sigma)=\int_{(0,\infty)}\gamma^\alpha d\mu(\gamma)=\alpha(1-\alpha)\int_0^\infty\gamma^{\alpha-2}\eta(\gamma)\,d\gamma .
+\]
+For $\alpha>1$, $Q^\HT_\alpha=+\infty$ if $m_\infty>0$, and otherwise
+\[
+Q^\HT_\alpha(\rho\|\sigma)=\int_{(0,\infty)}\gamma^\alpha d\mu(\gamma)=\alpha(\alpha-1)\int_0^\infty\gamma^{\alpha-2}e(\gamma)\,d\gamma .
+\]
+\end{proposition}
+
+\begin{proof}
+Apply Proposition~\ref{shA:prop:rep} to $f_\alpha$, for which $f_\alpha(0^+)=\frac{-1}{\alpha-1}$, $f_\alpha'(\infty)=0$ for $\alpha<1$ and $=\infty$ for $\alpha>1$, and $f_\alpha''(d\gamma)=\alpha\gamma^{\alpha-2}d\gamma$. With $\mu((0,\infty))=1-m_0$ this gives $Q^\HT_\alpha=\int\gamma^\alpha d\mu$ (plus $\infty\cdot m_\infty$ when $\alpha>1$). For the integrals use the first formula of Proposition~\ref{shA:prop:rep}: $g=\min\{\gamma,1\}-\eta$, and
+\[
+\alpha(1-\alpha)\int_0^\infty\gamma^{\alpha-2}\min\{\gamma,1\}d\gamma=1
+\]
+for $\alpha<1$, while for $\alpha>1$ we use
+\[
+\alpha(\alpha-1)\int_0^1\gamma^{\alpha-2}(1-\gamma)\,d\gamma=1.
+\]
+\end{proof}
+
+\paragraph{The reverse test and the modular shadow.} Let $T=\omega^{-1/2}\rho\,\omega^{-1/2}$ on $\Pi_\omega\cH$ with spectral projections $E_t$. The \emph{reverse test} is the classical pair $p_T(t)=t\Tr E_t\omega$, $q_T(t)=(1-t)\Tr E_t\omega$ on $\operatorname{spec}T$. The preparation $t\mapsto\omega^{1/2}E_t\omega^{1/2}/\Tr E_t\omega$ maps $(p_T,q_T)$ to $(\rho,\sigma)$, and $D^T_f:=D_f(p_T\|q_T)$ is the maximal $f$-divergence of $(\rho,\sigma)$ for operator convex $f$ \cite{Matsumoto2018newf}, equal to $\Tr\omega^{1/2}h_f(T)\omega^{1/2}$ with $h_f(t)=(1-t)f(t/(1-t))$ (Theorem~\ref{cont:fundamental principle} and Lemma~\ref{cont:lem:mixing} in Chapter~\ref{cont:chapter}). Its profile is
+\[
+E^T_\gamma(\rho\|\sigma):=E_\gamma(p_T\|q_T)=\Tr\,\omega^{1/2}\big(T-\gamma(\mathbf 1-T)\big)_+\omega^{1/2}.
+\]
+The \emph{modular shadow} is the Nussbaum--Szko{\l}a pair $P_{ij}=a_i|\langle x_i|y_j\rangle|^2$, $Q_{ij}=b_j|\langle x_i|y_j\rangle|^2$ built from $\rho=\sum a_i|x_i\rangle\langle x_i|$ and $\sigma=\sum b_j|y_j\rangle\langle y_j|$; its $f$-divergences are the Petz $f$-divergences $D^\Petz_f$ \cite{NussbaumSzkola2009,HiaiMosonyi2017}. The measured divergence $D^\meas_f$ is the supremum of $D_f$ over the outcome distributions of all measurements.
+
+\begin{proposition}[Blackwell chain]\label{shA:prop:chain}
+For every convex $f$ with $f(1)=0$: $D^\meas_f\le D^\HT_f\le D^T_f$.
+\end{proposition}
+
+\begin{proof}
+Both terms of Definition~\ref{shA:def:HT} are nondecreasing in the hockey-stick divergences, and hockey-stick divergences satisfy data processing. Apply this to a measurement and to the preparation channel of the reverse test, and use that $D^\HT_f$ is the classical $f$-divergence on commuting pairs.
+\end{proof}
+
+\section{Structure of the testing-region shadow}\label{shA:sec:structure}
+
+Both $\rho$ and $\sigma$ vanish on $\ker\omega$, so we work on $\Pi_\omega\cH$. Let
+\[
+\Gamma=\{\gamma>0:\ \rho-\gamma\sigma \text{ is singular on } \Pi_\omega\cH\},
+\]
+the \emph{relative spectrum}; it is the set of $t/(1-t)$ with $t\in\operatorname{spec}T\cap(0,1)$, since $Tu=tu$ with $v=\omega^{-1/2}u$ is $(1-t)\rho v=t\sigma v$. For $\gamma\notin\Gamma$ write $\rho-\gamma\sigma=\sum_\lambda\lambda Q_\lambda$ on $\Pi_\omega\cH$ and $P_\gamma=\sum_{\lambda>0}Q_\lambda$, the Helstrom projection.
+
+\begin{theorem}[Structure]\label{shA:thm:structure}
+\begin{enumerate}[label=(\alph*)]
+\item On each interval of $(0,\infty)\setminus\Gamma$, $e$ is real-analytic and $e'(\gamma)=-\Tr P_\gamma\sigma$.
+\item On $(0,\infty)\setminus\Gamma$ the shadow has the density
+\[
+\frac{d\mu}{d\gamma}=2\sum_{\lambda>0>\lambda'}\frac{\Tr\big(Q_\lambda\sigma Q_{\lambda'}\sigma\big)}{\lambda-\lambda'}\ \ge0 .
+\]
+\item At $\gamma_0\in\Gamma$ the shadow has the atom $\mu(\{\gamma_0\})=\Tr\Pi_{V}\sigma>0$, where $V=\ker(\rho-\gamma_0\sigma)\cap\Pi_\omega\cH$.
+\item $\mu$ has no other part, and its absolutely continuous part vanishes identically if and only if $[\rho,\sigma]=0$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) For $\gamma\notin\Gamma$, $0\notin\operatorname{spec}(\rho-\gamma\sigma)$, so $e(\gamma)=\Tr\phi(\rho-\gamma\sigma)$ with $\phi(x)=x_+$ smooth near the spectrum, and
+\[
+\frac{d}{d\gamma}\Tr\phi(H)=\Tr\phi'(H)\dot H=-\Tr P_\gamma\sigma.
+\]
+(b) By the Daleckii--Krein formula,
+\[
+\dot P_\gamma=\sum_{\lambda,\lambda'}\frac{1_{\lambda>0}-1_{\lambda'>0}}{\lambda-\lambda'}Q_\lambda(-\sigma)Q_{\lambda'},
+\]
+and $-\Tr\dot P_\gamma\sigma$ is the stated sum; only pairs with $\lambda>0>\lambda'$ survive. (c) By Rellich's theorem the eigenvalues of the analytic family $\rho-\gamma\sigma$ are analytic branches. The branches through $0$ at $\gamma_0$ have derivatives equal to the eigenvalues of $-\Pi_V\sigma\Pi_V|_V$, which are negative because $\sigma v=0$ and $\rho v=\gamma_0\sigma v$ would force $v\in\ker\omega$. So exactly $\dim V$ eigenvalues cross from positive to negative, $P_{\gamma_0-\delta}-P_{\gamma_0+\delta}\to\Pi_V$, and $e'$ jumps by $\Tr\Pi_V\sigma$. (d) $\Gamma$ is finite, so (a)--(c) describe $\mu$ on $(0,\infty)$. If $\rho,\sigma$ commute, $\sigma$ is block diagonal for every $\rho-\gamma\sigma$ and the density vanishes. Conversely, if the density vanishes then $Q_\lambda\sigma Q_{\lambda'}=0$ for $\lambda>0>\lambda'$, so $\dot P_\gamma=0$ and $[\sigma,P_\gamma]=0$; then $P_\gamma=P_I$ is constant on each interval $I$ of $(0,\infty)\setminus\Gamma$ and commutes with $\sigma$ and with $\rho=(\rho-\gamma\sigma)+\gamma\sigma$, hence the $P_I$ commute with each other. On a minimal common invariant subspace $B$ of all $P_I$, the operator $\rho-\gamma\sigma$ is positive for small $\gamma$ and negative for large $\gamma$ or has constant sign; as it is nonincreasing in $\gamma$, $\rho|_B=\gamma_B\,\sigma|_B$ for some $\gamma_B\in[0,\infty]$. So $\rho$ and $\sigma$ commute.
+\end{proof}
+
+The density in (b) is the coupling of $\sigma$ between the positive and negative parts of the optimal test at level $\gamma$. This is the information that the reverse test discards, as the next theorem makes precise. Write $\mu_T$ for the shadow of the reverse test: the law of $t/(1-t)$ under $q_T$, an atomic measure at $\Gamma\cup\{0\}$ with $\mu_T(\{\gamma_0\})=(1-t_0)\Tr E_{t_0}\omega$, $t_0=\gamma_0/(1+\gamma_0)$, together with the atom $m^T_\infty=\Tr E_1\omega$ at $\infty$.
+
+\begin{theorem}[The T-lift]\label{shA:thm:Tlift}
+\begin{enumerate}[label=(\alph*)]
+\item $E_\gamma(\rho\|\sigma)\le E^T_\gamma(\rho\|\sigma)$ for every $\gamma\ge0$, with equality if and only if $P^T_{>c}\,\omega\,P^T_{<c}=0$, where $c=\gamma/(1+\gamma)$ and $P^T$ are the spectral projections of $T$. The same holds with $\rho$ and $\sigma$ exchanged and $c=1/(1+\gamma)$. Equality for all $\gamma$ holds if and only if $[\rho,\sigma]=0$.
+\item The atoms are dominated: $\mu(\{\gamma_0\})\le\mu_T(\{\gamma_0\})$ for $\gamma_0\in\Gamma$, $m_0\le\mu_T(\{0\})$ and $m_\infty\le m^T_\infty$, with equality at $\gamma_0$ if and only if $V$ is invariant under $\omega$.
+\item The absolutely continuous mass of $\mu$ equals
+\[
+\sum_{\gamma_0\in\Gamma\cup\{0\}}\big(\mu_T(\{\gamma_0\})-\mu(\{\gamma_0\})\big).
+\]
+\item For every convex $f$ with $f(1)=0$,
+\[
+D^T_f(\rho\|\sigma)-D^\HT_f(\rho\|\sigma)=\int_1^\infty\Big(\big(E^T_\gamma-E_\gamma\big)(\rho\|\sigma)\,f''(d\gamma)+\big(E^T_\gamma-E_\gamma\big)(\sigma\|\rho)\,\tilde f''(d\gamma)\Big)\ge0 .
+\]
+For $f=x\log x$ this is $D_{BS}-D$ with $f''(d\gamma)=d\gamma/\gamma$ and $\tilde f''(d\gamma)=d\gamma/\gamma^2$, which refines the inequality $D\le D_{BS}$ of \cite{HiaiPetz1991} level by level.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) With $X=T-\gamma(\mathbf 1-T)$ we have $\rho-\gamma\sigma=\omega^{1/2}X\omega^{1/2}$. Put $A=\omega^{1/2}X_+\omega^{1/2}$ and $B=\omega^{1/2}X_-\omega^{1/2}$. Since $\Tr Y_+=\min\{\Tr Z:Z\ge0,\ Z\ge Y\}$ and $A\ge A-B$, we get $E_\gamma\le\Tr A=E^T_\gamma$. If equality holds, an optimal test $M$ satisfies $\Tr(\mathbf 1-M)A+\Tr MB=0$, so $A=MA$, $MB=0$ and $AB=AMB=0$; conversely $AB=0$ gives $(A-B)_+=A$. Since $\omega^{1/2}$ is injective on $\Pi_\omega\cH$ and $X_\pm$ are invertible on the ranges of $P^T_{>c}$ and $P^T_{<c}$, $AB=0$ is equivalent to $P^T_{>c}\omega P^T_{<c}=0$. As $\gamma$ runs over $(0,\infty)$ in both directions, $c$ runs over $(0,1)$, so equality everywhere means that $\omega$ commutes with every spectral projection of $T$; then $\rho=\omega^{1/2}T\omega^{1/2}$ commutes with $\omega$ and with $\sigma=\omega-\rho$. The converse is clear.
+
+(b) Let $\gamma_0\in\Gamma$ and let $B$ be an isometry onto $V$. On $V$, $\rho=\gamma_0\sigma$ as quadratic forms, so $\Tr\Pi_V\sigma=(1-t_0)\Tr B^*\omega B$. The spectral subspace of $T$ at $t_0$ is $\omega^{1/2}V$, with projection $E_{t_0}=\omega^{1/2}B(B^*\omega B)^{-1}B^*\omega^{1/2}$, so $\Tr E_{t_0}\omega=\Tr(B^*\omega B)^{-1}B^*\omega^2B$. Kadison's inequality for the unital map $Z\mapsto B^*ZB$ gives $B^*\omega^2B\ge(B^*\omega B)^2$, hence $\Tr E_{t_0}\omega\ge\Tr B^*\omega B$, with equality if and only if $(\mathbf 1-\Pi_V)\omega\Pi_V=0$. The boundary atoms are the cases $V=\ker\rho\cap\Pi_\omega\cH$ (where $\omega=\sigma$) and $V=\ker\sigma\cap\Pi_\omega\cH$ (where $\omega=\rho$, using $\rho$-masses).
+
+(c) Both $\mu_T$ (on $[0,\infty)$) and $\mu+m_0\delta_0$ have total mass $\Tr\sigma=1$ by Proposition~\ref{shA:prop:rep}, and $\mu_T$ is atomic.
+
+(d) $D^T_f$ is the classical $f$-divergence of $(p_T,q_T)$, which is Definition~\ref{shA:def:HT} applied to the profile $E^T_\gamma$. Subtract and use (a).
+\end{proof}
+
+\begin{corollary}[Rigidity]\label{shA:cor:rigidity}
+Let $f$ be convex with $f(1)=0$ and $f''$ positive almost everywhere on $(0,\infty)$.
+\begin{enumerate}[label=(\roman*)]
+\item If $D^\HT_f(\rho\|\sigma)=D^T_f(\rho\|\sigma)<\infty$, then $[\rho,\sigma]=0$.
+\item If $f(0^+),f'(\infty)<\infty$ and $D^\meas_f(\rho\|\sigma)=D^\HT_f(\rho\|\sigma)$, then $[\rho,\sigma]=0$.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+(i) The integrand of Theorem~\ref{shA:thm:Tlift}(d) is nonnegative and continuous in $\gamma$, so it vanishes for all $\gamma$; apply Theorem~\ref{shA:thm:Tlift}(a). (ii) The supremum defining $D^\meas_f$ is attained by some measurement $M$ with at most $(\dim\cH)^2$ outcomes. Its outcome pair $(p,q)$ has $E_\gamma(p\|q)\le E_\gamma(\rho\|\sigma)$ for all $\gamma$, and equality of the integrals forces equality for every $\gamma$. For $\gamma\notin\Gamma$ the optimal test on $\Pi_\omega\cH$ is unique, so $P_\gamma=\sum_{x:\,p_x>\gamma q_x}M_x$ there. These projections are nested in $\gamma$ and continuous on each interval of $(0,\infty)\setminus\Gamma$, so they are locally constant, and then $\dot P_\gamma=0$ forces the density of Theorem~\ref{shA:thm:structure}(b) to vanish. By Theorem~\ref{shA:thm:structure}(d), $\rho$ and $\sigma$ commute.
+\end{proof}
+
+\begin{example}[Two pure states]\label{shA:ex:pure}
+Let $\rho=|\psi\rangle\langle\psi|$, $\sigma=|\phi\rangle\langle\phi|$ with $c=|\langle\psi|\phi\rangle|^2\in(0,1)$. The $2\times2$ eigenvalue problem gives
+\begin{gather*}
+e(\gamma)=\tfrac12\Big(1-\gamma+\sqrt{(1+\gamma)^2-4c\gamma}\Big),\\
+ \mu(d\gamma)=\frac{2c(1-c)\,d\gamma}{\big(\gamma^2+2(1-2c)\gamma+1\big)^{3/2}},\\
+ m_0=m_\infty=1-c .
+\end{gather*}
+Here $\Gamma=\emptyset$ and the shadow is absolutely continuous, while $T$ is a projection and $\mu_T=\delta_0$, $m^T_\infty=1$: the reverse test sees two orthogonal states. Consequently the geometric fidelity is $0$ for every $c<1$, whereas
+\[
+Q^\HT_{1/2}(\rho\|\sigma)=2c(1-c)\int_0^\infty\frac{\gamma^{1/2}\,d\gamma}{\big(\gamma^2+2(1-2c)\gamma+1\big)^{3/2}}\ \longrightarrow\ 1\qquad(c\to1),
+\]
+with $Q^\HT_{1/2}=\tfrac14B(\tfrac34,\tfrac34)\approx0.4236$ at $c=\tfrac12$.
+\end{example}
+
+\section{Continuity on states}\label{shA:sec:continuity}
+
+Normalise $f(1)=f'(1)=0$. Then $f(0^+)=\int_{(0,1)}\gamma\,f''(d\gamma)$ and $f'(\infty)=\int_{[1,\infty)}f''(d\gamma)$, so
+\begin{equation}\label{shA:eq:size}
+\int_0^\infty\min\{\gamma,1\}\,f''(d\gamma)=f(0^+)+f'(\infty).
+\end{equation}
+We call $f$ \emph{bounded} when this quantity is finite.
+
+\begin{theorem}[Uniform continuity]\label{shA:thm:bounded}
+Let $f$ be bounded. For states $\rho,\rho',\sigma,\sigma'$ in any dimension, with $\varepsilon_1=\frac12\|\rho-\rho'\|_1$ and $\varepsilon_2=\frac12\|\sigma-\sigma'\|_1$,
+\[
+\big|D^\HT_f(\rho\|\sigma)-D^\HT_f(\rho'\|\sigma')\big|\le\omega_f(\varepsilon_1,\varepsilon_2):=\int_0^\infty\min\{\gamma,\,1,\,\varepsilon_1+\gamma\varepsilon_2\}\,f''(d\gamma),
+\]
+and $\omega_f(\varepsilon_1,\varepsilon_2)\to0$ as $\varepsilon_1,\varepsilon_2\to0$. The same bound holds for the stabilised channel divergences
+\[
+D^\HT_f(\Phi\|\Psi)=\sup_\psi D^\HT_f\big((\id\otimes\Phi)(\psi)\|(\id\otimes\Psi)(\psi)\big)
+\]
+with $\varepsilon_1=\frac12\|\Phi-\Phi'\|_\diamond$ and $\varepsilon_2=\frac12\|\Psi-\Psi'\|_\diamond$.
+\end{theorem}
+
+\begin{proof}
+By Proposition~\ref{shA:prop:rep}, $D^\HT_f=\int g\,f''$ with $g=e-(1-\gamma)_+$, and $0\le g\le\min\{\gamma,1\}$ by Lemma~\ref{shA:lem:profile}. For a traceless Hermitian $X$,
+\[
+\max_{0\le M\le\mathbf 1}|\Tr MX|=\frac12\|X\|_1,
+\]
+so $|e(\gamma)-e'(\gamma)|\le\varepsilon_1+\gamma\varepsilon_2$ for the two profiles. Hence $|g-g'|\le\min\{\gamma,1,\varepsilon_1+\gamma\varepsilon_2\}$. The limit follows from \eqref{shA:eq:size} and dominated convergence. For channels, apply the state bound to each input and take suprema.
+\end{proof}
+
+For the trace distance ($f''=\delta_1$) the modulus is $\min\{1,\varepsilon_1+\varepsilon_2\}$. For the squared Hellinger distance $f=(\sqrt x-1)^2$, $f''(d\gamma)=\frac12\gamma^{-3/2}d\gamma$, splitting at $\gamma=2\varepsilon$, $1$ and $1/(2\varepsilon)$ gives $\omega_f(\varepsilon,\varepsilon)\le4\sqrt{2\varepsilon}$, so the testing-region fidelity $Q^\HT_{1/2}=1-\frac12D^\HT_{(\sqrt x-1)^2}$ has modulus at most $2\sqrt{2\varepsilon}$. Compare Corollary~\ref{cont:cor:states dichotomy} in Chapter~\ref{cont:chapter}: the geometric fidelity, the reverse-test value of the same $f$, is discontinuous at every pair whose sum is singular and whose fidelity is positive.
+
+The same modulus holds for the measured divergences $D^\meas_f(\rho\|\sigma)=\sup_N D_f(N\rho\|N\sigma)$, the supremum over measurements $N$, and for their stabilised channel versions. Indeed, a measurement does not increase trace distances and $\omega_f$ is nondecreasing in both arguments, so Theorem~\ref{shA:thm:bounded} applied to each pair of outcome distributions, on which $D^\HT_f$ is the classical $D_f$ by Proposition~\ref{shA:prop:rep}, gives
+\[
+|D_f(N\rho\|N\sigma)-D_f(N\rho'\|N\sigma')|\le\omega_f(\varepsilon_1,\varepsilon_2)
+\]
+for every $N$, and the difference of two suprema, which are finite because $f$ is bounded, is at most the supremum of the differences.
+
+\begin{corollary}[No dichotomy]\label{shA:cor:nodichotomy}
+Every bounded testing-region divergence is continuous at every pair of states and channels. The perturbations of size $O(\sqrt t)$ in Theorem~\ref{cont:thm:dichotomy} of Chapter~\ref{cont:chapter}, which move every Kubo--Ando mean of a pair with singular sum to its affine part, move $D^\HT_f$ by at most $\omega_f(O(\sqrt t),O(\sqrt t))$.
+\end{corollary}
+
+For instance, with $\sigma=|0\rangle\langle0|$ and $\rho_t=|v_t\rangle\langle v_t|$, $v_t=\sqrt{1-t}\,|0\rangle+\sqrt t\,|1\rangle$, the geometric fidelity is $0$ for $t>0$ and $1$ at $t=0$, while Example~\ref{shA:ex:pure} gives
+\[
+Q^\HT_{1/2}(\rho_t\|\sigma)=0.97904,\ 0.99968,\ 0.999996\quad\text{at }t=10^{-2},10^{-4},10^{-6}.
+\]
+The discontinuities of mean-based divergences are therefore a property of the reverse test, not of quantum divergences as such.
+
+\begin{theorem}[Unbounded generators]\label{shA:thm:unbounded}
+Let $f$ be convex with $f(1)=0$. Then $D^\HT_f$ is lower semicontinuous on pairs of states with values in $[0,\infty]$, and:
+\begin{enumerate}[label=(\alph*)]
+\item if $f'(\infty)=\infty$ and $f(0^+)<\infty$, then $D^\HT_f$ is continuous at $(\rho,\sigma)$ if and only if $\sigma$ is invertible or $D^\HT_f(\rho\|\sigma)=\infty$;
+\item if $f(0^+)=\infty$ and $f'(\infty)<\infty$, then the same holds with $\rho$ in place of $\sigma$;
+\item if both are infinite, $D^\HT_f$ is continuous at $(\rho,\sigma)$ if and only if both are invertible or $D^\HT_f(\rho\|\sigma)=\infty$.
+\end{enumerate}
+In particular the Umegaki relative entropy is continuous at $(\rho,\sigma)$ if and only if $\sigma$ is invertible or $D(\rho\|\sigma)=\infty$.
+\end{theorem}
+
+\begin{proof}
+Lower semicontinuity follows from Fatou's lemma, because $g\ge0$ is continuous in $(\rho,\sigma)$. (a) If $\sigma\ge\lambda\mathbf 1$ with $\lambda>0$, then $\sigma'\ge\frac\lambda2\mathbf 1$ for nearby $\sigma'$, and $e(\gamma)=0$ for $\gamma\ge2/\lambda$ and all nearby $\rho'$, because $\rho'\le\mathbf 1\le\gamma\sigma'$. So the integrand $g$ vanishes beyond $2/\lambda$ uniformly. On $(0,2/\lambda]$ it is dominated by $\min\{\gamma,1\}$, which is $f''$-integrable there because $f(0^+)<\infty$ and $f''$ is locally finite. If $\sigma$ is singular and $D^\HT_f(\rho\|\sigma)<\infty$, take a unit vector $v\in\ker\sigma$ and $\rho_t=(1-t)\rho+t|v\rangle\langle v|$. Then $m_\infty(\rho_t,\sigma)\ge t>0$ and $D^\HT_f(\rho_t\|\sigma)\ge f'(\infty)m_\infty=\infty$ by Proposition~\ref{shA:prop:rep} (with $f\ge0$), so continuity fails. At a pair with $D^\HT_f=\infty$, lower semicontinuity gives continuity into $[0,\infty]$. (b) is (a) for $\tilde f$ and the exchanged pair, since $D^\HT_f(\rho\|\sigma)=D^\HT_{\tilde f}(\sigma\|\rho)$. (c) combines both.
+\end{proof}
+
+Quantitative bounds at invertible $\sigma$, in terms of $D_{\max}$, are given in \cite{BLT2024} through the same integral representation. Theorem~\ref{shA:thm:unbounded} is the testing-region analogue of the dichotomy of Theorem~\ref{cont:thm:dichotomy}, but the obstruction differs. There the obstruction is the singularity of the \emph{sum}, through a coupling of size $O(\sqrt t)$. Here it is the singularity of the \emph{second argument}, through a leak of size $O(t)$.
+
+The Petz divergences, whose shadow is the Nussbaum--Szko{\l}a pair, are treated in Section~\ref{shA:sec:petz}.
+
+\section{The modular shadow: Petz divergences}\label{shA:sec:petz}
+
+Write $\rho=\sum_ia_iE_i$ and $\sigma=\sum_jb_jF_j$ with distinct eigenvalues and spectral projections. Let $L_\rho$ and $R_\sigma$ be left and right multiplication on the Hilbert--Schmidt space; they commute, and $\Delta=L_\rho R_\sigma^{-1}$ is the relative modular operator. For convex $f$ with $f(1)=0$ the Petz $f$-divergence is
+\[
+D^\Petz_f(\rho\|\sigma)=\langle\mathbf 1,P_f(L_\rho,R_\sigma)\mathbf 1\rangle=\sum_{ij}\Tr(E_iF_j)\,P_f(a_i,b_j),
+\]
+with the perspective $P_f(a,b)=bf(a/b)$ extended by $P_f(a,0)=af'(\infty)$ and $P_f(0,b)=bf(0^+)$ \cite{HiaiMosonyi2017}. Its classical pair is the Nussbaum--Szko{\l}a pair $P_{ij}=a_i\Tr E_iF_j$, $Q_{ij}=b_j\Tr E_iF_j$.
+
+\begin{theorem}[The modular lift]\label{shA:thm:modular}
+\begin{enumerate}[label=(\alph*)]
+\item With $\Omega=L_\rho+R_\sigma$ and the \emph{modular derivative} $\widetilde T=L_\rho\Omega^{-1}=\Delta(\mathbf 1+\Delta)^{-1}$ on the support of $\Omega$,
+\[
+D^\Petz_f(\rho\|\sigma)=\big\langle\mathbf 1,\ \Omega^{1/2}h_f(\widetilde T)\,\Omega^{1/2}\mathbf 1\big\rangle,\qquad h_f(t)=(1-t)f\big(t/(1-t)\big),
+\]
+the formula of Theorem~\ref{cont:fundamental principle} and Lemma~\ref{cont:lem:mixing} for the commuting pair $(L_\rho,R_\sigma)$ in the vector $\mathbf 1$.
+\item The profile of the modular shadow is the \emph{Petz hockey-stick}
+\[
+E^\Petz_\gamma(\rho\|\sigma):=\sum_{ij}(P_{ij}-\gamma Q_{ij})_+=\sum_j\Tr F_j(\rho-\gamma b_j\mathbf 1)_+ ,
+\]
+and $D^\Petz_f$ is Definition~\ref{shA:def:HT} applied to $E^\Petz_\gamma$ in place of $E_\gamma$.
+\item The boundary masses of the modular shadow are $m_0=\Tr\Pi_\rho^\perp\sigma$ and $m_\infty=\Tr\Pi_\sigma^\perp\rho$, the same as for the testing region, and in general strictly smaller than those of the reverse test. Consequently $D^\Petz_f$ and $D^\HT_f$ are finite under exactly the same conditions: no positive boundary mass may meet an infinite boundary value of $f$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) $P_f(a,b)=(a+b)h_f(a/(a+b))$, and functional calculus of the commuting pair gives $P_f(L_\rho,R_\sigma)=\Omega^{1/2}h_f(\widetilde T)\Omega^{1/2}$. (b) We have
+\[
+\sum_i(a_i-\gamma b_j)_+\Tr E_iF_j=\Tr F_j(\rho-\gamma b_j)_+.
+\]
+The second statement is Proposition~\ref{shA:prop:rep} for the commuting (classical) pair $(P,Q)$. (c) We have
+\[
+m_0^{\mathrm{NS}}=\sum_{i:a_i=0}\sum_jb_j\Tr E_iF_j=\Tr\Pi_\rho^\perp\sigma,
+\]
+and symmetrically for $m_\infty$. The comparison with the reverse test is Theorem~\ref{shA:thm:Tlift}(b).
+\end{proof}
+
+Theorem~\ref{shA:thm:modular}(c) separates two Lebesgue decompositions. The reverse test of Chapter~\ref{cont:chapter} splits a pair along the spectral projections of $T$, whose extreme eigenspaces can be strictly larger than the support defects. The modular and testing-region shadows split it along the supports themselves.
+
+\begin{theorem}[Continuity of Petz divergences]\label{shA:thm:petzcont}
+\begin{enumerate}[label=(\alph*)]
+\item If $f(0^+),f'(\infty)<\infty$, then $D^\Petz_f$ is jointly continuous on pairs of states.
+\item For $\alpha\in(0,1)$ and states in any dimension,
+\[
+\big|Q^\Petz_\alpha(\rho\|\sigma)-Q^\Petz_\alpha(\rho'\|\sigma')\big|\le(2\varepsilon_1)^\alpha+(2\varepsilon_2)^{1-\alpha},\qquad \varepsilon_1=\tfrac12\|\rho-\rho'\|_1,\ \varepsilon_2=\tfrac12\|\sigma-\sigma'\|_1 .
+\]
+The same modulus holds for the stabilised channel quantity $\inf_\psi Q^\Petz_\alpha$ with diamond distances.
+\item For unbounded $f$, $D^\Petz_f$ is lower semicontinuous, and its continuity points are exactly those of Theorem~\ref{shA:thm:unbounded}. In particular $Q^\Petz_\alpha$ with $\alpha\in(1,2]$ is continuous at $(\rho,\sigma)$ if and only if $\sigma$ is invertible or $\Pi_\rho\not\le\Pi_\sigma$.
+\item Every $n$-use and regularised Petz quantity with $\alpha\in[0,2]$ is $\dT$-Lipschitz in the second channel (Theorem~\ref{shA:thm:thompson}).
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) $P_f$ is continuous on $[0,1]^2$, with $|P_f(a,b)|\le C(a+b)$ because a convex $f$ with finite boundary values satisfies $|f(x)|\le C(1+x)$. Uniform approximation of $P_f$ by polynomials in two variables makes $(\rho,\sigma)\mapsto\langle\mathbf 1,P_f(L_\rho,R_\sigma)\mathbf 1\rangle$ a uniform limit of continuous functions. (b) By H\"older's inequality,
+\[
+|Q^\Petz_\alpha(\rho\|\sigma)-Q^\Petz_\alpha(\rho'\|\sigma')|\le\|\rho^\alpha-\rho'^\alpha\|_{1/\alpha}\|\sigma^{1-\alpha}\|_{1/(1-\alpha)}+\|\rho'^\alpha\|_{1/\alpha}\|\sigma^{1-\alpha}-\sigma'^{1-\alpha}\|_{1/(1-\alpha)} .
+\]
+The two fixed norms equal $1$. Ando's inequality for the operator monotone functions $x^\alpha$ and $x^{1-\alpha}$ \cite{Ando1988} gives
+\[
+\|\rho^\alpha-\rho'^\alpha\|_{1/\alpha}\le\||\rho-\rho'|^\alpha\|_{1/\alpha}=\|\rho-\rho'\|_1^\alpha,
+\]
+and likewise for $\sigma$. For channels, apply this to each input. (c) $D^\Petz_f$ is the increasing limit of the bounded divergences with $f''$ truncated to $[1/k,k]$, hence lower semicontinuous. At invertible $\sigma$ the perspective is continuous near the spectrum; at singular $\sigma$ with finite value, the support leak of Theorem~\ref{shA:thm:unbounded} gives $m_\infty>0$ and an infinite value. (d) $D^\Petz_\alpha$ is antitone in $\sigma$ for $\alpha\in[0,2]$ and logarithmically homogeneous.
+\end{proof}
+
+The theory of Chapter~\ref{cont:chapter} predicts discontinuity of a mean of the lifted pair wherever $\Omega=L_\rho+R_\sigma$ is singular, that is, wherever $\rho$ and $\sigma$ are both singular. Theorem~\ref{shA:thm:petzcont}(a) shows that this never happens for bounded $f$. The reason is that every perturbation of $(\rho,\sigma)$ lifts to a perturbation of the commuting pair $(L_\rho,R_\sigma)$ inside the commuting pairs. The $O(\sqrt t)$ coupling between the kernel and the range of $\Omega$ that drives the dichotomy is never available.
+
+\begin{proposition}[Orderings between the shadows]\label{shA:prop:petzorder}
+\begin{enumerate}[label=(\alph*)]
+\item For operator convex $f$, $D^\Petz_f\le D^T_f$, the maximal $f$-divergence \cite{HiaiMosonyi2017,Matsumoto2018newf}.
+\item For $\alpha\in(0,1)$, $D^\Petz_\alpha\le D^\HT_\alpha\le D^\Petz_\alpha+\frac{\log2}{1-\alpha}$ (Proposition~\ref{shA:prop:petz}).
+\item For $\alpha>1$, $D^\meas_\alpha\le D^\HT_\alpha\le\widetilde D_\alpha\le D^\Petz_\alpha$, by \cite{LiuHircheCheng2025}. Theorem~\ref{shB:thm:bht2} in Chapter~\ref{shB:chapter} gives a short proof of the middle inequality for $\alpha\ge2$.
+\end{enumerate}
+So the testing-region and modular shadows are ordered in R\'enyi divergence for every $\alpha\ne1$, with the order reversing at $\alpha=1$, where both give the Umegaki entropy.
+\end{proposition}
+
+\section{Tensor products: what replaces multiplicativity}\label{shA:sec:tensor}
+
+The reverse test and the modular shadow are multiplicative: the shadow of $(\rho\otimes\rho',\sigma\otimes\sigma')$ is the multiplicative convolution of the two shadows, since $T$ and the Nussbaum--Szko{\l}a pair factorise. The testing region is not. The Hirche--Tomamichel R\'enyi divergences are not additive \cite{HircheTomamichel2024}, so tensor powers must be handled by comparison with shadows that do factorise. We use the modular shadow below order one and the pinched pair above it. Write $\eta_n$ for the error profile of $(\rho^{\otimes n},\sigma^{\otimes n})$, $v(\sigma)$ for the number of distinct eigenvalues of $\sigma$, and $\mathcal P_\sigma$ for the pinching in the eigenbasis of $\sigma$.
+
+
+\begin{proposition}[Order below one]\label{shA:prop:petz}
+For $\alpha\in(0,1)$, $\frac12Q^\Petz_\alpha\le Q^\HT_\alpha\le Q^\Petz_\alpha$. Hence
+\[
+D^\Petz_\alpha(\rho\|\sigma)\le D^\HT_\alpha(\rho\|\sigma)\le D^\Petz_\alpha(\rho\|\sigma)+\frac{\log2}{1-\alpha},\qquad \Big|\tfrac1nD^\HT_\alpha(\rho^{\otimes n}\|\sigma^{\otimes n})-D^\Petz_\alpha(\rho\|\sigma)\Big|\le\frac{\log2}{n(1-\alpha)} .
+\]
+\end{proposition}
+
+\begin{proof}
+The upper bound is \cite[(1.10)]{BeigiHircheTomamichel2025}. For the lower bound, the inequality of Nussbaum and Szko{\l}a \cite{NussbaumSzkola2009} applied to $(\rho,\gamma\sigma)$ gives $\eta(\gamma)\ge\frac12\sum_{ij}\min\{P_{ij},\gamma Q_{ij}\}$ for every $\gamma$. The right-hand side is half the error profile of the modular shadow, whose Mellin transform is $Q^\Petz_\alpha$ by Proposition~\ref{shA:prop:mellin} applied to a commuting pair. The modular shadow is multiplicative, so the same holds for tensor powers with the same constant.
+\end{proof}
+
+\begin{proposition}[Order above one]\label{shA:prop:pinch}
+For $\alpha>1$ and $\Pi_\rho\le\Pi_\sigma$,
+\begin{gather*}
+Q_\alpha(\mathcal P_\sigma\rho\|\sigma)\le Q^\HT_\alpha(\rho\|\sigma)\le v(\sigma)^\alpha\,Q_\alpha(\mathcal P_\sigma\rho\|\sigma),\\
+ Q_\alpha(\mathcal P_\sigma\rho\|\sigma)\le \widetilde Q_\alpha(\rho\|\sigma)\le v(\sigma)^\alpha\,Q_\alpha(\mathcal P_\sigma\rho\|\sigma),
+\end{gather*}
+where $Q_\alpha(\mathcal P_\sigma\rho\|\sigma)=\Tr(\mathcal P_\sigma\rho)^\alpha\sigma^{1-\alpha}$ is classical and $\widetilde Q_\alpha$ is the sandwiched quasi-entropy. Consequently
+\begin{gather*}
+\big|D^\HT_\alpha(\rho\|\sigma)-\widetilde D_\alpha(\rho\|\sigma)\big|\le\frac{\alpha}{\alpha-1}\log v(\sigma),\\
+ \Big|\tfrac1nD^\HT_\alpha(\rho^{\otimes n}\|\sigma^{\otimes n})-\widetilde D_\alpha(\rho\|\sigma)\Big|\le\frac{\alpha(d-1)}{\alpha-1}\,\frac{\log(n+1)}{n}.
+\end{gather*}
+\end{proposition}
+
+\begin{proof}
+The pinching is a channel fixing $\sigma$, so data processing for $D^\HT_\alpha$ (Proposition~\ref{shA:prop:chain}) and for $\widetilde D_\alpha$ gives the lower bounds, and the pinched pair commutes. The pinching inequality $\rho\le v(\sigma)\mathcal P_\sigma(\rho)$ \cite{Hayashi2002} and the monotonicity of $A\mapsto\Tr(A-\gamma\sigma)_+$ give $E_\gamma(\rho\|\sigma)\le vE_{\gamma/v}(\mathcal P_\sigma\rho\|\sigma)$. The Mellin formula with $\alpha>1$ has positive weights, and the substitution $\gamma=vu$ produces the factor $v^\alpha$. The same inequality with the monotonicity of
+\[
+\rho\mapsto\Tr(\sigma^{\frac{1-\alpha}{2\alpha}}\rho\,\sigma^{\frac{1-\alpha}{2\alpha}})^\alpha
+\]
+gives the bound for $\widetilde Q_\alpha$. For tensor powers use $v(\sigma^{\otimes n})\le(n+1)^{d-1}$ and the additivity of $\widetilde D_\alpha$.
+\end{proof}
+
+Propositions~\ref{shA:prop:petz} and~\ref{shA:prop:pinch} give the regularisation theorem of \cite{HircheTomamichel2024} with explicit rates: the testing-region R\'enyi divergence regularises to the Petz divergence below order one and to the sandwiched divergence above it. In shadow language, $\frac1n\log\int\gamma^\alpha d\mu_n$ converges to $\log Q^\Petz_\alpha$ for $\alpha<1$ and to $\log\widetilde Q_\alpha$ for $\alpha>1$, where $\mu_n$ is the shadow of $n$ copies. These are exactly the cumulant functions whose Legendre transforms give the Hoeffding and strong-converse exponents \cite{Hayashi2007,Nagaoka2006,MosonyiOgawa2015}. The two halves of the asymptotic testing region are thus governed by the two multiplicative shadows that bracket the testing region. At $\alpha=1$ both halves meet at the Umegaki entropy, the only additive functional consistent with optimal binary tests \cite{Gour2026}.
+
+
+\section{Channels: the Thompson metric and the adaptive Stein exponent}\label{shA:sec:channels}
+
+Let $\Phi,\Psi:\mathcal B(\cX)\to\mathcal B(\cY)$ be channels with Choi matrices $J(\Phi)=\sum_{ij}|i\rangle\langle j|\otimes\Phi(|i\rangle\langle j|)$, $d_\cX=\dim\cX$, $d_\cY=\dim\cY$. %
+(This Choi matrix has the input factor first, unlike the other chapters; see Table~\ref{nt:tab:differences}.) Write $\Phi\cp\Phi'$ when $\Phi'-\Phi$ is completely positive, that is, $J(\Phi)\le J(\Phi')$. The \emph{Thompson metric} on channels is
+\[
+\dT(\Psi,\Psi')=\inf\{t\ge0:\ \Psi\cp e^t\Psi',\ \Psi'\cp e^t\Psi\}=\dT\big(J(\Psi),J(\Psi')\big),
+\]
+which is $+\infty$ unless the Choi matrices have the same support. An $n$-use adaptive strategy produces final states $\rho^\Phi_n$, $\rho^\Psi_n$ by interleaving the $n$ uses with fixed channels on a growing memory. For a divergence $\mathbb D$ on positive operators let $\mathbb D^{(n)}(\Phi\|\Psi)=\sup\mathbb D(\rho^\Phi_n\|\rho^\Psi_n)$ over adaptive strategies, let $\mathbb D^\reg=\lim_n\frac1n\mathbb D(\Phi^{\otimes n}\|\Psi^{\otimes n})$ when it exists, and let
+\[
+\mathbb D^A(\Phi\|\Psi)=\sup_{\cR,\ \rho_{\cR\cX},\ \sigma_{\cR\cX}}\Big[\mathbb D\big((\id\otimes\Phi)\rho\,\big\|\,(\id\otimes\Psi)\sigma\big)-\mathbb D(\rho\|\sigma)\Big]
+\]
+be the amortised divergence \cite{WBHK2020}, the supremum running over pairs with $\mathbb D(\rho\|\sigma)<\infty$.
+
+\begin{lemma}\label{shA:lem:order}
+If $\Psi\cp c\Psi'$, then $\rho^\Psi_n\le c^n\rho^{\Psi'}_n$ for every $n$-use adaptive strategy, and $(\id\otimes\Psi)(\sigma)\le c\,(\id\otimes\Psi')(\sigma)$ for every $\sigma\ge0$.
+\end{lemma}
+
+\begin{proof}
+The second statement is the definition. For the first, let $X_k\ge0$ and $X_k'\ge0$ be the states before the $k$-th use in the two runs of the same strategy, and suppose $X_k\le c^{k-1}X_k'$. Then
+\[
+(\id\otimes\Psi)(X_k)\le c\,(\id\otimes\Psi')(X_k)\le c^k(\id\otimes\Psi')(X_k'),
+\]
+because $\id\otimes\Psi'$ is positive. The interleaved channels are positive and preserve the order.
+\end{proof}
+
+\begin{theorem}[Thompson stability in the second argument]\label{shA:thm:thompson}
+Let $\mathbb D$ be antitone in its second argument and logarithmically homogeneous, $\mathbb D(\rho\|c\sigma)=\mathbb D(\rho\|\sigma)-\log c$. Then for all channels and all $n$,
+\[
+\big|\mathbb D^{(n)}(\Phi\|\Psi)-\mathbb D^{(n)}(\Phi\|\Psi')\big|\le n\,\dT(\Psi,\Psi'),
+\]
+and the same bound holds for parallel strategies. Consequently $\mathbb D^\reg$ and $\mathbb D^A$ are $1$-Lipschitz in $\Psi$ for $\dT$. If $J(\Psi)$ is invertible and
+\[
+\eta:=d_\cX\|\Psi-\Psi'\|_\diamond/\lambda_{\min}(J(\Psi))<1,
+\]
+then $\dT(\Psi,\Psi')\le-\log(1-\eta)$.
+\end{theorem}
+
+\begin{proof}
+If $t>\dT(\Psi,\Psi')$, Lemma~\ref{shA:lem:order} gives $e^{-nt}\rho^{\Psi}_n\le\rho^{\Psi'}_n\le e^{nt}\rho^\Psi_n$ for the same strategy, and the two hypotheses on $\mathbb D$ give $|\mathbb D(\rho^\Phi_n\|\rho^{\Psi'}_n)-\mathbb D(\rho^\Phi_n\|\rho^\Psi_n)|\le nt$. Take suprema. The amortised case is the second statement of Lemma~\ref{shA:lem:order} applied to each pair. For the last claim,
+\[
+\|J(\Psi')-J(\Psi)\|_\infty\le\|J(\Psi')-J(\Psi)\|_1\le d_\cX\|\Psi'-\Psi\|_\diamond,
+\]
+so
+\[
+(1-\eta)J(\Psi)\le J(\Psi')\le(1+\eta)J(\Psi).
+\]
+\end{proof}
+
+The hypotheses hold for the Umegaki, Petz ($\alpha\in[0,2]$), sandwiched ($\alpha\ge\frac12$), geometric ($\alpha\in(0,2]$) and measured R\'enyi divergences, for $D_{\max}$, $D_{\min}$ and for the hypothesis-testing relative entropy. Theorem~\ref{shA:thm:thompson} rests on the fact that the Thompson metric is additive under tensor products, $\dT(\Psi^{\otimes n},\Psi'^{\otimes n})=n\,\dT(\Psi,\Psi')$, whereas the diamond norm of $\Psi^{\otimes n}-\Psi'^{\otimes n}$ saturates. This is how tensor products are handled in the second argument. The first argument needs a different idea, because no divergence is monotone there.
+
+\begin{lemma}\label{shA:lem:sandwichchoi}
+For every $\cR$ and $\sigma_{\cR\cX}\ge0$,
+\[
+\lambda_{\min}(J(\Psi))\,\sigma_\cR\otimes\mathbf 1_\cY\le(\id\otimes\Psi)(\sigma)\le\lambda_{\max}(J(\Psi))\,\sigma_\cR\otimes\mathbf 1_\cY.
+\]
+\end{lemma}
+
+\begin{proof}
+For pure $\sigma=(M\otimes\mathbf 1)|\Omega\rangle\langle\Omega|(M\otimes\mathbf 1)^*$, with $|\Omega\rangle=\sum_i|i\rangle|i\rangle$ and $M:\cX\to\cR$, we have $\sigma_\cR=MM^*$ and $(\id\otimes\Psi)(\sigma)=(M\otimes\mathbf 1)J(\Psi)(M\otimes\mathbf 1)^*$. Mixed states follow by linearity.
+\end{proof}
+
+\begin{theorem}[The first argument, uniformly over references]\label{shA:thm:firstarg}
+Let $J(\Psi)$ be invertible with condition number $\kappa(\Psi)$, and let $h$ be the binary entropy. For all channels $\Phi,\Phi'$, all $\cR$ and all $\rho_{\cR\cX},\sigma_{\cR\cX}$ with $D(\rho\|\sigma)<\infty$,
+\begin{multline*}
+\Big|D\big((\id\otimes\Phi')\rho\,\big\|\,(\id\otimes\Psi)\sigma\big)-D\big((\id\otimes\Phi)\rho\,\big\|\,(\id\otimes\Psi)\sigma\big)\Big|\\
+\le2\varepsilon\log d_\cY+(1+\varepsilon)h\Big(\frac{\varepsilon}{1+\varepsilon}\Big)+\varepsilon\log\kappa(\Psi),
+\end{multline*}
+where
+\[
+\varepsilon=\frac12\|(\id\otimes(\Phi-\Phi'))\rho\|_1\le\frac12\|\Phi-\Phi'\|_\diamond.
+\]
+Hence the same bound, with $\varepsilon=\frac12\|\Phi-\Phi'\|_\diamond$, holds for $|D^A(\Phi\|\Psi)-D^A(\Phi'\|\Psi)|$ and for the stabilised channel divergence.
+\end{theorem}
+
+\begin{proof}
+Put $\omega=(\id\otimes\Phi)\rho$, $\omega'=(\id\otimes\Phi')\rho$ and $\xi=(\id\otimes\Psi)\sigma$. Since $D(\rho\|\sigma)<\infty$, $\Pi_{\rho_\cR}\le\Pi_{\sigma_\cR}$, and Lemma~\ref{shA:lem:sandwichchoi} gives $\Pi_\omega,\Pi_{\omega'}\le\Pi_{\sigma_\cR}\otimes\mathbf 1=\Pi_\xi$. On this support, operator monotonicity of the logarithm and Lemma~\ref{shA:lem:sandwichchoi} give $\log\xi=\log\sigma_\cR\otimes\mathbf 1+K$ with $\log\lambda_{\min}\le K\le\log\lambda_{\max}$. Both $\omega$ and $\omega'$ have $\cR$-marginal $\rho_\cR$, so the term $\Tr(\omega'-\omega)(\log\sigma_\cR\otimes\mathbf 1)$ vanishes and
+\begin{multline*}
+D(\omega'\|\xi)-D(\omega\|\xi)=\big[H(\cY|\cR)_\omega-H(\cY|\cR)_{\omega'}\big]-\Tr(\omega'-\omega)\big(K-c_0\mathbf 1\big),\\
+c_0=\tfrac12\log(\lambda_{\min}\lambda_{\max}),
+\end{multline*}
+using $\Tr(\omega'-\omega)=0$. Winter's continuity bound for the conditional entropy \cite{Winter2016} controls the first bracket by $2\varepsilon\log d_\cY+(1+\varepsilon)h(\varepsilon/(1+\varepsilon))$, independently of $\cR$. The second term is at most
+\[
+\|\omega'-\omega\|_1\,\|K-c_0\|_\infty\le2\varepsilon\cdot\frac12\log\kappa(\Psi).
+\]
+The amortised statement follows by taking suprema, since the subtracted term $D(\rho\|\sigma)$ does not depend on $\Phi$.
+\end{proof}
+
+The cancellation of $\log\sigma_\cR$ is what makes the bound independent of the reference system, and hence of the number of uses hidden in an amortising pair. This is the conditional-entropy replacement for the tensor-power structure that hockey-stick divergences lack.
+
+\begin{corollary}[Continuity of the adaptive Stein exponent]\label{shA:cor:stein}
+Let $\zeta(\Phi,\Psi)$ be the optimal type-II error exponent for adaptive discrimination of $\Phi$ against $\Psi$ with vanishing type-I error. Then $\zeta=D^\reg=D^A$ \cite{WangWilde2019,FFRS2020}, and:
+\begin{enumerate}[label=(\alph*)]
+\item $\zeta$ is lower semicontinuous on pairs of channels;
+\item if $J(\Psi)$ is invertible, then $\zeta(\Phi,\Psi)\le\log\big(d_\cX/\lambda_{\min}(J(\Psi))\big)$, and for all $\Phi'$ and all $\Psi'$ with the same Choi support,
+\begin{gather*}
+|\zeta(\Phi,\Psi)-\zeta(\Phi',\Psi')|\le2\varepsilon\log d_\cY+(1+\varepsilon)h\Big(\frac{\varepsilon}{1+\varepsilon}\Big)+\varepsilon\log\kappa(\Psi)+\dT(\Psi,\Psi'),\\
+\varepsilon=\tfrac12\|\Phi-\Phi'\|_\diamond;
+\end{gather*}
+\item $\zeta$ is continuous at $(\Phi,\Psi)$ if and only if $J(\Psi)$ is invertible or $\zeta(\Phi,\Psi)=\infty$.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+(a) By superadditivity and Fekete's lemma, $D^\reg=\sup_n\frac1nD(\Phi^{\otimes n}\|\Psi^{\otimes n})$, a supremum of lower semicontinuous functions. (b) Since $J(\Phi)\le\Tr J(\Phi)\,\mathbf 1=d_\cX\mathbf 1$, we have $\Phi\cp c\Psi$ with $c=d_\cX/\lambda_{\min}(J(\Psi))$, and Lemma~\ref{shA:lem:order} gives $D(\rho^\Phi_n\|\rho^\Psi_n)\le n\log c$. The estimate is Theorem~\ref{shA:thm:firstarg} at $\Psi$ followed by Theorem~\ref{shA:thm:thompson} at $\Phi'$. (c) If $J(\Psi)$ is invertible, (b) gives continuity, because $\dT(\Psi,\Psi')\to0$ as $\Psi'\to\Psi$ by Theorem~\ref{shA:thm:thompson}. If $\zeta(\Phi,\Psi)=\infty$, (a) gives continuity into $[0,\infty]$. Otherwise $J(\Psi)$ is singular and $\zeta(\Phi,\Psi)<\infty$. Put $\Phi_t=(1-t)\Phi+t\Theta$ with $\Theta$ the completely depolarising channel. Then $J(\Phi_t)$ is invertible, so its support is not contained in that of $J(\Psi)$, and the maximally entangled input gives $\zeta(\Phi_t,\Psi)\ge D(\Phi_t\|\Psi)=\infty$, while $\|\Phi_t-\Phi\|_\diamond\le2t$.
+\end{proof}
+
+\begin{remark}
+Corollary~\ref{shA:cor:stein} is the regularised counterpart of Theorem~\ref{cont:thm:dichotomy} in Chapter~\ref{cont:chapter}, with ``$J(\Phi+\Psi)$ invertible or the fidelity vanishes'' replaced by ``$J(\Psi)$ invertible or the exponent is infinite''. The same proof gives the dichotomy for the one-shot channel relative entropy. By Theorem~\ref{shA:thm:thompson}, the strong-converse exponent and every other regularised quantity of an admissible $\mathbb D$ is Thompson-Lipschitz in $\Psi$. Continuity in $\Phi$ is Theorem~\ref{shA:thm:sandfirst} for the regularised sandwiched divergences, which have a chain rule, and Theorem~\ref{shA:thm:petzfirst} for the regularised Petz divergences, which do not. The continuity of $\widetilde D^\reg_\alpha$ in the order $\alpha$ at $\alpha=1$ was recently established in \cite{WangYang2026}.
+\end{remark}
+
+\begin{proposition}[The T-lift for channels]\label{shA:prop:channelTlift}
+Let $J(\Phi+\Psi)=WW^*$, $J(\Phi)=WTW^*$ as in Theorem~\ref{cont:thm:arveson} of Chapter~\ref{cont:chapter}, and $H_\gamma=\Tr_\cY W(T-\gamma(\mathbf 1-T))_+W^*$. For every input $\psi_{\cR\cX}$ with $\cX$-marginal $\tau$,
+\[
+E_\gamma\big((\id\otimes\Phi)\psi\,\big\|\,(\id\otimes\Psi)\psi\big)\le\Tr\,\tau^{\mathsf T}H_\gamma ,
+\]
+so the channel hockey-stick divergence satisfies $E^\diamond_\gamma(\Phi\|\Psi)\le\lambda_{\max}(H_\gamma)$. With $f(1)=f'(1)=0$ one has the operator identity
+\[
+h_f(T)=\int_1^\infty\big((T-\gamma(\mathbf 1-T))_+f''(d\gamma)+((\mathbf 1-T)-\gamma T)_+\tilde f''(d\gamma)\big),
+\]
+so integrating recovers
+\[
+D^\HT_f(\Phi\|\Psi)\le D^T_f(\Phi\|\Psi)=\lambda_{\max}\big(\Tr_\cY Wh_f(T)W^*\big)
+\]
+(Theorem~\ref{cont:thm:all f} in Chapter~\ref{cont:chapter}) level by level, with the gap of Theorem~\ref{shA:thm:Tlift}(d) at each input.
+\end{proposition}
+
+\begin{proof}
+With $\psi=(M\otimes\mathbf 1)|\Omega\rangle\langle\Omega|(M\otimes\mathbf 1)^*$ the two outputs are $V(T)V^*$ and $V(\mathbf 1-T)V^*$ with $V=(M\otimes\mathbf 1)W$. The argument of Theorem~\ref{shA:thm:Tlift}(a) gives
+\[
+E_\gamma\le\Tr VX_+V^*=\Tr(M^*M\otimes\mathbf 1)WX_+W^*,
+\]
+and $M^*M=\tau^{\mathsf T}$.
+\end{proof}
+
+\subsection*{The sandwiched divergences and the strong-converse exponent}
+
+For $\alpha>1$ the regularised sandwiched channel divergence equals its amortised version, $\widetilde D^\reg_\alpha=\widetilde D^A_\alpha$, by the chain rule of Fawzi and Fawzi \cite[Corollary~5.2]{FawziFawzi2021}. The same work characterises the strong-converse exponent of adaptive channel discrimination through the family $\{\widetilde D^\reg_\alpha\}_{\alpha>1}$. The second argument is covered by Theorem~\ref{shA:thm:thompson}. For the first argument the conditional-entropy decomposition is unavailable, and we replace it by a ratio estimate on the quasi-entropy.
+
+\begin{theorem}[First argument, sandwiched]\label{shA:thm:sandfirst}
+Let $\alpha>1$, let $J(\Psi)$ be invertible with $\lambda=\lambda_{\min}(J(\Psi))$, and put $m=\min\{d_\cX,d_\cY\}$. For all channels $\Phi,\Phi'$, all $\cR$ and all $\rho_{\cR\cX},\sigma_{\cR\cX}$ with $\widetilde D_\alpha(\rho\|\sigma)<\infty$,
+\[
+\frac{\big|\widetilde Q_\alpha\big((\id\otimes\Phi')\rho\,\|\,(\id\otimes\Psi)\sigma\big)-\widetilde Q_\alpha\big((\id\otimes\Phi)\rho\,\|\,(\id\otimes\Psi)\sigma\big)\big|}{\widetilde Q_\alpha(\rho\|\sigma)}\le\alpha\,d_\cY\Big(\frac m\lambda\Big)^{\alpha-1}\|J(\Phi')-J(\Phi)\|_1 .
+\]
+Consequently
+\[
+\big|\widetilde D^\reg_\alpha(\Phi'\|\Psi)-\widetilde D^\reg_\alpha(\Phi\|\Psi)\big|\le\frac{\alpha}{\alpha-1}\,d_\cX d_\cY\Big(\frac m\lambda\Big)^{\alpha-1}\|\Phi'-\Phi\|_\diamond ,
+\]
+and the same bound holds for the stabilised one-shot channel divergence.
+\end{theorem}
+
+\begin{proof}
+Write $\omega=(\id\otimes\Phi)\rho$, $\omega'=(\id\otimes\Phi')\rho$ and $\xi=(\id\otimes\Psi)\sigma$, and put $\beta=\frac{\alpha-1}{2\alpha}$, so that $\widetilde Q_\alpha(\cdot\|\xi)=\Tr(\xi^{-\beta}\cdot\,\xi^{-\beta})^\alpha$. Let $J(\Phi')-J(\Phi)=J_+-J_-$ be the Jordan decomposition and $\Gamma_\pm$ the corresponding completely positive maps, so that $\omega'-\omega=\Delta_+-\Delta_-$ with $\Delta_\pm=(\id\otimes\Gamma_\pm)\rho\ge0$.
+\begin{enumerate}[label=(\roman*),leftmargin=1.6em]
+\item By Lemma~\ref{shA:lem:sandwichchoi}, $\xi\ge\lambda\,\sigma_\cR\otimes\mathbf 1$ on $\Pi_{\sigma_\cR}\otimes\mathbf 1=\Pi_\xi$, and since $x\mapsto x^{-2\beta}$ is operator monotone decreasing with $2\beta\in(0,1)$, we get $\xi^{-2\beta}\le\lambda^{-2\beta}\sigma_\cR^{-2\beta}\otimes\mathbf 1$ there. For $\Delta\ge0$ supported in $\Pi_{\rho_\cR}\otimes\mathbf 1\le\Pi_\xi$ this gives
+\[
+\|\xi^{-\beta}\Delta\xi^{-\beta}\|_\alpha\le\lambda^{-2\beta}\big\|(\sigma_\cR^{-\beta}\otimes\mathbf 1)\Delta(\sigma_\cR^{-\beta}\otimes\mathbf 1)\big\|_\alpha .
+\]
+\item Lemma~\ref{shA:lem:sandwichchoi} for $\Gamma_\pm$ gives $\Delta_\pm\le\|J_\pm\|_\infty\,\rho_\cR\otimes\mathbf 1$, hence, by data processing,
+\[
+\big\|(\sigma_\cR^{-\beta}\otimes\mathbf 1)\Delta_\pm(\sigma_\cR^{-\beta}\otimes\mathbf 1)\big\|_\alpha\le\|J_\pm\|_\infty d_\cY^{1/\alpha}\widetilde Q_\alpha(\rho_\cR\|\sigma_\cR)^{1/\alpha}\le\|J_\pm\|_\infty d_\cY^{1/\alpha}\widetilde Q_\alpha(\rho\|\sigma)^{1/\alpha}.
+\]
+\item Since $\omega\le m\,\rho_\cR\otimes\mathbf 1$ (either from $J(\Phi)\le d_\cX\mathbf 1$ or from the general inequality $\omega\le d_\cY\,\omega_\cR\otimes\mathbf 1$), monotonicity of $\widetilde Q_\alpha$ gives
+\[
+\widetilde Q_\alpha(\omega\|\xi)\le\lambda^{1-\alpha}\widetilde Q_\alpha(\omega\|\sigma_\cR\otimes\mathbf 1)\le\lambda^{1-\alpha}m^\alpha d_\cY\widetilde Q_\alpha(\rho\|\sigma),
+\]
+and the same for $\omega'$.
+\item For $A,B\ge0$,
+\[
+|\Tr A^\alpha-\Tr B^\alpha|\le\alpha\max\{\|A\|_\alpha,\|B\|_\alpha\}^{\alpha-1}\|A-B\|_\alpha,
+\]
+by differentiating along the segment and using H\"older's inequality.
+\end{enumerate}
+Apply (iv) to $A=\xi^{-\beta}\omega'\xi^{-\beta}$ and $B=\xi^{-\beta}\omega\xi^{-\beta}$, bound $\|A-B\|_\alpha$ by (i) and (ii) and the maxima by (iii). The powers of $\lambda$ combine to $\lambda^{-(\alpha-1)^2/\alpha-(\alpha-1)/\alpha}=\lambda^{1-\alpha}$, and
+\[
+\|J_+\|_\infty+\|J_-\|_\infty\le\|J(\Phi')-J(\Phi)\|_1\le d_\cX\|\Phi'-\Phi\|_\diamond.
+\]
+This gives the first estimate. For the second, $R_\Phi(\rho,\sigma)=\widetilde Q_\alpha(\omega\|\xi)/\widetilde Q_\alpha(\rho\|\sigma)$ satisfies $\widetilde D^A_\alpha(\Phi\|\Psi)=\frac1{\alpha-1}\log\sup R_\Phi$, and $\sup R_\Phi\ge1$ because $\widetilde D^A_\alpha\ge0$. The supremum inherits the uniform bound, and $\log$ is $1$-Lipschitz on $[1,\infty)$.
+\end{proof}
+
+\begin{corollary}[Continuity of the sandwiched exponents]\label{shA:cor:sand}
+Let $\alpha>1$.
+\begin{enumerate}[label=(\alph*)]
+\item $\widetilde D^\reg_\alpha$ is lower semicontinuous, and it is continuous at $(\Phi,\Psi)$ if and only if $J(\Psi)$ is invertible or $\widetilde D^\reg_\alpha(\Phi\|\Psi)=\infty$. At invertible $J(\Psi)$ it obeys the bound of Theorem~\ref{shA:thm:sandfirst} in $\Phi$ and is $\dT$-Lipschitz in $\Psi$.
+\item On every compact range $\alpha\in(1,A]$ the functions $\frac{\alpha-1}{\alpha}\widetilde D^\reg_\alpha(\cdot\|\Psi)$ are equi-Lipschitz, with constant $d_\cX d_\cY(m/\lambda)^{A-1}$ in the diamond norm. Consequently the strong-converse exponent of adaptive discrimination \cite[Theorem~5.5]{FawziFawzi2021},
+\[
+\overline H(r,\Phi,\Psi)=\sup_{\alpha>1}\frac{\alpha-1}{\alpha}\big(r-\widetilde D^\reg_\alpha(\Phi\|\Psi)\big),
+\]
+is continuous at every pair with invertible $J(\Psi)$, for every rate $r<D_{\max}(\Phi\|\Psi)$.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+(a) Lower semicontinuity and the discontinuity at singular $J(\Psi)$ are as in Corollary~\ref{shA:cor:stein}: a support leak gives $\widetilde D_\alpha=\infty$. (b) The factor $\frac{\alpha-1}{\alpha}$ cancels the factor $\frac{\alpha}{\alpha-1}$ of Theorem~\ref{shA:thm:sandfirst}, and $m/\lambda\ge1$. For
+\[
+r<D_{\max}(\Phi\|\Psi)=\lim_{\alpha\to\infty}\widetilde D_\alpha(\Phi\|\Psi),
+\]
+choose $A$ with $\widetilde D_A(\Phi\|\Psi)>r$. By the one-shot case of Theorem~\ref{shA:thm:sandfirst} and Theorem~\ref{shA:thm:thompson}, $\widetilde D_A(\Phi'\|\Psi')>r$ for nearby pairs. Monotonicity in $\alpha$ then makes every term with $\alpha>A$ negative, while the supremum is nonnegative (let $\alpha\downarrow1$). So near $(\Phi,\Psi)$ the supremum runs over $(1,A]$, where the terms are equicontinuous in both arguments.
+\end{proof}
+
+\subsection*{The first argument without a chain rule: regularised Petz divergences}
+
+For $\alpha\in(0,1)$, $Q^\Petz_\alpha(\rho\|\sigma)=\Tr\rho^\alpha\sigma^{1-\alpha}$ is nondecreasing and homogeneous of degree $\alpha$ in $\rho$, and nondecreasing and homogeneous of degree $1-\alpha$ in $\sigma$. No chain rule is known for these divergences, so the route of Theorem~\ref{shA:thm:sandfirst} is closed: we cannot control one use against an arbitrary reference and then pass from the amortised to the regularised divergence. Example~\ref{shA:ex:petzobstruction} shows that a one-use estimate uniform over references cannot hold in general. We work instead with parallel uses and replace them one at a time. This works for perturbations that act locally on the output and the input. Write $D^{(n)}_\alpha(\Phi\|\Psi)=D^\Petz_\alpha(\Phi^{\otimes n}\|\Psi^{\otimes n})$ and
+\[
+D^{\Petz,\reg}_\alpha=\lim_n\frac1nD^{(n)}_\alpha=\sup_n\frac1nD^{(n)}_\alpha,
+\]
+the limit existing by superadditivity.
+
+\begin{lemma}[Local stability, uniformly over references]\label{shA:lem:localstab}
+Let $\alpha\in(0,1)$ and $\lambda\mathbf 1\le J(\Psi)\le\Lambda\mathbf 1$ with $\lambda>0$. Let $W$ be an operator on $\cY$ with polar decomposition $W=U|W|$, and put $s=\|W^*W-\mathbf 1\|_\infty$ and $u=\|U-\mathbf 1\|_\infty$, with $2s(\Lambda/\lambda)^{1-\alpha}<1$ and $2u\Lambda/\lambda<1$. Then for every $\cR$, every $\omega\ge0$ on $\cR\otimes\cY$ and every $\sigma\ge0$ on $\cR\otimes\cX$, with $\xi=(\id\otimes\Psi)\sigma$,
+\begin{gather*}
+Q^\Petz_\alpha\big((\mathbf 1\otimes W)\omega(\mathbf 1\otimes W)^*\,\big\|\,\xi\big)\ \ge\ c_W\,Q^\Petz_\alpha(\omega\|\xi),\\
+ c_W=(1+s)^{\alpha-1}\big(1-2s(\Lambda/\lambda)^{1-\alpha}\big)\big(1-2u\Lambda/\lambda\big)^{1-\alpha}.
+\end{gather*}
+\end{lemma}
+
+\begin{proof}
+Put $A=(\mathbf 1\otimes W)\omega^{1/2}$ and $G=W^*W$. Then $(AA^*)^\alpha=A(A^*A)^{\alpha-1}A^*$, with the power taken on the support of $A^*A$, which is that of $\omega$. Hence
+\[
+Q^\Petz_\alpha(AA^*\|\xi)=\Tr\Big[\big(\omega^{1/2}(\mathbf 1\otimes G)\omega^{1/2}\big)^{\alpha-1}\ \omega^{1/2}(\mathbf 1\otimes W^*)\,\xi^{1-\alpha}\,(\mathbf 1\otimes W)\omega^{1/2}\Big].
+\]
+(i) $\omega^{1/2}(\mathbf 1\otimes G)\omega^{1/2}\le(1+s)\omega$, and $x\mapsto x^{\alpha-1}$ is operator monotone decreasing, so the first factor is at least $(1+s)^{\alpha-1}\omega^{\alpha-1}$ on the support of $\omega$.
+(ii) We have
+\[
+(\mathbf 1\otimes W^*)\xi^{1-\alpha}(\mathbf 1\otimes W)=(\mathbf 1\otimes|W|)\,\xi_U^{1-\alpha}\,(\mathbf 1\otimes|W|)
+\]
+with $\xi_U=(\id\otimes\Psi_U)\sigma$, where $\Psi_U=U^*\Psi(\cdot)U$. The Choi matrix $J(\Psi_U)=(\mathbf 1\otimes U^*)J(\Psi)(\mathbf 1\otimes U)$ also lies between $\lambda$ and $\Lambda$. By Lemma~\ref{shA:lem:sandwichchoi} and operator monotonicity of $x^{1-\alpha}$, $\xi_U^{1-\alpha}=N^{1/2}MN^{1/2}$ with $N=\sigma_\cR^{1-\alpha}\otimes\mathbf 1$ and $\lambda^{1-\alpha}\le M\le\Lambda^{1-\alpha}$ on the support of $N$. Now $E=\mathbf 1\otimes(|W|-\mathbf 1)$ commutes with $N$ and has $\|E\|\le s$, and
+\[
+(\mathbf 1+E)M(\mathbf 1+E)\ge M-2s\Lambda^{1-\alpha}\ge(1-2s(\Lambda/\lambda)^{1-\alpha})M.
+\]
+Conjugating by $N^{1/2}$ gives
+\[
+(\mathbf 1\otimes|W|)\xi_U^{1-\alpha}(\mathbf 1\otimes|W|)\ge(1-2s(\Lambda/\lambda)^{1-\alpha})\,\xi_U^{1-\alpha}.
+\]
+Finally, $\|J(\Psi_U)-J(\Psi)\|\le2u\Lambda$ gives $J(\Psi_U)\ge(1-2u\Lambda/\lambda)J(\Psi)$, hence $\xi_U^{1-\alpha}\ge(1-2u\Lambda/\lambda)^{1-\alpha}\xi^{1-\alpha}$.
+(iii) If $A_1\ge A_0\ge0$ and $B_1\ge B_0\ge0$, then $\Tr A_1B_1\ge\Tr A_0B_0$. Apply this to the bounds of (i) and (ii). The result is
+\[
+c_W\Tr\omega^{\alpha-1}\omega^{1/2}\xi^{1-\alpha}\omega^{1/2}=c_WQ^\Petz_\alpha(\omega\|\xi).
+\]
+\end{proof}
+
+The only place where the reference enters is $N=\sigma_\cR^{1-\alpha}\otimes\mathbf 1$, and the perturbation $\mathbf 1\otimes|W|$ commutes with it. This is the Petz counterpart of the cancellation of $\log\sigma_\cR$ in Theorem~\ref{shA:thm:firstarg}.
+
+\begin{theorem}[First argument for regularised Petz divergences]\label{shA:thm:petzfirst}
+Let $\alpha\in(0,1)$.
+\begin{enumerate}[label=(\alph*)]
+\item For all channels and all $n$,
+\[
+\big|D^{(n)}_\alpha(\Phi'\|\Psi)-D^{(n)}_\alpha(\Phi\|\Psi)\big|\le n\,\frac{\alpha}{1-\alpha}\,\dT(\Phi,\Phi').
+\]
+Hence $D^{\Petz,\reg}_\alpha$ is $\frac{\alpha}{1-\alpha}$-Lipschitz in the first channel for the Thompson metric.
+\item If $J(\Psi)$ is invertible, $D^{\Petz,\reg}_\alpha(\cdot\|\Psi)$ is lower semicontinuous.
+\item Let $\lambda\mathbf 1\le J(\Psi)\le\Lambda\mathbf 1$ with $\lambda>0$. Let $W$ be as in Lemma~\ref{shA:lem:localstab}, let $\mathcal W=W\cdot W^*$, and let $\mathcal V=V\cdot V^*$ be a unitary channel on $\cX$ with $v=\|V-\mathbf 1\|_\infty<\lambda/(2\Lambda)$. If $\Phi'\ge_{\mathrm{cp}}(1-\delta)\,\mathcal W\circ\Phi\circ\mathcal V$, then for every $n$
+\[
+\tfrac1nD^{(n)}_\alpha(\Phi'\|\Psi)\le\tfrac1nD^{(n)}_\alpha(\Phi\|\Psi)+\frac{\alpha}{1-\alpha}\log\frac1{1-\delta}+\frac1{1-\alpha}\log\frac1{c_W}+\log\frac1{1-2v\Lambda/\lambda}.
+\]
+\item Consequently, if $J(\Psi)$ is invertible, $D^{\Petz,\reg}_\alpha(\cdot\|\Psi)$ is continuous at every $\Phi$ with invertible Choi matrix and at every isometric channel $\Phi=K\cdot K^*$. At a general $\Phi$ it is continuous along every sequence $\Phi_k\to\Phi$ with $\Phi_k\ge_{\mathrm{cp}}(1-\delta_k)\,\mathcal W_k\circ\Phi\circ\mathcal V_k$, where $\delta_k\to0$, $W_k\to\mathbf 1$ and $V_k\to\mathbf 1$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) If $\Phi\cp e^t\Phi'$, then $\Phi^{\otimes n}(\psi)\le e^{nt}\Phi'^{\otimes n}(\psi)$ for every input (Lemma~\ref{shA:lem:order}). Monotonicity and homogeneity in the first argument give
+\[
+Q^\Petz_\alpha(\Phi^{\otimes n}\psi\|\Psi^{\otimes n}\psi)\le e^{nt\alpha}Q^\Petz_\alpha(\Phi'^{\otimes n}\psi\|\Psi^{\otimes n}\psi).
+\]
+Exchange the roles, take the infimum over $\psi$, and apply $-\frac1{1-\alpha}\log$.
+(b) For fixed $n$, $\Phi\mapsto\inf_\psi Q^\Petz_\alpha(\Phi^{\otimes n}\psi\|\Psi^{\otimes n}\psi)$ is continuous, by Theorem~\ref{shA:thm:petzcont}(b) and compactness of the pure inputs with reference $\cX^{\otimes n}$. It is positive, because $\Psi^{\otimes n}\psi\ge\lambda_{\min}(J(\Psi))^n\psi_\cR\otimes\mathbf 1$ has support containing that of $\Phi^{\otimes n}\psi$. So each $\frac1nD^{(n)}_\alpha$ is continuous, and their supremum is lower semicontinuous.
+(c) First, $\Phi'^{\otimes n}\ge_{\mathrm{cp}}(1-\delta)^n(\mathcal W\Phi\mathcal V)^{\otimes n}$, so
+\[
+Q^\Petz_\alpha(\Phi'^{\otimes n}\psi\|\Psi^{\otimes n}\psi)\ge(1-\delta)^{n\alpha}Q^\Petz_\alpha((\mathcal W\Phi\mathcal V)^{\otimes n}\psi\|\Psi^{\otimes n}\psi).
+\]
+Next remove the $n$ copies of $\mathcal W$ one at a time. When $\mathcal W$ acts on the $k$-th output, the remaining outputs form part of the reference, and the second argument is $\Psi^{\otimes n}\psi=(\id\otimes\Psi_k)(\sigma_k)$ for a positive $\sigma_k$ on the other outputs and the $k$-th input. Lemma~\ref{shA:lem:localstab} therefore applies at each step and gives a factor $c_W^n$. Finally, $(\Phi\mathcal V)^{\otimes n}\psi=\Phi^{\otimes n}\psi_V$ with $\psi_V=(\mathbf 1\otimes V^{\otimes n})\psi(\mathbf 1\otimes V^{\otimes n})^*$, and $\Psi^{\otimes n}\psi=(\Psi\circ\mathcal V^*)^{\otimes n}\psi_V$. Since
+\[
+J(\Psi\circ\mathcal V^*)=(\overline V\otimes\mathbf 1)J(\Psi)(\overline V\otimes\mathbf 1)^*\ge(1-2v\Lambda/\lambda)J(\Psi)
+\]
+and $Q^\Petz_\alpha$ is nondecreasing in its second argument, we get
+\[
+Q^\Petz_\alpha(\Phi^{\otimes n}\psi_V\|\Psi^{\otimes n}\psi)\ge(1-2v\Lambda/\lambda)^{n(1-\alpha)}\inf_{\psi'}Q^\Petz_\alpha(\Phi^{\otimes n}\psi'\|\Psi^{\otimes n}\psi').
+\]
+Collect the factors, take the infimum over $\psi$, and apply $-\frac1{n(1-\alpha)}\log$.
+(d) For invertible $J(\Phi)$, use (a) and the last statement of Theorem~\ref{shA:thm:thompson}. Let $\Phi=K\cdot K^*$ with $K$ an isometry, so $J(\Phi)=|\kappa\rangle\langle\kappa|$ with $\kappa=(\mathbf 1\otimes K)\Omega$ and $\|\kappa\|^2=d_\cX$. If $\|J(\Phi')-J(\Phi)\|_\infty=\eta$, the top eigenvalue $\mu$ of $J(\Phi')$ satisfies $\mu\ge d_\cX-\eta$. Its eigenvector, normalised as $\kappa'=(\mathbf 1\otimes B)\Omega$ with $\|\kappa'\|^2=d_\cX$ and $\langle\kappa|\kappa'\rangle\ge0$, tends to $\kappa$ as $\eta\to0$, so $B\to K$. Now
+\[
+J(\Phi')\ge\frac{\mu}{d_\cX}|\kappa'\rangle\langle\kappa'|=\frac\mu{d_\cX}J(B\cdot B^*),
+\]
+and $B\cdot B^*=\mathcal W\circ\Phi$ with $W=BK^*+\mathbf 1-KK^*\to\mathbf 1$. So $\Phi'\ge_{\mathrm{cp}}(1-\delta)\mathcal W\circ\Phi$ with $\delta\le\eta/d_\cX$ and $s,u\to0$. Then (c) gives $\limsup D^{\Petz,\reg}_\alpha(\Phi'\|\Psi)\le D^{\Petz,\reg}_\alpha(\Phi\|\Psi)$, and (b) gives the matching lower bound. The last statement follows from (b) and (c) in the same way.
+\end{proof}
+
+The hypothesis of (d) covers post-processing by any channels $\mathcal N_k\to\id$ followed by mixing in noise, and pre-processing by unitaries $\mathcal V_k\to\id$. A channel close to the identity has a Choi matrix close to $|\Omega\rangle\langle\Omega|$, and therefore dominates $(1-\delta)W\cdot W^*$ for its top Kraus operator $W\to\mathbf 1$, by the eigenvector argument in the proof of (d).
+
+\begin{example}[No uniform one-use bound]\label{shA:ex:petzobstruction}
+On a qubit let $\Phi_\varepsilon=(1-\varepsilon)\id+\varepsilon\mathcal D$, with $\mathcal D$ completely depolarising, and $\Phi'=\id$, so $\|\Phi_\varepsilon-\Phi'\|_\diamond\le2\varepsilon$. Let $J(\Psi)$ be invertible. Take $\cR=\mathbb C^2$, $\rho=|v\rangle\langle v|$ with $v=\sqrt{1-\delta}\,|00\rangle+\sqrt\delta\,|11\rangle$, and $\sigma=|1\rangle\langle1|\otimes\frac{\mathbf 1}2$, so $\xi=(\id\otimes\Psi)\sigma=|1\rangle\langle1|\otimes\Psi(\frac{\mathbf 1}2)$. Then
+\[
+Q^\Petz_\alpha(\Phi'\rho\|\xi)=\delta\,\langle1|\Psi(\frac{\mathbf 1}2)^{1-\alpha}|1\rangle.
+\]
+On the other hand $\Phi_\varepsilon\rho\ge\varepsilon\delta\,|1\rangle\langle1|\otimes\frac{\mathbf 1}2$, so
+\[
+Q^\Petz_\alpha(\Phi_\varepsilon\rho\|\xi)\ge(\varepsilon\delta/2)^\alpha\Tr\Psi(\frac{\mathbf 1}2)^{1-\alpha}.
+\]
+Hence
+\[
+\frac{Q^\Petz_\alpha(\Phi'\rho\|(\id\otimes\Psi)\sigma)}{Q^\Petz_\alpha(\Phi_\varepsilon\rho\|(\id\otimes\Psi)\sigma)}\le\Big(\frac2\varepsilon\Big)^\alpha\delta^{1-\alpha}\ \xrightarrow[\delta\to0]{}\ 0
+\]
+for every fixed $\varepsilon$. No estimate $Q^\Petz_\alpha(\Phi'\rho\|\Psi\sigma)\ge c(\varepsilon)Q^\Petz_\alpha(\Phi_\varepsilon\rho\|\Psi\sigma)$ with $c(\varepsilon)>0$ can hold uniformly over references, let alone one with $c(\varepsilon)\to1$. Removing noise is the bad direction, and it is not local. The divergence itself is continuous at both points: at $\Phi_\varepsilon$ by Theorem~\ref{shA:thm:petzfirst}(a), since $J(\Phi_\varepsilon)$ is invertible, and at $\id$ by (d).
+\end{example}
+
+What remains open is continuity at channels with singular Choi matrix along perturbations that rotate the support of $J(\Phi)$ by a unitary of $\cX\otimes\cY$ that is not a product. Such perturbations are not of the form in (c), and Example~\ref{shA:ex:petzobstruction} shows that slot-by-slot replacement cannot handle them in general.
+
+\subsection*{Testing-region channel divergences: the one-shot formula}
+
+The supremum over inputs does not commute with the integral over $\gamma$, so the $\lambda_{\max}$ formula of Theorem~\ref{cont:thm:all f} in Chapter~\ref{cont:chapter} cannot hold verbatim. It holds in dual form. For an input with $\cX$-marginal $\tau$ put $\theta=\tau^{\mathsf T}$. By the proof of Proposition~\ref{shA:prop:channelTlift} the two outputs are unitarily equivalent to
+\[
+\omega_\theta=(\sqrt\theta\otimes\mathbf 1)J(\Phi)(\sqrt\theta\otimes\mathbf 1),\qquad \xi_\theta=(\sqrt\theta\otimes\mathbf 1)J(\Psi)(\sqrt\theta\otimes\mathbf 1),
+\]
+operators on $\cR\otimes\cY$ with $\cR\cong\cX$, and these formulas define $\omega_\theta,\xi_\theta$ for every $\theta\ge0$. Let $f$ be convex with $f(1)=f'(1)=0$. Write $m=f''$ and $\tilde m=\tilde f''$, restricted to $[1,\infty)$, and define the \emph{testing-region operator} of the input,
+\begin{gather*}
+\Gamma_f(\theta)=\Tr_\cY\Big[\int(\omega_\theta-\gamma\,\xi_\theta)_+\,m(d\gamma)+\int(\xi_\theta-\gamma\,\omega_\theta)_+\,\tilde m(d\gamma)\Big]\ \ge0,\\
+ \Tr\Gamma_f(\theta)=D^\HT_f(\omega_\theta\|\xi_\theta).
+\end{gather*}
+We assume that the integrals converge, for instance when $m,\tilde m$ are finite or when $J(\Phi)$ and $J(\Psi)$ dominate each other, since then the integrands vanish for large $\gamma$.
+
+\begin{theorem}[One-shot formula]\label{shA:thm:oneshot}
+\begin{enumerate}[label=(\alph*)]
+\item The function $F(\theta)=D^\HT_f(\omega_\theta\|\xi_\theta)$ is concave and positively homogeneous on positive operators $\theta$. At every invertible $\theta$ it is differentiable, and its gradient is $\theta^{-1/2}\,\Gamma_f(\theta)\,\theta^{-1/2}$.
+\item (Dual formula)
+\[
+D^\HT_f(\Phi\|\Psi)=\max_{\theta}F(\theta)=\inf\Big\{\lambda_{\max}\Big(\Tr_\cY\Big[\int Y_\gamma\,m(d\gamma)+\int Z_\gamma\,\tilde m(d\gamma)\Big]\Big)\Big\},
+\]
+where the maximum runs over states and the infimum over measurable families with $Y_\gamma\ge0$, $Y_\gamma\ge J(\Phi)-\gamma J(\Psi)$, $Z_\gamma\ge0$ and $Z_\gamma\ge J(\Psi)-\gamma J(\Phi)$. For $f''$ with finitely many atoms both sides are semidefinite programs.
+\item (Optimal inputs) An invertible $\theta$ is optimal if and only if $\Gamma_f(\theta)=c\,\theta$ for a scalar $c$, and then $c=D^\HT_f(\Phi\|\Psi)$. In particular the maximally entangled input is optimal if and only if
+\[
+\Tr_\cY\Big[\int\big(J(\Phi)-\gamma J(\Psi)\big)_+m(d\gamma)+\int\big(J(\Psi)-\gamma J(\Phi)\big)_+\tilde m(d\gamma)\Big]\ \text{ is a multiple of }\mathbf 1_\cX .
+\]
+\item (The reverse test is one dual point) With $J(\Phi+\Psi)=WW^*$ and $J(\Phi)=WTW^*$, the family $Y_\gamma=W(T-\gamma(\mathbf 1-T))_+W^*$, $Z_\gamma=W(\mathbf 1-T-\gamma T)_+W^*$ is feasible in (b). Its value is $\lambda_{\max}(\Tr_\cY Wh_f(T)W^*)=D^T_f(\Phi\|\Psi)$, the closed form of Theorem~\ref{cont:thm:all f}.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\emph{Step 1.} For Hermitian $X$ on $\cR\otimes\cY$ and $\theta\ge0$,
+\[
+\Tr\big[(\sqrt\theta\otimes\mathbf 1)X(\sqrt\theta\otimes\mathbf 1)\big]_+=\inf\{\Tr(\theta\otimes\mathbf 1)Y:\ Y\ge0,\ Y\ge X\},
+\]
+and for invertible $\theta$ the infimum is attained exactly at
+\[
+Y=(\theta^{-1/2}\otimes\mathbf 1)\big[(\sqrt\theta\otimes\mathbf 1)X(\sqrt\theta\otimes\mathbf 1)\big]_+(\theta^{-1/2}\otimes\mathbf 1).
+\]
+Indeed, write $\widetilde X=(\sqrt\theta\otimes\mathbf 1)X(\sqrt\theta\otimes\mathbf 1)$, put $\widetilde Y=(\sqrt\theta\otimes\mathbf 1)Y(\sqrt\theta\otimes\mathbf 1)$, which satisfies $\widetilde Y\ge0$ and $\widetilde Y\ge\widetilde X$, and let $P$ be the projection onto the positive eigenspace of $\widetilde X$. Then
+\[
+\Tr(\theta\otimes\mathbf 1)Y=\Tr\widetilde Y\ge\Tr P\widetilde YP\ge\Tr P\widetilde XP=\Tr\widetilde X_+.
+\]
+Equality forces $(\mathbf 1-P)\widetilde Y(\mathbf 1-P)=0$, hence $\widetilde Y=P\widetilde YP$ and then $\widetilde Y=\widetilde X_+$. For singular $\theta$ use the optimiser at $\theta+\epsilon\mathbf 1$ and let $\epsilon\to0$.
+
+\emph{(a).} Apply Step~1 to $X=J(\Phi)-\gamma J(\Psi)$ and to $X=J(\Psi)-\gamma J(\Phi)$, noting
+\[
+\omega_\theta-\gamma\xi_\theta=(\sqrt\theta\otimes\mathbf 1)(J(\Phi)-\gamma J(\Psi))(\sqrt\theta\otimes\mathbf 1),
+\]
+and integrate. This gives $F(\theta)=\inf_{\mathcal C}\Tr\theta\,G(Y,Z)$, with $G(Y,Z)=\Tr_\cY[\int Y\,dm+\int Z\,d\tilde m]$ and $\mathcal C$ the convex set of feasible families. So $F$ is an infimum of linear functions: it is concave, homogeneous and upper semicontinuous. At invertible $\theta_0$ the optimal family of Step~1 gives the supergradient $G_0=\theta_0^{-1/2}\Gamma_f(\theta_0)\theta_0^{-1/2}$. Conversely, write $G_\theta$ for the value of $G$ at the optimal family of $\theta$. Since $\Tr\theta_0G_\theta\ge F(\theta_0)$, we get
+\[
+F(\theta)=\Tr\theta\,G_\theta\ge F(\theta_0)+\Tr(\theta-\theta_0)G_\theta.
+\]
+As $\theta\to\theta_0$, $G_\theta\to G_0$ by continuity of $\theta\mapsto(\omega_\theta-\gamma\xi_\theta)_+$ and dominated convergence, so $F$ is differentiable at $\theta_0$ with gradient $G_0$.
+
+\emph{(b).} The set of states is convex and compact, $\mathcal C$ is convex, and $(\theta,(Y,Z))\mapsto\Tr\theta\,G(Y,Z)$ is affine and continuous in each variable. Sion's minimax theorem therefore gives
+\[
+\max_\theta\inf_{\mathcal C}\Tr\theta\,G=\inf_{\mathcal C}\max_\theta\Tr\theta\,G=\inf_{\mathcal C}\lambda_{\max}(G).
+\]
+The maximum is attained because $F$ is upper semicontinuous. For finitely many atoms, $N=(\sqrt\theta\otimes\mathbf 1)M(\sqrt\theta\otimes\mathbf 1)$ turns $\max_\theta F$ into
+\[
+\max\{\sum_kc_k\Tr N_kX_k:\ 0\le N_k\le\theta\otimes\mathbf 1,\ \theta\ge0,\ \Tr\theta=1\},
+\]
+and (b) is its Lagrange dual. Both sides are strictly feasible.
+
+\emph{(c).} If $\theta$ is invertible and $\Gamma_f(\theta)=c\theta$, the gradient is $c\mathbf 1$, and concavity gives
+\[
+F(\theta')\le F(\theta)+c\Tr(\theta'-\theta)=F(\theta)
+\]
+for every state $\theta'$; moreover $c=\Tr\Gamma_f(\theta)=F(\theta)$. Conversely, an optimal invertible $\theta$ lies in the relative interior of the state space, so its gradient $G$ satisfies $\Tr(\theta'-\theta)G\le0$ for all states $\theta'$. That is, $G\le(\Tr\theta G)\mathbf 1=F(\theta)\mathbf 1$, or $\Gamma_f(\theta)\le F(\theta)\theta$, and equality of traces forces $\Gamma_f(\theta)=F(\theta)\theta$. At $\theta=\mathbf 1/d_\cX$ we have $\Gamma_f(\mathbf 1/d_\cX)=d_\cX^{-1}\Tr_\cY[\cdots]$, with the bracket of (c).
+
+\emph{(d).} On $\Pi_W$,
+\[
+W(T-\gamma(\mathbf 1-T))W^*=J(\Phi)-\gamma J(\Psi),
+\]
+so the family is feasible. By the operator identity of Proposition~\ref{shA:prop:channelTlift},
+\[
+\int Y_\gamma\,m(d\gamma)+\int Z_\gamma\,\tilde m(d\gamma)=Wh_f(T)W^*,
+\]
+and the value is that of Theorem~\ref{cont:thm:all f}.
+\end{proof}
+
+Part~(d) places the closed form of the reverse test inside the dual program of the testing region. The two divergences are the same infimum, once over all dominating families and once over the single family built from $T$. The inequality $D^\HT_f\le D^T_f$ for channels is thus weak duality. Part~(c) is a nonlinear eigenvalue problem $\Gamma_f(\theta)=D\theta$. In the linear case $\Gamma(\theta)=\sqrt\theta\,A\sqrt\theta$ of the reverse test it reduces to the top eigenvector of $A=\Tr_\cY Wh_f(T)W^*$. In our tests the iteration $\theta\mapsto\Gamma_f(\theta)/\Tr\Gamma_f(\theta)$, started at $\mathbf 1/d_\cX$, converged to the optimum (Section~\ref{shA:sec:numerics}), but we have no proof of convergence in general. The symmetric case and two cheap bounds follow.
+
+\begin{proposition}[Covariant pairs]\label{shA:prop:covariant}
+Suppose that $\Phi$ and $\Psi$ are jointly covariant, $\Phi(U_g\cdot U_g^*)=V_g\Phi(\cdot)V_g^*$ and $\Psi(U_g\cdot U_g^*)=V_g\Psi(\cdot)V_g^*$, for a group $g\mapsto U_g$ acting irreducibly on $\cX$. Then for every convex $f$ the maximally entangled input is optimal:
+\[
+\begin{aligned}D^\HT_f(\Phi\|\Psi)&=D^\HT_f\big(J(\Phi)/d_\cX\,\big\|\,J(\Psi)/d_\cX\big)\\&=\frac1{d_\cX}\int_1^\infty\Big(E_\gamma\big(J(\Phi)\|J(\Psi)\big)f''(d\gamma)+E_\gamma\big(J(\Psi)\|J(\Phi)\big)\tilde f''(d\gamma)\Big),\end{aligned}
+\]
+a function of the eigenvalues of $J(\Phi)-\gamma J(\Psi)$ only. The same holds for $D^\Petz_f$ and every other divergence that satisfies data processing and is additive on block-diagonal pairs.
+\end{proposition}
+
+\begin{proof}
+For pure inputs the output divergence depends only on the input marginal $\tau$ on $\cX$, since two purifications differ by an isometry on the reference, and mixed inputs do no better, by data processing. Given $\psi$, attach a classical flag and twirl:
+\[
+\psi'=\int dg\,|g\rangle\langle g|\otimes(\mathbf 1\otimes U_g)\psi(\mathbf 1\otimes U_g)^*.
+\]
+By covariance the outputs are block diagonal in $g$ with unitarily rotated blocks, so the divergence of $\psi'$ equals that of $\psi$. The marginal of $\psi'$ on $\cX$ is $\mathbf 1/d_\cX$ by irreducibility, so a purification of $\psi'$ does at least as well as $\psi$ and has the same value as the maximally entangled input.
+\end{proof}
+
+For $D^\HT_f$ the statement is also a case of Theorem~\ref{shA:thm:oneshot}(c). Covariance makes $J(\Phi)$ and $J(\Psi)$ invariant under $\overline U_g\otimes V_g$, so the bracket in (c) commutes with the irreducible representation $\overline U_g$ and is a multiple of $\mathbf 1$ by Schur's lemma. Criterion (c) is more general than covariance, since it is one matrix equation in $J(\Phi)$ and $J(\Psi)$.
+
+\begin{proposition}[Two-sided bounds]\label{shA:prop:channelbounds}
+For all channels and convex $f$,
+\begin{multline*}
+D^\HT_f\big(J(\Phi)/d_\cX\|J(\Psi)/d_\cX\big)\le D^\HT_f(\Phi\|\Psi)\le\int_1^\infty\Big(E^\diamond_\gamma(\Phi\|\Psi)f''(d\gamma)+E^\diamond_\gamma(\Psi\|\Phi)\tilde f''(d\gamma)\Big)\\
+\le D^T_f(\Phi\|\Psi),
+\end{multline*}
+where
+\[
+E^\diamond_\gamma(\Phi\|\Psi)=\max\{\Tr N(J(\Phi)-\gamma J(\Psi)):\ 0\le N\le\tau\otimes\mathbf 1,\ \tau\ge0,\ \Tr\tau=1\}
+\]
+is a semidefinite program for each $\gamma$, and the last quantity is $\lambda_{\max}(\Tr_\cY Wh_f(T)W^*)$. The first two inequalities are equalities for jointly covariant pairs. The middle inequality is an equality if and only if one input is optimal for $m$-almost every level of $E_\gamma(\Phi\|\Psi)$ and $\tilde m$-almost every level of $E_\gamma(\Psi\|\Phi)$. The exact value is the program of Theorem~\ref{shA:thm:oneshot}(b).
+\end{proposition}
+
+\begin{proof}
+The lower bound is the maximally entangled input. The middle inequality exchanges supremum and integral. The SDP form follows by substituting $N=(\sqrt{\tau^{\mathsf T}}\otimes\mathbf 1)\,M\,(\sqrt{\tau^{\mathsf T}}\otimes\mathbf 1)$ for a test $M$, and the upper bound is Proposition~\ref{shA:prop:channelTlift}.
+\end{proof}
+
+\begin{theorem}[Regularised values]\label{shA:thm:htreg}
+For parallel strategies let $D^{\HT,\reg}_\alpha(\Phi\|\Psi)$ be the limit of $\frac1nD^\HT_\alpha(\Phi^{\otimes n}\|\Psi^{\otimes n})$. The limit exists and
+\[
+D^{\HT,\reg}_\alpha=\begin{cases}D^{\Petz,\reg}_\alpha, & \alpha\in(0,1),\\ D^\reg, & \alpha=1,\\ \widetilde D^\reg_\alpha, & \alpha>1 .\end{cases}
+\]
+In particular, for $\alpha>1$ the regularised testing-region divergence is the quantity computed by the semidefinite hierarchy of \cite{FawziFawzi2021}.
+\end{theorem}
+
+\begin{proof}
+For $\alpha<1$ apply Proposition~\ref{shA:prop:petz} to the outputs of every input. This gives $D^\Petz_\alpha\le D^\HT_\alpha\le D^\Petz_\alpha+\frac{\log2}{1-\alpha}$ for the $n$-fold channel divergences, and the Petz channel divergence is superadditive. For $\alpha=1$ the divergences coincide input by input \cite{Frenkel2023}. For $\alpha>1$, the inequality $D^\HT_\alpha\le\widetilde D_\alpha$ (\cite{LiuHircheCheng2025}; Theorem~\ref{shB:thm:bht2} for $\alpha\ge2$) applied input by input gives
+\[
+\tfrac1nD^\HT_\alpha(\Phi^{\otimes n}\|\Psi^{\otimes n})\le\tfrac1n\widetilde D_\alpha(\Phi^{\otimes n}\|\Psi^{\otimes n})\le\widetilde D^\reg_\alpha .
+\] For the lower bound, valid for all $\alpha>1$, fix $m$ and an input $\tau_m$ for $m$ uses, and feed $\tau_m^{\otimes k}$. Proposition~\ref{shA:prop:pinch} applied to the $k$-fold output states gives
+\[
+\frac1{km}D^\HT_\alpha\to\frac1m\widetilde D_\alpha(\Phi^{\otimes m}(\tau_m)\|\Psi^{\otimes m}(\tau_m)).
+\]
+Data processing handles $n$ not divisible by $m$, and we optimise over $\tau_m$ and $m$.
+\end{proof}
+
+\section{The classification after this chapter}\label{shA:sec:summary}
+
+{\footnotesize
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.12\linewidth}>{\raggedright\arraybackslash}p{0.14\linewidth}>{\raggedright\arraybackslash}p{0.37\linewidth}>{\raggedright\arraybackslash}p{0.25\linewidth}}
+\toprule
+Family & Shadow & States & Channels\\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+I. Means, maximal & reverse test $T$ & complete (Chapter~\ref{cont:chapter}) & closed form; dichotomy at $J(\Phi+\Psi)$\\
+II. Testing region (Umegaki, $E_\gamma$, $D^\HT_f$) & $\mu=e''$: atoms at the relative spectrum, continuous part from the Helstrom coupling & Theorems~\ref{shA:thm:structure}, \ref{shA:thm:Tlift}; uniform moduli; dichotomy at $\sigma$; super-multiplicative (see Chapter~\ref{shB:chapter}) at $\alpha=2$, at every integer order against pure partners (Theorem~\ref{shB:thm:purepartner}), at $\alpha=3$ for sign-free pairs, whenever one reference state has at most two distinct eigenvalues (Lieb--Thirring identity), against three-level partners with a nonnegative $3$-cycle and for weakly correlated negative cycles on both sides (Corollaries~\ref{shB:cor:threelevel} and~\ref{shB:cor:negative}), at $\alpha=3$ to second order around trivial partners $\sigma'\propto\mathbf 1$, to first order at $\alpha=\infty$, for $\alpha>1$ with one factor measured, and for enough copies (Theorems~\ref{shB:thm:super2}--\ref{shB:thm:superinf}, \ref{shB:thm:simplex}, \ref{shB:thm:LT}, Corollary~\ref{shB:cor:twolevel}, Propositions~\ref{shB:prop:local3}, \ref{shB:prop:manycopies}); the open case at $\alpha=3$ reduces to singular states whose reference states have at least three distinct eigenvalues (Corollary~\ref{shB:cor:singular}), for three-level references to an inequality for $K_3$ alone (Proposition~\ref{shB:prop:twisted}), and in general to a polynomial criterion (Theorem~\ref{shB:thm:polycrit}); at integer orders the conjecture is a correlation inequality on a simplex (Proposition~\ref{shB:prop:simplex}); the conjecture is a convex-order statement for the Frenkel measure (Theorem~\ref{shB:thm:frenkel}) & exact one-shot formula: dual $\lambda_{\max}$ program, optimal inputs solve $\Gamma_f(\theta)=D\theta$, reverse test is one dual point (Theorem~\ref{shA:thm:oneshot}); covariant pairs; regularised values (Theorem~\ref{shA:thm:htreg})\\
+III. Modular (Petz) & Nussbaum--Szko{\l}a; modular derivative $\widetilde T=\Delta(\mathbf 1+\Delta)^{-1}$ & Theorems~\ref{shA:thm:modular}, \ref{shA:thm:petzcont}: same boundary masses as II; continuous for bounded $f$; dimension-free Hölder modulus for $Q^\Petz_\alpha$; orderings with II & dimension-free modulus for the stabilised $Q^\Petz_\alpha$, $\alpha<1$; Thompson-Lipschitz in $\Psi$ ($\alpha\in[0,2]$) and in $\Phi$ ($\alpha<1$); first argument of $D^{\Petz,\reg}_\alpha$: local stability, continuity at isometries and at invertible $J(\Phi)$ (Theorem~\ref{shA:thm:petzfirst}); $D^{\HT,\reg}_\alpha=D^{\Petz,\reg}_\alpha$ for $\alpha<1$\\
+IV. Measured & supremum of shadows & $D^\meas_f\le D^\HT_f$, equality only if commuting; the modulus of Theorem~\ref{shA:thm:bounded} for bounded $f$ & the same modulus for the stabilised divergences; Thompson-Lipschitz in $\Psi$ for the measured R\'enyi divergences (Theorem~\ref{shA:thm:thompson})\\
+V. Regularised, sandwiched & limits of II, III and pinching & $D^\HT_\alpha\le\widetilde D_\alpha$ for $\alpha>1$ \cite{LiuHircheCheng2025}, with a short proof for $\alpha\ge2$ (Theorem~\ref{shB:thm:bht2}); rates in Propositions~\ref{shA:prop:petz}, \ref{shA:prop:pinch} & Stein exponent (Corollary~\ref{shA:cor:stein}); sandwiched and strong-converse exponents (Corollary~\ref{shA:cor:sand}); $D^{\HT,\reg}_\alpha=\widetilde D^\reg_\alpha$ for $\alpha>1$\\
+\end{longtable}
+}
+
+\section{Numerical checks}\label{shA:sec:numerics}
+
+Random states are Wishart-normalised and random channels come from random isometries.
+{\small
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.38\linewidth}>{\raggedright\arraybackslash}p{0.55\linewidth}}
+\toprule
+Claim & Result\\
+\midrule
+\endhead
+Proposition~\ref{shA:prop:mellin} (Mellin formulas) & agreement with Definition~\ref{shA:def:HT} to $7$--$8$ digits for $\alpha\in\{0.3,0.5,0.8,1.5,2\}$\\
+Theorem~\ref{shA:thm:structure}(b) (density) & finite differences of $e$ match the formula to $6$ digits at $13$ points, $d=3,4$\\
+Theorem~\ref{shA:thm:structure}(c), \ref{shA:thm:Tlift}(b) (atoms) & jump of $e'$ equals $\Tr\Pi_V\sigma$ to $6$ digits, and the testing-region atom is at most the reverse-test atom, at all $12$ atoms of $4$ random qutrit pairs\\
+Theorem~\ref{shA:thm:Tlift}(a) (T-lift) & $\min(E^T_\gamma-E_\gamma)\ge-2.4\cdot10^{-15}$ over $300$ pairs ($d\le4$, random ranks) and $100$ values of $\gamma$; gap $\le2\cdot10^{-16}$ for commuting pairs\\
+Example~\ref{shA:ex:pure} & profile to $5\cdot10^{-13}$; $Q^\HT_\alpha$ to $8$ digits for $\alpha\in\{0.3,0.5,0.9\}$\\
+Theorem~\ref{shA:thm:bounded} (squared Hellinger) & $|\Delta D^\HT_f|/\omega_f\in[0.004,0.275]$ over $30$ perturbed pairs\\
+Proposition~\ref{shA:prop:petz} (Nussbaum--Szko{\l}a side) & $\min(2\eta-\eta_{\mathrm{NS}})\ge1.3\cdot10^{-4}$ over $300$ pairs; the reverse comparison $\eta\le\eta_{\mathrm{NS}}$ fails (by $0.23$), so the profile comparison is one-sided, while $Q^\HT_\alpha/Q^\Petz_\alpha\in[0.942,1]$\\
+Proposition~\ref{shA:prop:pinch} & $Q^\HT_\alpha/Q_\alpha(\mathcal P_\sigma\rho\|\sigma)\in[1.002,2.105]$ and $Q^\HT_\alpha/(v^\alpha Q_\alpha(\mathcal P_\sigma\rho\|\sigma))\in[0.111,0.483]$ over $60$ pairs, $\alpha\in\{1.5,2\}$\\
+Theorem~\ref{shA:thm:firstarg} & $\max(\text{lhs}-\text{rhs})=-4.1\cdot10^{-3}$ over $300$ random $(\Phi,\Phi',\Psi,\rho,\sigma)$ including rank-deficient inputs and Kraus rank $1$--$3$\\
+Theorem~\ref{shA:thm:thompson} ($n=1$) & $\max(|\Delta D|-\dT)=-7.6\cdot10^{-3}$ over $300$ trials\\
+Theorem~\ref{shA:thm:petzcont}(b) & $\max(|\Delta Q^\Petz_\alpha|-\text{bound})=-5.0\cdot10^{-3}$ over $900$ cases, $\alpha\in\{0.2,0.5,0.8\}$, random ranks\\
+Theorem~\ref{shA:thm:sandfirst} & $\max|\Delta R|/\text{bound}=0.016$ over $300$ random $(\Phi,\Phi',\Psi,\rho,\sigma)$, $\alpha\in\{1.3,2,3\}$\\
+Proposition~\ref{shA:prop:covariant} & for $20$ random Pauli pairs the maximally entangled input minimises $Q^\HT_{1/2}$ against $200$ random pure inputs (smallest gap $1.7\cdot10^{-3}$)\\
+Theorem~\ref{shA:thm:oneshot} & $12$ random qubit channel pairs, $f''$ with $5$ atoms: the common-input SDP and the dual $\lambda_{\max}$ program agree to $7$ digits; at the optimum $\|\Gamma_f(\theta)-D\theta\|\le1.6\cdot10^{-10}$; the iteration $\theta\mapsto\Gamma_f(\theta)/\Tr\Gamma_f(\theta)$ from $\mathbf 1/2$ reaches $D$ within $3\cdot10^{-5}$ in $3{,}000$ steps; in every case maximally entangled $<D<$ middle bound $<$ reverse test, e.g.\ $0.604<1.038<1.100<1.270$\\
+Lemma~\ref{shA:lem:localstab} & ratio$/c_W\ge1.09$ over $401$ random cases with $\dim\cR=3$ and $18$ adversarial searches, $\alpha\in\{0.2,0.5,0.8\}$; two-fold telescoping ratio$/c_W^2\ge1.25$\\
+Example~\ref{shA:ex:petzobstruction} & one-use ratio $0.47,\,0.20,\,0.074,\,0.024,\,0.0025$ for $\delta=10^{-1},10^{-2},10^{-3},10^{-4},10^{-6}$ ($\alpha=\frac12$, $\varepsilon=0.05$), below the bound $(2/\varepsilon)^\alpha\delta^{1-\alpha}$\\
+\bottomrule
+\end{longtable}
+}
+
+\section{Open problems}\label{shA:sec:open}
+
+\begin{enumerate}[leftmargin=1.5em]
+\item Find the garbling that maps the reverse test to the testing-region pair, which exists by Theorem~\ref{shA:thm:Tlift}. Is it the rotation of the Helstrom projections in Theorem~\ref{shA:thm:structure}(b)?
+\item Is $D^{\Petz,\reg}_\alpha(\cdot\|\Psi)$, $\alpha<1$, continuous at every channel when $J(\Psi)$ is invertible? Theorem~\ref{shA:thm:petzfirst} reduces this to perturbations that rotate the support of a singular $J(\Phi)$ by a non-product unitary of $\cX\otimes\cY$. Example~\ref{shA:ex:petzobstruction} shows that any proof must use the $n$-fold structure, not a one-use bound. A related question is to remove the condition number from the constants of Theorems~\ref{shA:thm:firstarg} and~\ref{shA:thm:sandfirst}.
+\item Does the iteration $\theta\mapsto\Gamma_f(\theta)/\Tr\Gamma_f(\theta)$ of Theorem~\ref{shA:thm:oneshot} always converge to an optimal input? In the linear case of the reverse test, the Cauchy--Schwarz inequality shows that the objective increases along the iteration. In all our tests the iteration converged to the optimum. For which pairs beyond the covariant ones is the maximally entangled input optimal, that is, when is the bracket of Theorem~\ref{shA:thm:oneshot}(c) scalar?
+\end{enumerate}
+
+\endgroup

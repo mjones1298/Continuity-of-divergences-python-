@@ -1,0 +1,726 @@
+\chapter{Adaptive quantum channel discrimination as a controlled random walk}\label{chn:chapter}
+\chaptermark{Adaptive discrimination as a random walk}% short running head (full title is too wide)
+\begingroup
+\chapmacro[2]{\ip}{\langle #1,#2\rangle}
+\chapmacro{\amb}{\mathcal I}
+\chapmacro{\DBS}{D_{\mathrm{BS}}}
+\setlength{\emergencystretch}{4em}
+
+\begin{chaptersummary}
+We study converse bounds on the error exponent of adaptive discrimination between two quantum channels, with $n$ channel uses and arbitrary quantum memory. Diagonalising the Arveson--Radon--Nikodym derivative of a channel $\Phi$ with respect to $\Phi+\Psi$ writes any pair of channels as $\Phi=\sum_\ell\tau_\ell\Omega_\ell$, $\Psi=\sum_\ell(1-\tau_\ell)\Omega_\ell$ with common completely positive level maps $\Omega_\ell$. We show that this turns every adaptive discrimination protocol into a post-processing of a controlled random walk. Consequently every adaptive strategy errs with probability at least $\tfrac14\exp\big(-n\widehat C-1.67\,\Lambda\sqrt n\big)$, where $\widehat C$ is the geometric Chernoff divergence of the channels, computable from one eigendecomposition, and $\Lambda$ is a Thompson-type constant that is finite for every pair.
+No other decomposition of the pair into common pieces gives a better bound of this kind, and the bound is not comparable with the barycentric converse of Ji, Mishra, Mosonyi and Wilde.
+A dynamic program gives finite-$n$ lower bounds on the error.
+If the levels are orthogonal at an optimal input, product strategies attain $\widehat C$; if moreover every level map is a multiple of a channel, a product strategy is exactly optimal for every $n$ and every error criterion.
+Finally, $e^{-\widehat C}$ is Lipschitz under perturbations that are small relative to the pair, but under general perturbations $\widehat C$ is only lower semicontinuous. Near replacement channels with rank-deficient outputs, and for amplitude-damping channels with nearby damping rates, the fidelity, barycentric and geometric Chernoff converses are all infinite while the adaptive exponent tends to zero.
+\end{chaptersummary}
+
+\section{Introduction}\label{chn:sec:intro}
+
+\subsection{Background and motivation}
+In binary discrimination of two channels $\Phi,\Psi\in\mathrm C(\mathcal X,\mathcal Y)$, a tester uses the unknown channel $n$ times, possibly adaptively and with quantum memory, and then guesses which channel it was. With equal priors the optimal error decays as $e^{-n\xi}$, where $\xi$ is the adaptive Chernoff exponent. For classical channels adaptivity does not help and $\xi$ is the largest Chernoff information over input letters \cite{Hayashi2009}; for classical--quantum channels the same holds with the quantum Chernoff divergence \cite{SalekHayashiWinter2022}. For general channels adaptivity can help, even turning a finite non-adaptive exponent into perfect discrimination after two uses \cite{HHLW2010,SalekHayashiWinter2022}, and no formula for $\xi$ is known.
+
+Lower bounds on $\xi$ come from product inputs and the quantum Chernoff bound \cite{AudenaertChernoff2007,NussbaumSzkola2009}. General upper bounds that hold for adaptive strategies have so far come from chain rules. Katariya and Wilde \cite{KatariyaWilde2021} proved a chain rule for the geometric R\'enyi divergences of order $\alpha\in(0,1)$ and deduced that $\xi$ is at most the negative logarithm of the geometric fidelity of the channels, $-2\ln\widehat Q_{1/2}(\Phi\|\Psi)$; Nuradha and Wilde \cite{NuradhaWilde2025} used such bounds for query complexity. Ji, Mishra, Mosonyi and Wilde \cite{JMMW2024,JMMW2025} proved a barycentric converse built from the Belavkin--Staszewski channel divergence, which is evaluated by a convex program. With a single R\'enyi order, as in the fidelity converse, turning a bound on the non-i.i.d.\ final states into an error exponent loses up to a factor of two.
+
+\subsection{Contributions}
+Our starting point is a structural observation (Lemma~\ref{chn:lem:levels} and Proposition~\ref{chn:prop:walk}). Let $T=\sum_\ell\tau_\ell P_\ell$ be the spectral decomposition of the Arveson--Radon--Nikodym (ARN) derivative of $\Phi$ with respect to $\Omega=\Phi+\Psi$ \cite{arveson1969subalgebras,Raginsky2003} (Section~\ref{cont:sec:prelim} and Theorem~\ref{cont:thm:arveson} in Chapter~\ref{cont:chapter}). Then $\Phi=\sum_\ell\tau_\ell\Omega_\ell$ and $\Psi=\sum_\ell(1-\tau_\ell)\Omega_\ell$ with the same completely positive level maps $\Omega_\ell$. Each use of $\Phi$ (respectively $\Psi$) therefore selects a level $\ell$ with probability $\tau_\ell\tr\Omega_\ell(\rho)$ (respectively $(1-\tau_\ell)\tr\Omega_\ell(\rho)$) and then outputs the hypothesis-independent state $\Omega_\ell(\rho)/\tr\Omega_\ell(\rho)$. By multilinearity, the final states of any adaptive protocol are post-processings of a classical pair of laws on level records, and the log-likelihood ratio of a record is a random walk whose step values do not depend on the inputs.
+
+Our main results are the following.
+\begin{enumerate}
+\item \emph{Chernoff converse for all pairs} (Theorem~\ref{chn:thm:main}). Every adaptive strategy has error at least $\tfrac14\exp\big(-n\widehat C-\sqrt{2\ln4}\,\Lambda\sqrt n\big)$, so $\xi\le\widehat C(\Phi,\Psi)=-\ln\min_{0\le s\le1}\widehat Q_s(\Phi\|\Psi)$, the geometric Chernoff divergence. The proof uses no chain rule.
+\item \emph{Canonicity} (Proposition~\ref{chn:prop:canon}). Every decomposition of the pair into common completely positive pieces gives a random-walk converse, and the level decomposition gives the best one. In particular Theorem~\ref{chn:thm:main} is never weaker than the converse obtained from a classical-program simulation.
+\item \emph{Comparison} (Corollary~\ref{chn:cor:compare}, Proposition~\ref{chn:prop:bary}). $\widehat C$ lies between one half of the fidelity converse and the fidelity converse, and for nearby channels it is $\frac{\delta^2}{8}F_{\mathrm{RLD}}+O(\delta^3)$, one half of the fidelity converse. It is not comparable with the barycentric converse $C_{\mathrm{bar}}$ of \cite{JMMW2024}: $C_{\mathrm{bar}}\le\widehat C$ for level-balanced pairs and $\widehat C\le C_{\mathrm{bar}}$ for flagged pairs, and both inequalities can be strict.
+\item \emph{Finite-$n$ bounds} (Corollary~\ref{chn:cor:dp}). A dynamic program over $O(n^m)$ log-likelihood values, where $m$ is the number of distinct eigenvalues of $T$, lower-bounds the optimal adaptive error.
+\item \emph{Operational meaning, strong converse} (Proposition~\ref{chn:prop:flag}, Corollary~\ref{chn:cor:sc}). $\widehat C$ is the exact exponent when the tester is told the level after every use, and the walk gives strong-converse bounds for all R\'enyi orders $\alpha>1$.
+\item \emph{Exactness} (Theorems~\ref{chn:thm:tight} and~\ref{chn:thm:exact}). If the levels are orthogonal at an optimal input, equivalently if $T$ commutes with the environment state there, then $\xi=\widehat C$ and product strategies are optimal. If in addition each level map is a multiple of a channel, a product strategy is exactly optimal for every $n$ and every error criterion.
+\item \emph{Continuity and fragility} (Theorems~\ref{chn:thm:robust}, \ref{chn:thm:semicont} and~\ref{chn:thm:fragile}, Corollary~\ref{chn:cor:uncertain}). If all levels of two pairs lie in $[\varepsilon,1-\varepsilon]$, then $|e^{-\widehat C(\Phi_1,\Psi_1)}-e^{-\widehat C(\Phi_2,\Psi_2)}|\le2M(\varepsilon)\tau+4\sqrt2\tanh\frac{d_T}2$, with $M(\varepsilon)\le\varepsilon^{-1}$, in terms of the in-pair derivative distance $\tau$ and the Thompson distance $d_T$ between the sums; this yields a converse valid on a whole neighbourhood of a model pair. The converse is lower semicontinuous, continuous where $J(\Phi+\Psi)$ is invertible, and infinite exactly when some input avoids every ambiguous level. Near replacement channels with rank-deficient outputs, all three known single-letter converses are infinite while the adaptive exponent tends to zero.
+\item \emph{Amplitude damping and a pure-program converse} (Proposition~\ref{chn:prop:adlevels}, Theorem~\ref{chn:thm:pureprog}, Corollary~\ref{chn:cor:adfragile}). The same happens for two amplitude-damping channels with damping rates $\gamma'\to\gamma$, although their Choi ranges intersect nontrivially. A converse obtained by simulating each channel use with a pure program state shows that the adaptive exponent is of order $(\gamma-\gamma')^2$ for $0<\gamma<1$, with upper and lower bounds that differ by the factor $2/\gamma$ to leading order; Conjecture~\ref{chn:conj:adfid}, which we verified numerically for $\gamma=\frac12$ and $n\le4$, would reduce this factor to $2$.
+\end{enumerate}
+Section~\ref{chn:sec:cont} applies the continuity theory of the derivative developed in Chapter~\ref{cont:chapter} to the converse itself. It shows where $\widehat C$ is stable and where it, together with the other single-letter converses, breaks down.
+
+\subsection{Related work}
+The converse half of Theorem~\ref{chn:thm:exact} can also be obtained by simulating each channel use with a classical program, as for programmable and teleportation-covariant channels \cite{Pirandola2019}; the level decomposition gives a canonical, checkable sufficient condition for such a simulation. Theorem~\ref{chn:thm:main} covers the general case, in which the law of the program depends on the input. Theorem~\ref{chn:thm:pureprog} extends the simulation approach to programs that are pure quantum states. For amplitude damping, Remark~\ref{chn:rem:adfisher} relates the exponent to the bound of Demkowicz-Dobrza\'nski and Maccone on the quantum Fisher information of adaptive strategies \cite{DemkowiczDobrzanskiMaccone2014}.
+
+\subsection{Notation}
+For finite-dimensional Hilbert spaces $\mathcal X,\mathcal Y$ we write $\mathrm L(\mathcal X,\mathcal Y)$ for the linear maps from $\mathcal X$ to $\mathcal Y$, $\mathrm L(\mathcal X)=\mathrm L(\mathcal X,\mathcal X)$, $\mathrm D(\mathcal X)$ for the density operators on $\mathcal X$, and $\mathrm C(\mathcal X,\mathcal Y)$ for the channels (completely positive trace-preserving maps) from $\mathrm L(\mathcal X)$ to $\mathrm L(\mathcal Y)$. We write $A^*$ for the adjoint, $\mathbf 1$ for the identity operator, $\mathrm{id}$ for the identity map, $\tr$ for the trace, $\Tr_{\mathcal Y}$ for the partial trace over $\mathcal Y$ and $(e_k)$ for standard bases. The vectorisation $\vectorise:\mathrm L(\mathcal X,\mathcal Y)\to\mathcal Y\otimes\mathcal X$ is the linear map with $\vectorise(yx^*)=y\otimes\overline x$, that is, $\vectorise(e_ie_j^*)=e_i\otimes e_j$, and $J(\Phi)=\sum_{i,j}\Phi(e_ie_j^*)\otimes e_ie_j^*$ is the Choi matrix of a map $\Phi$ on $\mathrm L(\mathcal X)$. For maps, $\Phi\le\Psi$ means that $\Psi-\Phi$ is completely positive. The trace norm, operator norm and diamond norm are $\|\cdot\|_1$, $\|\cdot\|_\infty$ and $\|\cdot\|_\diamond$; $\lambda_{\min}$ and $\lambda_{\max}$ are the extreme eigenvalues of a Hermitian operator; $A\#_sB$ is the weighted geometric mean of positive operators \cite{KuboAndo1980}; and $F(\rho,\sigma)=\|\rho^{1/2}\sigma^{1/2}\|_1^2$ is the fidelity. Logarithms are natural.
+This chapter writes $\|\cdot\|_\diamond$ for the diamond norm, which Chapter~\ref{cont:chapter} writes $|||\cdot|||_1$, and $\mathbf 1$ without a subscript. The function $g_s(t)=t^s(1-t)^{1-s}$ of Section~\ref{chn:sec:levels} coincides on $(0,1)$ with the function $h_s$ of \eqref{cont:eq:h alpha}, not the function $g_\sigma$ attached there to a mean~$\sigma$.
+
+\subsection{Organization}
+The remainder of this chapter is organized as follows. Section~\ref{chn:sec:levels} introduces the level decomposition and the quantity $\widehat C$. Section~\ref{chn:sec:walk} shows that every adaptive protocol is a controlled random walk and derives the dynamic-programming bound. Section~\ref{chn:sec:converse} proves the geometric Chernoff converse, shows that the level decomposition gives the best converse of this kind, compares it with the fidelity and barycentric converses and derives strong-converse bounds. Section~\ref{chn:sec:attained} gives conditions under which the bound is attained. Section~\ref{chn:sec:cont} studies the continuity of the converse, and Section~\ref{chn:sec:ad} treats amplitude damping. Section~\ref{chn:sec:num} contains numerical illustrations, and Section~\ref{chn:sec:open} concludes with open problems.
+
+\section{The level decomposition}\label{chn:sec:levels}
+
+Throughout, $\Phi,\Psi\in\mathrm C(\mathcal X,\mathcal Y)$ are channels and $d=\dim\mathcal X$. Let $\Omega=\Phi+\Psi$ have the Kraus decomposition $\Omega(X)=\sum_{k=1}^rV_kXV_k^*$ with linearly independent $V_k$, and let $0\le T\le\mathbf 1$ be the ARN derivative of $\Phi$ with respect to $\Omega$, so that $\Phi=\Psi_T$ and $\Psi=\Psi_{\mathbf 1-T}$, where $\Psi_K(X)=\sum_{k,l}K_{kl}V_kXV_l^*$. With $W:\mathbb C^r\to\mathcal Y\otimes\mathcal X$, $We_k=\vectorise(V_k)$, the Choi matrix of $\Psi_K$ is $J(\Psi_K)=WKW^*$.
+
+\begin{lemma}[Level decomposition]\label{chn:lem:levels}
+Let $T=\sum_{\ell=1}^m\tau_\ell P_\ell$ with distinct $\tau_\ell\in[0,1]$ and orthogonal projections $P_\ell$, and put $\Omega_\ell=\Psi_{P_\ell}$. Then each $\Omega_\ell$ is completely positive and nonzero, $\sum_\ell\Omega_\ell=\Omega$,
+\[
+\Phi=\sum_{\ell=1}^m\tau_\ell\,\Omega_\ell,\qquad\Psi=\sum_{\ell=1}^m(1-\tau_\ell)\,\Omega_\ell,
+\]
+and the $\Omega_\ell$ do not depend on the choice of Kraus decomposition of $\Omega$. Choosing an orthonormal eigenbasis $(f_i)$ of $T$ with $Tf_i=t_if_i$ and putting $K_i=\sum_k(f_i)_kV_k$ gives the common diagonal Kraus form $\Phi=\sum_it_iK_i\cdot K_i^*$, $\Psi=\sum_i(1-t_i)K_i\cdot K_i^*$. Finally, $\Phi\le e^a\Psi$ in the completely positive order if and only if $\tau_\ell\le e^a(1-\tau_\ell)$ for all $\ell$.
+\end{lemma}
+
+\begin{proof}
+Linearity and positivity of $K\mapsto\Psi_K$ give the first claims, and $\Psi_{P_\ell}\neq0$ because $K\mapsto\Psi_K$ is injective. A change of Kraus decomposition conjugates $T$, and hence each $P_\ell$, by a unitary, and leaves $\Psi_{P_\ell}$ unchanged. The Kraus form follows from $T_{kl}=\sum_it_i(f_i)_k\overline{(f_i)_l}$. The last claim is the order isomorphism of the ARN theorem applied to $e^a(\mathbf 1-T)-T$.
+\end{proof}
+
+We write $S_\ell=\Omega_\ell^*(\mathbf 1_{\mathcal Y})\ge0$ and $a_\ell(\rho)=\tr\Omega_\ell(\rho)=\tr(S_\ell\rho)$. Since $\Phi$ and $\Psi$ are trace preserving,
+\begin{equation}\label{chn:eq:normal}
+\sum_\ell\tau_\ell S_\ell=\mathbf 1,\qquad\sum_\ell(1-\tau_\ell)S_\ell=\mathbf 1 .
+\end{equation}
+Let $\lambda_\ell=\ln\frac{\tau_\ell}{1-\tau_\ell}\in[-\infty,\infty]$. A level is \emph{ambiguous} if $0<\tau_\ell<1$; we write $\mathcal I$ for the set of ambiguous levels and $\Lambda=\max_{\ell\in\mathcal I}|\lambda_\ell|$. When $\mathcal I$ contains every level, $\Lambda$ equals the Thompson distance $d_T(\Phi,\Psi)=\max\{D_{\max}(\Phi\|\Psi),D_{\max}(\Psi\|\Phi)\}$ by Lemma~\ref{chn:lem:levels}. For $s\in[0,1]$ let $g_s(t)=t^s(1-t)^{1-s}$ for $0<t<1$ and $g_s(0)=g_s(1)=0$, and put
+\[
+B_s=\sum_{\ell}g_s(\tau_\ell)S_\ell=\Psi_{g_s(T)}^*(\mathbf 1),\qquad Q_s(\rho)=\tr(\rho B_s),
+\]
+and define
+\[
+\widehat C(\Phi,\Psi)=-\ln\min_{0\le s\le1}\lambda_{\min}(B_s)\in[0,\infty].
+\]
+Only ambiguous levels contribute to $B_s$, and $s\mapsto B_s$ is continuous on $[0,1]$.
+
+\begin{remark}\label{chn:rem:geom}
+By the fundamental principle (Theorem~\ref{cont:fundamental principle} and Remark~\ref{cont:rem:connections} in Chapter~\ref{cont:chapter}), $J(\Psi)\#_sJ(\Phi)=Wg_s(T)W^*$ for $0<s<1$. The closed form of the geometric R\'enyi quasi-entropy of channels \cite{KatariyaWilde2021} (Lemma~\ref{cont:renyi closed form}) then gives $\lambda_{\min}(B_s)=\widehat Q_s(\Phi\|\Psi)=\inf_\rho\tr\big((\Psi\otimes\mathbf 1)(\rho)\#_s(\Phi\otimes\mathbf 1)(\rho)\big)$, so $\widehat C=\sup_s(1-s)\widehat D_s(\Phi\|\Psi)$ is the geometric Chernoff divergence. Computing it needs one eigendecomposition of an $r\times r$ matrix and a one-dimensional minimisation.
+\end{remark}
+
+\begin{definition}\label{chn:def:balanced}
+The pair is \emph{level balanced} if every $\Omega_\ell$ is a multiple of a channel, that is, $S_\ell=c_\ell\mathbf 1$ for all $\ell$. For $\sigma\in\mathrm D(\mathcal X)$ let $G_\sigma$ be the $r\times r$ matrix $(G_\sigma)_{lk}=\tr(V_l^*V_k\sigma)$; it is the transpose of $\Omega^c(\sigma)$, where $\Omega^c$ is the complementary map of $\Omega$ for the Stinespring operator $\sum_kV_k\otimes e_k$. The levels are \emph{orthogonal at} $\sigma$ if $\tr(B^*A\sigma)=0$ whenever $A\in\mathcal K_\ell$ and $B\in\mathcal K_{\ell'}$ with $\ell\neq\ell'$, where $\mathcal K_\ell=\{\sum_kc_kV_k:\ c\in\operatorname{ran}P_\ell\}$.
+\end{definition}
+
+For $u=\vectorise(A)$ we write $\Phi_u=(\Phi\otimes\mathbf 1)(uu^*)$ and $\Psi_u=(\Psi\otimes\mathbf 1)(uu^*)$; the reduced state of $uu^*$ on the input is $AA^*$.
+
+\begin{lemma}[Orthogonal levels and commuting outputs]\label{chn:lem:comm}
+Let $\sigma\in\mathrm D(\mathcal X)$ and $u=\vectorise(A)$ with $AA^*=\sigma$.
+\begin{enumerate}
+\item[(a)] The levels are orthogonal at $\sigma$ if and only if $[T,G_\sigma]=0$.
+\item[(b)] If $[T,G_\sigma]=0$, then $\Phi_u$ and $\Psi_u$ commute, and there are orthonormal vectors $x_i$ with $\Phi_u=\sum_it_ig_i\,x_ix_i^*$ and $\Psi_u=\sum_i(1-t_i)g_i\,x_ix_i^*$, where $(t_i,g_i)$ runs over the joint eigenvalues of $(T,G_\sigma)$ with $g_i>0$. In particular $\tr(\Phi_u^s\Psi_u^{1-s})=Q_s(\sigma)$ for $0\le s\le1$, where $M^0$ denotes the support projection of $M$.
+\item[(c)] If $\sigma$ is invertible and $\Phi_u$, $\Psi_u$ commute, then $[T,G_\sigma]=0$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Let $X:\mathbb C^r\to\mathcal Y\otimes\mathcal X$ be given by $Xe_k=\vectorise(V_kA)$. Then $X^*X=G_\sigma$ and $(\Psi_K\otimes\mathbf 1)(uu^*)=XKX^*$ for every $K$, so $\Phi_u=XTX^*$ and $\Psi_u=X(\mathbf 1-T)X^*$; also $\tr\Psi_K(\sigma)=\tr(KG_\sigma)$. (a) For $c\in\operatorname{ran}P_\ell$ and $d\in\operatorname{ran}P_{\ell'}$ we have $\tr\big((\sum_kd_kV_k)^*(\sum_kc_kV_k)\sigma\big)=d^*G_\sigma c$, so orthogonality means $P_{\ell'}G_\sigma P_\ell=0$ for $\ell\ne\ell'$, that is, $G_\sigma$ commutes with every $P_\ell$. (b) $\Phi_u\Psi_u=XTG_\sigma(\mathbf 1-T)X^*$ and $\Psi_u\Phi_u=X(\mathbf 1-T)G_\sigma TX^*$ agree when $[T,G_\sigma]=0$. For a joint orthonormal eigenbasis $Tf_i=t_if_i$, $G_\sigma f_i=g_if_i$, the vectors $Xf_i$ are orthogonal with $\|Xf_i\|^2=g_i$, and $x_i=Xf_i/\sqrt{g_i}$ give the stated forms. Hence $\tr(\Phi_u^s\Psi_u^{1-s})=\sum_ig_s(t_i)g_i=\tr(g_s(T)G_\sigma)=\tr\Psi_{g_s(T)}(\sigma)=Q_s(\sigma)$, the convention $g_s(0)=g_s(1)=0$ matching the support projections at $s\in\{0,1\}$. (c) If $\sigma$ is invertible, $X$ is injective because the $V_k$ are linearly independent, so $X\big(TG_\sigma(\mathbf 1-T)-(\mathbf 1-T)G_\sigma T\big)X^*=0$ forces $TG_\sigma(\mathbf 1-T)=(\mathbf 1-T)G_\sigma T$, which is $TG_\sigma=G_\sigma T$.
+\end{proof}
+
+\section{Every adaptive protocol is a controlled random walk}\label{chn:sec:walk}
+
+An adaptive strategy with $n$ uses consists of a state $\rho_0\in\mathrm D(\mathcal X\otimes\mathcal R_0)$, channels $\Gamma_k:\mathrm L(\mathcal Y\otimes\mathcal R_{k-1})\to\mathrm L(\mathcal X\otimes\mathcal R_k)$ for $1\le k\le n-1$, and a final measurement on $\mathcal Y\otimes\mathcal R_{n-1}$. We write $\rho^{(n)}_\Phi$, $\rho^{(n)}_\Psi$ for the final states, $p_{\mathrm{adapt}}(n)$ for the infimum over strategies of the equal-prior error $\tfrac12-\tfrac14\|\rho^{(n)}_\Phi-\rho^{(n)}_\Psi\|_1$, and $\xi_{\mathrm{adapt}}=\limsup_n-\frac1n\ln p_{\mathrm{adapt}}(n)$. Product strategies $u^{\otimes n}$ with $u\in\mathcal X\otimes\mathcal X$ achieve $\xi_{\mathrm{prod}}=\sup_u\xi_{\mathrm{QC}}(\Phi_u,\Psi_u)$, with $\xi_{\mathrm{QC}}(A,B)=-\ln\min_{0\le s\le1}\tr(A^sB^{1-s})$ \cite{AudenaertChernoff2007,NussbaumSzkola2009}.
+
+\begin{proposition}[Controlled random walk]\label{chn:prop:walk}
+Fix an adaptive strategy with $n$ uses. There are states $\rho_k(\ell_1,\dots,\ell_{k-1})\in\mathrm D(\mathcal X)$ and states $\sigma_{\vec\ell}$ on the final system such that
+\[
+\rho^{(n)}_\Phi=\sum_{\vec\ell}P_\Phi(\vec\ell)\,\sigma_{\vec\ell},\qquad\rho^{(n)}_\Psi=\sum_{\vec\ell}P_\Psi(\vec\ell)\,\sigma_{\vec\ell},
+\]
+where $\vec\ell=(\ell_1,\dots,\ell_n)$ and
+\begin{equation}\label{chn:eq:walk}
+\begin{gathered}
+P_\Phi(\vec\ell)=\prod_{k=1}^na_{\ell_k}(\rho_k)\,\tau_{\ell_k},\qquad P_\Psi(\vec\ell)=\prod_{k=1}^na_{\ell_k}(\rho_k)\,(1-\tau_{\ell_k}),\\
+\rho_k=\rho_k(\ell_1,\dots,\ell_{k-1}).
+\end{gathered}
+\end{equation}
+$P_\Phi$ and $P_\Psi$ are probability distributions, and the log-likelihood ratio of a record is $L(\vec\ell)=\sum_k\lambda_{\ell_k}$.
+\end{proposition}
+
+\begin{proof}
+The final state is multilinear in the $n$ channel uses. Inserting $\Phi=\sum_\ell\tau_\ell\Omega_\ell$ and $\Psi=\sum_\ell(1-\tau_\ell)\Omega_\ell$ gives $\rho^{(n)}_\Phi=\sum_{\vec\ell}\big(\prod_k\tau_{\ell_k}\big)\Theta_{\vec\ell}$ and $\rho^{(n)}_\Psi=\sum_{\vec\ell}\big(\prod_k(1-\tau_{\ell_k})\big)\Theta_{\vec\ell}$, where $\Theta_{\vec\ell}\ge0$ is the output of the strategy when round $k$ uses the completely positive map $\Omega_{\ell_k}$. Let $\zeta_k$ be the unnormalised state entering round $k$ in this run; it depends only on $\ell_1,\dots,\ell_{k-1}$. Since the $\Gamma_k$ preserve the trace and $\tr(\Omega_\ell\otimes\mathrm{id})(\zeta)=a_\ell(\Tr_{\mathcal R}\zeta)$, induction gives $\tr\Theta_{\vec\ell}=\prod_ka_{\ell_k}(\rho_k)$ with $\rho_k=\Tr_{\mathcal R}\zeta_k/\tr\zeta_k$; when $\tr\zeta_k=0$ the choice of $\rho_k$ is irrelevant. Put $\sigma_{\vec\ell}=\Theta_{\vec\ell}/\tr\Theta_{\vec\ell}$. Normalisation follows from \eqref{chn:eq:normal}.
+\end{proof}
+
+Hence the final pair of every strategy is obtained from the classical pair $(P_\Phi,P_\Psi)$ by a classical-to-quantum channel, and its performance under any error criterion is dominated by that of $(P_\Phi,P_\Psi)$. The inputs enter only through the laws $a_\ell(\rho_k)$ of the levels, while the step values $\lambda_\ell$ are fixed.
+
+\begin{corollary}[Computable finite-$n$ bound]\label{chn:cor:dp}
+Define $v_n(x)=\tfrac12\min\{e^x,1\}$ for $x\in[-\infty,\infty)$ and, for $k=n-1,\dots,0$,
+\[
+v_k(x)=\lambda_{\min}\Big(\sum_{\ell:\,\tau_\ell<1}(1-\tau_\ell)\,v_{k+1}(x+\lambda_\ell)\,S_\ell\Big).
+\]
+Then $p_{\mathrm{adapt}}(n)\ge v_0(0)$. The recursion only visits the values $x=\sum_\ell n_\ell\lambda_\ell$ with $\sum_\ell n_\ell\le n$, so it needs $O(n^m)$ eigenvalue computations of $d\times d$ matrices. The value $v_0(0)$ is the exact optimal error of the problem in which the tester also learns the level after each use.
+\end{corollary}
+
+\begin{proof}
+By Proposition~\ref{chn:prop:walk}, the error is at least $\tfrac12\sum_{\vec\ell}\min\{P_\Phi,P_\Psi\}=\sum_{\vec\ell}P_\Psi(\vec\ell)\,v_n(L(\vec\ell))$, where records with $P_\Psi(\vec\ell)=0$ contribute nothing. For a prefix of length $k$ with $\Psi$-weight $b$ and log-likelihood ratio $x$, the remaining contribution is $b$ times a function of $x$ and of the future inputs, and the next step enters linearly through $a_\ell(\rho_{k+1})=\tr(S_\ell\rho_{k+1})$. Backward induction with $\tr(\rho M)\ge\lambda_{\min}(M)$ shows that this contribution is at least $b\,v_k(x)$, and choosing at each step an eigenvector for $\lambda_{\min}$ attains the bound when the level is revealed.
+\end{proof}
+
+\section{The geometric Chernoff converse}\label{chn:sec:converse}
+
+\begin{theorem}\label{chn:thm:main}
+For every pair of channels, every $n\ge1$ and every adaptive strategy with $n$ uses,
+\[
+\tfrac12-\tfrac14\big\|\rho^{(n)}_\Phi-\rho^{(n)}_\Psi\big\|_1\ \ge\ \tfrac14\exp\!\Big(-n\,\widehat C(\Phi,\Psi)-\sqrt{2\ln4}\,\Lambda\sqrt n\Big).
+\]
+In particular $\xi_{\mathrm{adapt}}(\Phi,\Psi)\le\widehat C(\Phi,\Psi)$.
+\end{theorem}
+
+\begin{proof}
+We may assume $\widehat C<\infty$. By Proposition~\ref{chn:prop:walk} the error is at least $\tfrac12\sum_{\vec\ell}\min\{P_\Phi(\vec\ell),P_\Psi(\vec\ell)\}$, and we may restrict the sum to records with all $\ell_k\in\mathcal I$.
+
+\emph{Tilting.} For $\ell\in\mathcal I$ put $w_\ell(s)=g_s(\tau_\ell)=(1-\tau_\ell)e^{s\lambda_\ell}$. For each $k$ let $s_k\in[0,1]$ minimise $s\mapsto Q_s(\rho_k)$; it depends only on the past. Let $R$ be the law of the adaptive process on $\mathcal I^n$ with $R(\ell_k=\ell\mid\text{past})=a_\ell(\rho_k)w_\ell(s_k)/Q_{s_k}(\rho_k)$. With $L=\sum_k\lambda_{\ell_k}$ and $M=\sum_ks_k\lambda_{\ell_k}$, a case distinction on the sign of $L$ gives the identity
+\[
+\min\Big\{\prod_k\tau_{\ell_k},\prod_k(1-\tau_{\ell_k})\Big\}=\prod_k(1-\tau_{\ell_k})\,e^{\min\{L,0\}}=\prod_kw_{\ell_k}(s_k)\;e^{\min\{X,\,Y\}},
+\]
+where $X=\sum_k(1-s_k)\lambda_{\ell_k}$ and $Y=-\sum_ks_k\lambda_{\ell_k}$. Moreover
+\[
+\prod_ka_{\ell_k}(\rho_k)\,w_{\ell_k}(s_k)=R(\vec\ell)\prod_kQ_{s_k}(\rho_k)\ge R(\vec\ell)\,e^{-n\widehat C},
+\]
+because $Q_s(\rho)\ge\lambda_{\min}(B_s)\ge e^{-\widehat C}$. Hence the error is at least $\tfrac12e^{-n\widehat C}\,\mathbb E_R[e^{\min\{X,Y\}}]$.
+
+\emph{Drift.} The function $s\mapsto\ln Q_s(\rho)=\ln\sum_{\ell\in\mathcal I}a_\ell(\rho)(1-\tau_\ell)e^{s\lambda_\ell}$ is smooth and convex, and $\mathbb E_R[\lambda_{\ell_k}\mid\text{past}]=\delta_k:=\frac{d}{ds}\ln Q_s(\rho_k)|_{s=s_k}$. Minimality of $s_k$ gives $\delta_k=0$ if $0<s_k<1$, $\delta_k\ge0$ if $s_k=0$, and $\delta_k\le0$ if $s_k=1$. In all cases $(1-s_k)\delta_k\ge0$ and $-s_k\delta_k\ge0$, so $X$ and $Y$ are $R$-submartingales whose increments lie in $[-\Lambda,\Lambda]$.
+
+\emph{Concentration.} By the Azuma--Hoeffding inequality \cite{Azuma1967} applied to the martingale parts, $R(X\le-n\delta)+R(Y\le-n\delta)\le2e^{-n\delta^2/(2\Lambda^2)}$. Choosing $\delta=\Lambda\sqrt{2\ln4/n}$ makes this at most $\tfrac12$, so $\mathbb E_R[e^{\min\{X,Y\}}]\ge\tfrac12e^{-n\delta}$, which gives the bound.
+\end{proof}
+
+\begin{remark}
+The proof uses no chain rule. For unequal priors $p,1-p$ the same bound holds with $\tfrac14$ replaced by $\tfrac12\min\{p,1-p\}$. If all levels are ambiguous, $\Lambda=d_T(\Phi,\Psi)$.
+\end{remark}
+
+The proof only used that $\Phi$ and $\Psi$ are mixtures of common completely positive pieces with weights $\tau_\ell$ and $1-\tau_\ell$. Any other such decomposition gives a converse in the same way, and the level decomposition gives the best one.
+
+\begin{proposition}[Canonicity]\label{chn:prop:canon}
+Let $\Phi=\sum_{j=1}^Jp_j\Gamma_j$ and $\Psi=\sum_jq_j\Gamma_j$ with nonzero completely positive maps $\Gamma_j$ and $p_j,q_j\ge0$, $p_j+q_j>0$. Proposition~\ref{chn:prop:walk} and the proof of Theorem~\ref{chn:thm:main} apply verbatim to this decomposition and give a converse with exponent
+\[
+C_\Gamma=-\ln\min_{0\le s\le1}\lambda_{\min}\Big(\sum_{j:\,p_jq_j>0}p_j^sq_j^{1-s}\,\Gamma_j^*(\mathbf 1)\Big).
+\]
+For every such decomposition $C_\Gamma\ge\widehat C(\Phi,\Psi)$, with equality for the level decomposition. In particular, if $\Phi=\sum_jp_j\mathcal E_j$ and $\Psi=\sum_jq_j\mathcal E_j$ for channels $\mathcal E_j$, then the Chernoff information of $(p,q)$ is at least $\widehat C(\Phi,\Psi)$.
+\end{proposition}
+
+\begin{proof}
+Since $\Omega-(p_j+q_j)\Gamma_j$ is completely positive, the ARN theorem gives $R_j\ge0$ with $(p_j+q_j)\Gamma_j=\Psi_{R_j}$. Injectivity of $K\mapsto\Psi_K$ and $\sum_j\Psi_{R_j}=\Omega=\Psi_{\mathbf 1}$ give $\sum_jR_j=\mathbf 1$, and $\Phi=\sum_jt_j\Psi_{R_j}$ with $t_j=p_j/(p_j+q_j)$ gives $T=\sum_jt_jR_j$. For $0<s<1$ the function $g_s$ is operator concave on $[0,1]$: $g_s(T)=(\mathbf 1-T)\#_sT$, and the weighted geometric mean is jointly concave \cite{KuboAndo1980}. Jensen's operator inequality \cite{HansenPedersen2003} therefore gives $\sum_jg_s(t_j)R_j\le g_s\big(\sum_jt_jR_j\big)=g_s(T)$. The map $K\mapsto\Psi_K^*(\mathbf 1)$ is positive and $g_s(t_j)(p_j+q_j)=p_j^sq_j^{1-s}$, so
+\[
+\sum_jp_j^sq_j^{1-s}\,\Gamma_j^*(\mathbf 1)=\sum_jg_s(t_j)\Psi_{R_j}^*(\mathbf 1)\le\Psi_{g_s(T)}^*(\mathbf 1)=B_s .
+\]
+Taking $\lambda_{\min}$ and using continuity in $s$ at the endpoints gives $C_\Gamma\ge\widehat C$. For channels $\mathcal E_j$ we have $\mathcal E_j^*(\mathbf 1)=\mathbf 1$, and $C_\Gamma$ is the Chernoff information of $(p,q)$.
+\end{proof}
+
+\begin{proposition}[Operational meaning]\label{chn:prop:flag}
+Let $\widetilde\Phi(X)=\sum_\ell\tau_\ell\Omega_\ell(X)\otimes e_\ell e_\ell^*$ and $\widetilde\Psi(X)=\sum_\ell(1-\tau_\ell)\Omega_\ell(X)\otimes e_\ell e_\ell^*$, the channels that also announce the level. Then $\xi_{\mathrm{adapt}}(\widetilde\Phi,\widetilde\Psi)=\xi_{\mathrm{prod}}(\widetilde\Phi,\widetilde\Psi)=\widehat C(\Phi,\Psi)$.
+\end{proposition}
+
+\begin{proof}
+The flagged pair has the same $\tau_\ell$ and $S_\ell$, so Theorem~\ref{chn:thm:main} applies to it with the same $\widehat C$. With a fixed input $\rho$, a product strategy that keeps the flags sees i.i.d.\ records with laws $(a_\ell(\rho)\tau_\ell)_\ell$ and $(a_\ell(\rho)(1-\tau_\ell))_\ell$, whose Chernoff information is $-\ln\min_sQ_s(\rho)$. Maximising over $\rho$ gives $-\ln\min_s\min_\rho Q_s(\rho)=\widehat C$.
+\end{proof}
+
+\begin{corollary}\label{chn:cor:compare}
+\begin{enumerate}
+\item[(a)] $-\ln\widehat Q_{1/2}(\Phi\|\Psi)\le\widehat C(\Phi,\Psi)\le-2\ln\widehat Q_{1/2}(\Phi\|\Psi)$. The right-hand side is the geometric fidelity converse of \cite{KatariyaWilde2021,NuradhaWilde2025}.
+\item[(b)] Let $\theta\mapsto\Phi_\theta$ be a $C^2$ family of channels with $J(\Phi_\theta)>0$. Then
+\[
+\widehat C(\Phi_\theta,\Phi_{\theta+\delta})=\frac{\delta^2}{8}F_{\mathrm{RLD}}(\theta)+O(\delta^3),\qquad-2\ln\widehat Q_{1/2}(\Phi_\theta\|\Phi_{\theta+\delta})=\frac{\delta^2}{4}F_{\mathrm{RLD}}(\theta)+O(\delta^3),
+\]
+where $F_{\mathrm{RLD}}(\theta)=\lambda_{\max}\big(\Tr_{\mathcal Y}[(\partial_\theta J)J^{-1}(\partial_\theta J)]\big)$, $J=J(\Phi_\theta)$, is the RLD Fisher information of the channel family \cite{KatariyaWilde2021}.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+(a) The first inequality is the choice $s=\tfrac12$. For the second, the Cauchy--Schwarz inequality gives $Q_{1/2}(\rho)^2\le Q_s(\rho)Q_{1-s}(\rho)$, and weighted AM--GM with \eqref{chn:eq:normal} gives $Q_{1-s}(\rho)\le\sum_\ell a_\ell(\rho)\big((1-s)\tau_\ell+s(1-\tau_\ell)\big)\le1$. Hence $Q_s(\rho)\ge\widehat Q_{1/2}^{\,2}$ for all $s$ and $\rho$.
+
+(b) All levels are ambiguous. Put $x_\ell=2\tau_\ell-1$, so that $\sum_\ell a_\ell(\rho)=2$ and $\sum_\ell a_\ell(\rho)x_\ell=0$. The expansion $(1+x)^s(1-x)^{1-s}=1+(2s-1)x-2s(1-s)x^2+O(x^3)$, uniform in $s\in[0,1]$, gives $Q_s(\rho)=1-s(1-s)\chi(\rho)+O(\|2T-\mathbf 1\|^3)$ with $\chi(\rho)=\sum_\ell a_\ell(\rho)x_\ell^2=\tr\Psi_{(2T-\mathbf 1)^2}(\rho)$. Hence $\widehat C=\tfrac14\max_\rho\chi(\rho)+O(\|2T-\mathbf 1\|^3)$ and $-2\ln\widehat Q_{1/2}=\tfrac12\max_\rho\chi(\rho)+O(\|2T-\mathbf 1\|^3)$. Since $J(\Phi)-J(\Psi)=W(2T-\mathbf 1)W^*$, $J(\Phi)+J(\Psi)=WW^*$ is invertible here, and $W$ is injective,
+\[
+\max_\rho\chi(\rho)=\lambda_{\max}\Big(\Tr_{\mathcal Y}\big[(J(\Phi)-J(\Psi))(J(\Phi)+J(\Psi))^{-1}(J(\Phi)-J(\Psi))\big]\Big),
+\]
+which is $\frac{\delta^2}{2}F_{\mathrm{RLD}}(\theta)+O(\delta^3)$ for $\Phi=\Phi_\theta$, $\Psi=\Phi_{\theta+\delta}$, and $\|2T-\mathbf 1\|=O(\delta)$.
+\end{proof}
+
+We compare with the barycentric converse. For states put $\DBS(\omega\|\rho)=\tr\big(\omega\ln(\omega^{1/2}\rho^{-1}\omega^{1/2})\big)$ \cite{BelavkinStaszewski1982}, and for channels $\widehat D(\mathcal T\|\Phi)=\sup_\rho\DBS\big((\mathcal T\otimes\mathbf 1)(\rho)\|(\Phi\otimes\mathbf 1)(\rho)\big)$. For two channels the bound of \cite[Theorem~24]{JMMW2024} reads $\xi_{\mathrm{adapt}}\le C_{\mathrm{bar}}(\Phi,\Psi)$ with
+\[
+C_{\mathrm{bar}}(\Phi,\Psi)=\sup_{0\le s\le1}\ \inf_{\mathcal T\in\mathrm C(\mathcal X,\mathcal Y)}\Big[s\,\widehat D(\mathcal T\|\Phi)+(1-s)\,\widehat D(\mathcal T\|\Psi)\Big].
+\]
+
+\begin{proposition}[Comparison with the barycentric bound]\label{chn:prop:bary}
+\begin{enumerate}
+\item[(a)] If the pair is level balanced, then $C_{\mathrm{bar}}(\Phi,\Psi)\le\widehat C(\Phi,\Psi)$.
+\item[(b)] For the flagged pair of Proposition~\ref{chn:prop:flag}, $\widehat C=\xi_{\mathrm{adapt}}\le C_{\mathrm{bar}}$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(a) Here $B_s=Z(s)\mathbf 1$ with $Z(s)=\sum_\ell c_\ell g_s(\tau_\ell)$, so $\widehat C=-\ln\min_sZ(s)$ and $Z'(s)=\sum_{\ell\in\mathcal I}c_\ell g_s(\tau_\ell)\lambda_\ell$. For $s\in[0,1]$ the map $\mathcal T_s=\Psi_{g_s(T)}/Z(s)$ is a channel, since $\Psi_{g_s(T)}^*(\mathbf 1)=B_s$. Its Choi matrix $Wg_s(T)W^*/Z(s)$ is supported in $W\operatorname{ran}P_{\mathcal I}$, where $P_{\mathcal I}=\sum_{\ell\in\mathcal I}P_\ell$, and this subspace lies in the supports of $J(\Phi)$ and of $J(\Psi)$ because $T$ and $\mathbf 1-T$ are invertible on $\operatorname{ran}P_{\mathcal I}$; in particular $D_{\max}(\mathcal T_s\|\Phi)$ and $D_{\max}(\mathcal T_s\|\Psi)$ are finite. By the closed form of the Belavkin--Staszewski channel divergence under such a bound \cite{FangFawzi2021,JMMW2024} (Lemma~\ref{cont:lem:dmax} and Theorem~\ref{cont:thm:unbounded}(a) in Chapter~\ref{cont:chapter}), $\widehat D(\mathcal T_s\|\Phi)=\lambda_{\max}\Tr_{\mathcal Y}\big[J^{1/2}\ln(J^{1/2}J(\Phi)^{-1}J^{1/2})J^{1/2}\big]$ with $J=J(\mathcal T_s)$. The operator perspective is covariant under congruences, and $W$ is injective, so the operator inside the partial trace equals $Wh(T)W^*$, where $h(t)=\frac{g_s(t)}{Z(s)}\ln\frac{g_s(t)}{Z(s)t}$ is evaluated on the commuting pair $g_s(T)/Z(s)$, $T$. Since $\Tr_{\mathcal Y}(WKW^*)=\Psi_K^*(\mathbf 1)^\top$ and $\ln\frac{g_s(t)}{t}=-(1-s)\ln\frac t{1-t}$, level balance gives, since conclusive levels contribute nothing,
+\[
+\widehat D(\mathcal T_s\|\Phi)=\sum_{\ell\in\mathcal I}c_\ell h(\tau_\ell)=-(1-s)\frac{Z'(s)}{Z(s)}-\ln Z(s),\qquad\widehat D(\mathcal T_s\|\Psi)=s\frac{Z'(s)}{Z(s)}-\ln Z(s),
+\]
+the second by the same computation. Let $s_*$ minimise $Z$ on $[0,1]$. Then $(1-s_*)Z'(s_*)\ge0$ and $s_*Z'(s_*)\le0$, so both divergences of $\mathcal T_{s_*}$ are at most $-\ln Z(s_*)=\widehat C$, and $C_{\mathrm{bar}}\le\sup_s[s\widehat D(\mathcal T_{s_*}\|\Phi)+(1-s)\widehat D(\mathcal T_{s_*}\|\Psi)]\le\widehat C$.
+
+(b) Proposition~\ref{chn:prop:flag} and $\xi_{\mathrm{adapt}}\le C_{\mathrm{bar}}$.
+\end{proof}
+
+Part (a) applies to replacement channels $\Phi=\tr(\cdot)\,\phi$, $\Psi=\tr(\cdot)\,\psi$ with invertible $\phi,\psi$; there $\widehat C=-\ln\min_s\tr(\psi\#_s\phi)$, while $\xi_{\mathrm{adapt}}=\xi_{\mathrm{QC}}(\phi,\psi)$ because the outputs do not depend on the inputs. Part (b) applies to measurement channels whose POVM elements are proportional, $\Phi(\rho)=\sum_\ell a_\ell\ip{e_\ell}{\rho e_\ell}e_\ell'e_\ell'^*$ and $\Psi(\rho)=\sum_\ell b_\ell\ip{e_\ell}{\rho e_\ell}e_\ell'e_\ell'^*$ with orthonormal $e'_\ell$, which are equivalent to their flagged pairs because the output reveals the level. Section~\ref{chn:sec:num} gives examples with strict inequality in both cases, so neither converse dominates the other. For level-balanced pairs whose levels are orthogonal at some input, (a) and Theorem~\ref{chn:thm:exact} below give $C_{\mathrm{bar}}=\widehat C=\xi_{\mathrm{adapt}}$. At pairs with trivially intersecting Choi ranges both converses are infinite (Theorem~\ref{chn:thm:semicont}(d)).
+
+\begin{corollary}[Strong converse]\label{chn:cor:sc}
+Suppose $\tau_\ell<1$ for all $\ell$, that is, $D_{\max}(\Phi\|\Psi)<\infty$, and for $\alpha>1$ put $D^{\mathrm{lev}}_\alpha(\Phi\|\Psi)=\frac1{\alpha-1}\ln\lambda_{\max}\big(\sum_\ell\tau_\ell^\alpha(1-\tau_\ell)^{1-\alpha}S_\ell\big)$. If an adaptive strategy with $n$ uses has type-II error $\beta_n\le e^{-nr}$ (accepting $\Phi$ when $\Psi$ is true), then its type-I success probability satisfies
+\[
+1-\alpha_n\le\exp\Big(-n\sup_{\alpha>1}\tfrac{\alpha-1}{\alpha}\big(r-D^{\mathrm{lev}}_\alpha(\Phi\|\Psi)\big)\Big).
+\]
+For $1<\alpha\le2$, $D^{\mathrm{lev}}_\alpha$ is the geometric R\'enyi divergence of the channels \cite{FangFawzi2021} (Corollary~\ref{cont:cor:renyi large alpha} in Chapter~\ref{cont:chapter}), and for these orders the bound also follows from its chain rule \cite{FangFawzi2021}.
+\end{corollary}
+
+\begin{proof}
+By Proposition~\ref{chn:prop:walk} the pair $(1-\alpha_n,\beta_n)$ is achieved by a classical test on records, and classical data processing for $\alpha>1$ gives $(1-\alpha_n)^\alpha\beta_n^{1-\alpha}\le\sum_{\vec\ell}P_\Phi^\alpha P_\Psi^{1-\alpha}$. Summing over $\ell_n$, then $\ell_{n-1}$, and so on, and using $\sum_\ell a_\ell(\rho)\tau_\ell^\alpha(1-\tau_\ell)^{1-\alpha}\le\lambda_{\max}\big(\sum_\ell\tau_\ell^\alpha(1-\tau_\ell)^{1-\alpha}S_\ell\big)$, bounds the right-hand side by $e^{n(\alpha-1)D^{\mathrm{lev}}_\alpha}$.
+\end{proof}
+
+\begin{remark}
+As $\alpha\downarrow1$, $D^{\mathrm{lev}}_\alpha\to\lambda_{\max}\big(\sum_\ell\tau_\ell\lambda_\ell S_\ell\big)=\widehat D(\Phi\|\Psi)$, the Belavkin--Staszewski channel divergence (Theorem~\ref{cont:thm:all f} in Chapter~\ref{cont:chapter}); if some $\tau_\ell=1$, both are $+\infty$ by the same theorem. These rates are robust: for two splittings of one sum with derivatives $T_1,T_2\le(1-\varepsilon)\mathbf 1$, the quantities $e^{(\alpha-1)D^{\mathrm{lev}}_\alpha}$, $1<\alpha\le2$, differ by at most $2\big((4-\alpha)\varepsilon^{1-\alpha}+(\alpha-1)\varepsilon^{-\alpha}\big)\|T_1-T_2\|_\infty$ (Corollary~\ref{cont:cor:renyi large alpha}). The optimal adaptive Stein exponent is the regularised Umegaki channel divergence $D^{\mathrm{reg}}(\Phi\|\Psi)\le\widehat D(\Phi\|\Psi)$ \cite{FFRS2020}, so the walk does not improve Stein's exponent; Corollary~\ref{chn:cor:sc} is useful for rates $r$ above $\widehat D(\Phi\|\Psi)$.
+\end{remark}
+
+\section{When the bound is attained}\label{chn:sec:attained}
+
+\begin{theorem}[Exact exponent]\label{chn:thm:tight}
+Suppose that $\sigma_*\in\mathrm D(\mathcal X)$ and $s_*\in[0,1]$ satisfy $Q_{s_*}(\sigma_*)=e^{-\widehat C}$ and that the levels are orthogonal at $\sigma_*$, equivalently $[T,G_{\sigma_*}]=0$. Then $\xi_{\mathrm{adapt}}=\xi_{\mathrm{prod}}=\widehat C$, attained by the product inputs $u^{\otimes n}$ with $u=\vectorise(\sigma_*^{1/2})$.
+\end{theorem}
+
+\begin{proof}
+By Lemma~\ref{chn:lem:comm}(b), $\min_{0\le s\le1}\tr(\Phi_u^s\Psi_u^{1-s})\le Q_{s_*}(\sigma_*)=e^{-\widehat C}$, so $\xi_{\mathrm{QC}}(\Phi_u,\Psi_u)\ge\widehat C$, which the product strategy $u^{\otimes n}$ achieves \cite{AudenaertChernoff2007,NussbaumSzkola2009}. Theorem~\ref{chn:thm:main} gives the reverse inequality.
+\end{proof}
+
+\begin{remark}[Classical channels]
+For classical channels $P(y|x)$, $Q(y|x)$ the Kraus operators of $\Omega$ can be taken to be multiples of $e_ye_x^*$. Then $B_s$ is diagonal with entries $\sum_yP(y|x)^sQ(y|x)^{1-s}$, so $\widehat C=\max_xC\big(P(\cdot|x),Q(\cdot|x)\big)$, and the levels are orthogonal at every basis state. Theorem~\ref{chn:thm:tight} with $\sigma_*=e_{x_*}e_{x_*}^*$ for a maximising letter $x_*$ is Hayashi's theorem \cite{Hayashi2009}. Such pairs are in general not level balanced.
+\end{remark}
+
+\begin{theorem}[Exact optimality at every $n$]\label{chn:thm:exact}
+Suppose the pair is level balanced, $S_\ell=c_\ell\mathbf 1$, and the levels are orthogonal at some $\sigma\in\mathrm D(\mathcal X)$. Let $\nu_\Phi(\ell)=\tau_\ell c_\ell$ and $\nu_\Psi(\ell)=(1-\tau_\ell)c_\ell$, and let $u=\vectorise(A)$ with $AA^*=\sigma$. Then for every $n$:
+\begin{enumerate}
+\item[(a)] the final pair of every adaptive strategy is a post-processing of $(\nu_\Phi^{\otimes n},\nu_\Psi^{\otimes n})$;
+\item[(b)] the pairs $(\Phi_u^{\otimes n},\Psi_u^{\otimes n})$ and $(\nu_\Phi^{\otimes n},\nu_\Psi^{\otimes n})$ are post-processings of each other.
+\end{enumerate}
+Consequently the product strategy $u^{\otimes n}$ is optimal among all adaptive strategies with $n$ uses, simultaneously for every binary error criterion: Bayesian error with arbitrary priors and the whole Neyman--Pearson trade-off. All error exponents (Stein, Chernoff, Hoeffding, strong converse) are those of the classical pair $(\nu_\Phi,\nu_\Psi)$, and, with $D$ the Umegaki channel divergence and $D^{\mathrm{reg}}$ its regularisation,
+\[
+D(\Phi\|\Psi)=D^{\mathrm{reg}}(\Phi\|\Psi)=\widehat D(\Phi\|\Psi)=D(\nu_\Phi\|\nu_\Psi).
+\]
+\end{theorem}
+
+\begin{proof}
+(a) Level balance gives $a_\ell(\rho)=c_\ell$ for every $\rho$, so in \eqref{chn:eq:walk} $P_\Phi=\nu_\Phi^{\otimes n}$ and $P_\Psi=\nu_\Psi^{\otimes n}$ for every strategy; apply Proposition~\ref{chn:prop:walk}. (b) By Lemma~\ref{chn:lem:comm}(b), $\Phi_u=\sum_\ell\tau_\ell R_\ell$ and $\Psi_u=\sum_\ell(1-\tau_\ell)R_\ell$ with $R_\ell=\sum_{i:\,t_i=\tau_\ell}g_ix_ix_i^*$; these have orthogonal supports and $\tr R_\ell=\tr(P_\ell G_\sigma)=a_\ell(\sigma)=c_\ell$. Measuring the projections onto the supports of the $R_\ell$ produces $(\nu_\Phi,\nu_\Psi)$, and preparing $R_\ell/c_\ell$ on outcome $\ell$ reproduces the outputs; tensor powers follow. For the last display, $D(\Phi\|\Psi)\ge D(\Phi_u\|\Psi_u)=D(\nu_\Phi\|\nu_\Psi)$, while $D\le D^{\mathrm{reg}}\le\widehat D$ by additivity of the Belavkin--Staszewski channel divergence \cite{FangFawzi2021}, and $\widehat D(\Phi\|\Psi)=\lambda_{\max}\big(\sum_\ell\tau_\ell\lambda_\ell S_\ell\big)=\sum_\ell c_\ell\tau_\ell\lambda_\ell=D(\nu_\Phi\|\nu_\Psi)$ by the closed form of Theorem~\ref{cont:thm:all f}(b) in Chapter~\ref{cont:chapter}.
+\end{proof}
+
+\begin{remark}[Relation to programmable simulation]
+Level balance says that $\Phi=\sum_\ell\nu_\Phi(\ell)\mathcal E_\ell$ and $\Psi=\sum_\ell\nu_\Psi(\ell)\mathcal E_\ell$ are mixtures of the same channels $\mathcal E_\ell=\Omega_\ell/c_\ell$, and orthogonality says that the $\mathcal E_\ell$ are perfectly distinguishable at $u$. Part (a) is then the familiar simulation of each use by a classical program \cite{Pirandola2019}. The level decomposition makes the criterion canonical and checkable: compute $T$, its spectral projections and the $S_\ell$. Theorem~\ref{chn:thm:main} is the extension to programs whose law depends on the input, and Proposition~\ref{chn:prop:canon} shows that it is never weaker than a program simulation.
+\end{remark}
+
+\begin{corollary}[Random-unitary channels]\label{chn:cor:ru}
+Let $U_1,\dots,U_N$ be unitaries on $\mathcal X$ with $\tr(U_i^*U_j)=d\,\delta_{ij}$, and let $\Phi=\sum_ip_iU_i\cdot U_i^*$, $\Psi=\sum_iq_iU_i\cdot U_i^*$ with probability vectors $p,q$. Then the Choi strategy $u=\vectorise(\mathbf 1)/\sqrt d$ is exactly optimal among adaptive strategies for every $n$, and every exponent is that of the classical pair $(p,q)$.
+\end{corollary}
+
+\begin{proof}
+Discard the $i$ with $p_i=q_i=0$. With $V_i=\sqrt{p_i+q_i}\,U_i$, $T$ is diagonal with entries $p_i/(p_i+q_i)$, each level map is $\sum_{i\in I_\ell}(p_i+q_i)U_i\cdot U_i^*$ with $S_\ell=\sum_{i\in I_\ell}(p_i+q_i)\mathbf 1$, and the levels are orthogonal at $\mathbf 1/d$. The level laws are $\nu_\Phi(\ell)=\sum_{i\in I_\ell}p_i$, and $(p,q)$ is a refinement of $(\nu_\Phi,\nu_\Psi)$ with the same likelihood ratios.
+\end{proof}
+
+The $U_i$ need not belong to a nice error basis: for example $\{\mathbf 1,Z,XD_1,X^2D_2\}$ on $\mathbb C^3$, with $X,Z$ the Weyl operators and $D_1,D_2$ diagonal unitaries, is an orthogonal family, and $XD_1$, $X^2D_2$ are not multiples of Weyl operators for generic $D_1,D_2$.
+
+\begin{corollary}[Covariant channels]\label{chn:cor:cov}
+Let $G$ act by (possibly projective) unitary representations $U$ on $\mathcal X$ and $V$ on $\mathcal Y$ with $\Phi(U_gXU_g^*)=V_g\Phi(X)V_g^*$ and $\Psi(U_gXU_g^*)=V_g\Psi(X)V_g^*$. Suppose $U$ is irreducible and the representation $K\mapsto V_g^*KU_g$ of $G$ on $\operatorname{span}\{V_k\}$ is multiplicity free. Then the hypotheses of Theorem~\ref{chn:thm:exact} hold with $\sigma=\mathbf 1/d$, so the Choi strategy is exactly optimal for every $n$ and the exponents are those of the commuting Choi states $J(\Phi)/d$, $J(\Psi)/d$.
+\end{corollary}
+
+\begin{proof}
+On Kraus coefficients the action is by unitaries $\pi(g)$ commuting with $T$ (uniqueness of the ARN derivative), hence with every $P_\ell$. Thus each $\Omega_\ell$ is covariant, and $S_\ell$ commutes with $U$, so $S_\ell=c_\ell\mathbf 1$ by irreducibility. The Gram matrix $G_{\mathbf 1/d}$ also commutes with every $\pi(g)$, and multiplicity freeness makes the commutant of $\{\pi(g)\}$ abelian, so $G_{\mathbf 1/d}$ commutes with $T$; Lemma~\ref{chn:lem:comm}(a) gives orthogonality at $\mathbf 1/d$.
+\end{proof}
+
+\begin{remark}
+Corollary~\ref{chn:cor:cov} covers Weyl-covariant channels in every dimension, where it also follows from teleportation stretching \cite{Pirandola2019}, and all $\mathrm{SU}(2)$-covariant channels from spin $j$ to spin $j'$, since $\mathrm L(\mathbb C^{2j+1},\mathbb C^{2j'+1})\cong\bigoplus_{k=|j-j'|}^{j+j'}\mathcal V_k$ is multiplicity free. Such channels are mixtures of the channels whose Kraus operators are the components of an irreducible tensor operator of rank $k$; for different $k$ these have Choi matrices with orthogonal supports.
+\end{remark}
+
+\section{Continuity of the converse}\label{chn:sec:cont}
+
+The converse $\widehat C$ depends on the pair only through the derivative $T$ and the frame $W$, so the continuity theory of the Arveson--Radon--Nikodym derivative developed in Chapter~\ref{cont:chapter} applies to it. Two facts emerge. Along perturbations that are small relative to the pair in the completely positive order, $e^{-\widehat C}$ is Lipschitz, with a constant governed by the Thompson constant $\Lambda$ (Theorem~\ref{chn:thm:robust}). Along additive perturbations $\widehat C$ is only lower semicontinuous, and it can jump to $+\infty$. In fact, near replacement channels with rank-deficient outputs there are pairs for which the fidelity converse, the barycentric converse and $\widehat C$ are all infinite, while the adaptive exponent tends to zero (Theorem~\ref{chn:thm:fragile}). Section~\ref{chn:sec:ad} shows that the same happens for amplitude-damping channels with nearby damping rates.
+
+For two pairs $(\Phi_1,\Psi_1)$ and $(\Phi_2,\Psi_2)$ we use the notation of Section~\ref{cont:sec:different sums} in Chapter~\ref{cont:chapter}. We put $\Omega_i=\Phi_i+\Psi_i$, $\Omega'=\Omega_1+\Omega_2$ and $\overline\Omega=\frac12\Omega'$. We write $T_1,T_2$ for the derivatives of $\Phi_1,\Phi_2$ within their own pairs, in a common frame, and $\tau=\|T_1-T_2\|_\infty$. We write $d_T=d_T(\Omega_1,\Omega_2)$ for the Thompson distance between the sums. The relative distance $\delta$ between the pairs is the smallest $d\ge0$ with $-d\,\Omega'\le\Phi_1-\Phi_2\le d\,\Omega'$ and $-d\,\Omega'\le\Psi_1-\Psi_2\le d\,\Omega'$ in the completely positive order. By Lemma~\ref{cont:lem:inpair}, $T_i$ is unitarily equivalent to the derivative of Section~\ref{chn:sec:levels} for the pair $(\Phi_i,\Psi_i)$, so its eigenvalues are the levels $\tau_\ell$ of that pair. For channels $\|\overline\Omega^*(\mathbf 1)\|_\infty=2$ and $\|\Omega'^*(\mathbf 1)\|_\infty=4$.
+
+\begin{lemma}\label{chn:lem:unif lip}
+Let $0<\varepsilon\le\frac12$ and let $E,E'$ be Hermitian with spectra in $[\varepsilon,1-\varepsilon]$. For every $s\in[0,1]$,
+\[
+\|g_s(E)-g_s(E')\|_\infty\le M(\varepsilon)\,\|E-E'\|_\infty,\qquad M(\varepsilon)=\max_{0\le s\le1}\big(s\,\varepsilon^{s-1}+(1-s)\,\varepsilon^{-s}\big)\le\varepsilon^{-1}.
+\]
+Moreover $M(\varepsilon)=\varepsilon^{-1/2}$ for $\varepsilon\ge\frac1{50}$.
+\end{lemma}
+
+\begin{proof}
+On $[\varepsilon,1-\varepsilon]$ we have $g_s(t)=t^s(1-t)^{1-s}$, and $E$ commutes with $\mathbf 1-E$, so
+\[
+g_s(E)-g_s(E')=(E^s-E'^s)(\mathbf 1-E)^{1-s}+E'^s\big((\mathbf 1-E)^{1-s}-(\mathbf 1-E')^{1-s}\big),
+\]
+where $(\mathbf 1-E)^{1-s}$ and $E'^s$ have norm at most $1$. For $0<p<1$ and $X,Y\ge\varepsilon\mathbf 1$, the representation $x^p=\frac{\sin p\pi}{\pi}\int_0^\infty\lambda^{p-1}\big(1-\lambda(x+\lambda)^{-1}\big)\,d\lambda$ and $\|(X+\lambda)^{-1}-(Y+\lambda)^{-1}\|_\infty\le(\varepsilon+\lambda)^{-2}\|X-Y\|_\infty$ give $\|X^p-Y^p\|_\infty\le p\,\varepsilon^{p-1}\|X-Y\|_\infty$, since $\frac{\sin p\pi}{\pi}\int_0^\infty\lambda^p(\varepsilon+\lambda)^{-2}d\lambda=p\,\varepsilon^{p-1}$; the cases $p\in\{0,1\}$ are trivial. Applying this with $p=s$ to $E,E'$ and with $p=1-s$ to $\mathbf 1-E,\mathbf 1-E'$ gives the bound with $s\varepsilon^{s-1}+(1-s)\varepsilon^{-s}\le s\varepsilon^{-1}+(1-s)\varepsilon^{-1}$. The value $\varepsilon^{-1/2}$ is the value at $s=\frac12$, and a direct computation shows that this is the maximum for $\varepsilon\ge\frac1{50}$.
+\end{proof}
+
+For small $\varepsilon$ one has $M(\varepsilon)\sim(e\,\varepsilon\ln\frac1\varepsilon)^{-1}$. The spectrum of the derivative of a pair lies in $[\varepsilon,1-\varepsilon]$ exactly when all its levels are ambiguous and $\Lambda\le\ln\frac{1-\varepsilon}{\varepsilon}$, that is, $\varepsilon=(1+e^\Lambda)^{-1}$ (Lemma~\ref{chn:lem:levels}).
+
+\begin{theorem}[Robustness]\label{chn:thm:robust}
+Let $(\Phi_1,\Psi_1)$ and $(\Phi_2,\Psi_2)$ be pairs of channels with $\operatorname{ran}J(\Phi_1+\Psi_1)=\operatorname{ran}J(\Phi_2+\Psi_2)$, and suppose that the levels of both pairs lie in $[\varepsilon,1-\varepsilon]$ for some $\varepsilon\in(0,\frac12]$. Then
+\[
+\big|e^{-\widehat C(\Phi_1,\Psi_1)}-e^{-\widehat C(\Phi_2,\Psi_2)}\big|\le2M(\varepsilon)\,\tau+4\sqrt2\tanh\tfrac{d_T}{2}.
+\]
+If $\delta<\frac12$, the right-hand side is at most $\big(4\sqrt2\,M(\varepsilon)(1-4\delta^2)^{-1/2}+8\sqrt2\big)\,\delta$. If $\Phi_1+\Psi_1=\Phi_2+\Psi_2$, then $d_T=0$ and $\tau$ is the distance between the derivatives with respect to the common sum.
+\end{theorem}
+
+\begin{proof}
+For $0<s<1$, Remark~\ref{chn:rem:geom} and the proof of Theorem~\ref{cont:thm:four maps}(c) give
+\[
+\lambda_{\min}(B_s^{(i)})=\lambda_{\min}\big(\Tr_{\mathcal Y}(W\,a_ig_s(T_i)a_i\,W^*)\big),
+\]
+where $B_s^{(i)}$ is the operator $B_s$ of the pair $(\Phi_i,\Psi_i)$, $W$ is the frame of $\Omega'$ and $a_1,a_2$ are as in Section~\ref{cont:sec:different sums}. The partial-trace estimate (Lemma~\ref{cont:lem:partial trace}) for $\Omega'$ and the sandwich estimate (Lemma~\ref{cont:lem:sandwich}), with $I=[\varepsilon,1-\varepsilon]$, $\varphi=g_s$ and $2\gamma=\tanh\frac{d_T}2$ (Lemma~\ref{cont:lem:thompson}), give
+\[
+\begin{aligned}
+\big|\lambda_{\min}(B_s^{(1)})-\lambda_{\min}(B_s^{(2)})\big|&\le4\Big(\tfrac12\,\omega^I_{g_s}(\tau)+\sqrt2\max_I g_s\,\tanh\tfrac{d_T}2\Big)\\
+&\le2M(\varepsilon)\tau+4\sqrt2\tanh\tfrac{d_T}2,
+\end{aligned}
+\]
+by Lemma~\ref{chn:lem:unif lip} and $g_s\le1$. Both sides are continuous in $s$ on $[0,1]$, because all levels are ambiguous, so the bound holds for all $s\in[0,1]$. Since $|\min_sx_s-\min_sy_s|\le\sup_s|x_s-y_s|$, the first claim follows. For the second, $\tau\le2\sqrt2\,\delta(1-4\delta^2)^{-1/2}$ and $\tanh\frac{d_T}2\le2\delta$ by Lemmas~\ref{cont:lem:thompson} and~\ref{cont:lem:one parameter}.
+\end{proof}
+
+Since $\delta\le\max\{\|\Phi_1-\Phi_2\|_\diamond,\|\Psi_1-\Psi_2\|_\diamond\}/\nu(\Phi_1+\Psi_1)^2$ whenever $\operatorname{ran}J(\Phi_2+\Psi_2)\subseteq\operatorname{ran}J(\Phi_1+\Psi_1)$ (Corollary~\ref{cont:cor:four maps cb}), Theorem~\ref{chn:thm:robust} makes $e^{-\widehat C}$ locally Lipschitz in the diamond norm along such perturbations. Here $\nu$ is the smallest operator norm of a normalised combination of Kraus operators (Section~\ref{cont:sec:prelim} and Lemma~\ref{cont:lem:nu}). The theorem also gives a converse that is valid for a whole neighbourhood of a model pair.
+
+\begin{corollary}[Converse for an uncertain pair]\label{chn:cor:uncertain}
+Let $(\Phi_0,\Psi_0)$ be a pair of channels whose levels lie in $[\varepsilon,1-\varepsilon]$, let $\delta<\frac12$ and $\kappa=2\sqrt2\,\delta(1-4\delta^2)^{-1/2}<\varepsilon$, and put $R=2M(\varepsilon-\kappa)\kappa+8\sqrt2\,\delta$. Every pair of channels $(\Phi,\Psi)$ within relative distance $\delta$ of $(\Phi_0,\Psi_0)$ has its levels in $[\varepsilon-\kappa,1-\varepsilon+\kappa]$, and if $R<e^{-\widehat C(\Phi_0,\Psi_0)}$, then
+\[
+\xi_{\mathrm{adapt}}(\Phi,\Psi)\le\widehat C(\Phi,\Psi)\le-\ln\big(e^{-\widehat C(\Phi_0,\Psi_0)}-R\big).
+\]
+The finite-$n$ bound of Theorem~\ref{chn:thm:main} holds for $(\Phi,\Psi)$ with this exponent and $\Lambda\le\ln\frac{1-\varepsilon+\kappa}{\varepsilon-\kappa}$.
+\end{corollary}
+
+\begin{proof}
+By Lemma~\ref{cont:lem:one parameter} the sums have the same Choi support and $\tau\le\kappa$, so the levels of $(\Phi,\Psi)$ are within $\kappa$ of those of $(\Phi_0,\Psi_0)$ by Weyl's inequality. Apply Theorem~\ref{chn:thm:robust} with $\varepsilon-\kappa$ in place of $\varepsilon$, and Theorem~\ref{chn:thm:main}.
+\end{proof}
+
+Additive perturbations behave differently. Recall that $\widehat C$ is defined for every pair of completely positive maps by the same formula.
+
+\begin{theorem}[Semicontinuity]\label{chn:thm:semicont}
+Let $(\Phi,\Psi)$ be a pair of channels, and let $\mathcal I$, $S_\ell$ and $\Omega_\ell$ be as in Section~\ref{chn:sec:levels}.
+\begin{enumerate}
+\item[(a)] $e^{-\widehat C}$ is upper semicontinuous: if $(\Phi_n,\Psi_n)\to(\Phi,\Psi)$ in any norm, then $\liminf_n\widehat C(\Phi_n,\Psi_n)\ge\widehat C(\Phi,\Psi)$.
+\item[(b)] Mixing with common noise never increases $\widehat C$: for every channel $\Theta$ and $\varepsilon\in[0,1]$, $\widehat C\big((1-\varepsilon)\Phi+\varepsilon\Theta,(1-\varepsilon)\Psi+\varepsilon\Theta\big)\le\widehat C(\Phi,\Psi)$, and the left-hand side tends to $\widehat C(\Phi,\Psi)$ as $\varepsilon\downarrow0$.
+\item[(c)] If $J(\Phi+\Psi)$ is invertible, then $\widehat C$ is continuous at $(\Phi,\Psi)$.
+\item[(d)] $\widehat C(\Phi,\Psi)=+\infty$ if and only if the operators $S_\ell$, $\ell\in\mathcal I$, have a common nonzero kernel vector, that is, some input state $\sigma$ has $\tr\Omega_\ell(\sigma)=0$ for every ambiguous level. This is the case whenever $\operatorname{ran}J(\Phi)\cap\operatorname{ran}J(\Psi)=\{0\}$, and then also $-2\ln\widehat Q_{1/2}(\Phi\|\Psi)=C_{\mathrm{bar}}(\Phi,\Psi)=+\infty$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Since $s\mapsto\lambda_{\min}(B_s)$ is continuous on $[0,1]$ and equals $\widehat Q_s(\Phi\|\Psi)$ for $0<s<1$ (Remark~\ref{chn:rem:geom}), we have $e^{-\widehat C}=\inf_{0<s<1}\widehat Q_s(\Phi\|\Psi)$.
+
+(a) Each $\widehat Q_s$ is upper semicontinuous (Lemma~\ref{cont:lem:envelope}(c)), and an infimum of upper semicontinuous functions is upper semicontinuous.
+
+(b) Write $\Phi_\varepsilon,\Psi_\varepsilon$ for the mixtures. Joint concavity of the weighted geometric mean \cite{KuboAndo1980} and $J(\Theta)\#_sJ(\Theta)=J(\Theta)$ give $J(\Psi_\varepsilon)\#_sJ(\Phi_\varepsilon)\ge(1-\varepsilon)J(\Psi)\#_sJ(\Phi)+\varepsilon J(\Theta)$. Since $\Tr_{\mathcal Y}J(\Theta)=\mathbf 1$ and $\lambda_{\min}$ is superadditive, $\widehat Q_s(\Phi_\varepsilon\|\Psi_\varepsilon)\ge(1-\varepsilon)\widehat Q_s(\Phi\|\Psi)+\varepsilon\ge\widehat Q_s(\Phi\|\Psi)$, because $B_s\le\sum_\ell\big(s\tau_\ell+(1-s)(1-\tau_\ell)\big)S_\ell=\mathbf 1$ by \eqref{chn:eq:normal}. Taking the infimum over $s$ gives the inequality. Conversely, $J(\Phi_\varepsilon)\le J(\Phi)+\varepsilon J(\Theta)$ and $J(\Psi_\varepsilon)\le J(\Psi)+\varepsilon J(\Theta)$, so monotonicity and continuity from above of the mean give $\limsup_{\varepsilon\downarrow0}\widehat Q_s(\Phi_\varepsilon\|\Psi_\varepsilon)\le\widehat Q_s(\Phi\|\Psi)$ for each $s\in(0,1)$, and hence $\limsup_{\varepsilon\downarrow0}e^{-\widehat C(\Phi_\varepsilon,\Psi_\varepsilon)}\le e^{-\widehat C(\Phi,\Psi)}$.
+
+(c) Let $(\Phi_n,\Psi_n)\to(\Phi,\Psi)$. Since $J(\Phi+\Psi)$ is invertible, the relative distance $\delta_n$ between the pairs tends to $0$ (Corollary~\ref{cont:cor:four maps cb}), and so do $\tau_n$ and $\tanh\frac{d_{T,n}}2$ (Lemmas~\ref{cont:lem:thompson} and~\ref{cont:lem:one parameter}). Choose $\eta\in(0,\frac14)$ such that $T$ has no eigenvalue in $(0,2\eta)\cup(1-2\eta,1)$. For $0<s<1$ let $k_s$ be the function that equals $g_s$ on $[2\eta,1-2\eta]$, vanishes on $[0,\eta]\cup[1-\eta,1]$ and is affine in between. Since $g_s$ is concave and nonnegative on $[0,1]$, $0\le k_s\le g_s$. Since $(s,t)\mapsto g_s(t)$ is uniformly continuous on $[0,1]\times[\eta,1-\eta]$, the functions $k_s$ have a common modulus of continuity $\omega_\eta$. In the frame of the proof of Theorem~\ref{chn:thm:robust}, $g_s(T_n)\ge k_s(T_n)$ and positivity of $X\mapsto\Tr_{\mathcal Y}(WXW^*)$ give
+\[
+\begin{aligned}
+\widehat Q_s(\Phi_n\|\Psi_n)&\ge\lambda_{\min}\Tr_{\mathcal Y}\big(W\,a_nk_s(T_n)a_n\,W^*\big)\\
+&\ge\lambda_{\min}\Tr_{\mathcal Y}\big(W\,a\,k_s(T)\,a\,W^*\big)-2\omega_\eta(\tau_n)-4\sqrt2\tanh\tfrac{d_{T,n}}2,
+\end{aligned}
+\]
+by the sandwich estimate with $\varphi=k_s$. By the choice of $\eta$, $k_s(T)=g_s(T)$, so the first term is $\widehat Q_s(\Phi\|\Psi)$. Taking the infimum over $s$ and the limit inferior over $n$ shows that $e^{-\widehat C}$ is lower semicontinuous at $(\Phi,\Psi)$. Together with (a) this gives continuity.
+
+(d) For $0<s<1$, $B_s=\sum_{\ell\in\mathcal I}g_s(\tau_\ell)S_\ell$ with $g_s(\tau_\ell)>0$, and $B_0,B_1$ are combinations of the same $S_\ell$ with positive coefficients. So $\min_s\lambda_{\min}(B_s)=0$ if and only if the $S_\ell$, $\ell\in\mathcal I$, have a common kernel vector. If the Choi ranges intersect trivially, $T$ is a projection (see the beginning of Section~\ref{cont:sec:dichotomy}), so $\mathcal I=\emptyset$, $B_s=0$ and $\widehat Q_{1/2}(\Phi\|\Psi)=0$. For $C_{\mathrm{bar}}$, let $0<s<1$ and let $\mathcal T$ be a channel. With the maximally entangled input, $\widehat D(\mathcal T\|\Phi)\ge\frac1d\DBS\big(J(\mathcal T)\|J(\Phi)\big)$, and the right-hand side is $+\infty$ unless $\operatorname{ran}J(\mathcal T)\subseteq\operatorname{ran}J(\Phi)$ (Theorem~\ref{cont:thm:all f}(a) and Proposition~\ref{cont:prop:lebesgue cp}). The same holds for $\Psi$, and $J(\mathcal T)\neq0$, so one of the two divergences is infinite for every $\mathcal T$, and $C_{\mathrm{bar}}=+\infty$.
+\end{proof}
+
+Part (b) gives a numerically stable way to compute $\widehat C$ from below when $J(\Phi+\Psi)$ is singular. The convergence can be slow. For a random Kraus-rank $2$ versus $3$ qubit pair mixed with the completely depolarising channel, the gap in $e^{-\widehat C}$ was $7.7\cdot10^{-2}$, $5.0\cdot10^{-2}$, $3.8\cdot10^{-2}$ and $3.1\cdot10^{-2}$ at $\varepsilon=10^{-4},10^{-6},10^{-8},10^{-10}$, that is, about $0.7/\ln\frac1\varepsilon$. In this example the minimum over $s$ is attained at $s=0$, where conclusive levels $\tau_\ell=0$, perturbed to $\varepsilon'>0$, contribute $g_s(\varepsilon')\approx\varepsilon'^{\,s}$, which is not small for $s\lesssim1/\ln\frac1{\varepsilon'}$; so the convergence is only logarithmic. Part (d) shows that $\widehat C$ is often infinite. If $k_\Phi+k_\Psi\le d\dim\mathcal Y$ for the Kraus ranks, the Choi ranges are subspaces of complementary dimensions. In our experiments with random pairs (qubit pairs of Kraus ranks $2$ and $2$, and qubit-to-qutrit pairs of Kraus ranks $3$ and $3$, $300$ pairs in total), they always intersected trivially, so all three single-letter converses were infinite. The finite values of $\widehat C$ for low Kraus ranks in Table~\ref{chn:tab:dp} require an ambiguous level, which exists there because $2+3>4$.
+
+The next result shows that the jumps allowed by Theorem~\ref{chn:thm:semicont}(a) occur, and that they are not seen by the true exponent.
+
+\begin{theorem}[Fragility of single-letter converses]\label{chn:thm:fragile}
+Let $\phi,\psi$ be states on $\mathbb C^{d'}$ with $\operatorname{rank}(\phi+\psi)\le d'/2$, and let $\Phi=\tr(\cdot)\,\phi$ and $\Psi=\tr(\cdot)\,\psi$. There are states $\phi_t\to\phi$ and $\psi_t\to\psi$, at trace distance $O(\sqrt t)$, such that the replacement channels $\Phi_t=\tr(\cdot)\,\phi_t$ and $\Psi_t=\tr(\cdot)\,\psi_t$ satisfy, for every $t>0$,
+\[
+\widehat C(\Phi_t,\Psi_t)=-2\ln\widehat Q_{1/2}(\Phi_t\|\Psi_t)=C_{\mathrm{bar}}(\Phi_t,\Psi_t)=+\infty,
+\]
+whereas
+\[
+\xi_{\mathrm{adapt}}(\Phi_t,\Psi_t)=\xi_{\mathrm{QC}}(\phi_t,\psi_t)\le-\ln\tr\big(\phi_t^{1/2}\psi_t^{1/2}\big)\longrightarrow-\ln\tr\big(\phi^{1/2}\psi^{1/2}\big).
+\]
+In particular, if $\phi=\psi$, then $(\Phi_t,\Psi_t)$ converges in the diamond norm to a pair of identical channels and $\xi_{\mathrm{adapt}}(\Phi_t,\Psi_t)\to0$, while all three converses are infinite along the sequence.
+\end{theorem}
+
+\begin{proof}
+By Corollary~\ref{cont:cor:states dichotomy} in Chapter~\ref{cont:chapter} there are states $\phi_t,\psi_t$ with $\operatorname{ran}\phi_t\cap\operatorname{ran}\psi_t=\{0\}$ at distance $O(\sqrt t)$ from $\phi,\psi$; they are obtained by a Halmos dilation of the derivative of the pair into the kernel of $\phi+\psi$. Since $J(\Phi_t)=\phi_t\otimes\mathbf 1$ and $J(\Psi_t)=\psi_t\otimes\mathbf 1$, the Choi ranges intersect trivially, and Theorem~\ref{chn:thm:semicont}(d) gives the first display. The outputs of a replacement channel do not depend on its input, so the final states of every adaptive strategy are images of $\phi_t^{\otimes n}$ and $\psi_t^{\otimes n}$ under one channel, and the product strategy is optimal. Hence $\xi_{\mathrm{adapt}}=\xi_{\mathrm{QC}}(\phi_t,\psi_t)$ \cite{AudenaertChernoff2007,NussbaumSzkola2009}, which is at most the value at $s=\frac12$. Finally $\|\Phi_t-\Phi\|_\diamond=\|\phi_t-\phi\|_1$, and the square root is continuous.
+\end{proof}
+
+\begin{example}\label{chn:ex:fragile}
+Let $\phi=\psi=\frac12(e_1e_1^*+e_2e_2^*)$ on $\mathbb C^4$, and couple $e_1$ to $e_3$ and $e_2$ to $e_4$: put $v_{1,2}=(e_1\pm\sqrt t\,e_3)/\sqrt{1+t}$ and $w_{1,2}=(e_2\pm\sqrt t\,e_4)/\sqrt{1+t}$, so that $\phi_t=\frac12(v_1v_1^*+w_1w_1^*)$ and $\psi_t=\frac12(v_2v_2^*+w_2w_2^*)$. These states are at trace distance $\sqrt t+O(t)$ from $\phi$ and their ranges intersect trivially, while $\tr(\phi_t^{1/2}\psi_t^{1/2})=\big(\frac{1-t}{1+t}\big)^2$. Numerically $\xi_{\mathrm{adapt}}(\Phi_t,\Psi_t)=\xi_{\mathrm{QC}}(\phi_t,\psi_t)=2\ln\frac{1+t}{1-t}\approx4t$, attained at $s=\frac12$, whereas $B_s=0$ for all $s$. The same happens for any two distinct pure output states, the simplest case.
+\end{example}
+
+Theorem~\ref{chn:thm:fragile} explains the gap between $\widehat C$ and the true exponent at replacement channels noted after Proposition~\ref{chn:prop:bary}. By Proposition~\ref{chn:prop:flag}, $\widehat C(\Phi,\Psi)$ is the exponent of the flagged pair, which announces the level, and at mutually singular pairs every level is conclusive, so the flagged pair is perfectly distinguishable after one use while the original pair need not be. By Theorem~\ref{chn:thm:semicont}(c), this cannot happen near pairs with $J(\Phi+\Psi)$ invertible. By Theorem~\ref{cont:thm:dichotomy}(c), at every pair with $\dim\ker J(\Phi+\Psi)\ge\operatorname{rank}T(\mathbf 1-T)\ge1$ and $\widehat C<\infty$ there are completely positive pairs within $O(\sqrt t)$ for which $\widehat C=+\infty$. Whether these can always be chosen to be channels is open (compare the question on singular pairs in Section~\ref{cont:sec:conclusion});
+Theorem~\ref{chn:thm:fragile} settles it for replacement channels.
+
+\begin{remark}[Independent branches]\label{chn:rem:branches}
+If $\Phi=(1-p)\Phi_A+p\Phi_B$ and $\Psi=(1-p)\Psi_A+p\Psi_B$ with $\operatorname{ran}J(\Phi_A+\Psi_A)\cap\operatorname{ran}J(\Phi_B+\Psi_B)=\{0\}$, then every connection splits over the two branches (Corollary~\ref{cont:cor:independent branch}). Consequently $B_s(\Phi,\Psi)=(1-p)B_s(\Phi_A,\Psi_A)+pB_s(\Phi_B,\Psi_B)$, the levels of the mixture are those of the two branches, and $e^{-\widehat C(\Phi,\Psi)}\ge(1-p)e^{-\widehat C(\Phi_A,\Psi_A)}+p\,e^{-\widehat C(\Phi_B,\Psi_B)}$.
+\end{remark}
+
+\subsection{Amplitude damping}\label{chn:sec:ad}
+
+Theorem~\ref{chn:thm:fragile} concerns replacement channels, whose outputs do not depend on the input. We now show that the same behaviour occurs for amplitude damping, a basic model of physical noise, and give a converse that remains finite there. For $0<\gamma\le1$ let $\mathcal A_\gamma$ be the qubit amplitude-damping channel with Kraus operators
+\[
+K_0=e_0e_0^*+\sqrt{1-\gamma}\,e_1e_1^*,\qquad K_1=\sqrt\gamma\,e_0e_1^*,
+\]
+and write $L_0,L_1$ for the Kraus operators of $\mathcal A_{\gamma'}$. For two damping rates put
+\[
+f(\gamma,\gamma')=\sqrt{\gamma\gamma'}+\sqrt{(1-\gamma)(1-\gamma')},\qquad\mu_*(\gamma,\gamma')=\frac{\sqrt{\gamma\gamma'}}{1-\sqrt{(1-\gamma)(1-\gamma')}}.
+\]
+Here $f$ is the Bhattacharyya coefficient of the Bernoulli laws $(\gamma,1-\gamma)$ and $(\gamma',1-\gamma')$, and $\mu_*\le f\le1$. The second inequality is the Cauchy--Schwarz inequality, with equality if and only if $\gamma=\gamma'$, and the first is equivalent to $\sqrt{(1-\gamma)(1-\gamma')}\,(1-f)\ge0$.
+
+\begin{proposition}[Levels of an amplitude-damping pair]\label{chn:prop:adlevels}
+Let $0<\gamma,\gamma'\le1$ with $\gamma\ne\gamma'$, and let $\Phi=\mathcal A_\gamma$, $\Psi=\mathcal A_{\gamma'}$.
+\begin{enumerate}
+\item[(a)] The pair has three levels: $\tau=1$ with $\Omega_1=K_0\cdot K_0^*$, $\tau=0$ with $\Omega_0=L_0\cdot L_0^*$, and the single ambiguous level $\tau_a=\gamma/(\gamma+\gamma')$ with $\Omega_a=(\gamma+\gamma')\,e_0e_1^*\cdot e_1e_0^*$ and $S_a=(\gamma+\gamma')\,e_1e_1^*$.
+\item[(b)] $\operatorname{ran}J(\Phi)\cap\operatorname{ran}J(\Psi)=\operatorname{span}\{\vectorise(e_0e_1^*)\}\ne\{0\}$, and nevertheless
+\[
+\widehat C(\Phi,\Psi)=-2\ln\widehat Q_{1/2}(\Phi\|\Psi)=C_{\mathrm{bar}}(\Phi,\Psi)=+\infty .
+\]
+\item[(c)] The common kernel vector of Theorem~\ref{chn:thm:semicont}(d) is $e_0$, and $\Phi(e_0e_0^*)=\Psi(e_0e_0^*)=e_0e_0^*$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(a) Since $K_1=\sqrt{\gamma/\gamma'}\,L_1$, the maps $\Phi$ and $\Psi$ are combinations of $V_1=K_0$, $V_2=L_0$ and $V_3=\sqrt{\gamma+\gamma'}\,e_0e_1^*$, namely $\Omega=\Phi+\Psi=\sum_kV_k\cdot V_k^*$, $\Phi=V_1\cdot V_1^*+\tau_aV_3\cdot V_3^*$ and $\Psi=V_2\cdot V_2^*+(1-\tau_a)V_3\cdot V_3^*$. The $V_k$ are linearly independent because $\gamma\ne\gamma'$, so by injectivity of $K\mapsto\Psi_K$ the derivative is $T=\operatorname{diag}(1,0,\tau_a)$ in this frame, and Lemma~\ref{chn:lem:levels} gives the levels. Finally $S_a=V_3^*V_3$.
+
+(b) The ranges are
+\[
+\operatorname{ran}J(\Phi)=\operatorname{span}\{\vectorise K_0,\vectorise e_0e_1^*\},\qquad\operatorname{ran}J(\Psi)=\operatorname{span}\{\vectorise L_0,\vectorise e_0e_1^*\},
+\]
+and $\vectorise K_0,\vectorise L_0,\vectorise e_0e_1^*$ are linearly independent. By (a), $B_s=g_s(\tau_a)(\gamma+\gamma')e_1e_1^*$ is singular for every $s$, so $\widehat C=+\infty$ and $\widehat Q_{1/2}(\Phi\|\Psi)=\lambda_{\min}(B_{1/2})=0$ (Remark~\ref{chn:rem:geom}). For $C_{\mathrm{bar}}$ argue as in the proof of Theorem~\ref{chn:thm:semicont}(d). If both $\widehat D(\mathcal T\|\Phi)$ and $\widehat D(\mathcal T\|\Psi)$ are finite, then $\operatorname{ran}J(\mathcal T)\subseteq\operatorname{span}\{\vectorise e_0e_1^*\}$, so $\mathcal T=c\,e_0e_1^*\cdot e_1e_0^*$. Then $\mathcal T^*(\mathbf 1)=c\,e_1e_1^*\ne\mathbf 1$, and $\mathcal T$ is not a channel. Hence for $0<s<1$ the barycentric objective is $+\infty$ for every channel $\mathcal T$.
+
+(c) $S_ae_0=0$, and $K_0e_0=L_0e_0=e_0$, $K_1e_0=L_1e_0=0$.
+\end{proof}
+
+Example~\ref{cont:ex:amplitude damping} in Chapter~\ref{cont:chapter} proves $\widehat Q_{1/2}(\mathcal A_\gamma\|\mathcal A_{\gamma'})=0$, there written $\widehat F(\mathcal A_\gamma,\mathcal A_{\gamma'})=0$, for all $\gamma\ne\gamma'$ in $[0,1]$ by a different argument, directly from the intersection of the Choi ranges in (b).
+
+Part (c) explains why $\widehat C$ is infinite. The input $e_0$, at which $B_s$ is singular, is one on which the two channels act identically. By Proposition~\ref{chn:prop:flag}, $\widehat C$ is the exponent of the flagged pair, and on $e_0$ the flag reveals which of the conclusive levels $K_0\cdot K_0^*$ and $L_0\cdot L_0^*$ occurred. These two maps agree on $e_0e_0^*$, so all the information comes from the flag, which the pair $(\Phi,\Psi)$ itself does not provide. In contrast, the adaptive Stein exponent of the pair itself is infinite: with the maximally entangled input the outputs $J(\Phi)/2$ and $J(\Psi)/2$ have different supports, so $D(\Phi\|\Psi)=D(\Psi\|\Phi)=+\infty$.
+
+To bound $\xi_{\mathrm{adapt}}$ from above we have to leave the class of common decompositions, since by Proposition~\ref{chn:prop:canon} every such decomposition, and in particular every classical program, gives an exponent at least $\widehat C=+\infty$. We use instead programs that are pure quantum states. For channels $\Phi,\Psi\in\mathrm C(\mathcal X,\mathcal Y)$ with Kraus operators $(K_k)_{k\le r}$ and $(L_l)_{l\le r}$, padded with zeros to a common length $r$, put
+\[
+\mu_*(\Phi,\Psi)=\max\Big\{|c|:\ \sum_{k,l}C_{lk}L_l^*K_k=c\,\mathbf 1_{\mathcal X}\ \text{for some }C\in\mathrm L(\mathbb C^r),\ \|C\|_\infty\le1\Big\}.
+\]
+This is a semidefinite program: maximise $\operatorname{Re}c$ subject to the linear constraint and $\begin{pmatrix}\mathbf 1&C\\C^*&\mathbf 1\end{pmatrix}\ge0$. It does not depend on the Kraus families, because two families of the same channel are related by a partial isometry, which can be absorbed into $C$.
+
+\begin{theorem}[Pure-program converse]\label{chn:thm:pureprog}
+Let $\Phi,\Psi$ be channels.
+\begin{enumerate}
+\item[(a)] $\mu_*(\Phi,\Psi)$ is the largest overlap $|\ip{\psi_\Psi}{\psi_\Phi}|$ of pure states for which there is a channel $\Lambda$ with $\Phi(\rho)=\Lambda(\rho\otimes\psi_\Phi\psi_\Phi^*)$ and $\Psi(\rho)=\Lambda(\rho\otimes\psi_\Psi\psi_\Psi^*)$ for all $\rho$.
+\item[(b)] For every $n$ and every adaptive strategy with $n$ uses,
+\[
+\tfrac12-\tfrac14\big\|\rho^{(n)}_\Phi-\rho^{(n)}_\Psi\big\|_1\ \ge\ \tfrac12\Big(1-\sqrt{1-\mu_*(\Phi,\Psi)^{2n}}\Big)\ \ge\ \tfrac14\,\mu_*(\Phi,\Psi)^{2n},
+\]
+so that $\xi_{\mathrm{adapt}}(\Phi,\Psi)\le-2\ln\mu_*(\Phi,\Psi)$.
+\item[(c)] If $\Phi(\rho)=\Lambda(\rho\otimes\pi_\Phi)$ and $\Psi(\rho)=\Lambda(\rho\otimes\pi_\Psi)$ for some channel $\Lambda$ and mixed program states $\pi_\Phi,\pi_\Psi$, then $\xi_{\mathrm{QC}}(\pi_\Phi,\pi_\Psi)\ge-\ln\mu_*(\Phi,\Psi)$. Thus no program simulation gives a converse below $-\ln\mu_*$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) Let $V_\Phi=\sum_kK_k\otimes e_k$ and $V_\Psi=\sum_lL_l\otimes e_l$ be the Stinespring isometries into $\mathcal Y\otimes\mathbb C^r$, so that $V_\Psi^*(\mathbf 1\otimes C)V_\Phi=\sum_{k,l}C_{lk}L_l^*K_k$. Let $C$ and $c$ be feasible with $|c|<1$; if $|c|=1$, then $\Phi=\Psi$ and there is nothing to prove. The unitary
+\[
+U=\begin{pmatrix}C&(\mathbf 1-CC^*)^{1/2}\\(\mathbf 1-C^*C)^{1/2}&-C^*\end{pmatrix}
+\]
+on $\mathbb C^r\otimes\mathbb C^2$ has $(\mathbf 1\otimes e_0^*)U(\mathbf 1\otimes e_0)=C$. Hence $V_\Phi'=(\mathbf 1\otimes U)(V_\Phi\otimes e_0)$ and $V_\Psi'=V_\Psi\otimes e_0$ are Stinespring isometries of $\Phi$ and $\Psi$ with $V_\Psi'^*V_\Phi'=c\,\mathbf 1$. Choose unit vectors $\psi_\Phi,\psi_\Psi\in\mathbb C^2$ with $\ip{\psi_\Psi}{\psi_\Phi}=c$. The prescription $W(x\otimes\psi_\Phi)=V_\Phi'x$, $W(x\otimes\psi_\Psi)=V_\Psi'x$ preserves all inner products of the spanning set $\{x\otimes\psi_\Phi,x\otimes\psi_\Psi\}$ of $\mathcal X\otimes\mathbb C^2$, so it extends to an isometry, and $\Lambda=\Tr_{\mathbb C^r\otimes\mathbb C^2}\,W\cdot W^*$ simulates the pair. Conversely, let $\Lambda$ simulate the pair with pure programs, and let $W$ be a Stinespring isometry of $\Lambda$. Then $W(\cdot\otimes\psi_\Phi)$ and $W(\cdot\otimes\psi_\Psi)$ are Stinespring isometries of $\Phi$ and $\Psi$, and their product is $\ip{\psi_\Psi}{\psi_\Phi}\mathbf 1$. Any Stinespring isometry of $\Phi$ has the form $(\mathbf 1\otimes A)V_\Phi$ with a partial isometry $A$, and similarly for $\Psi$ with some $B$. Hence the product equals $V_\Psi^*(\mathbf 1\otimes B^*A)V_\Phi$ with $\|B^*A\|_\infty\le1$.
+
+(b) Replace every use of the unknown channel by $\Lambda(\cdot\otimes\psi_i\psi_i^*)$, each time with a fresh copy of the program. The final states of the strategy are then $\mathcal S\big((\psi_i\psi_i^*)^{\otimes n}\big)$ for one channel $\mathcal S$ that does not depend on $i$, as in the stretching argument of \cite{Pirandola2019}. By monotonicity of the trace norm, the error is at least that of discriminating the pure states $\psi_\Phi^{\otimes n}$ and $\psi_\Psi^{\otimes n}$, whose overlap has modulus $\mu_*^n$. This error is $\tfrac12\big(1-\sqrt{1-\mu_*^{2n}}\big)$, and $\sqrt{1-x}\le1-\frac x2$.
+
+(c) By Uhlmann's theorem \cite{Uhlmann1976} there are purifications $\psi_\Phi,\psi_\Psi$ of $\pi_\Phi,\pi_\Psi$ with $|\ip{\psi_\Psi}{\psi_\Phi}|^2=F(\pi_\Phi,\pi_\Psi)$. The channel $\Lambda\circ(\mathrm{id}\otimes\Tr_{\mathrm{purif}})$ simulates the pair with these pure programs, so $F(\pi_\Phi,\pi_\Psi)\le\mu_*^2$ by (a). Finally $\min_s\tr(\pi_\Phi^s\pi_\Psi^{1-s})\le\tr(\pi_\Phi^{1/2}\pi_\Psi^{1/2})\le\|\pi_\Phi^{1/2}\pi_\Psi^{1/2}\|_1=F(\pi_\Phi,\pi_\Psi)^{1/2}$.
+\end{proof}
+
+For replacement channels $\mu_*=F(\phi,\psi)^{1/2}$. The inequality $\le$ holds because, by (a) and monotonicity of the fidelity, $F(\Phi(\rho),\Psi(\rho))\ge\mu_*^2$ for every $\rho$. For $\ge$, take $C=X\otimes\mathbf 1$ in the Kraus operators $\sqrt{\lambda_j}\,\phi_je_k^*$ and $\sqrt{\kappa_i}\,\psi_ie_k^*$ and maximise over contractions $X$. The pure-program converse $-\ln F(\phi,\psi)$ is then within a factor of $2$ of the true exponent $\xi_{\mathrm{QC}}(\phi,\psi)$. It is finite on the pairs of Theorem~\ref{chn:thm:fragile} and tends to $-\ln F(\phi,\psi)$ along them. So $\min\{\widehat C,C_{\mathrm{bar}},-2\ln\mu_*\}$ is a single-letter converse that does not jump at those pairs, which bears on Question~\ref{chn:q:single}. Unlike the other converses, $\mu_*$ is defined through Stinespring isometries rather than through Choi matrices. It need not be close to the true exponent in general, and it can vanish: $\mu_*=0$ for two distinct unitary channels, for which indeed $\xi_{\mathrm{adapt}}=+\infty$.
+
+\begin{corollary}[Fragility for amplitude damping]\label{chn:cor:adfragile}
+For $0<\gamma,\gamma'\le1$, $\mu_*(\mathcal A_\gamma,\mathcal A_{\gamma'})=\mu_*(\gamma,\gamma')$, and
+\[
+C\big((\gamma,1-\gamma)\,\|\,(\gamma',1-\gamma')\big)\ \le\ \xi_{\mathrm{prod}}\ \le\ \xi_{\mathrm{adapt}}(\mathcal A_\gamma,\mathcal A_{\gamma'})\ \le\ 2\ln\frac{1-\sqrt{(1-\gamma)(1-\gamma')}}{\sqrt{\gamma\gamma'}},
+\]
+where $C$ is the classical Chernoff information. Moreover $p_{\mathrm{adapt}}(n)\ge\frac12\big(1-\sqrt{1-\mu_*(\gamma,\gamma')^{2n}}\big)$ for every $n$. For fixed $0<\gamma<1$ and $\gamma'=\gamma-\Delta$,
+\[
+\frac{\Delta^2}{8\gamma(1-\gamma)}+O(\Delta^3)\ \le\ \xi_{\mathrm{adapt}}(\mathcal A_\gamma,\mathcal A_{\gamma'})\ \le\ \frac{\Delta^2}{4\gamma^2(1-\gamma)}+O(\Delta^3).
+\]
+Consequently, as $\gamma'\to\gamma$ the pair $(\mathcal A_\gamma,\mathcal A_{\gamma'})$ converges in the diamond norm to a pair of identical channels and $\xi_{\mathrm{adapt}}\to0$, while $\widehat C$, $-2\ln\widehat Q_{1/2}$ and $C_{\mathrm{bar}}$ are $+\infty$ for every $\gamma'\ne\gamma$. The conclusion of Theorem~\ref{chn:thm:fragile} therefore holds for amplitude damping, along a physical one-parameter family. No Halmos dilation is needed, and the Choi ranges need not intersect trivially.
+\end{corollary}
+
+\begin{proof}
+With $a=\sqrt{(1-\gamma)(1-\gamma')}$ we have $L_0^*K_0=\operatorname{diag}(1,a)$, $L_1^*K_1=\sqrt{\gamma\gamma'}\,e_1e_1^*$, $L_0^*K_1=\sqrt\gamma\,e_0e_1^*$ and $L_1^*K_0=\sqrt{\gamma'}\,e_1e_0^*$. Hence
+\[
+\sum_{k,l}C_{lk}L_l^*K_k=\begin{pmatrix}C_{00}&\sqrt\gamma\,C_{01}\\\sqrt{\gamma'}\,C_{10}&aC_{00}+\sqrt{\gamma\gamma'}\,C_{11}\end{pmatrix}.
+\]
+This is $c\mathbf 1$ if and only if $C_{01}=C_{10}=0$, $C_{00}=c$ and $C_{11}=c(1-a)/\sqrt{\gamma\gamma'}$. Since $\sqrt{\gamma\gamma'}\le1-a$, the contraction constraint is $|c|(1-a)\le\sqrt{\gamma\gamma'}$, which gives $\mu_*(\gamma,\gamma')$. The upper bounds follow from Theorem~\ref{chn:thm:pureprog}(b). The lower bound is the product strategy with input $e_1$, whose outputs $\operatorname{diag}(\gamma,1-\gamma)$ and $\operatorname{diag}(\gamma',1-\gamma')$ commute. The expansions are elementary: $\sqrt{(1-\gamma)(1-\gamma+\Delta)}=1-\gamma+\frac\Delta2-\frac{\Delta^2}{8(1-\gamma)}+O(\Delta^3)$ gives $-\ln\mu_*=\frac{\Delta^2}{8\gamma^2}+\frac{\Delta^2}{8\gamma(1-\gamma)}+O(\Delta^3)$, and the Chernoff information of two Bernoulli laws is $\frac{\Delta^2}{8\gamma(1-\gamma)}+O(\Delta^3)$. The diamond distance is at most $2\sum_k\|K_k-L_k\|_\infty\to0$. Proposition~\ref{chn:prop:adlevels} gives the infinite converses.
+\end{proof}
+
+\begin{remark}\label{chn:rem:adnosim}
+The upper and lower bounds of Corollary~\ref{chn:cor:adfragile} differ by the factor $2/\gamma$ to leading order, and simulation arguments cannot close this gap. Classical programs give an exponent at least $\widehat C=+\infty$ by Proposition~\ref{chn:prop:canon}. By Theorem~\ref{chn:thm:pureprog}(c), every quantum program gives at least $-\ln\mu_*=\frac{\Delta^2}{8\gamma^2(1-\gamma)}+O(\Delta^3)$, which exceeds $\xi_{\mathrm{prod}}$ by the factor $1/\gamma$ to leading order.
+\end{remark}
+
+\begin{remark}[Local regime]\label{chn:rem:adfisher}
+For estimating $\gamma$ itself, adaptivity does not help. In the Kraus representation above, $\beta=\sum_k\dot K_k^*K_k=\operatorname{diag}(0,-\tfrac12)+\operatorname{diag}(0,\tfrac12)=0$ and $\alpha=\sum_k\dot K_k^*\dot K_k=\frac1{4\gamma(1-\gamma)}e_1e_1^*$. The bound of Demkowicz-Dobrza\'nski and Maccone for adaptive strategies \cite{DemkowiczDobrzanskiMaccone2014} therefore gives quantum Fisher information at most $4n\|\alpha\|_\infty=n/(\gamma(1-\gamma))$ after $n$ adaptive uses. This equals the Fisher information of the product input $e_1^{\otimes n}$. It suggests, but does not prove, that $\xi_{\mathrm{adapt}}=\frac{\Delta^2}{8\gamma(1-\gamma)}+o(\Delta^2)$, which is the lower bound of Corollary~\ref{chn:cor:adfragile} (compare Question~\ref{chn:q:local}).
+\end{remark}
+
+Numerical computations suggest a sharper bound. By Uhlmann's theorem and the minimax theorem, the smallest root fidelity of the final states over all adaptive $n$-use strategies equals
+\[
+\max_{\|C\|_\infty\le1}\ \min_{H}\ \operatorname{Re}\tr\Big(H^{\top}\sum_{\vec k,\vec l}C_{\vec l\vec k}\,\vectorise(K_{\vec k})\vectorise(L_{\vec l})^*\Big),
+\]
+where $H$ runs over deterministic $n$-combs and $K_{\vec k}=K_{k_1}\otimes\dots\otimes K_{k_n}$. After dualising the inner minimisation, this is a semidefinite program.
+
+\begin{conjecture}\label{chn:conj:adfid}
+For every adaptive strategy with $n$ uses, $F\big(\rho^{(n)}_{\mathcal A_\gamma},\rho^{(n)}_{\mathcal A_{\gamma'}}\big)\ge f(\gamma,\gamma')^{2n}$, with equality for the product input $e_1^{\otimes n}$. Consequently $p_{\mathrm{adapt}}(n)\ge\frac12\big(1-\sqrt{1-f^{2n}}\big)$ and
+\[
+\xi_{\mathrm{adapt}}(\mathcal A_\gamma,\mathcal A_{\gamma'})\ \le\ -2\ln f(\gamma,\gamma')\ =\ \frac{\Delta^2}{4\gamma(1-\gamma)}+O(\Delta^3)\ \le\ 2\,\xi_{\mathrm{prod}}(1+O(\Delta)).
+\]
+\end{conjecture}
+
+We solved this program for $\gamma=\frac12$, $n\le4$ and $\gamma'\in\{0.05,0.2,0.4,0.47,0.49\}$. In each case the optimal value agreed with $f^n$ to within $10^{-8}$, with optimal $C=\mathbf 1$. Thus, up to the accuracy of the solver, Conjecture~\ref{chn:conj:adfid} holds for these values of $n$ and $\gamma'$. The conjecture cannot be proved by amortisation, because the inequality
+\[
+\sqrt F\big((\mathcal A_\gamma\otimes\mathrm{id})\rho,(\mathcal A_{\gamma'}\otimes\mathrm{id})\sigma\big)\ge f(\gamma,\gamma')\sqrt F(\rho,\sigma)
+\]
+fails for some pairs of \emph{different} states $\rho,\sigma$ of a qubit and a two-dimensional reference. A numerical search found a pair with $\sqrt{F}\big((\mathcal A_{1/2}\otimes\mathrm{id})\rho,(\mathcal A_{1/5}\otimes\mathrm{id})\sigma\big)=0.948315\,\sqrt{F}(\rho,\sigma)<f(\tfrac12,\tfrac15)\sqrt F(\rho,\sigma)=0.948683\sqrt F(\rho,\sigma)$, and we verified this inequality in $40$-digit arithmetic. A proof must therefore use that both branches of a strategy start from the same state. In the dilation $\mathcal A_\gamma(\rho)=\Tr_E\,U_\theta(\rho\otimes e_0e_0^*)U_\theta^*$ with $\cos\theta=\sqrt{1-\gamma}$ and the excitation-preserving rotation $U_\theta$, the two branches differ by the rotations $U_{\theta'-\theta}$ applied to fresh environments, and $f=\cos(\theta'-\theta)$. The conjecture asserts that no adaptive strategy can make these rotations add up coherently.
+
+\begin{table}[!tbp]
+\centering
+\small
+\begin{tabular}{lccccc}
+\toprule
+$\gamma'$ & $\xi_{\mathrm{prod}}$ & Choi product & $-2\ln f$ & $-2\ln\mu_*$ & $\widehat C$, $-2\ln\widehat Q_{1/2}$, $C_{\mathrm{bar}}$\\
+& & & (Conj.~\ref{chn:conj:adfid}) & (Cor.~\ref{chn:cor:adfragile}) & \\
+\midrule
+$0.40$ & $5.077\cdot10^{-3}$ & $3.272\cdot10^{-3}$ & $1.015\cdot10^{-2}$ & $2.252\cdot10^{-2}$ & $\infty$\\
+$0.47$ & $4.506\cdot10^{-4}$ & $2.974\cdot10^{-4}$ & $9.012\cdot10^{-4}$ & $1.858\cdot10^{-3}$ & $\infty$\\
+$0.49$ & $5.001\cdot10^{-5}$ & $3.323\cdot10^{-5}$ & $1.000\cdot10^{-4}$ & $2.021\cdot10^{-4}$ & $\infty$\\
+\bottomrule
+\end{tabular}
+\caption{Exponents for $\mathcal A_{1/2}$ versus $\mathcal A_{\gamma'}$. $\xi_{\mathrm{prod}}$ is attained at the input $e_1$, and a local optimisation over all inputs with a reference system found no larger value. The ratios $-2\ln\mu_*/\xi_{\mathrm{prod}}$ are $4.44$, $4.12$, $4.04$ (limit $2/\gamma=4$) and $-2\ln f/\xi_{\mathrm{prod}}=2.00$.}
+\label{chn:tab:adexp}
+\end{table}
+
+\begin{table}[!tbp]
+\centering
+\small
+\begin{tabular}{lcccccc}
+\toprule
+$\gamma'$ & $n$ & adaptive & parallel & $e_1^{\otimes n}$ & $\tfrac12(1-\sqrt{1-f^{2n}})$ & $\tfrac12(1-\sqrt{1-\mu_*^{2n}})$\\
+ & & (SDP) & (SDP) & & (Conj.~\ref{chn:conj:adfid}) & (Cor.~\ref{chn:cor:adfragile})\\
+\midrule
+$0.40$ & 1 & 0.4500 & 0.4500 & 0.4500 & 0.4497 & 0.4254\\
+ & 2 & 0.4409 & 0.4415 & 0.4450 & 0.4291 & 0.3951\\
+ & 3 & 0.4247 & 0.4260 & 0.4260 & 0.4134 & 0.3722\\
+\addlinespace
+$0.47$ & 1 & 0.4850 & 0.4850 & 0.4850 & 0.4850 & 0.4785\\
+ & 2 & 0.4826 & 0.4827 & 0.4845 & 0.4788 & 0.4696\\
+ & 3 & 0.4771 & 0.4775 & 0.4775 & 0.4740 & 0.4627\\
+\addlinespace
+$0.49$ & 1 & 0.4950 & 0.4950 & 0.4950 & 0.4950 & 0.4929\\
+ & 2 & 0.4942 & 0.4942 & 0.4950 & 0.4929 & 0.4900\\
+ & 3 & 0.4924 & 0.4925 & 0.4925 & 0.4913 & 0.4877\\
+\addlinespace
+$0.20$ & 1 & 0.3500 & 0.3500 & 0.3500 & 0.3419 & 0.2452\\
+ & 2 & 0.3026 & 0.3050 & 0.3050 & 0.2821 & 0.1638\\
+ & 3 & 0.2815 & 0.2854 & 0.3020 & 0.2397 & 0.1145\\
+\bottomrule
+\end{tabular}
+\caption{Optimal $n$-use error for $\mathcal A_{1/2}$ versus $\mathcal A_{\gamma'}$, computed by semidefinite programming over testers \cite{GutoskiWatrous2007,ChiribellaDArianoPerinotti2009}: adaptive, best parallel (entangled, non-adaptive) and the product input $e_1^{\otimes n}$. The last two columns are the lower bounds given by Conjecture~\ref{chn:conj:adfid} (verified numerically for $n\le4$) and by Corollary~\ref{chn:cor:adfragile}. The bounds of Theorem~\ref{chn:thm:main} and Corollary~\ref{chn:cor:dp} are $0$ for every $n$, because the flagged pair is perfectly distinguishable after one use with the input $e_0$.}
+\label{chn:tab:adfin}
+\end{table}
+
+Table~\ref{chn:tab:adexp} lists the exponents for $\gamma=\frac12$, and Table~\ref{chn:tab:adfin} compares the finite-$n$ bounds with the optimal errors for $n\le3$. Table~\ref{chn:tab:adfin} also shows that adaptivity helps at finite $n$. For $\gamma'=0.2$ and $n=3$ the optimal adaptive error is $0.2815$, against $0.2854$ for the best parallel strategy and $0.3020$ for $e_1^{\otimes3}$. Whether adaptivity also improves the exponent is open. Three uses are too few to decide this, but if Conjecture~\ref{chn:conj:adfid} holds, any gain is at most a factor of $2$.
+
+
+\section{Numerical illustration}\label{chn:sec:num}
+
+All computations in this section were done with the author's own code, which is not part of the \texttt{code/} directory described in Section~\ref{ov:sec:edition}. Exact optimal adaptive errors for $n=1,2$ were computed by semidefinite programming over two-round testers \cite{GutoskiWatrous2007,ChiribellaDArianoPerinotti2009}. The barycentric bound $C_{\mathrm{bar}}$ was computed with a semidefinite approximation of the operator relative entropy \cite{FawziSaundersParrilo2019}, after which the exact objective was re-evaluated at the computed channel; for the measurement pair the problem reduces to a one-dimensional convex minimisation, which we solved directly.
+
+\paragraph{Bounds on the exponent} Table~\ref{chn:tab:num} compares the achievable exponent $\xi_{\mathrm{prod}}$ (best product input found by local optimisation, so a lower bound on $\xi_{\mathrm{adapt}}$), the barycentric converse $C_{\mathrm{bar}}$, the new converse $\widehat C$, and the fidelity converse $-2\ln\widehat Q_{1/2}$. In every case $\widehat C$ is within $4\%$ of half the fidelity converse. The first five pairs satisfy the hypotheses of Theorem~\ref{chn:thm:tight}, so there $\xi_{\mathrm{prod}}=\xi_{\mathrm{adapt}}=\widehat C$; also $C_{\mathrm{bar}}=\widehat C$, for the first four rows by Proposition~\ref{chn:prop:bary}(a) and Theorem~\ref{chn:thm:exact}, and for the classical row by \cite{JMMW2024}. The measurement pair (Example~\ref{chn:ex:meas}) is its own flagged pair, so $\xi_{\mathrm{adapt}}=\widehat C<C_{\mathrm{bar}}$. For the replacement pair (Example~\ref{chn:ex:repl}) we have $C_{\mathrm{bar}}<\widehat C$, while the true exponent is the quantum Chernoff divergence of the two states. In the remaining, generic cases $C_{\mathrm{bar}}$ is between $2\%$ and $18\%$ below $\widehat C$.
+
+\begin{example}\label{chn:ex:meas}
+Let $e_\ell=(\cos\frac{\theta_\ell}2,\sin\frac{\theta_\ell}2)$ with $\theta=(0,\frac\pi4,\frac{7\pi}8,\frac{9\pi}8)$. The weights $w\ge0$ with $\sum_\ell w_\ell e_\ell e_\ell^*=\mathbf 1$ form a segment; let $a$ and $b$ be its points at $10\%$ and $90\%$ of its length, $a\approx(0.9164,0.0520,0.4678,0.5638)$ and $b\approx(0.5638,0.4678,0.0520,0.9164)$, and let $\Phi,\Psi$ be the measurement channels with POVM elements $a_\ell e_\ell e_\ell^*$ and $b_\ell e_\ell e_\ell^*$.
+\end{example}
+
+\begin{example}\label{chn:ex:repl}
+The replacement channels $\Phi=\tr(\cdot)\,\phi$, $\Psi=\tr(\cdot)\,\psi$ with $\phi=\frac12(\mathbf 1+0.9\,Z)$ and $\psi=\frac12(\mathbf 1+0.9\,X)$.
+\end{example}
+
+\begin{table}[!tbp]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lccccc}
+\toprule
+pair & $\xi_{\mathrm{prod}}$ & $C_{\mathrm{bar}}$ & $\widehat C$ (new) & $-2\ln\widehat Q_{1/2}$ & exact\\
+\midrule
+depolarising $p=0.1$ vs $0.3$ & 0.02383 & 0.02383 & 0.02383 & 0.04738 & Thm.~\ref{chn:thm:exact}\\
+Pauli $(.7,.1,.1,.1)$ vs $(.6,.2,.1,.1)$ & 0.01058 & 0.01058 & 0.01058 & 0.02112 & Thm.~\ref{chn:thm:exact}\\
+$\mathrm{SU}(2)$, spin 1, $(.8,.15,.05)$ vs $(.6,.3,.1)$ & 0.02467 & 0.02467 & 0.02467 & 0.04928 & Thm.~\ref{chn:thm:exact}\\
+$\mathrm{SU}(2)$, spin 1, $(.5,.3,.2)$ vs $(.2,.5,.3)$ & 0.05297 & 0.05297 & 0.05297 & 0.10580 & Thm.~\ref{chn:thm:exact}\\
+classical $2\times2$ & 0.03380 & 0.03380 & 0.03380 & 0.06726 & Thm.~\ref{chn:thm:tight}\\
+measurement pair, Ex.~\ref{chn:ex:meas} & 0.19705 & 0.24697 & 0.19705 & 0.39410 & Prop.~\ref{chn:prop:flag}\\
+replacement pair, Ex.~\ref{chn:ex:repl} & 0.33136 & 0.54272 & 0.57077 & 1.14154 & $\xi=\xi_{\mathrm{QC}}(\phi,\psi)$\\
+classical--quantum, non-commuting & 0.08410 & 0.13035 & 0.13280 & 0.26538 & --\\
+GAD $\gamma=0.2$ vs $0.4$ ($N=0.1$) & 0.02126 & 0.11388 & 0.13913 & 0.27482 & --\\
+GAD $N=0.1$ vs $0.3$ ($\gamma=0.3$) & 0.00862 & 0.03247 & 0.03380 & 0.06726 & --\\
+random full-rank \#1 & 0.32226 & 0.55379 & 0.60249 & 1.19341 & --\\
+random full-rank \#2 & 0.19256 & 0.34726 & 0.37964 & 0.73026 & --\\
+\bottomrule
+\end{tabular}
+\caption{Bounds on the adaptive Chernoff exponent: $\xi_{\mathrm{prod}}\le\xi_{\mathrm{adapt}}\le\min\{C_{\mathrm{bar}},\widehat C\}$ and $\widehat C\le-2\ln\widehat Q_{1/2}$. The column ``exact'' names the result that identifies $\xi_{\mathrm{adapt}}$.}
+\label{chn:tab:num}
+\end{table}
+
+\paragraph{Exact optimality at finite $n$} Theorem~\ref{chn:thm:exact} predicts that the exact adaptive optimum, the error of the Choi product strategy and the dynamic-programming value of Corollary~\ref{chn:cor:dp} coincide. Table~\ref{chn:tab:exact} confirms this for a depolarising pair, an $\mathrm{SU}(2)$-covariant spin-$1$ pair (two levels), and a random-unitary qutrit pair built from $\{\mathbf 1,Z,XD_1,X^2D_2\}$ with random diagonal $D_1,D_2$ (four levels). The dynamic program and the Choi strategy agree to ten digits also for $n=3$.
+
+\begin{table}[!tbp]
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lccc}
+\toprule
+pair, $n$ & exact adaptive (SDP) & Choi product & dynamic program\\
+\midrule
+depolarising, $n=1$ / $n=2$ & 0.4250 / 0.3725 & 0.4250 / 0.3725 & 0.4250 / 0.3725\\
+$\mathrm{SU}(2)$ spin 1, $n=1$ / $n=2$ & 0.4000 / 0.3600 & 0.4000 / 0.3600 & 0.4000 / 0.3600\\
+random-unitary qutrit, $n=1$ / $n=2$ & 0.4000 / 0.3650 & 0.4000 / 0.3650 & 0.4000 / 0.3650\\
+\bottomrule
+\end{tabular}
+\caption{Exact optimality of the Choi strategy for level-balanced pairs with orthogonal levels.}
+\label{chn:tab:exact}
+\end{table}
+
+\paragraph{The finite-$n$ bound in general} For pairs outside the scope of Theorem~\ref{chn:thm:exact}, Table~\ref{chn:tab:dp} compares the dynamic-programming bound with the exact optimum (where computable), with the explicit bound of Theorem~\ref{chn:thm:main}, and with the previous finite-$n$ bound $\tfrac12\big(1-\sqrt{1-\widehat Q_{1/2}^{\,2n}}\big)$, which follows from the Fuchs--van de Graaf inequality and the chain rule for the geometric fidelity. The second pair has Kraus ranks $2$ and $3$, hence infinite Thompson distance, two conclusive levels and $\widehat C=2.40$; Theorem~\ref{chn:thm:main} still applies with $\Lambda=0.90$. The explicit bound has the better exponent but a large second-order term when $\Lambda$ is large, and the dynamic program is the practical finite-$n$ bound. For random full-rank pair \#1 of Table~\ref{chn:tab:num}, the optimal two-use adaptive error ($0.1539$) is strictly smaller than the optimal two-use parallel error ($0.1605$), so adaptivity helps at finite $n$.
+
+\begin{table}[!tbp]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lccccc}
+\toprule
+& $n=1$ & $n=2$ & $n=5$ & $n=10$ & $n=20$\\
+\midrule
+\multicolumn{6}{l}{\emph{random full-rank qubit pair} ($\widehat C=0.341$, $\Lambda=2.51$)}\\
+exact adaptive (SDP) & 0.2158 & 0.1496 & -- & -- & --\\
+dynamic program (Cor.~\ref{chn:cor:dp}) & 0.1758 & 0.1084 & $2.84\cdot10^{-2}$ & $3.92\cdot10^{-3}$ & $9.66\cdot10^{-5}$\\
+Theorem~\ref{chn:thm:main} & $2.74\cdot10^{-3}$ & $3.46\cdot10^{-4}$ & $4.04\cdot10^{-6}$ & $1.54\cdot10^{-8}$ & $2.15\cdot10^{-12}$\\
+fidelity bound & 0.1484 & 0.0686 & $8.32\cdot10^{-3}$ & $2.72\cdot10^{-4}$ & $2.96\cdot10^{-7}$\\
+\midrule
+\multicolumn{6}{l}{\emph{random Kraus-rank $2$ vs $3$ qubit pair} ($d_T=\infty$, $\widehat C=2.40$, $\Lambda=0.90$)}\\
+exact adaptive (SDP) & 0.1213 & 0.0422 & -- & -- & --\\
+dynamic program (Cor.~\ref{chn:cor:dp}) & $3.94\cdot10^{-2}$ & $3.11\cdot10^{-3}$ & $1.52\cdot10^{-6}$ & $4.63\cdot10^{-12}$ & $4.29\cdot10^{-23}$\\
+Theorem~\ref{chn:thm:main} & $5.03\cdot10^{-3}$ & $2.45\cdot10^{-4}$ & $5.28\cdot10^{-8}$ & $8.00\cdot10^{-14}$ & $4.15\cdot10^{-25}$\\
+fidelity bound & $3.85\cdot10^{-3}$ & $5.88\cdot10^{-5}$ & $2.12\cdot10^{-10}$ & $1.79\cdot10^{-19}$ & $1.29\cdot10^{-37}$\\
+\bottomrule
+\end{tabular}
+\caption{Lower bounds on the optimal adaptive error.}
+\label{chn:tab:dp}
+\end{table}
+
+\paragraph{Local regime} For a random full-rank qubit channel $\Phi_0$, a second one $\Phi_1$, and $\Phi_\delta=(1-\delta)\Phi_0+\delta\Phi_1$, the ratio $\widehat C/(-2\ln\widehat Q_{1/2})$ was $0.5019$, $0.5009$, $0.5003$, $0.5001$, $0.5000$ for $\delta=0.2$, $0.1$, $0.05$, $0.02$, $0.01$, and $8\widehat C/(\delta^2F_{\mathrm{RLD}})$ was $0.64$, $0.76$, $0.85$, $0.93$, $0.96$, consistent with Corollary~\ref{chn:cor:compare}(b) and an $O(\delta)$ relative correction. The ratio $C_{\mathrm{bar}}/\widehat C$ was $0.963$, $0.976$, $0.993$, $0.9997$ for $\delta=0.2$, $0.1$, $0.05$, $0.02$, so in this example the two converses have the same leading term.
+
+\paragraph{Continuity} For $60$ random pairs of full-Kraus-rank qubit channels and perturbations $(1-\eta)(\Phi,\Psi)+\eta(\Phi',\Psi')$ with $10^{-3}\le\eta\le10^{-1}$, the change of $e^{-\widehat C}$ was at most $0.18$ times the bound of Theorem~\ref{chn:thm:robust}, and the same held for $59$ pairs of splittings of one sum. For the same kind of pair, $\widehat C$ along the perturbations with $\eta=10^{-1},\dots,10^{-4}$ was $0.230$, $0.466$, $0.526$, $0.534$ against $0.535$ at the pair, in line with Theorem~\ref{chn:thm:semicont}(c). The values in Example~\ref{chn:ex:fragile} were computed from the level decomposition and the Petz quasi-entropies directly.
+
+\section{Concluding remarks}\label{chn:sec:open}
+
+We have shown that the level decomposition of a pair of channels turns every adaptive discrimination protocol into a controlled random walk. This yields the converse $\widehat C$ with an explicit second-order term (Theorem~\ref{chn:thm:main}), and the converse is attained under the orthogonality condition of Theorem~\ref{chn:thm:tight}. Single-letter converses of this type can, however, be infinite at pairs whose adaptive exponent is small (Theorem~\ref{chn:thm:fragile} and Corollary~\ref{chn:cor:adfragile}). We conclude with some open problems.
+
+\begin{question}\label{chn:q:prod}
+Is $\xi_{\mathrm{adapt}}=\xi_{\mathrm{prod}}$ whenever $d_T(\Phi,\Psi)<\infty$? This holds for classical channels, for classical--quantum channels \cite{SalekHayashiWinter2022} and in the cases of Theorems~\ref{chn:thm:tight} and~\ref{chn:thm:exact}. The known separations \cite{HHLW2010,SalekHayashiWinter2022} have $d_T=\infty$.
+\end{question}
+
+\begin{question}\label{chn:q:single}
+Find a single-letter converse that is at most $\min\{C_{\mathrm{bar}},\widehat C\}$ for all pairs. For replacement channels both exceed the true exponent $\xi_{\mathrm{QC}}(\phi,\psi)$, so such a converse should see the non-commutativity of the outputs, which every common decomposition hides (Proposition~\ref{chn:prop:canon}). By Theorem~\ref{chn:thm:fragile}, a converse that is within a bounded factor of $\xi_{\mathrm{adapt}}$ must be finite on pairs whose Choi ranges intersect trivially, and so cannot be built only from Choi-level geometric means or from divergences that require support inclusion.
+\end{question}
+
+\begin{question}\label{chn:q:local}
+For nearby channels, is the adaptive Chernoff exponent $\frac{\delta^2}{8}F(\theta)+o(\delta^2)$ for an explicitly computable Fisher information $F$ between the one achieved by product inputs and $F_{\mathrm{RLD}}$? In this regime $T=\tfrac12\mathbf 1+O(\delta)$. By Lemma~\ref{chn:lem:comm} the product input at $\sigma$ attains $-\ln\min_sQ_s(\sigma)$ whenever $[T,G_\sigma]=0$, so one expects the gap between $\xi_{\mathrm{prod}}$ and $\widehat C$ to be controlled by this commutator.
+\end{question}
+
+\begin{question}\label{chn:q:hoeffding}
+Prove a Hoeffding converse for general pairs. The walk structure applies, but $s\mapsto\min_\rho\ln Q_s(\rho)$ need not be convex, so the natural candidate involves its convex envelope.
+\end{question}
+
+\begin{question}\label{chn:q:dense}
+Does Theorem~\ref{chn:thm:fragile} hold near every pair of channels with $\dim\ker J(\Phi+\Psi)\ge1$ and $\widehat C<\infty$, that is, are there always nearby channel pairs with trivially intersecting Choi ranges and bounded adaptive exponent? Theorem~\ref{chn:thm:semicont}(c) excludes such jumps when $J(\Phi+\Psi)$ is invertible, and Theorem~\ref{cont:thm:dichotomy}(c) provides completely positive approximants.
+For the geometric fidelity $\widehat Q_{1/2}$, which Chapter~\ref{cont:chapter} writes $\widehat F$, that chapter gives channel-valued approximants in two cases: at a diagonal pair $(\Phi,\Phi)$ with $J(\Phi)$ singular, output rotations of $\Phi$ make the fidelity jump (Theorem~\ref{cont:thm:channel orbit} and Corollary~\ref{cont:cor:diagonal channels}), and within the amplitude-damping family it vanishes for $\gamma'\ne\gamma$ (Example~\ref{cont:ex:amplitude damping}; compare Proposition~\ref{chn:prop:adlevels}(b)), although these Choi ranges intersect nontrivially. The question is restated, together with the related questions of Chapter~\ref{cont:chapter}, in Section~\ref{op:sec:singular}.
+\end{question}
+
+\begin{question}\label{chn:q:vn}
+Extend the level decomposition to normal channels between von Neumann algebras and to bosonic channels with energy constraints. Adaptive quantum illumination is listed as open in \cite{NairGu2020}.
+\end{question}
+
+\endgroup

@@ -1,0 +1,227 @@
+% Label prefix: nt:
+% This chapter fixes common notation and records the differences between the conventions of
+\chapter{Notation and conventions}\label{nt:chapter}
+\begingroup
+
+Each of Chapters~\ref{gate:chapter} and~\ref{cont:chapter}--\ref{gate:proofschapter} keeps its own notation; Chapters~\ref{gate:chapter} and~\ref{gate:proofschapter}, on noisy gates, share one notation. This chapter collects the definitions that are used throughout, in a common notation close to that of Watrous~\cite{watrous2018theory}, and Section~\ref{nt:sec:differences} lists the places where the chapters differ. A reader who moves from one chapter to another should check Tables~\ref{nt:tab:differences} and~\ref{nt:tab:collisions} first. All Hilbert spaces are finite-dimensional.
+
+\section{Spaces, operators and maps}\label{nt:sec:spaces}
+
+Complex Euclidean spaces are denoted by calligraphic letters $\mathcal X,\mathcal Y,\mathcal Z,\mathcal R,\dots$, and we write $d_{\mathcal X}=\dim\mathcal X$ (also $d_X$). The standard basis of $\mathbb C^n$ is $e_1,\dots,e_n$, and $E_{ab}=e_ae_b^*$. We write $\mathrm L(\mathcal X,\mathcal Y)$ for the linear operators from $\mathcal X$ to $\mathcal Y$, $\mathrm L(\mathcal X)=\mathrm L(\mathcal X,\mathcal X)$, $\mathrm{Pos}(\mathcal X)$ for the positive semidefinite operators and $\mathrm D(\mathcal X)$ for the density operators (states). The identity operator is $\mathbf 1$ or $\mathbf 1_{\mathcal X}$, and the identity map on $\mathrm L(\mathcal X)$ is $\mathrm{id}$ or $\mathbf 1_{\mathrm L(\mathcal X)}$. The adjoint of an operator or a map is $A^*$; physics notation $A^\dagger$ is used in Chapters~\ref{gate:chapter} and~\ref{gate:proofschapter}.
+
+For Hermitian $A,B$, $A\le B$ means that $B-A$ is positive semidefinite (the Loewner order). The extreme eigenvalues are $\lambda_{\min}$ and $\lambda_{\max}$, the support projection of $A\ge0$ is $\Pi_A$, and $\range A$ is its range. The trace is $\tr$ or $\Tr$, and $\Tr_{\mathcal Y}$ is the partial trace over $\mathcal Y$. The Schatten norms are $\|\cdot\|_p$, with $\|\cdot\|_1$ the trace norm and $\|\cdot\|_\infty$ the operator norm. For Hermitian $A$, $A_+$ is its positive part.
+
+A linear map $\Phi:\mathrm L(\mathcal X)\to\mathrm L(\mathcal Y)$ is completely positive if $\Phi\otimes\mathrm{id}_{\mathrm L(\mathcal Z)}$ is positive for every $\mathcal Z$. We write $\mathrm{CP}(\mathcal X,\mathcal Y)$ for the completely positive maps and $\mathrm C(\mathcal X,\mathcal Y)$ for the channels, the completely positive trace-preserving maps; a map is trace preserving exactly when $\Phi^*(\mathbf 1_{\mathcal Y})=\mathbf 1_{\mathcal X}$. For maps, $\Phi\le\Psi$ (also written $\Phi\le_{\mathrm{cp}}\Psi$) means that $\Psi-\Phi$ is completely positive. Every $\Phi\in\mathrm{CP}(\mathcal X,\mathcal Y)$ has a Kraus decomposition $\Phi(X)=\sum_{k=1}^rV_kXV_k^*$ with $V_k\in\mathrm L(\mathcal X,\mathcal Y)$, and the smallest possible $r$, attained exactly when the $V_k$ are linearly independent, is the Kraus rank. For a channel $\Phi$ and a state $\rho$ on $\mathcal R\otimes\mathcal X$ we write $\Phi_\rho=(\mathrm{id}_{\mathrm L(\mathcal R)}\otimes\Phi)(\rho)$, or $(\Phi\otimes\mathrm{id})(\rho)$ when the reference system is written second.
+
+\section{Vectorisation and the Choi matrix}\label{nt:sec:choi}
+
+The vectorisation $\vectorise:\mathrm L(\mathcal X,\mathcal Y)\to\mathcal Y\otimes\mathcal X$ is the linear map with $\vectorise(E_{ab})=e_a\otimes e_b$; it stacks the rows of a matrix. Hence $\vectorise(uv^*)=u\otimes\overline v$ and
+\[
+(A\otimes B)\vectorise(X)=\vectorise(AXB^\top).
+\]
+The \emph{Choi matrix} of a linear map $\Phi:\mathrm L(\mathcal X)\to\mathrm L(\mathcal Y)$ is
+\begin{equation}\label{nt:eq:choi}
+J(\Phi)=\sum_{a,b=1}^{d_{\mathcal X}}\Phi(E_{ab})\otimes E_{ab}\in\mathrm L(\mathcal Y\otimes\mathcal X),
+\end{equation}
+with the output factor first. Choi's theorem \cite{Choi1975} says that $\Phi$ is completely positive if and only if $J(\Phi)\ge0$, and $J$ is a linear bijection. The map $X\mapsto AXB^*$ has Choi matrix $\vectorise(A)\vectorise(B)^*$, so a Kraus decomposition by linearly independent $V_1,\dots,V_r$ gives $J(\Phi)=WW^*$ with the injective matrix $W=[\vectorise(V_1)\ \cdots\ \vectorise(V_r)]\in\mathrm L(\mathbb C^r,\mathcal Y\otimes\mathcal X)$, and the Kraus rank is $\rank J(\Phi)$. The partial trace over the output is $\Tr_{\mathcal Y}J(\Phi)=\Phi^*(\mathbf 1_{\mathcal Y})^\top$, so $\Tr_{\mathcal Y}J(\Phi)=\mathbf 1_{\mathcal X}$ and $\Tr J(\Phi)=d_{\mathcal X}$ for a channel. The Choi matrix in \eqref{nt:eq:choi} is unnormalized; the normalized \emph{Choi state} is $J(\Phi)/d_{\mathcal X}$, the output of $\Phi\otimes\mathrm{id}$ on the maximally entangled state $\vectorise(\mathbf 1_{\mathcal X})\vectorise(\mathbf 1_{\mathcal X})^*/d_{\mathcal X}$.
+
+The \emph{Choi floor} of a channel is $\lambda(\Phi)=\lambda_{\min}(J(\Phi))$, and $\tilde\lambda(\Phi)=\lambda(\Phi)/d_{\mathcal X}$ is the floor of the Choi state. A channel has an invertible Choi matrix exactly when its Kraus rank is $d_{\mathcal X}d_{\mathcal Y}$, the largest possible. A unitary channel has a Choi matrix of rank one, and a qubit depolarizing channel $\rho\mapsto(1-p)\rho+p\Tr(\rho)\mathbf 1/2$ has Choi floor $p/2$.
+
+Swapping the two tensor factors in \eqref{nt:eq:choi} gives the input-first Choi matrix $\sum_{a,b}E_{ab}\otimes\Phi(E_{ab})$, which is unitarily equivalent to $J(\Phi)$ through the swap of $\mathcal X$ and $\mathcal Y$. All spectral statements (positivity, ranks, extreme eigenvalues, the Thompson metric, invertibility, partial traces up to transposition) are therefore the same in the two conventions. Chapter~\ref{shA:chapter} uses the input-first convention (Table~\ref{nt:tab:differences}).
+
+\section{Norms on maps}\label{nt:sec:norms}
+
+The diamond norm, or completely bounded trace norm, of a linear map $\Delta:\mathrm L(\mathcal X)\to\mathrm L(\mathcal Y)$ is
+\[
+\|\Delta\|_\diamond=\max\big\{\|(\Delta\otimes\mathrm{id}_{\mathrm L(\mathcal X)})(X)\|_1:\ X\in\mathrm L(\mathcal X\otimes\mathcal X),\ \|X\|_1\le1\big\}
+\]
+\cite{Kitaev1997,watrous2018theory}. It is unnormalized in every chapter, so $\|\Phi-\Psi\|_\diamond\le2$ for channels, and for completely positive $\Phi$ it equals $\|\Phi^*(\mathbf 1_{\mathcal Y})\|_\infty$ \cite{Paulsen2003}. Chapter~\ref{cont:chapter} writes $|||\cdot|||_1$ for this norm. The Choi matrix and the diamond norm are related by
+\[
+\|J(\Phi)-J(\Phi')\|_\infty\le\tfrac{d_{\mathcal X}}2\,\|\Phi-\Phi'\|_\diamond
+\]
+for channels, with equality attained in every dimension (Lemma~\ref{cont:lem:choi vs cb}). If $\lambda(\Psi)>0$ and $\|\Psi'-\Psi\|_\diamond\le\epsilon$, this gives $(1-r)J(\Psi)\le J(\Psi')\le(1+r)J(\Psi)$ with $r=d_{\mathcal X}\epsilon/(2\lambda(\Psi))=\epsilon/(2\tilde\lambda(\Psi))$, which is the starting point of the Choi-floor estimates in Chapters~\ref{gate:chapter}, \ref{cont:chapter} and~\ref{gate:proofschapter}.
+
+\section{Kubo--Ando connections and means}\label{nt:sec:means}
+
+A binary operation $(A,B)\mapsto A\,\sigma\,B$ on positive semidefinite operators is a (Kubo--Ando) \emph{connection} if it is monotone in both arguments, satisfies the transformer inequality $C^*(A\,\sigma\,B)C\le(C^*AC)\,\sigma\,(C^*BC)$, and is continuous from above \cite{KuboAndo1980}. The Kubo--Ando theorem identifies the connections with the operator monotone functions $f:(0,\infty)\to[0,\infty)$ through
+\[
+A\,\sigma\,B=A^{1/2}f\big(A^{-1/2}BA^{-1/2}\big)A^{1/2}\qquad(A>0),
+\]
+extended to singular arguments by $A\,\sigma\,B=\lim_{\eta\downarrow0}(A+\eta\mathbf 1)\,\sigma\,(B+\eta\mathbf 1)$. A connection is a \emph{mean} if $f(1)=1$, that is, $\mathbf 1\,\sigma\,\mathbf 1=\mathbf 1$. Examples are the weighted arithmetic means ($f(t)=1-s+st$), the harmonic mean, and the weighted geometric means
+\[
+A\#_sB=A^{1/2}\big(A^{-1/2}BA^{-1/2}\big)^sA^{1/2},\qquad s\in[0,1],\qquad A\#B=A\#_{1/2}B .
+\]
+We use $A\#_sB=B\#_{1-s}A$, $(cA)\#_s(c'B)=c^{1-s}c'^{\,s}(A\#_sB)$ for $c,c'>0$, and $\range(A\#_sB)\subseteq\range A\cap\range B$ for $0<s<1$. In particular $A\#_sB=0$ whenever $\range A\cap\range B=\{0\}$. In Chapter~\ref{cont:chapter} the letter $\sigma$ denotes a connection; in all other chapters it denotes a state.
+
+For completely positive maps, a connection of the Choi matrices defines a completely positive map $\Phi\,\sigma\,\Psi$ by $J(\Phi\,\sigma\,\Psi)=J(\Phi)\,\sigma\,J(\Psi)$ \cite{kian2026relative}; weighted geometric means of completely positive maps were first introduced in \cite{FMVW2025}. If $T$ is the derivative of Section~\ref{nt:sec:arn}, then
+\[
+J(\Phi)\,\sigma\,J(\Psi)=W\,g_\sigma(T)\,W^*,\qquad g_\sigma(t)=t\,\sigma\,(1-t),
+\]
+a scalar function of $T$ (Theorem~\ref{cont:fundamental principle}). For the weighted geometric means this reads $J(\Psi)\#_sJ(\Phi)=W\,g_s(T)\,W^*$ with $g_s(t)=t^s(1-t)^{1-s}$, the function that Chapter~\ref{cont:chapter} calls $h_s$ (Eq.~\eqref{cont:eq:h alpha}), Chapter~\ref{chn:chapter} calls $g_s$ and Chapter~\ref{gate:proofschapter} calls $b_s$. It is $g_{\#_{1-s}}$, not the function $g_{\#_s}$ attached to the mean $\#_s$.
+
+\section{The Arveson--Radon--Nikodym derivative and the shadows}\label{nt:sec:arn}
+
+Let $\Phi,\Psi\in\mathrm{CP}(\mathcal X,\mathcal Y)$, let $\Omega=\Phi+\Psi$ have a Kraus decomposition by linearly independent operators $V_1,\dots,V_r$, and let $W$ be as in Section~\ref{nt:sec:choi}, so that $J(\Omega)=WW^*$. For $K\in\mathrm L(\mathbb C^r)$ put
+\[
+\Psi_K(X)=\sum_{k,l=1}^rK_{kl}V_kXV_l^*,\qquad J(\Psi_K)=WKW^* .
+\]
+By Arveson's Radon--Nikodym theorem in its Kraus form \cite{arveson1969subalgebras,Raginsky2003} (Theorem~\ref{cont:thm:arveson}) there is a unique $T$ with $0\le T\le\mathbf 1_{\mathbb C^r}$ and $\Phi=\Psi_T$; then $\Psi=\Psi_{\mathbf 1-T}$. We call $T$ the \emph{ARN derivative} of $\Phi$ with respect to $\Omega$, and $\Psi_K$ is $K$ read through the Kraus operators of $\Omega$. A different choice of Kraus operators replaces $T$ by $\overline UTU^\top$ for a unitary $U$, so the spectrum of $T$ and all unitarily invariant norms of differences $T_1-T_2$ do not depend on the choice. The spectral decomposition $T=\sum_\ell\tau_\ell P_\ell$ gives the \emph{level decomposition} $\Phi=\sum_\ell\tau_\ell\Omega_\ell$, $\Psi=\sum_\ell(1-\tau_\ell)\Omega_\ell$ with $\Omega_\ell=\Psi_{P_\ell}$ (Lemma~\ref{chn:lem:levels}); a level is ambiguous if $0<\tau_\ell<1$.
+
+Chapter~\ref{cont:chapter} also uses the quantity
+\[
+\nu(\Omega)=\min\Big\{\Big\|\sum_{k=1}^rc_kV_k\Big\|_\infty:\ c\in\mathbb C^r,\ \|c\|_2=1\Big\}>0,
+\]
+which converts derivative distances into diamond distances (Theorem~\ref{cont:thm:two sided}).
+
+For states $\rho,\sigma$ with $\omega=\rho+\sigma$, the same construction gives $T=\omega^{-1/2}\rho\,\omega^{-1/2}$ on the support of $\omega$; its spectral measure in the state $\omega$ is the \emph{reverse test} (shadow~(I) of Section~\ref{ov:sec:shadows}). The \emph{testing-region shadow} (shadow~(II)) is the measure $\mu=e''$ of the profile $e(\gamma)=\Tr(\rho-\gamma\sigma)_+$, completed by the boundary masses $m_0=\Tr\Pi_\rho^\perp\sigma$ at $0$ and $m_\infty=\Tr\Pi_\sigma^\perp\rho$ at $\infty$ (Definition~\ref{shA:def:shadow}). The \emph{modular shadow} (shadow~(III)) is the Nussbaum--Szko{\l}a pair of the relative modular operator $\Delta$, and $\widetilde T=\Delta(\mathbf 1+\Delta)^{-1}$ is the modular derivative (Section~\ref{shA:sec:petz}).
+
+\section{Fidelities}\label{nt:sec:fidelities}
+
+Several fidelities appear, and two of them come in a root and a squared form.
+\begin{itemize}
+\item The \emph{Uhlmann fidelity} of states \cite{Uhlmann1976}. In its root form, $F(\rho,\sigma)=\|\sqrt\rho\sqrt\sigma\|_1=\tr\sqrt{\sqrt\sigma\rho\sqrt\sigma}$; this is the form used in Chapters~\ref{gate:chapter}, \ref{cont:chapter} and~\ref{gate:proofschapter}. Chapter~\ref{chn:chapter} uses the squared form $F(\rho,\sigma)=\|\rho^{1/2}\sigma^{1/2}\|_1^2$. The \emph{Uhlmann channel root fidelity} $F_{\mathrm U}(\Phi,\Psi)$ of Chapters~\ref{gate:chapter} and~\ref{gate:proofschapter} is the minimum over inputs (with a reference system) of the root fidelity of the two outputs.
+\item The \emph{Matsumoto} or \emph{geometric fidelity} of states, $\widehat F(\rho,\sigma)=F_M(\rho,\sigma)=\tr(\rho\#\sigma)$ \cite{matsumoto2010reverse,cree2020fidelity}. It satisfies $F_M\le F$, with $F$ the root Uhlmann fidelity.
+\item The \emph{geometric channel fidelity}
+\[
+\widehat F(\Phi,\Psi)=\inf_{\rho\in\mathrm D(\mathcal X\otimes\mathcal X)}\tr\big(\Phi_\rho\#\Psi_\rho\big)=\lambda_{\min}\big(\Tr_{\mathcal Y}(J(\Phi)\#J(\Psi))\big)
+\]
+(Proposition~\ref{cont:lambda min formula}). It is used in root form in every chapter, so $\widehat F(\Phi,\Phi)=1$ for a channel $\Phi$. Katariya and Wilde \cite{KatariyaWilde2021} call its square the geometric fidelity. In Chapter~\ref{chn:chapter} it appears as $\widehat Q_{1/2}(\Phi\|\Psi)$, and the \emph{fidelity converse} for the Chernoff exponent is $-2\ln\widehat F(\Phi,\Psi)$.
+\item The \emph{Bhattacharyya coefficient} of probability vectors $p,q$ is $\sum_i\sqrt{p_iq_i}$; for amplitude damping, Chapters~\ref{gate:chapter}, \ref{chn:chapter} and~\ref{gate:proofschapter} write $f(\gamma,\gamma')=\sqrt{\gamma\gamma'}+\sqrt{(1-\gamma)(1-\gamma')}$.
+\item The \emph{testing-region fidelity} $Q^{\mathrm{HT}}_{1/2}$ of Chapter~\ref{shA:chapter} is the testing-region R\'enyi quasi-entropy of order $\frac12$ (Section~\ref{nt:sec:divergences}).
+\end{itemize}
+
+\section{Divergences}\label{nt:sec:divergences}
+
+\subsection*{Divergences of states}
+For $\rho,\sigma\in\mathrm D(\mathcal X)$ (or positive semidefinite operators) we use the following quantities; each is $+\infty$ when the support condition that makes it finite fails.
+\begin{itemize}
+\item The \emph{Umegaki relative entropy} $D(\rho\|\sigma)=\Tr\rho(\log\rho-\log\sigma)$, finite if $\Pi_\rho\le\Pi_\sigma$.
+\item The \emph{max-relative entropy} $D_{\max}(\rho\|\sigma)=\log\inf\{c>0:\rho\le c\,\sigma\}$; for completely positive maps, $D_{\max}(\Phi\|\Psi)=\log\inf\{c>0:\Phi\le_{\mathrm{cp}}c\Psi\}$.
+\item The \emph{maximal $f$-divergence} of a convex function $f$ \cite{Matsumoto2018newf,HiaiMosonyi2017}, which for operator convex $f$ and $\sigma>0$ is $\widehat D_f(\rho\|\sigma)=\Tr\sigma^{1/2}f(\sigma^{-1/2}\rho\,\sigma^{-1/2})\sigma^{1/2}$. Its boundary values $f(0^+)$ and $f'(\infty)=\lim_{t\to\infty}f(t)/t$ decide finiteness.
+\item The \emph{Belavkin--Staszewski relative entropy} $D_{\mathrm{BS}}(\rho\|\sigma)=\Tr\rho\log\big(\rho^{1/2}\sigma^{-1}\rho^{1/2}\big)$ \cite{BelavkinStaszewski1982}, the maximal $f$-divergence of $f(t)=t\log t$.
+\item The \emph{geometric R\'enyi quasi-entropy and divergence} $\widehat Q_\alpha(\rho\|\sigma)=\Tr(\sigma\#_\alpha\rho)$ and $\widehat D_\alpha=\frac1{\alpha-1}\log\widehat Q_\alpha$, for $\alpha\in(0,1)\cup(1,2]$ (for $\alpha>1$ through the formula $\sigma^{1/2}(\sigma^{-1/2}\rho\,\sigma^{-1/2})^\alpha\sigma^{1/2}$ when $\Pi_\rho\le\Pi_\sigma$). The geometric fidelity is $\widehat Q_{1/2}$.
+\item The \emph{Petz} quasi-entropy $Q^{\mathrm P}_\alpha(\rho\|\sigma)=\Tr\rho^\alpha\sigma^{1-\alpha}$ and the \emph{sandwiched} quasi-entropy $\widetilde Q_\alpha(\rho\|\sigma)=\Tr\big(\sigma^{\frac{1-\alpha}{2\alpha}}\rho\,\sigma^{\frac{1-\alpha}{2\alpha}}\big)^\alpha$, with divergences $D^{\mathrm P}_\alpha$ and $\widetilde D_\alpha$ defined by $\frac1{\alpha-1}\log$.
+\item The \emph{hockey-stick divergence} $E_\gamma(A\|B)=\Tr(A-\gamma B)_+=\max_{0\le M\le\mathbf 1}\Tr M(A-\gamma B)$, $\gamma\ge0$, and the \emph{testing-region} (Hirche--Tomamichel) $f$-divergence \cite{HircheTomamichel2024}
+\[
+D^{\mathrm{HT}}_f(\rho\|\sigma)=\int_1^\infty\Big(E_\gamma(\rho\|\sigma)\,f''(d\gamma)+E_\gamma(\sigma\|\rho)\,\tilde f''(d\gamma)\Big),\qquad\tilde f(x)=xf(1/x),
+\]
+for convex $f$ with $f(1)=0$, with R\'enyi members $Q^{\mathrm{HT}}_\alpha=1+(\alpha-1)D^{\mathrm{HT}}_{f_\alpha}$, $f_\alpha(x)=\frac{x^\alpha-1}{\alpha-1}$, and $D^{\mathrm{HT}}_\alpha=\frac1{\alpha-1}\log Q^{\mathrm{HT}}_\alpha$ (Definition~\ref{shA:def:HT}). By Frenkel's formula \cite{Frenkel2023}, $D^{\mathrm{HT}}_{x\log x}=D$.
+\item The \emph{measured} divergences $D^{\mathrm M}_f$, the supremum of the classical $f$-divergences of the outcome distributions of all measurements.
+\end{itemize}
+The maximal divergences dominate the others: for operator convex $f$ the measured, testing-region and maximal $f$-divergences satisfy $D^{\mathrm M}_f\le D^{\mathrm{HT}}_f\le\widehat D_f$, and the three coincide for a strictly convex $f$ only on commuting pairs (Corollary~\ref{shA:cor:rigidity}). In particular $D\le D_{\mathrm{BS}}$.
+
+\subsection*{Divergences of channels}
+For a divergence $\mathbb D$ of states, the channel divergence is
+\[
+\mathbb D(\Phi\|\Psi)=\sup_{\rho\in\mathrm D(\mathcal X\otimes\mathcal X)}\mathbb D\big(\Phi_\rho\,\big\|\,\Psi_\rho\big),
+\]
+and for the quasi-entropies with $\alpha<1$ and the fidelities the supremum becomes an infimum. The geometric quantities have closed forms in the Choi matrices \cite{KatariyaWilde2021,FangFawzi2021}:
+\begin{gather*}
+\widehat Q_\alpha(\Phi\|\Psi)=\lambda_{\min}\big(\Tr_{\mathcal Y}(J(\Psi)\#_\alpha J(\Phi))\big)\quad(0<\alpha<1),\\
+D_{\mathrm{BS}}(\Phi\|\Psi)=\lambda_{\max}\Big(\Tr_{\mathcal Y}\Big[J(\Phi)^{1/2}\log\big(J(\Phi)^{1/2}J(\Psi)^{-1}J(\Phi)^{1/2}\big)J(\Phi)^{1/2}\Big]\Big),
+\end{gather*}
+the latter when $J(\Psi)$ is invertible, and more generally $\widehat D_f(\Phi\|\Psi)=\lambda_{\max}\big(\Tr_{\mathcal Y}(W\,h_f(T)\,W^*)\big)$ for operator convex $f$ (Theorem~\ref{cont:thm:all f}). For a channel divergence we also use its $n$-use adaptive version $\mathbb D^{(n)}$, the supremum over adaptive strategies of the divergence of the two final states, its regularisation $\mathbb D^{\mathrm{reg}}(\Phi\|\Psi)=\lim_n\frac1n\mathbb D(\Phi^{\otimes n}\|\Psi^{\otimes n})$ when the limit exists, and its amortised version $\mathbb D^{A}$ \cite{WBHK2020} (Section~\ref{shA:sec:channels}).
+
+Three converses for the Chernoff exponent appear in Chapters~\ref{gate:chapter}, \ref{chn:chapter} and~\ref{gate:proofschapter}: the fidelity converse $-2\ln\widehat F(\Phi,\Psi)$ \cite{KatariyaWilde2021}, the barycentric converse $C_{\mathrm{bar}}$ of Ji, Mishra, Mosonyi and Wilde \cite{JMMW2024}, and the \emph{geometric Chernoff divergence}
+\[
+\widehat C(\Phi,\Psi)=-\ln\min_{0\le s\le1}\lambda_{\min}(B_s)=-\ln\inf_{0<s<1}\widehat Q_s(\Phi\|\Psi),\qquad B_s=\Psi_{g_s(T)}^*(\mathbf 1_{\mathcal Y}),
+\]
+where $g_s(t)=t^s(1-t)^{1-s}$ on $(0,1)$ and $g_s(0)=g_s(1)=0$. Chapter~\ref{chn:chapter} uses the first expression and Chapter~\ref{gate:proofschapter} the second; they agree because $s\mapsto\lambda_{\min}(B_s)$ is continuous on $[0,1]$ and equals $\widehat Q_s(\Phi\|\Psi)$ for $0<s<1$. The \emph{program overlap} $\mu_*(\Phi,\Psi)$ of Theorem~\ref{chn:thm:pureprog} gives a fourth converse, $-2\ln\mu_*$.
+
+\section{The Thompson metric}\label{nt:sec:thompson}
+
+For $A,B\ge0$ the Thompson metric is
+\[
+d_{\mathrm T}(A,B)=\inf\{t\ge0:\ e^{-t}A\le B\le e^{t}A\}=\max\{D_{\max}(A\|B),D_{\max}(B\|A)\},
+\]
+which is finite exactly when $A$ and $B$ have the same support. For completely positive maps, $d_{\mathrm T}(\Phi,\Psi)=d_{\mathrm T}(J(\Phi),J(\Psi))$, equivalently the same expression with the completely positive order. All chapters use this metric with the same normalisation; Chapter~\ref{cont:chapter} writes $d_T(\Omega_1,\Omega_2)$, Chapter~\ref{shA:chapter} writes $d_{\mathrm T}$, and Chapters~\ref{chn:chapter} and~\ref{gate:proofschapter} write $d_T$. The metric enters in two ways: through $\tanh(d_{\mathrm T}/2)$, which measures the change of a sum in Chapters~\ref{cont:chapter} and~\ref{chn:chapter} (Lemma~\ref{cont:lem:thompson}), and as a Lipschitz constant per channel use for adaptive quantities in Chapters~\ref{gate:chapter}, \ref{shA:chapter} and~\ref{gate:proofschapter} (Theorem~\ref{shA:thm:thompson}).
+
+\section{Operational exponents}\label{nt:sec:exponents}
+
+An adaptive strategy with $n$ uses of an unknown channel prepares a state on the input and a memory, interleaves the $n$ uses with channels acting on the output and the memory, and ends with a measurement; parallel and product strategies are special cases. Let $\rho^{(n)}_\Phi$ and $\rho^{(n)}_\Psi$ be the final states under the two hypotheses.
+\begin{itemize}
+\item The \emph{adaptive Stein exponent} $\zeta$ is the best exponential decay rate of the type-II error when the type-I error is required to vanish asymptotically. It equals the regularised and the amortised Umegaki channel divergence \cite{WangWilde2019,FFRS2020}. Chapter~\ref{shA:chapter} writes $\zeta(\Phi,\Psi)$ and Chapters~\ref{gate:chapter} and~\ref{gate:proofschapter} write $\zeta(\Phi\|\Psi)$.
+\item The \emph{adaptive Chernoff exponent} is $\xi=\limsup_n-\frac1n\ln p(n)$, where $p(n)$ is the smallest equal-prior error $\frac12-\frac14\|\rho^{(n)}_\Phi-\rho^{(n)}_\Psi\|_1$ over adaptive strategies. Chapter~\ref{chn:chapter} writes $\xi_{\mathrm{adapt}}$, and $\xi_{\mathrm{prod}}$ for the exponent of product strategies. The quantum Chernoff divergence of two operators is $\xi_{\mathrm{QC}}(A,B)=-\ln\min_{0\le s\le1}\tr(A^sB^{1-s})$ \cite{AudenaertChernoff2007,NussbaumSzkola2009}.
+\item The \emph{strong-converse exponent} is the rate at which the success probability must vanish when the type-II error decays faster than $e^{-n\zeta}$; it is governed by the regularised sandwiched divergences (Corollary~\ref{shA:cor:sand}).
+\item The Fisher informations of a one-parameter family of states or channels are written $F_{\mathrm{SLD}}$, $F_{\mathrm{BKM}}$ and $F_{\mathrm{RLD}}$ (symmetric, Kubo--Mori and right logarithmic derivative), and $F_\infty$ is the asymptotic adaptive Fisher information per channel use \cite{ZhouJiang2021}. They appear in Chapters~\ref{gate:chapter}, \ref{chn:chapter} and~\ref{gate:proofschapter}, and must not be confused with the fidelities, which carry no such subscript.
+\end{itemize}
+
+\section{Logarithms}\label{nt:sec:log}
+
+All logarithms in this book are natural, and entropies are measured in nats. Chapters~\ref{cont:chapter}, \ref{shA:chapter} and~\ref{shB:chapter} write $\log$, and Chapters~\ref{gate:chapter}, \ref{chn:chapter} and~\ref{gate:proofschapter} write $\ln$. Chapter~\ref{cont:chapter} does not state the base, but its estimates use the natural logarithm, for instance in the factor $e^{\pm d}$ attached to the Thompson metric. The binary entropy $h(x)=-x\log x-(1-x)\log(1-x)$ in the continuity bounds for the Stein exponent is also in nats.
+
+\section{Differences between the chapters}\label{nt:sec:differences}
+
+The chapters can be read independently, and their conventions differ in the places listed in Table~\ref{nt:tab:differences}. None of these differences affects a statement that is invariant under the relevant change; for example, every result about the spectrum of a Choi matrix holds in both tensor orderings. Table~\ref{nt:tab:collisions} lists the symbols that have different meanings in different chapters. Within a chapter, every symbol has one meaning unless the chapter says otherwise.
+
+{\footnotesize
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.2}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.15\linewidth}>{\raggedright\arraybackslash}p{0.18\linewidth}>{\raggedright\arraybackslash}p{0.18\linewidth}>{\raggedright\arraybackslash}p{0.18\linewidth}>{\raggedright\arraybackslash}p{0.18\linewidth}}
+\caption{Conventions of Chapters~\ref{gate:chapter} and~\ref{cont:chapter}--\ref{gate:proofschapter}. Chapters~\ref{gate:chapter} and~\ref{gate:proofschapter}, on noisy gates, share the last column. Chapter~\ref{shB:chapter} works with states only and follows Chapter~\ref{shA:chapter} where the two overlap.}\label{nt:tab:differences}\\
+\toprule
+ & Ch.~\ref{cont:chapter} (continuity) & Ch.~\ref{shA:chapter}--\ref{shB:chapter} (shadows) & Ch.~\ref{chn:chapter} (Chernoff) & Ch.~\ref{gate:chapter} and~\ref{gate:proofschapter} (noisy gates)\\
+\midrule
+\endfirsthead
+\toprule
+ & Ch.~\ref{cont:chapter} & Ch.~\ref{shA:chapter}--\ref{shB:chapter} & Ch.~\ref{chn:chapter} & Ch.~\ref{gate:chapter} and~\ref{gate:proofschapter}\\
+\midrule
+\endhead
+\midrule
+\multicolumn{5}{r}{\emph{continued on the next page}}\\
+\endfoot
+\bottomrule
+\endlastfoot
+Choi ordering & output first: $J(\Phi)=\sum_{ab}\Phi(E_{ab})\otimes E_{ab}$ on $\mathcal Y\otimes\mathcal X$ (as in \cite{watrous2018theory}) & \emph{input first}: $J(\Phi)=\sum_{ij}|i\rangle\langle j|\otimes\Phi(|i\rangle\langle j|)$ on $\mathcal X\otimes\mathcal Y$ (Ch.~\ref{shA:chapter}); no Choi matrices in Ch.~\ref{shB:chapter} & output first: $J(\Phi)=\sum_{ij}\Phi(e_ie_j^*)\otimes e_ie_j^*$ & output first: $J(\Phi)=\sum_{ij}\Phi(|i\rangle\langle j|)\otimes|i\rangle\langle j|$\\
+Choi normalisation & unnormalized; $\Tr_{\mathcal Y}J(\Phi)=\Phi^*(\mathbf 1)^\top$ & unnormalized; $J(\Phi)\le d_{\mathcal X}\mathbf 1$ for channels & unnormalized & unnormalized, $\Tr J=d_X$; also the Choi state $J/d_X$ with floor $\tilde\lambda=\lambda/d_X$\\
+Vectorisation & $\vectorise(E_{ab})=e_a\otimes e_b$ (rows stacked), $\vectorise:\mathrm L(\mathcal X,\mathcal Y)\to\mathcal Y\otimes\mathcal X$; $J(A\cdot B^*)=\vectorise(A)\vectorise(B)^*$ & not fixed; the frame $W$ is taken from Ch.~\ref{cont:chapter} (Proposition~\ref{shA:prop:channelTlift}); with input-first Choi matrices the matching vectorisation stacks columns & $\vectorise(yx^*)=y\otimes\overline x$, i.e.\ $\vectorise(e_ie_j^*)=e_i\otimes e_j$, $\vectorise:\mathrm L(\mathcal X,\mathcal Y)\to\mathcal Y\otimes\mathcal X$ (rows stacked, as in Ch.~\ref{cont:chapter}) & $\vectorise(A)=\sum_{ij}A_{ij}|i\rangle|j\rangle$ (rows stacked, as in Ch.~\ref{cont:chapter}); used only in Ch.~\ref{gate:proofschapter}\\
+Uhlmann fidelity of states & root: $F(\rho,\xi)=\|\sqrt\rho\sqrt\xi\|_1$ & not used (the testing-region fidelity is $Q^{\mathrm{HT}}_{1/2}$) & \emph{squared}: $F(\rho,\sigma)=\|\rho^{1/2}\sigma^{1/2}\|_1^2$ & root: $F_{\mathrm U}$ (channel version, minimised over inputs)\\
+Geometric fidelity & $\widehat F$, root form (Katariya--Wilde use its square); also $F_M=\tr(\rho\#\xi)$ for states & $\widehat F$ as in Ch.~\ref{cont:chapter} & $\widehat F=\widehat Q_{1/2}$, root form; converse $-2\ln\widehat Q_{1/2}$ & $\widehat F$, root form; converse $-2\ln\widehat F$\\
+Logarithm & $\log$, base not stated; natural & $\log$, natural (stated) & $\ln$ & $\ln$\\
+Diamond norm & $|||\cdot|||_1$ (cb trace norm), $d_{\mathrm{cb}}$ for distances; unnormalized & $\|\cdot\|_\diamond$, unnormalized; moduli in $\varepsilon=\frac12\|\Phi-\Phi'\|_\diamond$ & $\|\cdot\|_\diamond$, unnormalized & $\|\cdot\|_\diamond$, unnormalized; Choi-floor law in $\epsilon=\|\Psi-\Psi'\|_\diamond$, Stein modulus in $\epsilon'=\frac12\|\Phi-\Phi'\|_\diamond$\\
+Derivative & $T$: ARN derivative of $\Phi$ w.r.t.\ $\Omega=\Phi+\Psi$; $\Psi_K$; frame $W$ with $r$ columns; $g_\sigma$, $h_f$; relative derivatives $T_i$ for different sums & states: $T=\omega^{-1/2}\rho\,\omega^{-1/2}$ (reverse test), modular derivative $\widetilde T=\Delta(\mathbf 1+\Delta)^{-1}$; channels: $T$, $W$ as in Ch.~\ref{cont:chapter} & $T=\sum_\ell\tau_\ell P_\ell$; $\Psi_K$; levels $\Omega_\ell=\Psi_{P_\ell}$, $S_\ell=\Omega_\ell^*(\mathbf 1)$; $g_s$; steps $\lambda_\ell=\ln\frac{\tau_\ell}{1-\tau_\ell}$ & in Ch.~\ref{gate:proofschapter} only: $T$ with frame $W$, $WW^\dagger=J(\Phi+\Psi)$; $b_s$ for $g_s$; levels $\tau_\ell$, $S_\ell$, $B_s$ and $\Lambda$ as in Ch.~\ref{chn:chapter}\\
+$\widehat C$ & --- & --- & $-\ln\min_s\lambda_{\min}(B_s)$, minimum over $s\in[0,1]$ & $-\ln\inf_s\widehat Q_s$, infimum over $s\in(0,1)$, in Ch.~\ref{gate:proofschapter}; minimum over $s\in[0,1]$ in Ch.~\ref{gate:chapter} (same value)\\
+Exponents & --- & $\zeta(\Phi,\Psi)$ & $\xi_{\mathrm{adapt}}$, $\xi_{\mathrm{prod}}$, $\xi_{\mathrm{QC}}$ & $\zeta(\Phi\|\Psi)$, $\xi(\Phi,\Psi)$, $\xi_{\mathrm{prod}}$\\
+Identity, trace, adjoint & $\mathbf 1_{\mathcal V}$ (space always indicated), $\mathbf 1_{\mathrm L(\mathcal X)}$ for the identity map; $\tr$, $\Tr_{\mathcal Y}$; $A^*$ & $\mathbf 1$, $\mathrm{id}$; $\Tr$; $A^*$ & $\mathbf 1$, $\mathrm{id}$; $\tr$, $\Tr_{\mathcal Y}$; $A^*$ & $\mathbf 1$, $\mathrm{id}$; $\Tr$, $\Tr_{\mathcal Y}$; $A^\dagger$\\
+Spaces and dimensions & $\mathrm L(\mathcal X)$, $\mathrm D(\mathcal X)$, $\mathrm{CP}(\mathcal X,\mathcal Y)$, $\mathrm C(\mathcal X,\mathcal Y)$; $\dim\mathcal X$, $n_{\mathcal Y}=\dim\mathcal Y$ & $\mathcal B(\mathcal X)$ for the operators; $d_{\mathcal X}$, $d_{\mathcal Y}$ & $\mathrm L$, $\mathrm D$, $\mathrm C(\mathcal X,\mathcal Y)$; $d=\dim\mathcal X$ & $d_X$, $d_Y$; $d=2^n$ for $n$ qubits\\
+Spelling & British & British & American & American\\
+\end{longtable}
+}
+
+{\footnotesize
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.2}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.09\linewidth}>{\raggedright\arraybackslash}p{0.83\linewidth}}
+\caption{Symbols with different meanings in different chapters.}\label{nt:tab:collisions}\\
+\toprule
+Symbol & Meanings\\
+\midrule
+\endfirsthead
+\toprule
+Symbol & Meanings\\
+\midrule
+\endhead
+\midrule
+\multicolumn{2}{r}{\emph{continued on the next page}}\\
+\endfoot
+\bottomrule
+\endlastfoot
+$\sigma$ & a Kubo--Ando connection or mean in Ch.~\ref{cont:chapter} (states there are $\rho,\xi$); a state in Ch.~\ref{gate:chapter} and~\ref{shA:chapter}--\ref{gate:proofschapter}\\
+$\xi$ & a state in Ch.~\ref{cont:chapter} (and occasionally in proofs of Ch.~\ref{shA:chapter}); the adaptive Chernoff exponent in Ch.~\ref{gate:chapter}, \ref{chn:chapter} and~\ref{gate:proofschapter}\\
+$\lambda$ & the Choi floor in Section~\ref{cont:sec:four maps} and Ch.~\ref{gate:chapter} and~\ref{gate:proofschapter}; eigenvalues in the structure theorem of Ch.~\ref{shA:chapter} (Theorem~\ref{shA:thm:structure}); the log-likelihood steps $\lambda_\ell$ in Ch.~\ref{chn:chapter}\\
+$\nu$ & $\nu(\Omega)$, the least norm of a unit combination of Kraus operators, in Ch.~\ref{cont:chapter} and~\ref{chn:chapter}; the Frenkel measure in Ch.~\ref{shB:chapter}; the laws $\nu_\Phi,\nu_\Psi$ in Theorem~\ref{chn:thm:exact}\\
+$\tau$ & the in-pair derivative distance in Ch.~\ref{cont:chapter} (pairs with different sums) and Theorem~\ref{chn:thm:robust}; the eigenvalues (levels) $\tau_\ell$ of $T$ in Ch.~\ref{chn:chapter} and~\ref{gate:proofschapter}\\
+$\delta$ & the relative distance of two pairs in Ch.~\ref{cont:chapter} and~\ref{chn:chapter}; the distance between nearby channels in the local comparisons of Ch.~\ref{chn:chapter}; a coherent miscalibration angle in Ch.~\ref{gate:chapter} and~\ref{gate:proofschapter}\\
+$\eta$ & the size of a Choi perturbation in Theorem~\ref{cont:thm:choi floor} and a regularisation parameter in Ch.~\ref{cont:chapter}; the error profile $\eta(\gamma)=1-e(\gamma)$ in Ch.~\ref{shA:chapter}--\ref{shB:chapter}; a target accuracy in Ch.~\ref{gate:chapter} and~\ref{gate:proofschapter}\\
+$\kappa$ & the condition number of $J(\Psi)$ in Ch.~\ref{gate:chapter}, \ref{shA:chapter} and~\ref{gate:proofschapter}; a derivative radius in Corollary~\ref{chn:cor:uncertain}; a parameter of the operator layer-cake inequality in Ch.~\ref{shB:chapter}\\
+$\mu$ & the testing-region shadow $\mu=e''$ in Ch.~\ref{shA:chapter}--\ref{shB:chapter}; the program overlap $\mu_*$ in Ch.~\ref{gate:chapter}, \ref{chn:chapter} and~\ref{gate:proofschapter}\\
+$r$ & the number of Kraus operators of the sum in Ch.~\ref{cont:chapter} and~\ref{chn:chapter}; the relative radius $r=d_X\epsilon/(2\lambda)$ in Ch.~\ref{gate:chapter} and~\ref{gate:proofschapter}\\
+$d$ & a diamond distance in Ch.~\ref{cont:chapter} (e.g.\ Theorem~\ref{cont:thm:singular rate}); $\dim\mathcal X$ in Ch.~\ref{chn:chapter}; the dimension $2^n$ of $n$ qubits in Ch.~\ref{gate:chapter} and~\ref{gate:proofschapter}\\
+$h$ & the functions $h_f$, $h_\alpha$ of the derivative in Ch.~\ref{cont:chapter} ($h_\alpha$ is the $g_\alpha$ of Ch.~\ref{chn:chapter} and the $b_\alpha$ of Ch.~\ref{gate:proofschapter}); the binary entropy in Ch.~\ref{gate:chapter}, \ref{shA:chapter} and~\ref{gate:proofschapter}\\
+$F$ & a fidelity (root or squared, see Table~\ref{nt:tab:differences}); with a subscript RLD, SLD, BKM or $\infty$, a Fisher information (Ch.~\ref{gate:chapter}, \ref{chn:chapter} and~\ref{gate:proofschapter})\\
+$T$ & the ARN derivative; $T_1$ also denotes the energy-relaxation time in the phrase ``pure $T_1$ decay'' in Ch.~\ref{gate:chapter} and~\ref{gate:proofschapter}\\
+$\Lambda$ & the largest absolute log-likelihood step over ambiguous levels in Ch.~\ref{chn:chapter} and~\ref{gate:proofschapter}; a channel (a simulator or a post-processing) elsewhere in the same chapters\\
+\end{longtable}
+}
+
+\endgroup

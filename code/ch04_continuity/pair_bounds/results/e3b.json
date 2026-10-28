@@ -1,0 +1,160 @@
+{
+ "rows": [
+  {
+   "r": 2,
+   "delta_target": 0.01,
+   "delta": 0.010001251422555419,
+   "gamma": 0.004508984024785423,
+   "tau": 0.022703462272982734,
+   "tau_over_delta": 2.2700621466010276,
+   "ratio_delta_bound": 0.8024275949138762,
+   "ratio_gamma_bound": 0.8025555333858266,
+   "commuting_bound_ratio": 1.112327611027531
+  },
+  {
+   "r": 2,
+   "delta_target": 0.05,
+   "delta": 0.050035715177839175,
+   "gamma": 0.030730929199406495,
+   "tau": 0.11810681267975506,
+   "tau_over_delta": 2.360450175639032,
+   "ratio_delta_bound": 0.8303559594286095,
+   "ratio_gamma_bound": 0.8329673992609851,
+   "commuting_bound_ratio": 1.062118275139761
+  },
+  {
+   "r": 2,
+   "delta_target": 0.1,
+   "delta": 0.6140705811576315,
+   "gamma": 0.3257760355074269,
+   "tau": 0.5404043513773947,
+   "tau_over_delta": 0.8800362172677888,
+   "ratio_delta_bound": NaN,
+   "ratio_gamma_bound": 0.2360318614129753,
+   "commuting_bound_ratio": -0.1003862427435003
+  },
+  {
+   "r": 2,
+   "delta_target": 0.2,
+   "delta": 0.5320264749799577,
+   "gamma": 0.41787071359794964,
+   "tau": 0.43304581163860784,
+   "tau_over_delta": 0.8139553800493131,
+   "ratio_delta_bound": NaN,
+   "ratio_gamma_bound": 0.1580248480864936,
+   "commuting_bound_ratio": -0.026068121613951282
+  },
+  {
+   "r": 2,
+   "delta_target": 0.3,
+   "delta": 0.29976420503587875,
+   "gamma": 0.1344713812893534,
+   "tau": 0.678573375400222,
+   "tau_over_delta": 2.2636904740477726,
+   "ratio_delta_bound": 0.6405512527392349,
+   "ratio_gamma_bound": 0.7708480121626937,
+   "commuting_bound_ratio": 0.4532718616236642
+  },
+  {
+   "r": 2,
+   "delta_target": 0.4,
+   "delta": 0.9016209765502196,
+   "gamma": 0.4493051936070271,
+   "tau": 0.7404242959523516,
+   "tau_over_delta": 0.8212145848528964,
+   "ratio_delta_bound": NaN,
+   "ratio_gamma_bound": 0.12738735459813777,
+   "commuting_bound_ratio": -0.3298170035259034
+  },
+  {
+   "r": 2,
+   "delta_target": 0.45,
+   "delta": 0.44825848616096037,
+   "gamma": 0.21449283718709503,
+   "tau": 0.9697685825394434,
+   "tau_over_delta": 2.1634137723635187,
+   "ratio_delta_bound": 0.3388500287239743,
+   "ratio_gamma_bound": 0.6909267959766637,
+   "commuting_bound_ratio": 0.11193830364231595
+  },
+  {
+   "r": 3,
+   "delta_target": 0.01,
+   "delta": 0.010155780033168747,
+   "gamma": 0.005963294704436158,
+   "tau": 0.024140937195088412,
+   "tau_over_delta": 2.377063811567815,
+   "ratio_delta_bound": 0.8402455909487624,
+   "ratio_gamma_bound": 0.840359196028099,
+   "commuting_bound_ratio": 1.1643909685888192
+  },
+  {
+   "r": 3,
+   "delta_target": 0.05,
+   "delta": 0.6775123544224576,
+   "gamma": 0.41241562277453614,
+   "tau": 0.6616295660023627,
+   "tau_over_delta": 0.9765571973464098,
+   "ratio_delta_bound": NaN,
+   "ratio_gamma_bound": 0.1952056424580587,
+   "commuting_bound_ratio": -0.17335096732915778
+  },
+  {
+   "r": 3,
+   "delta_target": 0.1,
+   "delta": 0.10005348128663606,
+   "gamma": 0.05291637452762691,
+   "tau": 0.2317687050943315,
+   "tau_over_delta": 2.3164481846499068,
+   "ratio_delta_bound": 0.8024233033071942,
+   "ratio_gamma_bound": 0.8143886271989973,
+   "commuting_bound_ratio": 0.9264553872306218
+  },
+  {
+   "r": 3,
+   "delta_target": 0.2,
+   "delta": 0.6410236820596575,
+   "gamma": 0.259127931678765,
+   "tau": 0.871714662031178,
+   "tau_over_delta": 1.359879028541181,
+   "ratio_delta_bound": NaN,
+   "ratio_gamma_bound": 0.411183789863923,
+   "commuting_bound_ratio": -0.1917751477605875
+  },
+  {
+   "r": 3,
+   "delta_target": 0.3,
+   "delta": 0.5122292019780273,
+   "gamma": 0.31976509661758173,
+   "tau": 0.735713378569873,
+   "tau_over_delta": 1.4362972195432002,
+   "ratio_delta_bound": NaN,
+   "ratio_gamma_bound": 0.3903853239959242,
+   "commuting_bound_ratio": -0.017564768798272883
+  },
+  {
+   "r": 3,
+   "delta_target": 0.4,
+   "delta": 0.3989962930331802,
+   "gamma": 0.21950597915889103,
+   "tau": 0.8963080992271513,
+   "tau_over_delta": 2.2464070841696144,
+   "ratio_delta_bound": 0.47865331306263215,
+   "ratio_gamma_bound": 0.713596103340949,
+   "commuting_bound_ratio": 0.22689544285765587
+  },
+  {
+   "r": 3,
+   "delta_target": 0.45,
+   "delta": 0.4482627867988923,
+   "gamma": 0.2792475466524976,
+   "tau": 0.9673558629110939,
+   "tau_over_delta": 2.1580106388467315,
+   "ratio_delta_bound": 0.33799046867881694,
+   "ratio_gamma_bound": 0.6328912258044835,
+   "commuting_bound_ratio": 0.11164945651227196
+  }
+ ],
+ "n_violations": 0,
+ "note": "local search (Nelder-Mead + Powell, 12/6 restarts); values are lower bounds on the sup"
+}

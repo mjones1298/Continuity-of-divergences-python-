@@ -1,0 +1,27 @@
+name: Build PDF
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v5
+
+      - name: Compile main.tex with latexmk (pdflatex + bibtex)
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: main.tex
+          # .latexmkrc in the repository root selects pdflatex and bibtex.
+          args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
+
+      - name: Upload main.pdf
+        uses: actions/upload-artifact@v4
+        with:
+          name: monograph-pdf
+          path: main.pdf
+          if-no-files-found: error

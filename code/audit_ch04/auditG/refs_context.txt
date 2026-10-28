@@ -1,0 +1,499 @@
+60	[in sec:intro]	impossibility corollary=3.3	_1,\Psi_1)=0$ and $\widehat{F}(\Phi_2,\Psi_2)=1$ (Corollary~\ref{impossibility corollary}); on the same pairs
+60	[in sec:intro]	maxf impossibility=5.14	gence with $f(1)=0$ jumps by $f(0^+)+f'(\infty)$ (Corollary~\ref{maxf impossibility}).
+62	[in sec:intro]	thm:arveson=2.2	ctorise(V_k)$. By Arveson's Radon--Nikodym theorem (Theorem~\ref{thm:arveson}), $\Phi(X)=\sum_{k,
+62	[in sec:intro]	effect theorem=2.5	op$ on the environment of its Stinespring dilation (Theorem~\ref{effect theorem}). By an identity es
+62	[in sec:intro]	fundamental principle=2.15	,\sigma\,(1-t)$ for every Kubo--Ando mean $\sigma$ (Theorem~\ref{fundamental principle}), so all quantities
+62	[in sec:intro]	main theorem=4.6	ll quantities above are functions of $T$. Hence, by Theorem~\ref{main theorem},
+66	[in eq:intro fidelity]	Modulus of continuity results=4.5	pha\in(0,1)$, and bounded maximal $f$-divergences (Theorems~\ref{Modulus of continuity results}, \ref{thm:renyi con
+66	[in eq:intro fidelity]	thm:renyi continuity=5.5	-divergences (Theorems~\ref{Modulus of continuity results}, \ref{thm:renyi continuity}, \ref{thm:maxf}). A
+66	[in eq:intro fidelity]	thm:maxf=5.13	Modulus of continuity results}, \ref{thm:renyi continuity}, \ref{thm:maxf}). As $\nu(\Omega)^2
+66	[in eq:intro fidelity]	thm:two sided=8.4	t operator norm of a unit combination of the $V_k$ (Theorem~\ref{thm:two sided}), $\widehat{F}$ is 
+66	[in eq:intro fidelity]	cor:cb continuity=8.6	(\mathbf{1}_{\mathcal{Y}})\|_\infty/\nu(\Omega)$ (Corollary~\ref{cor:cb continuity}); in the counterexa
+68	[in eq:intro fidelity]	thm:dichotomy=12.4	On pairs of completely positive maps, Theorem~\ref{thm:dichotomy} shows exactly where
+72	[in eq:intro dichotomy]	cor:channels dichotomy=12.6	cdot)U'^*$, $U'\notin\mathbb{C}U$, however close (Corollary~\ref{cor:channels dichotomy}).
+74	[in eq:intro dichotomy]	thm:unbounded=6.7	$ whose constants blow up as $\epsilon\downarrow0$ (Theorem~\ref{thm:unbounded}, Corollaries~\ref{c
+74	[in eq:intro dichotomy]	cor:BS=6.11	silon\downarrow0$ (Theorem~\ref{thm:unbounded}, Corollaries~\ref{cor:BS} and~\ref{cor:renyi 
+74	[in eq:intro dichotomy]	cor:renyi large alpha=6.12	 (Theorem~\ref{thm:unbounded}, Corollaries~\ref{cor:BS} and~\ref{cor:renyi large alpha}). Every maximal $f$
+74	[in eq:intro dichotomy]	thm:extended continuity=7.6	ntinuous in $T$ with values in $(-\infty,+\infty]$ (Theorem~\ref{thm:extended continuity}).
+75	[in eq:intro dichotomy]	sec:loewner=9	n a factor $3$ of optimal, and in many cases exact (Section~\ref{sec:loewner}).
+76	[in eq:intro dichotomy]	thm:four maps=10.4	distance relative to $\Phi_1+\Psi_1+\Phi_2+\Psi_2$ (Theorem~\ref{thm:four maps}, Corollary~\ref{cor
+76	[in eq:intro dichotomy]	cor:universal=10.7	si_1+\Phi_2+\Psi_2$ (Theorem~\ref{thm:four maps}, Corollary~\ref{cor:universal}). Support changes, 
+76	[in eq:intro dichotomy]	thm:different supports=11.3	ter through the Lebesgue decomposition of the sums (Theorem~\ref{thm:different supports}).
+79	[in eq:intro dichotomy]	lipschitz inequality=4.1	Raginsky2003} gave its Kraus form, the upper bound of Lemma~\ref{lipschitz inequality} and a dimension-dep
+79	[in eq:intro dichotomy]	sec:all f=7	t eigenvalue of his divergence of the adjoint maps (Section~\ref{sec:all f}). Matsumoto \cite{m
+81	[in eq:intro dichotomy]	sec:prelim=2	Sections~\ref{sec:prelim}--\ref{sec:fidelity}
+81	[in eq:intro dichotomy]	sec:fidelity=3	Sections~\ref{sec:prelim}--\ref{sec:fidelity} give preliminaries 
+81	[in eq:intro dichotomy]	sec:norms=4	delity} give preliminaries and the counterexample, Sections~\ref{sec:norms}--\ref{sec:all f} co
+81	[in eq:intro dichotomy]	sec:all f=7	iminaries and the counterexample, Sections~\ref{sec:norms}--\ref{sec:all f} continuity in $T$, 
+81	[in eq:intro dichotomy]	sec:four maps=8	sec:norms}--\ref{sec:all f} continuity in $T$, and Sections~\ref{sec:four maps}--\ref{sec:dichotomy
+81	[in eq:intro dichotomy]	sec:dichotomy=12	all f} continuity in $T$, and Sections~\ref{sec:four maps}--\ref{sec:dichotomy} the diamond norm, e
+120	[in thm:arveson]	lem:factor=2.1	 \cite{Choi1975} $0\leq J(\Psi)\leq J(\Phi)=WW^*$, so Lemma~\ref{lem:factor} yields a unique $T$
+122	[in thm:arveson]	lem:factor=2.1	Lemma~\ref{lem:factor}. Conversely, if $0\
+143	[in thm:arveson]	lem:nu=8.2	he corresponding map; its properties are collected in Lemma~\ref{lem:nu} and Theorem~\ref{th
+143	[in thm:arveson]	thm:two sided=8.4	 properties are collected in Lemma~\ref{lem:nu} and Theorem~\ref{thm:two sided} in Section~\ref{sec
+143	[in thm:arveson]	sec:four maps=8	mma~\ref{lem:nu} and Theorem~\ref{thm:two sided} in Section~\ref{sec:four maps}.
+175	[in rem:phys-effect]	lem:hf extended=7.2	t h_f(t)\,d(\mathbb{P}+\mathbb{Q})$, with $h_f$ as in Lemma~\ref{lem:hf extended}; by analogy, Theore
+175	[in rem:phys-effect]	thm:all f=7.5	h_f$ as in Lemma~\ref{lem:hf extended}; by analogy, Theorem~\ref{thm:all f}(b) is its channel v
+183	[in rem:phys-effect]	sec:unbounded=6	e divergences without considering the techniques of Section~\ref{sec:unbounded}.
+256	[in kubo-ando]	kubo-ando=2.12	We then see by combining Theorems~\ref{kubo-ando} and~\ref{Loewner} t
+256	[in kubo-ando]	Loewner=2.11	We then see by combining Theorems~\ref{kubo-ando} and~\ref{Loewner} that every nonnegat
+278	[in fundamental principle]	lem:factor=2.1	^+=(W^*W)^{-1}W^*$ and $P=WW^+$ be as in the proof of Lemma~\ref{lem:factor}, so that $W^+W=\mat
+286	[in eq:W transfer]	eq:W transfer=2.1	 by $W$ yields $M=PMP\leq W(A\,\sigma\,B)W^*$, which proves \eqref{eq:W transfer}.
+288	[in eq:W transfer]	thm:arveson=2.2	By the proof of Theorem~\ref{thm:arveson}, $J(\Phi)=WTW^*$ an
+288	[in eq:W transfer]	eq:W transfer=2.1	=WTW^*$ and $J(\Psi)=W(\mathbf{1}_{\mathbb{C}^r}-T)W^*$, so \eqref{eq:W transfer} gives $J(\Phi)\,\si
+288	[in eq:W transfer]	kubo-ando=2.12	hbb{C}^r}$ are positive definite and commute, so by Theorem~\ref{kubo-ando} and the functional 
+290	[in eq:W transfer]	thm:arveson=2.2	ap of $\Omega$ with ARN derivative $g_\sigma(T)$ by Theorem~\ref{thm:arveson}. The statement abou
+294	[in rem:connections]	fundamental principle=2.15	The proof of Theorem~\ref{fundamental principle} uses only monotonic
+294	[in rem:connections]	kubo-ando=2.12	sigma$, with representing function $f_\sigma$ as in Theorem~\ref{kubo-ando}. Put
+300	[in rem:connections]	eq:W transfer=2.1	\item \eqref{eq:W transfer} holds for the conne
+365	[in impossibility proposition]	lambda min formula=3.1	nct image property \cite{cree2020fidelity}, and Proposition~\ref{lambda min formula} gives $\widehat{F}(
+374	[in impossibility proposition]	impossibility proposition=3.2	Proposition~\ref{impossibility proposition} suggests something 
+380	[in impossibility corollary]	impossibility proposition=3.2	\Phi_1,\Psi_1,\Phi_2,\Psi_2$ as in the proof of Proposition~\ref{impossibility proposition}. That proof gives $
+397	[in impossibility corollary]	impossibility proposition=3.2	The mechanism behind Proposition~\ref{impossibility proposition} and Corollary~\ref{
+397	[in impossibility corollary]	impossibility corollary=3.3	d Proposition~\ref{impossibility proposition} and Corollary~\ref{impossibility corollary} is known at the lev
+397	[in impossibility corollary]	sec:dichotomy=12	{Matsumoto2018newf}) but in general not continuous. Section~\ref{sec:dichotomy} determines exactly 
+435	[in lipschitz inequality]	effect theorem=2.5	 which proves the first inequality. For the second, Theorem~\ref{effect theorem} gives \[\Psi_{|T_1-
+474	[in K6]	fundamental principle=2.15	 $\Phi_1$ and $\Phi_2$ with respect to $\Omega$. By Theorem~\ref{fundamental principle}, $\Phi_i\#\Psi_i=\P
+474	[in K6]	lipschitz inequality=4.1	tal principle}, $\Phi_i\#\Psi_i=\Psi_{g_\#(T_i)}$, so Lemma~\ref{lipschitz inequality} (applied with $\Phi
+495	[in Modulus of continuity results]	fundamental principle=2.15	        By Theorem~\ref{fundamental principle},
+500	[in Modulus of continuity results]	lipschitz inequality=4.1	ince $g_\sigma(T_1)$ and $g_\sigma(T_2)$ are effects, Lemma~\ref{lipschitz inequality} gives 
+516	[in main theorem]	lambda min formula=3.1	$K=g_\#(T_1)-g_\#(T_2)$, which is Hermitian. By Proposition~\ref{lambda min formula} and Theorem~\ref{fu
+516	[in main theorem]	fundamental principle=2.15	mitian. By Proposition~\ref{lambda min formula} and Theorem~\ref{fundamental principle},
+523	[in main theorem]	K6=4.3	(\mathbf{1}_{\mathcal{Y}})\|_\infty$. Hence, by Proposition~\ref{K6}(2),
+529	[in main theorem]	main theorem=4.6	What Theorem~\ref{main theorem} says is that if two
+529	[in main theorem]	impossibility corollary=3.3	fference of their ARN derivatives. Coming back to Corollary~\ref{impossibility corollary}, in the Kraus decom
+530	[in main theorem]	main theorem=4.6	athbf{1}_{\mathcal{X}},\] so the right-hand side of Theorem~\ref{main theorem} equals
+536	[in rem:phys-readout]	rem:phys-effect=2.6	By Remark~\ref{rem:phys-effect}, pairs with the sam
+536	[in rem:phys-readout]	main theorem=4.6	mathrm{spec}(T)\subseteq[0,1]$. So, for every pair, Theorem~\ref{main theorem} bounds the change o
+536	[in rem:phys-readout]	sec:all f=7	$: imperfect readout gives the two-sided bounds of Sections~\ref{sec:all f} and~\ref{sec:loewne
+536	[in rem:phys-readout]	sec:loewner=9	 gives the two-sided bounds of Sections~\ref{sec:all f} and~\ref{sec:loewner}.
+544	[in modulus to zero]	Modulus of continuity results=4.5	 that $\omega_g=\omega^{[0,1]}_g$ is the modulus of Theorem~\ref{Modulus of continuity results}; for $\epsilon\in(0
+546	[in modulus to zero]	lem:maxf decomposition=5.12	Lemma~\ref{lem:maxf decomposition}.
+563	[in modulus to zero]	thm:maxf=5.13	inuous on $[0,1]$ by the first part of the proof of Theorem~\ref{thm:maxf}.
+578	[in bilipschitz]	lipschitz inequality=4.1	The upper bound follows from the proof of Lemma~\ref{lipschitz inequality} with $\Phi=\Omega$,
+593	[in bilipschitz]	main theorem=4.6	We record the estimate used in the proof of Theorem~\ref{main theorem} in the form in whic
+596	[in lem:partial trace]	bilipschitz=4.9	Let $\Omega$, $V_1,\dots,V_r$ and $W$ be as in Proposition~\ref{bilipschitz}. For Hermitian $N_1
+608	[in sec:general]	impossibility corollary=3.3	The problem presented in Corollary~\ref{impossibility corollary} is not unique to th
+608	[in sec:general]	range theorem=5.6	intersecting ranges will have this problem as well; Theorem~\ref{range theorem} below characterises
+641	[in renyi closed form]	lambda min formula=3.1	 $\alpha\in(0,1)$. For the second, the proof of Proposition~\ref{lambda min formula} applies verbatim wi
+645	[in renyi closed form]	impossibility proposition=3.2	ot much of a stretch to see that the problem of Proposition~\ref{impossibility proposition} extends to $\wideha
+645	[in renyi closed form]	range theorem=5.6	ever the ranges of $A$ and $B$ intersect trivially (Theorem~\ref{range theorem} below). We will aga
+646	[in renyi closed form]	fundamental principle=2.15	Psi)\#_\alpha J(\Phi)=J(\Phi)\#_{1-\alpha}J(\Psi)$, Theorem~\ref{fundamental principle} applied to the mean
+695	[in thm:renyi continuity]	renyi closed form=5.3	        By Lemma~\ref{renyi closed form}, $\widehat{Q}_\alph
+695	[in thm:renyi continuity]	main theorem=4.6	Tr_{\mathcal{Y}}(Wh_\alpha(T_i)W^*))$. The proof of Theorem~\ref{main theorem} now applies verbati
+695	[in thm:renyi continuity]	K6=4.3	verbatim with $g_\#$ replaced by $h_\alpha$ and Proposition~\ref{K6}(2) replaced by Lemm
+695	[in thm:renyi continuity]	holder lemma=5.4	by $h_\alpha$ and Proposition~\ref{K6}(2) replaced by Lemma~\ref{holder lemma}. 
+698	[in thm:renyi continuity]	impossibility proposition=3.2	e describe in general terms when the problem of Proposition~\ref{impossibility proposition} occurs. Let $\sigma
+717	[in range theorem]	range theorem=5.6	}(0)=0$, where $\sigma$ satisfies the hypothesis of Theorem~\ref{range theorem}(1). Then $\mathsf{D
+717	[in range theorem]	lambda min formula=3.1	 $\range(J(\Phi))\cap\range(J(\Psi))=\{0\}$. By Proposition~\ref{lambda min formula} this applies to $\w
+717	[in range theorem]	renyi closed form=5.3	hsf{H}(X)=\lambda_{\min}(\Tr_{\mathcal{Y}}X)$, and by Lemma~\ref{renyi closed form} it applies to $\wid
+719	[in range theorem]	fundamental principle=2.15	-t}{t}\big)>0$ for $0<t<1$. Since $W$ is injective, Theorem~\ref{fundamental principle} shows that $J(\Phi)
+719	[in range theorem]	impossibility proposition=3.2	ite{Kian2026sharpness}. The replacement maps of Proposition~\ref{impossibility proposition} are of exactly this
+719	[in range theorem]	main theorem=4.6	is kind: in the Kraus decomposition described after Theorem~\ref{main theorem}, the ARN derivative
+733	[in def:maxf]	fundamental principle=2.15	imits $f(0^+)$ and $f'(\infty)$ (notation as before Theorem~\ref{fundamental principle}) exist in $(-\infty
+733	[in def:maxf]	lem:hf extended=7.2	fundamental principle}) exist in $(-\infty,+\infty]$ (Lemma~\ref{lem:hf extended}).
+787	[in def:maxf maps]	impossibility proposition=3.2	 find under certain circumstances, the issue of Proposition~\ref{impossibility proposition} rears its head. We 
+787	[in def:maxf maps]	thm:maxf=5.13	PitrikVirosztek2020}; the closed-form expression in Theorem~\ref{thm:maxf} extends those of \c
+819	[in thm:maxf]	lem:maxf decomposition=5.12	Let $f$ be as in Lemma~\ref{lem:maxf decomposition}. Let $\Omega\in \ma
+835	[in thm:maxf]	Modulus of continuity results=4.5	where $\omega_{h_f}$ is as in Theorem~\ref{Modulus of continuity results},
+841	[in thm:maxf]	lem:maxf decomposition=5.12	tegy of \cite[Lemma~5]{FangFawzi2021}. With $h$ as in Lemma~\ref{lem:maxf decomposition}, put
+849	[in thm:maxf]	modulus to zero=4.8	$\omega_{h_f}(\delta)\to0$ by Lemma~\ref{modulus to zero}.
+853	[in thm:maxf]	fundamental principle=2.15	$k(t)$ at $s=1-t$. Theorem~\ref{fundamental principle}, applied to the pai
+863	[in thm:maxf]	lambda min formula=3.1	invertible. As in the proof of Proposition~\ref{lambda min formula},
+869	[in thm:maxf]	lem:maxf decomposition=5.12	so Lemma~\ref{lem:maxf decomposition} gives
+878	[in thm:maxf]	lem:maxf decomposition=5.12	rho\in \mathrm{D}(\mathcal{X}\otimes\mathcal{X})$. By Lemma~\ref{lem:maxf decomposition}, $d$ is a linear fu
+911	[in thm:maxf]	thm:maxf=5.13	Theorem~\ref{thm:maxf} also explains how t
+911	[in thm:maxf]	impossibility proposition=3.2	\ref{thm:maxf} also explains how the problem of Proposition~\ref{impossibility proposition} arises for maximal 
+911	[in thm:maxf]	lem:maxf decomposition=5.12	y proposition} arises for maximal $f$-divergences. By Lemma~\ref{lem:maxf decomposition}, the connection $\s
+911	[in thm:maxf]	range theorem=5.6	tion $h$ with $h(0^+)=0$ and $h'(\infty)=0$, so, by Theorem~\ref{range theorem}, it vanishes on Cho
+914	[in maxf impossibility]	lem:maxf decomposition=5.12	Let $f$ be as in Lemma~\ref{lem:maxf decomposition} and let $\Phi,\Psi\
+918	[in maxf impossibility]	impossibility corollary=3.3	In particular, for the maps of Corollary~\ref{impossibility corollary} we have $\widehat{D
+921	[in maxf impossibility]	thm:maxf=5.13	Apply Theorem~\ref{thm:maxf} with $\Omega=\Phi+\
+925	[in maxf impossibility]	range theorem=5.6	ma_{h/h(1)}$ is a mean satisfying the hypothesis of Theorem~\ref{range theorem}(1); if $h\equiv0$ t
+927	[in maxf impossibility]	impossibility corollary=3.3	For the maps of Corollary~\ref{impossibility corollary}, the Choi ranges of
+927	[in maxf impossibility]	impossibility proposition=3.2	nd $\Psi_1$ intersect trivially by the proof of Proposition~\ref{impossibility proposition}, and $\Phi_1^*(\mat
+930	[in maxf impossibility]	impossibility corollary=3.3	maximal $f$-divergence exhibits the phenomenon of Corollary~\ref{impossibility corollary}, while Theorem~\ref
+930	[in maxf impossibility]	thm:maxf=5.13	n of Corollary~\ref{impossibility corollary}, while Theorem~\ref{thm:maxf}(b) shows that it is
+933	[in rem:normalisation]	maxf impossibility=5.14	on $f(1)=0$ is used only in the last statement of Corollary~\ref{maxf impossibility}. The proofs of Lemm
+933	[in rem:normalisation]	lem:maxf decomposition=5.12	 of Corollary~\ref{maxf impossibility}. The proofs of Lemma~\ref{lem:maxf decomposition}, of Theorem~\ref{th
+933	[in rem:normalisation]	thm:maxf=5.13	he proofs of Lemma~\ref{lem:maxf decomposition}, of Theorem~\ref{thm:maxf} and of the first st
+933	[in rem:normalisation]	maxf impossibility=5.14	orem~\ref{thm:maxf} and of the first statement of Corollary~\ref{maxf impossibility} do not use it. Thes
+938	[in sec:unbounded]	thm:maxf=5.13	Theorem~\ref{thm:maxf} requires both $f(0^
+938	[in sec:unbounded]	thm:maxf=5.13	ith $f(t)=(t-1)^2$. For these the function $h_f$ of Theorem~\ref{thm:maxf} is continuous on $[
+938	[in sec:unbounded]	thm:maxf=5.13	hat the closed form and the continuity estimates of Theorem~\ref{thm:maxf} persist under a bou
+938	[in sec:unbounded]	thm:arveson=2.2	 of $\Phi$ by linearly independent operators, as in Theorem~\ref{thm:arveson}, and let $T$ be the
+948	[in sec:unbounded]	def:maxf=5.8	}_f(\Phi\|\Psi)$ are defined by the formulas of Definitions~\ref{def:maxf} and~\ref{def:maxf m
+948	[in sec:unbounded]	def:maxf maps=5.9	e defined by the formulas of Definitions~\ref{def:maxf} and~\ref{def:maxf maps}; Lemma~\ref{lem:unb
+948	[in sec:unbounded]	lem:unb basic=6.4	f Definitions~\ref{def:maxf} and~\ref{def:maxf maps}; Lemma~\ref{lem:unb basic} below shows that th
+948	[in sec:unbounded]	def:maxf=5.8	ref{lem:unb basic} below shows that the limit in Definition~\ref{def:maxf} exists in $(-\infty
+979	[in def:unb perspective]	lem:unb congruence pd=6.1	ange(B)$ differ by a unitary on $\mathbb{C}^m$, so by Lemma~\ref{lem:unb congruence pd} the definition does
+989	[in lem:unb congruence]	def:unb perspective=6.2	assume $B\neq0$. With $U$, $A_0$ and $B_0$ as in Definition~\ref{def:unb perspective}, the operator $Y=CU
+989	[in lem:unb congruence]	def:unb perspective=6.2	(CBC^*)=\range(U')\supseteq\range(CAC^*)$. Using Definition~\ref{def:unb perspective} with the isometry $
+989	[in lem:unb congruence]	lem:unb congruence pd=6.1	{def:unb perspective} with the isometry $U'$ and then Lemma~\ref{lem:unb congruence pd},
+1014	[in lem:unb basic]	def:unb perspective=6.2	dentifying $\range(B)$ with $\mathbb{C}^m$ as in Definition~\ref{def:unb perspective}. The functional cal
+1023	[in lem:unb basic]	prop:lebesgue cp=7.1	s then relates to the Lebesgue decomposition of Proposition~\ref{prop:lebesgue cp}. 
+1025	[in lem:dmax]	thm:maxf=5.13	Let $\Omega$ and $W$ be as in Theorem~\ref{thm:maxf}, let $0\leq T\leq\m
+1033	[in lem:dmax]	thm:arveson=2.2	\big(c\mathbf{1}_{\mathbb{C}^r}-(1+c)T\big)W^*\] by Theorem~\ref{thm:arveson}. By Choi's theorem,
+1043	[in rem:phys-dmax]	rem:phys-readout=4.7	lon\Phi)$, the case $p_{01}=\epsilon$, $p_{10}=0$ of Remark~\ref{rem:phys-readout}, with derivative $(
+1046	[in rem:phys-dmax]	modulus to zero=4.8	 $\omega^{(\epsilon)}_g=\omega^{[0,1-\epsilon]}_g$ of Lemma~\ref{modulus to zero}, which tends to $0$
+1066	[in thm:unbounded]	lem:dmax=6.5	By Lemma~\ref{lem:dmax}, the hypotheses say
+1070	[in thm:unbounded]	lem:unb basic=6.4	ons to transform into the absolute continuity form of Lemma~\ref{lem:unb basic}(3). Let $c=(1-\epsi
+1070	[in thm:unbounded]	lem:dmax=6.5	on$. We can clearly then see that $\Phi\leq c\Psi$ by Lemma~\ref{lem:dmax}. We proceed in a si
+1072	[in thm:unbounded]	lem:unb basic=6.4	and $\range(\Phi_\rho)\subseteq\range(\Psi_\rho)$. By Lemma~\ref{lem:unb basic}(3), $d(\rho)=\tr\ma
+1074	[in thm:unbounded]	thm:arveson=2.2	divergences to partial traces of Choi relations. By Theorem~\ref{thm:arveson}, $J(\Phi)=WTW^*$ an
+1074	[in thm:unbounded]	lem:unb congruence=6.3	}_{\mathbb{C}^r}$ is invertible and $W$ is injective, Lemma~\ref{lem:unb congruence} with $C=W$ gives $\
+1082	[in thm:unbounded]	eq:vec identity=3.1	bf{1}_{\mathcal{Y}}\otimes A^\top$, which is invertible. By \eqref{eq:vec identity}, $\Phi_{uu^*}=C\,J(
+1082	[in thm:unbounded]	lem:unb basic=6.4	\,J(\Phi)\,C^*$ and $\Psi_{uu^*}=C\,J(\Psi)\,C^*$. By Lemma~\ref{lem:unb basic}(3), Lemma~\ref{lem:
+1082	[in thm:unbounded]	lem:unb congruence=6.3	*}=C\,J(\Psi)\,C^*$. By Lemma~\ref{lem:unb basic}(3), Lemma~\ref{lem:unb congruence} and the previous st
+1089	[in thm:unbounded]	lem:unb basic=6.4	 By Lemma~\ref{lem:unb basic}(2), $d$ is convex a
+1094	[in thm:unbounded]	lem:partial trace=4.10	^*(\mathbf{1}_{\mathcal{Y}})\|_\infty\|K\|_\infty$ by Lemma~\ref{lem:partial trace}. Finally, $h_f$ is 
+1097	[in rem:phys-reverse]	eq:vec identity=3.1	etilde{W}(\mathbf{1}_{\mathbb{C}^r}-T)\widetilde{W}^*$ (see \eqref{eq:vec identity}), and $\sum_iq_if(p
+1097	[in rem:phys-reverse]	lem:mixing=7.4	f(p_i/q_i)=\sum_iw_ih_f(t_i)$ is the quantum value by Lemma~\ref{lem:mixing}, so they are optima
+1097	[in rem:phys-reverse]	cor:BS=6.11	0,(1-\epsilon)/\epsilon]$, and the constants of Corollaries~\ref{cor:BS} and~\ref{cor:renyi 
+1097	[in rem:phys-reverse]	cor:renyi large alpha=6.12	psilon]$, and the constants of Corollaries~\ref{cor:BS} and~\ref{cor:renyi large alpha} measure how steep $
+1101	[in rem:phys-reverse]	sec:general=5	In Section~\ref{sec:general}, we considered the 
+1126	[in lem:unb moduli]	cor:kernels=9.7	s $\mathrm{Lip}^{[0,1]}(g_s)=\frac1{s(1+s)}$ from Corollary~\ref{cor:kernels}(d), whose proof doe
+1140	[in rem:bhatia sinha]	lem:unb moduli=6.9	ty=1$ and $\|Df(A)\|>\alpha$; as the best constant in Lemma~\ref{lem:unb moduli}(4) is $\mathrm{Lip}
+1140	[in rem:bhatia sinha]	lem:DK=9.3	ta})\geq\|Df(A)\|$ for such $A$ and $\alpha=1+\beta$ (Lemma~\ref{lem:DK} and the Daleckii--K
+1145	[in cor:BS]	thm:unbounded=6.7	et $\Omega$, $W$, $\epsilon$, $T_1$, $T_2$ be as in Theorem~\ref{thm:unbounded}(b). Let $\Phi_i=\Ps
+1157	[in cor:BS]	lem:unb moduli=6.9	at most $\delta\log\frac1\delta+2\log2\cdot\delta$ by Lemma~\ref{lem:unb moduli}(3). The spectrum of
+1157	[in cor:BS]	lem:unb moduli=6.9	n,1]$, so $\|L_1\|_\infty\leq\log\frac1\epsilon$, and Lemma~\ref{lem:unb moduli}(1) with $X_i=\mathb
+1157	[in cor:BS]	thm:unbounded=6.7	silon\delta}+\frac1\epsilon\big)$, and the proof of Theorem~\ref{thm:unbounded}(b) gives the claim.
+1161	[in cor:renyi large alpha]	cor:BS=6.11	, $T_2$, $\Phi_i$, $\Psi_i$ and $\delta$ be as in Corollary~\ref{cor:BS}. Define $\widehat{Q
+1173	[in cor:renyi large alpha]	eq:h alpha=5.1	with $f(0^+)=0$, and $h_f=h_\alpha$ is given by the formula \eqref{eq:h alpha}, now considered on 
+1173	[in cor:renyi large alpha]	lem:unb basic=6.4	q\range(\xi)$ the direct-sum argument in the proof of Lemma~\ref{lem:unb basic}(3) shows that it al
+1173	[in cor:renyi large alpha]	thm:unbounded=6.7	}_f(\rho,\xi)$, since $0^\alpha=0$. By the proof of Theorem~\ref{thm:unbounded}(a), $\range(\Phi_{i
+1173	[in cor:renyi large alpha]	thm:unbounded=6.7	\Phi_i\|\Psi_i)=\widehat{D}_f(\Phi_i\|\Psi_i)$, and Theorem~\ref{thm:unbounded}(a) gives the closed
+1179	[in cor:renyi large alpha]	lem:unb moduli=6.9	By Lemma~\ref{lem:unb moduli}(4) and~(2), togethe
+1179	[in cor:renyi large alpha]	thm:unbounded=6.7	-1)\epsilon^{-\alpha}\big)\delta$, and the proof of Theorem~\ref{thm:unbounded}(b) gives the estima
+1183	[in cor:renyi large alpha]	cor:kernels=9.7	lta)\leq(4\epsilon^{-1}+\epsilon^{-2})\delta$. By Corollary~\ref{cor:kernels}(b), this improves t
+1187	[in cor:renyi large alpha]	impossibility corollary=3.3	nge(B)$ \cite{HiaiMosonyi2017}. In the example of Corollary~\ref{impossibility corollary}, the derivative $T_
+1187	[in cor:renyi large alpha]	lem:dmax=6.5	 projection, so $D_{\max}(\Phi_1\|\Psi_1)=+\infty$ by Lemma~\ref{lem:dmax}, and $\widehat{D}_f
+1187	[in cor:renyi large alpha]	thm:unbounded=6.7	y$, whereas $\widehat{D}_f(\Phi_2\|\Psi_2)=f(1)$ by Theorem~\ref{thm:unbounded}(a) with $T=\frac12\
+1187	[in cor:renyi large alpha]	cor:BS=6.11	c12\mathbf{1}_{\mathbb{C}^r}$. The constants in Corollaries~\ref{cor:BS} and~\ref{cor:renyi 
+1187	[in cor:renyi large alpha]	cor:renyi large alpha=6.12	athbb{C}^r}$. The constants in Corollaries~\ref{cor:BS} and~\ref{cor:renyi large alpha} blow up as $\epsilo
+1192	[in sec:all f]	sec:unbounded=6	Section~\ref{sec:unbounded} assumed $f(0^+)<\in
+1192	[in sec:all f]	thm:unbounded=6.7	nly that $f$ is operator convex. The closed form of Theorem~\ref{thm:unbounded} then holds verbatim
+1199	[in prop:lebesgue cp]	fundamental principle=2.15	Let $\Omega$, $V_1,\dots,V_r$ and $W$ be as in Theorem~\ref{fundamental principle}, let $0\leq T\leq\m
+1203	[in prop:lebesgue cp]	thm:arveson=2.2	argument to the Douglas factorisation used to prove Theorem~\ref{thm:arveson}.
+1204	[in prop:lebesgue cp]	lem:dmax=6.5	nge(\mathbf{1}_{\mathbb{C}^r}-T)\iff P_1=0\] and from Lemma~\ref{lem:dmax}.
+1217	[in lem:hf extended]	prop:lebesgue cp=7.1	f(T)$ is defined by the functional calculus. By Proposition~\ref{prop:lebesgue cp}, $h_f(T)$ is finite
+1220	[in lem:hf extended]	lem:unb basic=6.4	perator convex functions with appropriate conditions. Lemma~\ref{lem:unb basic}(3) says that we hav
+1222	[in lem:equal range]	lem:unb basic=6.4	Let $f$ be operator convex. Parts~(1) and~(2) of Lemma~\ref{lem:unb basic} hold for $f$, with 
+1222	[in lem:equal range]	def:unb perspective=6.2	ange(A)=\range(B)$, then, with $U,A_0,B_0$ as in Definition~\ref{def:unb perspective}, both $A_0$ and $B_
+1226	[in lem:equal range]	lem:unb basic=6.4	Parts~(1) and~(2) of Lemma~\ref{lem:unb basic} use only the joint 
+1226	[in lem:equal range]	lem:unb congruence pd=6.1	$ and $CBC^*$ again have equal ranges. The proofs of Lemmas~\ref{lem:unb congruence pd} and~\ref{lem:unb co
+1226	[in lem:equal range]	lem:unb congruence=6.3	anges. The proofs of Lemmas~\ref{lem:unb congruence pd} and~\ref{lem:unb congruence} use $f$ only on the
+1241	[in lem:mixing]	lem:equal range=7.3	detilde{W}^*$ both have range $\range \widetilde{W}$. Lemma~\ref{lem:equal range}, applied with $C=\w
+1241	[in lem:mixing]	thm:unbounded=6.7	g positive semidefinite calculus as in the proof of Theorem~\ref{thm:unbounded}(a), give
+1245	[in lem:mixing]	lem:hf extended=7.2	_\lambda \widetilde{W}^*)$ in $(-\infty,+\infty]$, by Lemma~\ref{lem:hf extended}. On the other hand,
+1245	[in lem:mixing]	lem:unb basic=6.4	$\mathsf{P}_f(X,X)=f(1)X$ for $X>0$. Joint convexity (Lemma~\ref{lem:unb basic}(2), valid by Lemma~
+1245	[in lem:mixing]	lem:equal range=7.3	int convexity (Lemma~\ref{lem:unb basic}(2), valid by Lemma~\ref{lem:equal range}) gives $\widehat{D}
+1249	[in thm:all f]	fundamental principle=2.15	vex, let $\Omega$, $V_1,\dots,V_r$ and $W$ be as in Theorem~\ref{fundamental principle}, let $0\leq T\leq\m
+1267	[in thm:all f]	eq:vec identity=3.1	mes A^\top\] and $\widetilde{W}=CW$, which is injective. By \eqref{eq:vec identity} and Theorem~\ref{th
+1267	[in thm:all f]	thm:arveson=2.2	 which is injective. By \eqref{eq:vec identity} and Theorem~\ref{thm:arveson}, $\Phi_{uu^*}=\wide
+1267	[in thm:all f]	lem:mixing=7.4	{C}^r}-T)\widetilde{W}^*\] If $h_f(T)$ is not finite, Lemma~\ref{lem:mixing} gives $\widehat{D}_
+1267	[in thm:all f]	lem:mixing=7.4	hat{D}_f(\Phi\|\Psi)=+\infty$. If $h_f(T)$ is finite, Lemma~\ref{lem:mixing} gives \[\widehat{D}
+1267	[in thm:all f]	thm:unbounded=6.7	_{\mathcal{Y}}(W\,h_f(T)\,W^*)$, as in the proof of Theorem~\ref{thm:unbounded}(a). The rest of tha
+1267	[in thm:all f]	lem:equal range=7.3	i_\rho)$, which hold for every operator convex $f$ by Lemma~\ref{lem:equal range}, and gives $\wideha
+1267	[in thm:all f]	prop:lebesgue cp=7.1	\lambda_{\max}(M)$. The reformulation in (a) is Proposition~\ref{prop:lebesgue cp}.
+1269	[in thm:all f]	lem:equal range=7.3	$T$ and $\mathbf{1}_{\mathbb{C}^r}-T$ are invertible. Lemma~\ref{lem:equal range}, with $C=W$ restric
+1275	[in thm:all f]	thm:all f=7.5	\] Theorem~\ref{thm:all f} contains Theorem~\r
+1275	[in thm:all f]	thm:maxf=5.13	\] Theorem~\ref{thm:all f} contains Theorem~\ref{thm:maxf}(a), where both boun
+1275	[in thm:all f]	thm:unbounded=6.7	e both boundary values are finite and $f(1)=0$, and Theorem~\ref{thm:unbounded}(a). It also contain
+1275	[in thm:all f]	cor:renyi large alpha=6.12	 It also contains the mirror case discussed after Corollary~\ref{cor:renyi large alpha}. When both boundary
+1275	[in thm:all f]	prop:lebesgue cp=7.1	e condition $\range J(\Phi)=\range J(\Psi)$, by Proposition~\ref{prop:lebesgue cp}. In finite dimensio
+1275	[in thm:all f]	effect theorem=2.5	s\mathbf{1}_{\mathcal{Z}})S$ of $\Omega^*$ given by Theorem~\ref{effect theorem}, the Radon--Nikodym
+1275	[in thm:all f]	lem:dmax=6.5	(\Psi\|\Phi)\}\leq\log\frac{1-\epsilon}{\epsilon}$ by Lemma~\ref{lem:dmax}, so the natural par
+1280	[in thm:extended continuity]	fundamental principle=2.15	e operator convex and let $\Omega$ and $W$ be as in Theorem~\ref{fundamental principle}. Write $\mathcal{D}
+1295	[in thm:extended continuity]	thm:all f=7.5	(a) By Theorem~\ref{thm:all f}(b) and Lemma~\ref{l
+1295	[in thm:extended continuity]	lem:partial trace=4.10	(a) By Theorem~\ref{thm:all f}(b) and Lemma~\ref{lem:partial trace}, as in the proof of
+1295	[in thm:extended continuity]	thm:unbounded=6.7	d Lemma~\ref{lem:partial trace}, as in the proof of Theorem~\ref{thm:unbounded}(b).
+1301	[in thm:extended continuity]	thm:all f=7.5	}(X+Y)\geq\lambda_{\max}(X)+\lambda_{\min}(Y)\] and Theorem~\ref{thm:all f}(b) give the claim.
+1303	[in thm:extended continuity]	modulus to zero=4.8	seteq I$ for $T'$ close to $T$, and (a) together with Lemma~\ref{modulus to zero} gives continuity at
+1303	[in thm:extended continuity]	lem:hf extended=7.2	 close to $\lambda$, and $h_f(\lambda')\to+\infty$ by Lemma~\ref{lem:hf extended}. So $\mathcal{D}(T'
+1306	[in thm:extended continuity]	impossibility corollary=3.3	 contrast with the completely bounded trace norm (Corollary~\ref{impossibility corollary}). Part~(b) also sho
+1306	[in thm:extended continuity]	lem:dmax=6.5	max}(\Phi\|\Psi))$ with $\vartheta(x)=e^x/(1+e^x)$ by Lemma~\ref{lem:dmax}.
+1317	[in cor:dmax growth]	thm:extended continuity=7.6	Apply Theorem~\ref{thm:extended continuity}(b) with $\lambda=\l
+1322	[in sec:four maps]	thm:two sided=8.4	with constants that do not depend on any dimension (Theorem~\ref{thm:two sided}). All continuity es
+1322	[in sec:four maps]	impossibility corollary=3.3	 of a fixed map, and the impossibility example of Corollary~\ref{impossibility corollary} is identified as th
+1322	[in sec:four maps]	sec:different sums=10	generates. Pairs with different sums are treated in Section~\ref{sec:different sums}.
+1324	[in sec:four maps]	sec:prelim=2	torise(V_1)\ \cdots\ \vectorise(V_r)]$. Recall from Section~\ref{sec:prelim} the quantity $\nu(\
+1365	[in rem:phys-nu]	effect theorem=2.5	)=\sum_{k,l}\tr(V_k\rho V_l^*)\,e_ke_l^*$ (proof of Theorem~\ref{effect theorem}), $\langle u,\Omega
+1365	[in rem:phys-nu]	impossibility corollary=3.3	 in $|||\cdot|||_1$: this is the mechanism behind Corollary~\ref{impossibility corollary}, where $\nu(\Omega)
+1365	[in rem:phys-nu]	lem:nu=8.2	{Y}})\mathbf{1}_{\mathcal{Y}\otimes\mathcal{X}}$, and Lemma~\ref{lem:nu}(2) gives $\nu(\Omeg
+1365	[in rem:phys-nu]	thm:dichotomy=12.4	{\dim\mathcal{X},n_{\mathcal{Y}}\})$; in particular Theorem~\ref{thm:dichotomy}(a) applies.
+1377	[in thm:two sided]	lipschitz inequality=4.1	The upper bound is the proof of Lemma~\ref{lipschitz inequality} with $\Phi=\Omega$,
+1385	[in thm:two sided]	thm:arveson=2.2	}, the identity $J(\Psi_K)=WKW^*$ from the proof of Theorem~\ref{thm:arveson} gives
+1404	[in thm:two sided]	lem:nu=8.2	By Lemma~\ref{lem:nu}(2), Theorem~\ref{th
+1404	[in thm:two sided]	thm:two sided=8.4	By Lemma~\ref{lem:nu}(2), Theorem~\ref{thm:two sided} implies
+1408	[in thm:two sided]	bilipschitz=4.9	er weaker than the operator norm consequence of Proposition~\ref{bilipschitz}, and is attained, u
+1408	[in thm:two sided]	lem:nu=8.2	$ is the minimum of a nonconvex function on a sphere; Lemma~\ref{lem:nu}(2) provides the com
+1416	[in cor:cb continuity]	Modulus of continuity results=4.5	$\sigma$. More generally, each of the estimates of Theorems~\ref{Modulus of continuity results}, \ref{main theorem}
+1416	[in cor:cb continuity]	main theorem=4.6	 estimates of Theorems~\ref{Modulus of continuity results}, \ref{main theorem}, \ref{thm:renyi con
+1416	[in cor:cb continuity]	thm:renyi continuity=5.5	ms~\ref{Modulus of continuity results}, \ref{main theorem}, \ref{thm:renyi continuity} and~\ref{thm:maxf}(
+1416	[in cor:cb continuity]	thm:maxf=5.13	esults}, \ref{main theorem}, \ref{thm:renyi continuity} and~\ref{thm:maxf}(b) remains valid, u
+1420	[in cor:cb continuity]	thm:two sided=8.4	si_{T_1-T_2}$ and $\Psi_1-\Psi_2=-(\Phi_1-\Phi_2)$, Theorem~\ref{thm:two sided} gives $\|T_1-T_2\|_
+1420	[in cor:cb continuity]	main theorem=4.6	^{1-\alpha}$ are increasing. The displayed bound is Theorem~\ref{main theorem} with $\|T_1-T_2\|_\
+1425	[in sec:loewner]	modulus to zero=4.8	Lemma~\ref{modulus to zero} shows that $\omega^
+1425	[in sec:loewner]	K6=4.3	individual functions: for the geometric mean in Proposition~\ref{K6}, for the weighted g
+1425	[in sec:loewner]	holder lemma=5.4	osition~\ref{K6}, for the weighted geometric means in Lemma~\ref{holder lemma}, and for the Belavk
+1425	[in sec:loewner]	sec:unbounded=6	metric R\'enyi divergences with $\alpha\in(1,2]$ in Section~\ref{sec:unbounded}. In this section we
+1425	[in sec:loewner]	thm:one pole=9.6	compute their operator Lipschitz constants exactly (Theorem~\ref{thm:one pole}), and this makes th
+1425	[in sec:loewner]	thm:sharp lipschitz=9.9	ases and within a factor $3$ of optimal in general (Theorem~\ref{thm:sharp lipschitz}).
+1442	[in eq:hf kernels]	def:maxf=5.8	y$ if $c>0$. Thus $f$ is bounded in the sense of Definition~\ref{def:maxf} if and only if $c=0
+1442	[in eq:hf kernels]	eq:hf kernels=9.2	lar $\mu(\{0\})=0$) and $\mu$ is finite. The affine part of \eqref{eq:hf kernels} has slope $2b-a$. E
+1445	[in eq:hf kernels]	sec:general=5	plicit bounds in a similar manner to the methods of Section~\ref{sec:general}. We will use contin
+1493	[in rem:schur]	lem:DK=9.3	\begin{proof}[Proof of Lemma~\ref{lem:DK}]
+1502	[in rem:schur]	rem:schur=9.4	e. By the repetition and basis-independence facts of Remark~\ref{rem:schur}, $\|M\|_{\mathrm S}
+1530	[in eq:hermitian-bound]	eq:hermitian-bound=9.4	till lie in the interior of $I$, so the argument leading to \eqref{eq:hermitian-bound} applies to it and g
+1561	[in lem:schur]	eq:loewner=9.1	the below theorem, the structure of the function is that of \eqref{eq:loewner}.
+1566	[in thm:one pole]	lem:schur=9.5	ix}\Big\|_{\mathrm S},\] which is given explicitly by Lemma~\ref{lem:schur}(c);
+1586	[in thm:one pole]	lem:schur=9.5	ative entries $\lambda_t(x)$ and rows summing to $1$. Lemma~\ref{lem:schur}(b) and Lemma~\ref{l
+1586	[in thm:one pole]	lem:DK=9.3	and rows summing to $1$. Lemma~\ref{lem:schur}(b) and Lemma~\ref{lem:DK} give $\mathrm{Lip}^
+1586	[in thm:one pole]	lem:DK=9.3	,t_+\}}\|_{\mathrm S}$, and the reverse inequality is Lemma~\ref{lem:DK} with $\Lambda=\{t_-
+1588	[in thm:one pole]	lem:DK=9.3	(b) The first inequality is in Lemma~\ref{lem:DK}. Since $g''$ has co
+1588	[in thm:one pole]	lem:schur=9.5	onotone, so $\max_I|g'|=\max\{|g'(t_-)|,|g'(t_+)|\}$. Lemma~\ref{lem:schur}(d), applied to $g$ 
+1590	[in thm:one pole]	lem:schur=9.5	 also denotes the vector $(\wp(x))_{x\in\Lambda}$, so Lemma~\ref{lem:schur}(a) gives $\|g^{[1]}
+1594	[in thm:one pole]	lem:schur=9.5	By Lemma~\ref{lem:schur}(a), $\|g^{[1]}_\Lam
+1596	[in thm:one pole]	lem:schur=9.5	ix}\big]$, whose Schur multiplier norm is $\sqrt2$ by Lemma~\ref{lem:schur}(c), since $A(t)+B(t
+1596	[in thm:one pole]	lem:schur=9.5	hur}(c), since $A(t)+B(t)=2\sqrt{t^2-1}$. The norm in Lemma~\ref{lem:schur}(c) depends continuo
+1599	[in thm:one pole]	thm:one pole=9.6	Theorem~\ref{thm:one pole}(d) shows that opera
+1601	[in thm:one pole]	eq:hf kernels=9.2	 now construct sharp constants for the kernels described in \eqref{eq:hf kernels}. This will allow us
+1622	[in cor:kernels]	eq:mean kernels=9.5	For $s>0$, the kernel $\eta_s(t)=(1+s)t(1-t)/(1+(s-1)t)$ of \eqref{eq:mean kernels} below satisfies $\m
+1633	[in cor:kernels]	lem:DK=9.3	_s=d_s$, so $\max_I|\kappa_s'|$ equals the bound, and Lemma~\ref{lem:DK} gives equality. For
+1635	[in cor:kernels]	thm:one pole=9.6	the endpoints and $\wp(t_0)=2$, so the condition of Theorem~\ref{thm:one pole}(c) is \[2\leq\frac1
+1637	[in cor:kernels]	thm:one pole=9.6	ssion of $g^{[1]}_{\{t_-,t_+\}}$ as in the proof of Theorem~\ref{thm:one pole}(a), with $\lambda$ 
+1639	[in cor:kernels]	thm:one pole=9.6	\frac12(\wp(0)+\wp(1))$ reads $2\sqrt s\leq1+s$, so Theorem~\ref{thm:one pole}(c) gives \[\mathrm{
+1641	[in cor:kernels]	thm:one pole=9.6	 where $\wp(t_0)=(s(1+s))^{-1/2}$. The condition of Theorem~\ref{thm:one pole}(c) is \[(s(1+s))^{-
+1647	[in thm:integral modulus]	cor:kernels=9.7	ite. With $\varrho_I$, $d_s$ and $d_\infty$ as in Corollary~\ref{cor:kernels}, for $\delta\geq0$,
+1651	[in thm:integral modulus]	thm:maxf=5.13	ere the $c$-term is absent if $c=0$. Consequently, Theorems~\ref{thm:maxf}(b), \ref{thm:unboun
+1651	[in thm:integral modulus]	thm:unbounded=6.7	 absent if $c=0$. Consequently, Theorems~\ref{thm:maxf}(b), \ref{thm:unbounded}(b) and~\ref{thm:ext
+1651	[in thm:integral modulus]	thm:extended continuity=7.6	tly, Theorems~\ref{thm:maxf}(b), \ref{thm:unbounded}(b) and~\ref{thm:extended continuity}(a) hold with this e
+1655	[in thm:integral modulus]	eq:hf kernels=9.2	ur. For $X\in\mathrm{L}(\mathcal{V})$ with spectrum in $I$, \eqref{eq:hf kernels} and the spectral th
+1655	[in thm:integral modulus]	cor:kernels=9.7	or $Y$, take norms inside the integral, and apply Corollary~\ref{cor:kernels}(a).
+1660	[in thm:integral modulus]	cor:kernels=9.7	the max-relative entropy, the kernel constants of Corollary~\ref{cor:kernels} are attained. For $
+1664	[in thm:integral modulus]	cor:kernels=9.7	,1-\epsilon]}|\kappa_s'|$ for $s\in[0,\infty]$ by Corollary~\ref{cor:kernels}(a), and
+1679	[in thm:sharp lipschitz]	lem:DK=9.3	(a) The first inequality is Lemma~\ref{lem:DK}, and the second fol
+1679	[in thm:sharp lipschitz]	eq:hf kernels=9.2	equality is Lemma~\ref{lem:DK}, and the second follows from \eqref{eq:hf kernels} as in the proof of 
+1679	[in thm:sharp lipschitz]	thm:integral modulus=9.8	llows from \eqref{eq:hf kernels} as in the proof of Theorem~\ref{thm:integral modulus}.
+1685	[in thm:sharp lipschitz]	cor:kernels=9.7	appa_s'|$ is attained at $t_+$, by the formula in Corollary~\ref{cor:kernels}(a); the same holds 
+1687	[in thm:sharp lipschitz]	eq:hf kernels=9.2	$ and the affine part of the right-hand side has slope $0$, \eqref{eq:hf kernels} gives
+1691	[in thm:sharp lipschitz]	lem:DK=9.3	appa^{\mathrm{sym}}_s)'(t_+)\,d\mu(s)=h_f'(t_+)$, and Lemma~\ref{lem:DK} gives equality. For
+1691	[in thm:sharp lipschitz]	cor:kernels=9.7	adratic, and the claim follows as in the proof of Corollary~\ref{cor:kernels}(c). For $s\neq1$, $
+1691	[in thm:sharp lipschitz]	thm:one pole=9.6	s$ is symmetric. By the computation in the proof of Theorem~\ref{thm:one pole}, with $u=(\wp_p(x))
+1695	[in thm:sharp lipschitz]	lem:schur=9.5	By Lemma~\ref{lem:schur}(a) its Schur multip
+1698	[in thm:sharp lipschitz]	tab:lipschitz=2	e Pearson and Neyman $\chi^2$-divergences. For these, Table~\ref{tab:lipschitz} gives the exact Lip
+1702	[in thm:sharp lipschitz]	thm:one pole=9.6	Lip}^I(g)=\|g^{[1]}_{\{t_-,t_+\}}\|_{\mathrm S}$ of Theorem~\ref{thm:one pole}(a) holds for all co
+1727	[in cor:thompson lipschitz]	thm:sharp lipschitz=9.9	The first statement is Theorem~\ref{thm:sharp lipschitz}(a). Corollary~\ref{
+1727	[in cor:thompson lipschitz]	cor:kernels=9.7	tatement is Theorem~\ref{thm:sharp lipschitz}(a). Corollary~\ref{cor:kernels}(e) gives $d_s\geq\e
+1727	[in cor:thompson lipschitz]	thm:extended continuity=7.6	 T_i\leq(1-\epsilon)\mathbf{1}_{\mathbb{C}^r}$, and Theorem~\ref{thm:extended continuity}(a).
+1730	[in cor:thompson lipschitz]	tab:lipschitz=2	ct. For logarithmic $f$ the order is $\epsilon^{-1}$ (Table~\ref{tab:lipschitz}).
+1737	[in cor:rates]	cor:kernels=9.7	with the exact kernel constants of Corollary~\ref{cor:kernels}(a), and the right-h
+1741	[in cor:rates]	thm:integral modulus=9.8	Take $I=[0,1]$ in Theorem~\ref{thm:integral modulus}, so that $\varrho_I
+1744	[in cor:rates]	cor:rates=9.12	ds$, so $\lambda=\alpha$ and $\lambda'=1-\alpha$. Corollary~\ref{cor:rates} then recovers the o
+1744	[in cor:rates]	holder lemma=5.4	overs the order $\delta^{\min\{\alpha,1-\alpha\}}$ of Lemma~\ref{holder lemma}, with a worse const
+1747	[in cor:rates]	tab:loewner=1	    Table~\ref{tab:loewner} collects the operat
+1747	[in cor:rates]	fundamental principle=2.15	n emerging from the operator perspective version of Theorem~\ref{fundamental principle}. Table~\ref{tab:lip
+1747	[in cor:rates]	tab:lipschitz=2	ctive version of Theorem~\ref{fundamental principle}. Table~\ref{tab:lipschitz} is its continuation
+1779	[in tab:loewner]	cor:BS=6.11	Belavkin--Staszewski & $[0,1)$ & Cor.~\ref{cor:BS} & $\log\frac{1-\eps
+1780	[in tab:loewner]	cor:BS=6.11	reverse BS & $(0,1]$ & mirror of Cor.~\ref{cor:BS} & $\log\frac{1-\eps
+1788	[in tab:loewner]	cor:renyi large alpha=6.12	R\'enyi, $\alpha\in(1,2)$ & $[0,1)$ & Cor.~\ref{cor:renyi large alpha} & $(\alpha-1+\epsil
+1789	[in tab:loewner]	cor:renyi large alpha=6.12	R\'enyi, $\alpha\in(-1,0)$ & $(0,1]$ & mirror of Cor.~\ref{cor:renyi large alpha} & $(\epsilon-\alpha
+1812	[in eq:mean kernels]	cor:kernels=9.7	By Corollary~\ref{cor:kernels}(c), $\mathrm{Lip}^{
+1827	[in thm:means modulus]	Modulus of continuity results=4.5	Consequently Theorem~\ref{Modulus of continuity results} and Theorem~\ref{th
+1827	[in thm:means modulus]	thm:four maps=10.4	tly Theorem~\ref{Modulus of continuity results} and Theorem~\ref{thm:four maps}(a) hold with this e
+1831	[in thm:means modulus]	eq:mean kernels=9.5	Insert \eqref{eq:mean kernels} into $\varphi_\sigm
+1831	[in thm:means modulus]	cor:kernels=9.7	he affine part has slope $a_\sigma-b_\sigma$. Use Corollary~\ref{cor:kernels}(c), together with t
+1831	[in thm:means modulus]	lem:harmonic kernels=9.14	\|\eta_s(X)-\eta_s(Y)\|_\infty\leq\max\eta_s\leq1$ of Lemma~\ref{lem:harmonic kernels}. The rate follows a
+1831	[in thm:means modulus]	cor:rates=9.12	ref{lem:harmonic kernels}. The rate follows as in Corollary~\ref{cor:rates}.
+1838	[in sec:different sums]	thm:arveson=2.2	w $\Omega'$ in the completely positive order, so by Theorem~\ref{thm:arveson} there are unique $0
+1842	[in sec:different sums]	thm:arveson=2.2	a'=\Psi_{\mathbf{1}_{\mathbb{C}^r}}$, uniqueness in Theorem~\ref{thm:arveson} gives $C_1+C_2=\mat
+1842	[in sec:different sums]	lem:relative distance=8.1	ine{\Omega}^*(\mathbf{1}_{\mathcal{Y}})\|_\infty$. By Lemma~\ref{lem:relative distance}, applied to $\Omega
+1844	[in sec:different sums]	lem:dmax=6.5	 distance between the two sums. With $D_{\max}$ as in Lemma~\ref{lem:dmax}, we define the Thom
+1848	[in sec:different sums]	rem:phys-dmax=6.6	 controlled by the max-relative entropy. Physically (Remark~\ref{rem:phys-dmax}), $d_T(\Omega_1,\Om
+1848	[in sec:different sums]	thm:four maps=10.4	or $e^{\pm d}$: a multiplicative calibration error. Theorem~\ref{thm:four maps} separates the in-pa
+1848	[in sec:different sums]	cor:four maps cb=10.8	es the in-pair change $\tau$ from this drift, and Corollary~\ref{cor:four maps cb} and Lemma~\ref{lem:
+1848	[in sec:different sums]	lem:one parameter=10.5	 this drift, and Corollary~\ref{cor:four maps cb} and Lemma~\ref{lem:one parameter} bound both by the a
+1864	[in lem:thompson]	lem:dmax=6.5	\ \lambda\in\mathrm{spec}(C_1)\}$. As in the proof of Lemma~\ref{lem:dmax}, $\Omega_1\leq c\,\
+1866	[in lem:thompson]	thm:arveson=2.2	For (ii), Theorem~\ref{thm:arveson} gives $J(\Omega_i)=
+1869	[in lem:thompson]	lem:thompson=10.1	 is, that the two sums have the same Choi support. By Lemma~\ref{lem:thompson}, $C_1$ and $C_2$ ar
+1882	[in lem:inpair]	thm:arveson=2.2	y independent because $C_i^{1/2}$ is invertible. By Theorem~\ref{thm:arveson}, $J(\Omega_i)=WC_iW
+1902	[in lem:sandwich]	lem:inpair=10.2	c12\|H_-\|_\infty\leq\frac12\omega_\varphi(\tau)$. By Lemma~\ref{lem:inpair}, the second term ha
+1920	[in thm:four maps]	lem:maxf decomposition=5.12	\item[(d)] For $f$ as in Lemma~\ref{lem:maxf decomposition},
+1924	[in thm:four maps]	sec:unbounded=6	\item[(e)] For $f$ as in Section~\ref{sec:unbounded}, if moreover $D_{\m
+1929	[in thm:four maps]	cor:thompson lipschitz=9.11	Phi_i)\}\leq\log\frac{1-\epsilon}{\epsilon}$, and Corollary~\ref{cor:thompson lipschitz} gives $\omega^I_{h_
+1931	[in thm:four maps]	Modulus of continuity results=4.5	ect to this common sum, so that (a)--(e) reduce to Theorems~\ref{Modulus of continuity results}, \ref{main theorem}
+1931	[in thm:four maps]	main theorem=4.6	(e) reduce to Theorems~\ref{Modulus of continuity results}, \ref{main theorem}, \ref{thm:renyi con
+1931	[in thm:four maps]	thm:renyi continuity=5.5	ms~\ref{Modulus of continuity results}, \ref{main theorem}, \ref{thm:renyi continuity}, \ref{thm:maxf}(b) 
+1931	[in thm:four maps]	thm:maxf=5.13	y results}, \ref{main theorem}, \ref{thm:renyi continuity}, \ref{thm:maxf}(b) and~\ref{thm:unb
+1931	[in thm:four maps]	thm:unbounded=6.7	theorem}, \ref{thm:renyi continuity}, \ref{thm:maxf}(b) and~\ref{thm:unbounded}(b) with the same co
+1935	[in thm:four maps]	lem:inpair=10.2	By Lemma~\ref{lem:inpair}, $A_i=a_1T_ia_1$, $
+1935	[in thm:four maps]	lem:thompson=10.1	a_1$ for $i=1$, and likewise with $a_2$ for $i=2$. By Lemma~\ref{lem:thompson}, $2\gamma=\tanh\fra
+1935	[in thm:four maps]	lem:sandwich=10.3	~\ref{lem:thompson}, $2\gamma=\tanh\frac{d_T}{2}$, so Lemma~\ref{lem:sandwich} reads
+1940	[in eq:sandwich]	eq:W transfer=2.1	 Let $\sigma'$ be an operator connection. By \eqref{eq:W transfer}, which holds for co
+1940	[in eq:sandwich]	rem:connections=2.16	eqref{eq:W transfer}, which holds for connections by Remark~\ref{rem:connections}, $J(\Phi_i)\,\sigma
+1940	[in eq:sandwich]	rem:connections=2.16	ible operator $a_i$ \cite{KuboAndo1980}, followed by Remark~\ref{rem:connections}(2) for the commutin
+1946	[in eq:sandwich]	lem:partial trace=4.10	f $N_1,N_2\in\mathrm{L}(\mathbb{C}^r)$ are Hermitian, Lemma~\ref{lem:partial trace}, applied to $\Omega
+1951	[in eq:sandwich]	eq:sandwich=10.1	alues. The factor $2$ combines with the factor $\frac12$ in \eqref{eq:sandwich}.
+1953	[in eq:sandwich]	thm:two sided=8.4	o $V_1,\dots,V_r$, where $N_i=a_ig_\sigma(T_i)a_i$. Theorem~\ref{thm:two sided}, applied to $\Omega
+1953	[in eq:sandwich]	eq:sandwich=10.1	bf{1}_{\mathcal{Y}})\|_\infty\|N_1-N_2\|_\infty$. Now apply \eqref{eq:sandwich} with $\varphi=g_\si
+1955	[in eq:sandwich]	lambda min formula=3.1	(b) By Proposition~\ref{lambda min formula} and the first step,
+1955	[in eq:sandwich]	eq:sandwich=10.1	$N_i=a_ig_\#(T_i)a_i$. Apply the partial-trace estimate and \eqref{eq:sandwich} with $\varphi=g_\#$
+1955	[in eq:sandwich]	K6=4.3	hi=g_\#$, using $\omega_{g_\#}(t)\leq t^{1/2}$ (Proposition~\ref{K6}(2)) and $\|g_\#\|_\
+1957	[in eq:sandwich]	renyi closed form=5.3	(c) By Lemma~\ref{renyi closed form}, $\widehat{Q}_\alph
+1961	[in eq:sandwich]	eq:sandwich=10.1	Apply the partial-trace estimate and \eqref{eq:sandwich} with $\varphi=h_\al
+1961	[in eq:sandwich]	holder lemma=5.4	ing $\omega_{h_\alpha}(t)\leq t^\alpha+t^{1-\alpha}$ (Lemma~\ref{holder lemma}) and $\|h_\alpha\|_
+1963	[in eq:sandwich]	lem:inpair=10.2	(d) By Lemma~\ref{lem:inpair}, $T_i$ is the deriv
+1963	[in eq:sandwich]	thm:maxf=5.13	 the Kraus decomposition with column matrix $Wa_i$. Theorem~\ref{thm:maxf}(a), applied to $\Om
+1963	[in eq:sandwich]	eq:sandwich=10.1	f(T_i)a_i\,W^*)\big)$. Apply the partial-trace estimate and \eqref{eq:sandwich} with $\varphi=h_f$.
+1965	[in eq:sandwich]	lem:dmax=6.5	and upward closed, so the definition of $D_{\max}$ in Lemma~\ref{lem:dmax} gives $\Phi_i\leq c
+1965	[in eq:sandwich]	lem:unb congruence=6.3	\mathbb{C}^r}$. In particular $B_i$ is invertible, so Lemma~\ref{lem:unb congruence} with $C=W$, Lemma~\
+1965	[in eq:sandwich]	lem:unb congruence pd=6.1	rtible, so Lemma~\ref{lem:unb congruence} with $C=W$, Lemma~\ref{lem:unb congruence pd} with $R=a_i$, and t
+1965	[in eq:sandwich]	thm:unbounded=6.7	} with $R=a_i$, and the computation in the proof of Theorem~\ref{thm:unbounded}(a) give
+1969	[in eq:sandwich]	thm:unbounded=6.7	The remainder of the proof of Theorem~\ref{thm:unbounded}(a) uses only $\Phi_
+1969	[in eq:sandwich]	lem:sandwich=10.3	he partial-trace estimate and the second statement of Lemma~\ref{lem:sandwich}, in the form \eqref
+1969	[in eq:sandwich]	eq:sandwich=10.1	e second statement of Lemma~\ref{lem:sandwich}, in the form \eqref{eq:sandwich}, with $\varphi=h_f$
+1971	[in eq:sandwich]	lem:inpair=10.2	(f) By Lemma~\ref{lem:inpair}, $T_i$ is the deriv
+1971	[in eq:sandwich]	thm:all f=7.5	 the Kraus decomposition with column matrix $Wa_i$. Theorem~\ref{thm:all f}(b), applied to $\Om
+1971	[in eq:sandwich]	lem:sandwich=10.3	 the partial-trace estimate and the last statement of Lemma~\ref{lem:sandwich} with $\varphi=h_f$.
+1971	[in eq:sandwich]	lem:dmax=6.5	on of the hypothesis for $I=[\epsilon,1-\epsilon]$ is Lemma~\ref{lem:dmax} applied within each
+1981	[in lem:one parameter]	ex:one parameter sharp=10.6	The constant $2\sqrt2$ is optimal: in Example~\ref{ex:one parameter sharp}, $\tau/\delta\to2\s
+1985	[in lem:one parameter]	lem:thompson=10.1	elta$. If $\delta<\frac12$ then $\gamma<\frac12$, and Lemma~\ref{lem:thompson} gives the support c
+1989	[in lem:one parameter]	lem:inpair=10.2	0\leq\bar T,\bar T'\leq\mathbf{1}_{\mathbb{C}^r}$. By Lemma~\ref{lem:inpair}, $A_i-B_i=a_i(2T_i-
+2003	[in eq:one parameter identity]	eq:one parameter identity=10.2	ambda)/(1+\theta_\lambda)\leq(1-s_\gamma)/(1+s_\gamma)$. By \eqref{eq:one parameter identity}, $\|T_-\|_\infty\le
+2015	[in ex:one parameter sharp]	thm:arveson=2.2	 $\|A_1-A_2\|_\infty=\|B_1-B_2\|_\infty=\delta$; by Theorem~\ref{thm:arveson} they are the deriva
+2019	[in ex:one parameter sharp]	eq:one parameter identity=10.2	{\delta}{\sqrt2}\mathbf{j}\mathbf{j}^\top+O(\delta^2)$, and \eqref{eq:one parameter identity} gives $\tau=2\sqrt2
+2027	[in cor:universal]	lem:relative distance=8.1	where $\delta$ is the relative distance of Lemma~\ref{lem:relative distance}. For channels the c
+2031	[in cor:universal]	lem:one parameter=10.5	Suppose first that $\delta\leq\frac2{15}$. By Lemma~\ref{lem:one parameter}, $\tau\leq2\sqrt2\,
+2031	[in cor:universal]	lem:thompson=10.1	eq2\sqrt2\,\delta/\sqrt{1-16/225}<2.935\,\delta$. By Lemmas~\ref{lem:thompson} and~\ref{lem:one pa
+2031	[in cor:universal]	lem:one parameter=10.5	{1-16/225}<2.935\,\delta$. By Lemmas~\ref{lem:thompson} and~\ref{lem:one parameter}, $\tanh\frac{d_T}{2
+2031	[in cor:universal]	thm:four maps=10.4	mma\leq2\delta\leq2(\frac2{15})^{1/2}\delta^{1/2}$. Theorem~\ref{thm:four maps}(b) therefore gives 
+2035	[in cor:universal]	lambda min formula=3.1	ometric mean inequality \cite{KuboAndo1980}, so Proposition~\ref{lambda min formula} gives $\widehat{F}(
+2050	[in cor:four maps cb]	thm:two sided=8.4	-\Psi_2=\Psi_{B_1-B_2}$, so the first inequality is Theorem~\ref{thm:two sided} applied to $\Omega'
+2050	[in cor:four maps cb]	lem:nu=8.2	eq\Phi_1+\Psi_1$ in the completely positive order, so Lemma~\ref{lem:nu}(3) gives $\nu(\Omeg
+2050	[in cor:four maps cb]	cor:universal=10.7	(\Phi_1+\Psi_1)$. The last statement follows from Corollary~\ref{cor:universal}.
+2054	[in cor:four maps cb]	cor:four maps cb=10.8	Corollary~\ref{cor:four maps cb} shows that the geom
+2054	[in cor:four maps cb]	thm:four maps=10.4	he same argument applies to the other quantities in Theorem~\ref{thm:four maps}, with the correspon
+2054	[in cor:four maps cb]	impossibility corollary=3.3	$, then $\nu(\Omega')^2$ may be of order $t$, and Corollary~\ref{impossibility corollary} shows that some dep
+2054	[in cor:four maps cb]	sec:different supports=11	shows that some dependence on $\nu$ is unavoidable. Section~\ref{sec:different supports} extends Theorem~\re
+2054	[in cor:four maps cb]	thm:four maps=10.4	dable. Section~\ref{sec:different supports} extends Theorem~\ref{thm:four maps} itself to arbitrary
+2054	[in cor:four maps cb]	ex:one parameter sharp=10.6	\delta/(1-2\delta)$, as a scalar computation shows. Example~\ref{ex:one parameter sharp} shows that noncommu
+2054	[in cor:four maps cb]	lem:one parameter=10.5	ty costs a factor $\sqrt2$ in the leading constant of Lemma~\ref{lem:one parameter}, and no more.
+2059	[in sec:different supports]	sec:different sums=10	pothesis $\range J(\Omega_1)=\range J(\Omega_2)$ of Section~\ref{sec:different sums}. Its only role ther
+2059	[in sec:different supports]	lem:sandwich=10.3	ly role there was to make $C_1$ and $C_2$ invertible. Lemma~\ref{lem:sandwich} then measures the c
+2059	[in sec:different supports]	sec:all f=7	timates, organised by the Lebesgue decomposition of Section~\ref{sec:all f}.
+2061	[in sec:different supports]	sec:different sums=10	We keep the notation of Section~\ref{sec:different sums}: $\Omega'$, $V_1,\d
+2073	[in eq:cp domination]	prop:lebesgue cp=7.1	_1$ and $C_2=\mathbf{1}_{\mathbb{C}^r}-C_1$. By Proposition~\ref{prop:lebesgue cp}, applied to the pai
+2088	[in lem:inpair general]	thm:arveson=2.2	)=WA_iW^*=(Wa_iU_i)\,U_i^*T_iU_i\,(Wa_iU_i)^*$, and Theorem~\ref{thm:arveson} gives the claim.
+2090	[in lem:inpair general]	rem:connections=2.16	$a_i$ is invertible, so the transformer equality and Remark~\ref{rem:connections}(2), applied in $\ma
+2092	[in lem:inpair general]	eq:W transfer=2.1	(d) The first statements follow from (c) and \eqref{eq:W transfer}, exactly as in the 
+2092	[in lem:inpair general]	thm:four maps=10.4	d \eqref{eq:W transfer}, exactly as in the proof of Theorem~\ref{thm:four maps}, and from Propositi
+2092	[in lem:inpair general]	lambda min formula=3.1	 proof of Theorem~\ref{thm:four maps}, and from Proposition~\ref{lambda min formula} and Lemma~\ref{reny
+2092	[in lem:inpair general]	renyi closed form=5.3	s}, and from Proposition~\ref{lambda min formula} and Lemma~\ref{renyi closed form}. For the last, appl
+2092	[in lem:inpair general]	thm:all f=7.5	 Lemma~\ref{renyi closed form}. For the last, apply Theorem~\ref{thm:all f}(b) to $\Omega_i$ wi
+2099	[in lem:inpair general]	lem:thompson=10.1	fty$, we have $\gamma_{\rm ac}<\frac12$. The proof of Lemma~\ref{lem:thompson}, applied to $\Omega
+2103	[in lem:inpair general]	eq:W transfer=2.1	ositive map with Choi matrix $J(\Omega_1)\#J(\Omega_2)$. By \eqref{eq:W transfer} this Choi matrix is
+2124	[in thm:different supports]	lem:inpair general=11.1	rary, with $\Omega'\neq0$, and let $T_1,T_2$ be as in Lemma~\ref{lem:inpair general}. Let $I\subseteq[0,
+2142	[in thm:different supports]	thm:four maps=10.4	try of the minimum, $R_\varphi$ equals the bound of Theorem~\ref{thm:four maps} for the correspondi
+2146	[in thm:different supports]	eq:cp domination=11.1	for $T_2$. Put $N_i^{\rm d}=a_i\varphi(T_i^{\rm d})a_i$. By \eqref{eq:cp domination}, all three steps be
+2156	[in thm:different supports]	lem:sandwich=10.3	\|H_+\|_\infty\leq2\|\varphi\|_I$. As in the proof of Lemma~\ref{lem:sandwich},
+2160	[in thm:different supports]	lem:sandwich=10.3	)\|_\infty$. For $Y$ we give two bounds. First, as in Lemma~\ref{lem:sandwich}, on $\range Q_R$ we
+2170	[in thm:different supports]	lem:inpair general=11.1	e steps gives $R_\varphi$. Parts (a)--(d) follow from Lemma~\ref{lem:inpair general}(d) and $|\lambda_{\
+2170	[in thm:different supports]	lem:support quantities=11.2	th respect to $V_1,\dots,V_r$. If the supports agree, Lemma~\ref{lem:support quantities}(a) shows that $R_\v
+2170	[in thm:different supports]	thm:four maps=10.4	\|_I\tanh\frac{d_T}{2}\big)$, which is the bound of Theorem~\ref{thm:four maps}.
+2173	[in thm:different supports]	thm:different supports=11.3	Theorem~\ref{thm:different supports} separates three eff
+2184	[in cor:independent branch]	thm:different supports=11.3	hbf{1}_{\mathcal{Y}})\|_\infty$. In the notation of Theorem~\ref{thm:different supports}, $(\Omega_1)_{\rm s
+2188	[in cor:independent branch]	lambda min formula=3.1	\|\Theta^*(\mathbf{1}_{\mathcal{Y}})\|_\infty$; Proposition~\ref{lambda min formula} gives the inequalit
+2192	[in rem:phys-erasure]	cor:independent branch=11.4	Corollary~\ref{cor:independent branch} covers heralded era
+2192	[in rem:phys-erasure]	ex:coupling=11.7	pa_i$, and can cost a constant at vanishing weight (Example~\ref{ex:coupling}).
+2195	[in rem:phys-erasure]	thm:different supports=11.3	hout the independence assumption, the quantities of Theorem~\ref{thm:different supports} cannot be bounded b
+2195	[in rem:phys-erasure]	impossibility corollary=3.3	nging counterpart of the impossibility example of Corollary~\ref{impossibility corollary}.
+2199	[in rem:phys-erasure]	thm:different supports=11.3	Theorem~\ref{thm:different supports} is a continuity sta
+2199	[in rem:phys-erasure]	lem:one parameter=10.5	ion. When the supports differ, $\delta\geq\frac12$ by Lemma~\ref{lem:one parameter}, so no statement in
+2202	[in cor:support continuity]	thm:different supports=11.3	rm ac}^{(n)},h_{\rm ac}^{(n)}$ be the quantities of Theorem~\ref{thm:different supports} for the pairs $(\Ph
+2210	[in cor:support continuity]	modulus to zero=4.8	\rm ac}^{(n)}$, and the constants are bounded in $n$. Lemma~\ref{modulus to zero} gives $\omega^I_\va
+2210	[in cor:support continuity]	lem:support quantities=11.2	i(\delta)\to0$ as $\delta\to0$. The last statement is Lemma~\ref{lem:support quantities}(a).
+2213	[in cor:support continuity]	cor:independent branch=11.4	potheses can be dropped. In the example following Corollary~\ref{cor:independent branch}, $m_{\rm s}=1$ and 
+2216	[in ex:coupling]	thm:different supports=11.3	cal{Y}})\|_\infty\varkappa_1^{1/2}=(1+t)/\sqrt2$ of Theorem~\ref{thm:different supports}(b) accounts for it.
+2221	[in sec:dichotomy]	ex:coupling=11.7	Example~\ref{ex:coupling} suggests a general 
+2223	[in sec:dichotomy]	fundamental principle=2.15	(\mathbb{C}^r,\mathcal{Y}\otimes\mathcal{X})$ as in Theorem~\ref{fundamental principle}, $T$ is the derivat
+2227	[in sec:dichotomy]	eq:mean kernels=9.5	 finite positive measure $m_\sigma$ \cite{KuboAndo1980}. By \eqref{eq:mean kernels},
+2231	[in sec:dichotomy]	rem:connections=2.16	strictly positive on $(0,1)$ unless $m_\sigma=0$. By Remark~\ref{rem:connections}, $J(\Phi)\,\sigma\,
+2233	[in sec:dichotomy]	prop:lebesgue cp=7.1	{C}^r}-T)$, and conversely $W$ is injective. By Proposition~\ref{prop:lebesgue cp}, it means that $\Ph
+2233	[in sec:dichotomy]	range theorem=5.6	ith $J(\Phi)\#J(\Psi)=0$ is the criterion following Theorem~\ref{range theorem}, which for the geom
+2248	[in lem:envelope]	lambda min formula=3.1	(c) By Proposition~\ref{lambda min formula}, $\widehat F(\Phi,\
+2248	[in lem:envelope]	renyi closed form=5.3	ealises the $\limsup$ gives upper semicontinuity, and Lemma~\ref{renyi closed form} gives the same for 
+2248	[in lem:envelope]	lem:unb basic=6.4	\rho\|\Psi_\rho)$, which are lower semicontinuous by Lemmas~\ref{lem:unb basic}(2) and~\ref{lem:equ
+2248	[in lem:envelope]	lem:equal range=7.3	e lower semicontinuous by Lemmas~\ref{lem:unb basic}(2) and~\ref{lem:equal range}; see also \cite[Sec
+2248	[in lem:envelope]	thm:all f=7.5	f(T)W^*\leq f(0^+)J(\Psi)+f'(\infty)J(\Phi)$; apply Theorem~\ref{thm:all f}(b).
+2252	[in rem:one sided]	lem:envelope=12.1	Parts (a) and (b) of Lemma~\ref{lem:envelope} are elementary cons
+2252	[in rem:one sided]	lambda min formula=3.1	umoto fidelity was already used in the proof of Proposition~\ref{lambda min formula}. The lower semicont
+2268	[in lem:dilation]	rem:connections=2.16	irst statement. With $M=\varphi_\sigma(\widehat T)$, Remark~\ref{rem:connections} gives the second. W
+2268	[in lem:dilation]	thm:all f=7.5	ctions} gives the second. With $M=h_f(\widehat T)$, Theorem~\ref{thm:all f}(b) gives the third,
+2288	[in thm:dichotomy]	thm:four maps=10.4	Theorem~\ref{thm:four maps} and Corollary~\ref{
+2288	[in thm:dichotomy]	cor:four maps cb=10.8	Theorem~\ref{thm:four maps} and Corollary~\ref{cor:four maps cb} give local moduli f
+2289	[in thm:dichotomy]	lem:dilation=12.3	 c_\Omega$, and let $(\Phi_t,\Psi_t)$ be the pairs of Lemma~\ref{lem:dilation} with $\widehat T=\w
+2297	[in thm:dichotomy]	lem:envelope=12.1	b_\sigma\Psi$, which is the smallest limit allowed by Lemma~\ref{lem:envelope}. Moreover $\widehat
+2297	[in thm:dichotomy]	lem:envelope=12.1	J(\Phi))\big)$, which is the largest value allowed by Lemma~\ref{lem:envelope}.
+2312	[in thm:dichotomy]	cor:four maps cb=10.8	nge J(\Phi'+\Psi')\subseteq\range J(\Omega)$, and Corollary~\ref{cor:four maps cb} applies with $(\Phi
+2312	[in thm:dichotomy]	lem:one parameter=10.5	leq d_{\rm cb}/\nu(\Omega)^2$. When $\delta<\frac12$, Lemma~\ref{lem:one parameter} gives $\tau\leq2\sq
+2312	[in thm:dichotomy]	thm:four maps=10.4	}$ and $\tanh\frac{d_T}{2}=2\gamma\leq2\delta$, and Theorem~\ref{thm:four maps} applies.
+2314	[in thm:dichotomy]	eq:halmos=12.1	_{\mathcal{U}}-T_{\mathcal{U}})\leq c_\Omega$, the dilation \eqref{eq:halmos} exists and $0\leq\w
+2314	[in thm:dichotomy]	lem:dilation=12.3	hbf{1}_{\mathbb{C}^r\oplus\mathbb{C}^{c_\Omega}}$. By Lemma~\ref{lem:dilation} and \eqref{eq:halmo
+2314	[in thm:dichotomy]	eq:halmos compression=12.2	lus\mathbb{C}^{c_\Omega}}$. By Lemma~\ref{lem:dilation} and \eqref{eq:halmos compression} with $\varphi=\varp
+2316	[in thm:dichotomy]	lambda min formula=3.1	\Psi_t)=\widehat Q_\alpha(\Phi_t\|\Psi_t)=0$ by Proposition~\ref{lambda min formula} and Lemma~\ref{reny
+2316	[in thm:dichotomy]	renyi closed form=5.3	Psi_t)=0$ by Proposition~\ref{lambda min formula} and Lemma~\ref{renyi closed form}. Similarly $h_f(\wi
+2318	[in thm:dichotomy]	thm:four maps=10.4	(d)(i) If $J(\Omega)$ is invertible, use (a) and Theorem~\ref{thm:four maps}(a). If $T$ is a pro
+2318	[in thm:dichotomy]	lem:envelope=12.1	ection, then $\eta_\sigma(T)=0$, so the two bounds in Lemma~\ref{lem:envelope}(b) coincide, and ev
+2320	[in thm:dichotomy]	lem:envelope=12.1	. If $\widehat F(\Phi,\Psi)=0$, upper semicontinuity (Lemma~\ref{lem:envelope}(c)) and $\widehat F
+2326	[in thm:dichotomy]	thm:four maps=10.4	(iii) The first statement is (a), with Theorem~\ref{thm:four maps}(d). Let $\mathcal{E
+2326	[in thm:dichotomy]	lem:envelope=12.1	t D_f(\Phi'\|\Psi')\geq\widehat D_f(\Phi\|\Psi)$, and Lemma~\ref{lem:envelope}(c) gives $\limsup\w
+2328	[in thm:dichotomy]	prop:lebesgue cp=7.1	 T_{\mathcal{U}}$ has the eigenvalue $1$, so by Proposition~\ref{prop:lebesgue cp} $\Phi_t$ has a nonz
+2328	[in thm:dichotomy]	thm:all f=7.5	s a nonzero singular part relative to $\Psi_t$, and Theorem~\ref{thm:all f}(a) gives $\widehat 
+2331	[in thm:dichotomy]	thm:different supports=11.3	, and every mean then collapses to its affine part. Theorem~\ref{thm:different supports} records exactly thi
+2333	[in thm:dichotomy]	thm:dichotomy=12.4	The ingredients of Theorem~\ref{thm:dichotomy} are classical, but 
+2333	[in thm:dichotomy]	impossibility corollary=3.3	cite{cree2020fidelity}, which is the mechanism of Corollary~\ref{impossibility corollary}, and the Belavkin--
+2333	[in thm:dichotomy]	thm:dichotomy=12.4	d^{-1}$ \cite{BluhmCapelGondolfPerezHernandez2023}. Theorem~\ref{thm:dichotomy}(a) is an analogue f
+2333	[in thm:dichotomy]	lem:nu=8.2	are root of the smallest eigenvalue of $J(\Omega)$ by Lemma~\ref{lem:nu}(2). The ways of app
+2333	[in thm:dichotomy]	thm:dichotomy=12.4	 are used in the literature are all compatible with Theorem~\ref{thm:dichotomy}: regularisation fro
+2333	[in thm:dichotomy]	rem:one sided=12.2	r parallel sums of \cite{LuoSongXu2018}, converge by Remark~\ref{rem:one sided}, and, as observed i
+2333	[in thm:dichotomy]	cor:four maps cb=10.8	ne segments into the interior of their domain. By Corollary~\ref{cor:four maps cb} and Remark~\ref{rem
+2333	[in thm:dichotomy]	rem:one sided=12.2	heir domain. By Corollary~\ref{cor:four maps cb} and Remark~\ref{rem:one sided}, a jump requires pe
+2340	[in cor:states dichotomy]	thm:dichotomy=12.4	Take $\dim\mathcal{X}=1$ in Theorem~\ref{thm:dichotomy}. Then $\widehat F(\
+2343	[in cor:states dichotomy]	eq:halmos=12.1	 has $\tr(\rho_1\#\rho_2)=1$. Coupling $e_1$ to $e_3$ as in \eqref{eq:halmos} gives $\rho_{1,t}=\
+2350	[in cor:channels dichotomy]	thm:dichotomy=12.4	*(\mathbf{1}_{\mathcal{Y}})^\top)=1$. Continuity is Theorem~\ref{thm:dichotomy}(a). If the Choi ran
+2353	[in cor:channels dichotomy]	thm:dichotomy=12.4	n-invertible Choi matrix, as the CP approximants of Theorem~\ref{thm:dichotomy} do, is left open.
+2356	[in rem:phys-dichotomy]	cor:channels dichotomy=12.6	Corollary~\ref{cor:channels dichotomy} is a caution: an id
+2356	[in rem:phys-dichotomy]	thm:dichotomy=12.4	$), so pairs containing it are continuity points by Theorem~\ref{thm:dichotomy}(a). At zero tempera
+2356	[in rem:phys-dichotomy]	thm:dichotomy=12.4	aus rank is $2$, and as $\widehat{F}(\Phi,\Phi)=1$, Theorem~\ref{thm:dichotomy}(d)(ii) shows that $
+2361	[in sec:conclusion]	range theorem=5.6	late pairs with trivially intersecting Choi ranges (Theorem~\ref{range theorem}), such as the geome
+2361	[in sec:conclusion]	impossibility corollary=3.3	c mean, are not continuous in the diamond norm (Corollaries~\ref{impossibility corollary} and~\ref{maxf impos
+2361	[in sec:conclusion]	maxf impossibility=5.14	diamond norm (Corollaries~\ref{impossibility corollary} and~\ref{maxf impossibility}).
+2363	[in sec:conclusion]	sec:loewner=9	silon,1-\epsilon]$, within a factor $3$ of optimal (Section~\ref{sec:loewner}). Quantitative esti
+2363	[in sec:conclusion]	thm:two sided=8.4	esgue decomposition of the pair decides finiteness. Theorem~\ref{thm:two sided} converts these esti
+2365	[in sec:conclusion]	thm:dichotomy=12.4	The dichotomy of Theorem~\ref{thm:dichotomy} says where continui
+2365	[in sec:conclusion]	cor:channels dichotomy=12.6	 $\widehat{F}(\Phi,\cdot)$ jumps from $1$ to $0$ (Corollary~\ref{cor:channels dichotomy}). Our estimates com
+2365	[in sec:conclusion]	thm:two sided=8.4	s. They are upper bounds: the two-sided estimate of Theorem~\ref{thm:two sided} concerns the maps, 
+2369	[in sec:conclusion]	lem:one parameter=10.5	\item \emph{Constants.} Lemma~\ref{lem:one parameter} is sharp as $\delta
+2369	[in sec:conclusion]	cor:BS=6.11	$ optimal for finite $\delta$? The constants of Corollaries~\ref{cor:BS} and~\ref{cor:renyi 
+2369	[in sec:conclusion]	cor:renyi large alpha=6.12	ite $\delta$? The constants of Corollaries~\ref{cor:BS} and~\ref{cor:renyi large alpha} are not optimised, 
+2369	[in sec:conclusion]	main theorem=4.6	 optimised, and we do not know whether the bound of Theorem~\ref{main theorem} is attained, althou
+2369	[in sec:conclusion]	rem:sharp=4.4	lthough the underlying operator inequality is sharp (Remark~\ref{rem:sharp}).
+2370	[in sec:conclusion]	cor:channels dichotomy=12.6	es the dichotomy hold within the set of channels? Corollary~\ref{cor:channels dichotomy} settles this at the
+2372	[in sec:conclusion]	thm:dichotomy=12.4	 such bounds respond to relative perturbations, and Theorem~\ref{thm:dichotomy} shows that continui
+2373	[in sec:conclusion]	K6=4.3	Ando's inequality in unitarily invariant norms, Proposition~\ref{K6}(1) holds in every u
+2373	[in sec:conclusion]	K6=4.3	(1) holds in every unitarily invariant norm and Proposition~\ref{K6}(2) becomes $\|g_\#(
+2396	[in app:mean norm]	effect theorem=2.5	a^c$ is the complementary map of $\Omega$, that is, Theorem~\ref{effect theorem} applied with $\Omeg
+2400	[in app:mean norm]	fundamental principle=2.15	By Theorem~\ref{fundamental principle}, $\Phi\,\sigma\,\Ps
+2400	[in app:mean norm]	thm:arveson=2.2	athbb{C}^r}-g_\sigma(T)}$ is completely positive by Theorem~\ref{thm:arveson}, that is, $0\leq\Ph
+2400	[in app:mean norm]	effect theorem=2.5	18theory}, and the formula is the last statement of Theorem~\ref{effect theorem}, applied to $\Omega
+2447	[in app:variational]	app:ando max=A.3	i_2)$. The first two statements therefore follow from Lemma~\ref{app:ando max} with $A=J(\Phi)$ an
+2447	[in app:variational]	app:ando max=A.3	\Psi)=J(\Phi)\#J(\Psi)$. For the last statement apply Lemma~\ref{app:ando max} with $A=T$ and $B=\
+2447	[in app:variational]	fundamental principle=2.15	tently with $J(\Phi)\#J(\Psi)=W\,g_\#(T)\,W^*$ from Theorem~\ref{fundamental principle}.
+2451	[in app:variational]	lambda min formula=3.1	thcal{Y}}X)$ is monotone in the Loewner order, Propositions~\ref{lambda min formula} and~\ref{app:variat
+2451	[in app:variational]	app:variational=A.4	he Loewner order, Propositions~\ref{lambda min formula} and~\ref{app:variational} give
+2470	[in app:block cs]	app:ando max=A.3	bhatia1997matrix}. Part (3) follows from part (2) and Lemma~\ref{app:ando max}.
+2483	[in app:cs maps]	app:block cs=A.6	The first inequality is Lemma~\ref{app:block cs}(3) with $A=J(\Phi)$
+2483	[in app:cs maps]	app:variational=A.4	hcal{B}_{\Phi\#\Psi}$ is completely positive by Proposition~\ref{app:variational}, so for positive se
+2483	[in app:cs maps]	app:block cs=A.6	cal{B}_{\Phi\#\Psi}(X)$ is positive semidefinite, and Lemma~\ref{app:block cs}(2) with the Schatte

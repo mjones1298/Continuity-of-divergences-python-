@@ -1,0 +1,1164 @@
+\chapter{Super-multiplicativity of hockey-stick R\'enyi quasi-entropies}\label{shB:chapter}
+\chaptermark{Super-multiplicativity of quasi-entropies}%
+\begingroup
+\chapmacro{\HT}{\mathrm{HT}}
+\chapmacro{\Petz}{\mathrm{P}}
+\chapmacro{\meas}{\mathrm{M}}
+\chapmacro{\cH}{\mathcal H}
+
+\begin{chaptersummary}
+The testing-region (Hirche--Tomamichel) R\'enyi quasi-entropies $Q^\HT_\alpha$ of a pair of quantum states are the Mellin moments of its hockey-stick profile $e(\gamma)=\Tr(\rho-\gamma\sigma)_+$. They are not multiplicative under tensor products, and we study the conjectured inequality $Q^\HT_\alpha(\rho\otimes\rho'\|\sigma\otimes\sigma')\ge Q^\HT_\alpha(\rho\|\sigma)\,Q^\HT_\alpha(\rho'\|\sigma')$. We prove it at $\alpha=2$, at every integer order against pure partners, for every $\alpha>1$ when one factor is measured, to first order as $\alpha\to\infty$, and for tensor powers with enough copies. At $\alpha=3$ we prove it for sign-free pairs and whenever one reference state has at most two distinct eigenvalues, by writing the defect as an integral of Lieb--Thirring gaps, and a cycle inequality $|\Tr ABC|^3\le\Tr(A^2B)\Tr(B^2C)\Tr(C^2A)$ for positive matrices gives further three-eigenvalue cases. At integer orders the conjecture is a correlation inequality for a uniform point of a simplex, which a Chebyshev inequality for Schur-convex functions settles for pure and sign-free pairs. In general it is the family of moment inequalities of a convex-order domination between two Frenkel measures. We also give a layer-cake proof of $D^\HT_\alpha\le\widetilde D_\alpha$ for $\alpha\ge2$, and show that one-way LOCC tests never beat the classical product of the shadows.
+\end{chaptersummary}
+
+\section{Introduction}\label{shB:sec:intro}
+
+For states $\rho,\sigma$ on a finite-dimensional Hilbert space the hockey-stick divergences $E_\gamma(\rho\|\sigma)=\Tr(\rho-\gamma\sigma)_+$ describe the testing region of the pair, and integrating them against $f''$ gives the testing-region $f$-divergences $D^\HT_f$ \cite{HircheTomamichel2024}. Their R\'enyi members are given by the quasi-entropies $Q^\HT_\alpha$, the Mellin moments of the hockey-stick profile (Section~\ref{shB:sec:prelim}). Unlike the Petz and sandwiched quasi-entropies, $Q^\HT_\alpha$ is not multiplicative under tensor products. This chapter is about the inequality
+\[
+Q^\HT_\alpha(\rho\otimes\rho'\|\sigma\otimes\sigma')\ \ge\ Q^\HT_\alpha(\rho\|\sigma)\,Q^\HT_\alpha(\rho'\|\sigma'),\qquad\alpha\in(0,1)\cup(1,\infty),
+\]
+which Conjecture~\ref{shB:conj:super} asserts for all pairs of states. For $\alpha>1$ it says that $D^\HT_\alpha$ is superadditive, and for $\alpha<1$ that it is subadditive; equality holds when one of the two pairs commutes.
+
+\paragraph{Main results}
+% order three; structure of the conjecture; Fourier side; the inequality D^HT <= sandwiched); sentence edits listed in STYLE_CHANGES.md
+We prove Conjecture~\ref{shB:conj:super} in the following cases. The testing-region quasi-entropy is super-multiplicative at $\alpha=2$, where it is $1+\chi^2_{\mathrm{BKM}}$ and the proof reduces to a Gaussian-mixture inequality for the kernel $\frac{u/2}{\sinh(u/2)}$ (Theorem~\ref{shB:thm:super2}). At integer orders the trace formula turns the conjecture into a correlation inequality for a uniformly distributed point of a simplex (Proposition~\ref{shB:prop:simplex}). A Chebyshev-type inequality for Schur-convex functions (Lemma~\ref{shB:lem:schur}) then proves the conjecture at every integer order for pure states, at $\alpha=3$ for every two sign-free pairs, and again at $\alpha=2$ for all pairs (Theorem~\ref{shB:thm:simplex}). Sign-free pairs include all qubit pairs, all pairs whose $\sigma$ has two distinct eigenvalues, and all pure states. Integrating a pure partner out of the trace formula and applying the Lieb--Thirring inequality to mixtures of resolvents proves the conjecture against every pure partner at every integer order (Theorem~\ref{shB:thm:purepartner}), with no condition on the other pair. For pure states the general case is a classical convolution inequality, a R\'enyi-entropy submodularity for sums (Remark~\ref{shB:rem:superpure}). The testing region of a product dominates that of the shadow tensored with any measurement of the second factor, so $D^\HT_\alpha(\rho\otimes\rho'\|\sigma\otimes\sigma')\ge D^\HT_\alpha(\rho\|\sigma)+D^\meas_\alpha(\rho'\|\sigma')$ for every $\alpha$ (Theorem~\ref{shB:thm:supermeas}). The quasi-entropy is also super-multiplicative to first order as $\alpha\to\infty$ (Theorem~\ref{shB:thm:superinf}).
+
+At $\alpha=3$ a second mechanism removes the sign condition. A two-time integral identity (Proposition~\ref{shB:prop:twotime}) writes the defect against a partner whose $\sigma'$ has two eigenvalues as an integral of Lieb--Thirring gaps $\Tr[A^3X^3]-\Tr[(AX)^3]$ (Theorem~\ref{shB:thm:LT}), so the conjecture holds at $\alpha=3$ whenever $\sigma$ or $\sigma'$ has at most two distinct eigenvalues, for all states and with the expected equality cases (Corollary~\ref{shB:cor:twolevel}). The same identity proves the conjecture at $\alpha=3$ to second order in $\sigma'$ around $\sigma'\propto\mathbf 1$, for every $\rho'$ (Proposition~\ref{shB:prop:local3}), gives $Q^\HT_3\le\Tr[\rho\sigma^{-\gamma}\rho\sigma^{-\gamma}\rho\sigma^{2\gamma-2}]$ for every real $\gamma$, with the sandwiched quasi-entropy at $\gamma=\frac23$ (Corollary~\ref{shB:cor:gamma}), and reduces the open case at $\alpha=3$ to singular $\rho,\rho'$ whose reference states both have at least three distinct eigenvalues (Corollary~\ref{shB:cor:singular}). The Lieb--Thirring gap at exponent three is a rooted sum of Schur-product squares with the kernel $\frac{(u-z)(v-z)(z+2u)(z+2v)}{z+u+v}$ (Proposition~\ref{shB:prop:rootedLT}), which proves inequality~\eqref{shB:eq:split} (Corollary~\ref{shB:cor:split}). The cycle inequality $|\Tr ABC|^3\le\Tr(A^2B)\Tr(B^2C)\Tr(C^2A)$ for positive matrices (Theorem~\ref{shB:thm:cycle}) lets a pure profile be fitted under the two-letter weights of any state, which gives the conjecture at $\alpha=3$ against every partner with three eigenvalues and a nonnegative block $3$-cycle (Corollary~\ref{shB:cor:threelevel}). A splitting of the defect into two-letter and three-letter parts proves it when both block $3$-cycles are negative and not too strongly correlated (Theorem~\ref{shB:thm:doubling}, Corollary~\ref{shB:cor:negative}). What remains for three-eigenvalue reference states is one inequality for the kernel $K_3$ on twisted pure data (Conjecture~\ref{shB:conj:TT}, Proposition~\ref{shB:prop:twisted}). For general pairs at $\alpha=3$ the conjecture follows from the nonnegativity of the covariances $D_k$ of polynomial traces $\Tr[A^i\rho A^j\rho A^l\rho]$ over compositions $i+j+l=k$ (Theorem~\ref{shB:thm:polycrit}), which holds at $k=2$; at $k=3$, $D_3\ge0$ follows from a single-system chirality inequality (Proposition~\ref{shB:prop:D2}).
+
+The conjecture itself is the family of moment inequalities of one statement: the \emph{Frenkel measure} $\nu(dv)=(e(v)-(1-v)_+)v^{-2}dv$, whose mass and first moment are the two relative entropies and whose moments are the R\'enyi quasi-entropies, should dominate, in the convex order, the Frenkel measure of the classical product of the two shadows (Theorem~\ref{shB:thm:frenkel}). For qubit pairs this reduces to a two-sign-change property of the profile difference, which holds in every test, and for tensor powers the conjecture holds once there are enough copies (Proposition~\ref{shB:prop:manycopies}). For every two non-commuting pairs the profile of the product crosses that of the classical product of the shadows at least twice, so a pair and its shadow cannot be compared through positive maps in either direction (Proposition~\ref{shB:prop:twosided}). One-way LOCC tests never beat the shadow product, and numerically neither do separable or PPT tests (Proposition~\ref{shB:prop:oneway}, Conjecture~\ref{shB:conj:sep}). The conjecture is therefore a statement about entangled tests. As a by-product, $D^\HT_2<\widetilde D_2$ for every non-commuting pair (Corollary~\ref{shB:cor:strictgap}).
+
+On the Fourier side, $Q^\HT_2$ is the average of a modular correlation function over a logistic clock, and Theorem~\ref{shB:thm:super2} says that synchronising the clocks of two factors increases it (Proposition~\ref{shB:prop:clock}). Dephasing each factor by a modular heat flow and letting the flows converge to the pinching reduces the conjecture to a local supermodularity condition at product points (Theorem~\ref{shB:thm:flow}). For two qubit pairs at $\alpha=3$ the conjecture becomes a single explicit inequality for the logarithmic mean (Proposition~\ref{shB:prop:qubitn}). This is the case of the simplex theorem in which both pairs have two eigenvalues (Corollary~\ref{shB:thm:qubit3}), and a second proof uses the variation-diminishing property of the Cauchy kernel.
+
+We give an elementary proof of $D^\HT_\alpha\le\widetilde D_\alpha$ for all real $\alpha\ge2$ (Theorem~\ref{shB:thm:bht2}). The full range $\alpha>1$ is due to \cite{LiuHircheCheng2025}, after the integer case of \cite{BeigiHircheTomamichel2025}. With linear-programming duality it yields an operator layer-cake inequality (Corollary~\ref{shB:cor:bathtub}). Section~\ref{shB:sec:tensor} recalls from Section~\ref{shA:sec:tensor} the explicit single-shot sandwiches $D^\Petz_\alpha\le D^\HT_\alpha\le D^\Petz_\alpha+\frac{\log 2}{1-\alpha}$ for $\alpha<1$ and $|D^\HT_\alpha-\widetilde D_\alpha|\le\frac{\alpha}{\alpha-1}\log v(\sigma)$ for $\alpha>1$, which give the regularisation theorem of \cite{HircheTomamichel2024} with rates.
+
+\paragraph{Related work} The testing-region divergences were introduced by Hirche and Tomamichel \cite{HircheTomamichel2024} and are also called hockey-stick $f$-divergences. Beigi, Hirche and Tomamichel \cite{BeigiHircheTomamichel2025} and Liu, Hirche and Cheng \cite{LiuHircheCheng2025} compared their R\'enyi members with the Petz and sandwiched families. Hiai, Mosonyi and Tomamichel \cite{HMT2026} have recently developed them in von Neumann algebras: a Neyman--Pearson representation, the detection of reversibility, the regularisation of the R\'enyi members to the Petz divergences below order one and to the sandwiched divergences above it, and partial results on when different quantum $f$-divergences coincide.
+
+Chapter~\ref{shA:chapter} studies the testing region of a single pair: the structure of its shadow, continuity, the modular (Petz) shadow, and channel divergences. This chapter turns to tensor products. The reverse test and the modular shadow factorise under tensor products, but the testing region does not, and the question is what replaces multiplicativity.
+
+Section~\ref{shB:sec:prelim} recalls the definitions and results of Chapter~\ref{shA:chapter} that we use. Section~\ref{shB:sec:tensor} states the conjecture, together with the comparison inequalities for tensor powers and the inequality $D^\HT_\alpha\le\widetilde D_\alpha$. Sections~\ref{shB:sec:three}--\ref{shB:sec:purecycle} prove the cases of the conjecture listed above. Section~\ref{shB:sec:frenkel} identifies the conjecture with a convex-order statement for Frenkel measures, Section~\ref{shB:sec:restricted} shows why positive maps and restricted tests cannot prove it, and Section~\ref{shB:sec:clocks} treats modular clocks, dephasing flows and two qubit pairs. Section~\ref{shB:sec:numerics} summarises the numerical checks, and Section~\ref{shB:sec:open} lists open problems.
+
+The quantitative claims were checked numerically, and the conjectures were tested; the checks are summarised in Section~\ref{shB:sec:numerics}.
+
+\section{Preliminaries from Chapter~\ref{shA:chapter}}\label{shB:sec:prelim}
+% Lemma 2.2, Propositions 2.5--2.7 and the reverse-test paragraph), all of which are in Chapter 5 (shA:).
+We use the notation and results of Section~\ref{shA:sec:shadows}, recalled here without proofs. States $\rho,\sigma$ are density operators on a finite-dimensional Hilbert space $\cH$, $\omega=\rho+\sigma$, $\Pi_X$ is the support projection of a positive operator $X$, and $\Pi_X^\perp=\mathbf 1-\Pi_X$. Logarithms are natural.
+
+For $A,B\ge0$ and $\gamma\ge0$, $E_\gamma(A\|B)=\Tr(A-\gamma B)_+=\max_{0\le M\le\mathbf 1}\Tr M(A-\gamma B)$ is the hockey-stick divergence. The profile $e(\gamma)=E_\gamma(\rho\|\sigma)$, the error profile $\eta(\gamma)=1-e(\gamma)$ and the boundary masses $m_0=\Tr\Pi_\rho^\perp\sigma$ and $m_\infty=\Tr\Pi_\sigma^\perp\rho$ are as in Definition~\ref{shA:def:profile}, and Lemma~\ref{shA:lem:profile} collects their properties: $e$ is convex and nonincreasing with $(1-\gamma)_+\le e(\gamma)\le1$, $\eta$ is concave and nondecreasing with $\eta(\gamma)/\gamma$ nonincreasing (part~(a)), $e(\infty)=m_\infty$ and $e'(0^+)=-(1-m_0)$ (part~(b)), and $E_\gamma(\sigma\|\rho)=\gamma\,e(1/\gamma)-\gamma+1$ (part~(c)). The testing-region (Hirche--Tomamichel) $f$-divergence $D^\HT_f$ of a convex $f$ with $f(1)=0$ is Definition~\ref{shA:def:HT} \cite{HircheTomamichel2024}; for $\alpha\in(0,1)\cup(1,\infty)$ and $f_\alpha(x)=\frac{x^\alpha-1}{\alpha-1}$ we write $Q^\HT_\alpha=1+(\alpha-1)D^\HT_{f_\alpha}$ and $D^\HT_\alpha=\frac{1}{\alpha-1}\log Q^\HT_\alpha$. As $D^\HT_f$ depends only on $f''$, we normalise $f'(1)=0$ when convenient, and by Frenkel's formula \cite{Frenkel2023}, $D^\HT_{x\log x}$ is the Umegaki relative entropy $D(\rho\|\sigma)=\Tr\rho(\log\rho-\log\sigma)$. The testing-region shadow $\mu=e''$, completed by the atoms $m_0$ at $0$ and $m_\infty$ at $\infty$, is Definition~\ref{shA:def:shadow}; for commuting $\rho,\sigma$ with eigenvalues $p_x,q_x$ it is the law of the likelihood ratio $p/q$ under $q$ on $\{q>0\}$.
+
+We use two formulas from Section~\ref{shA:sec:shadows} directly. The representation formula of Proposition~\ref{shA:prop:rep} states that, for every convex $f$ with $f(1)=0$,
+\[
+D^\HT_f(\rho\|\sigma)=\int_0^\infty\big(e(\gamma)-(1-\gamma)_+\big)f''(d\gamma)=\int_{(0,\infty)}f\,d\mu+f(0^+)\,m_0+f'(\infty)\,m_\infty,
+\]
+with $f'(\infty)=\lim_{x\to\infty}f(x)/x$ and the convention $0\cdot\infty=0$, and that $\mu((0,\infty))=1-m_0$ and $\int\gamma\,d\mu=1-m_\infty$. The Mellin formulas of Proposition~\ref{shA:prop:mellin} state that, for $\alpha\in(0,1)$,
+\[
+Q^\HT_\alpha(\rho\|\sigma)=\int_{(0,\infty)}\gamma^\alpha d\mu(\gamma)=\alpha(1-\alpha)\int_0^\infty\gamma^{\alpha-2}\eta(\gamma)\,d\gamma ,
+\]
+and that, for $\alpha>1$, $Q^\HT_\alpha=+\infty$ if $m_\infty>0$, and otherwise
+\[
+Q^\HT_\alpha(\rho\|\sigma)=\int_{(0,\infty)}\gamma^\alpha d\mu(\gamma)=\alpha(\alpha-1)\int_0^\infty\gamma^{\alpha-2}e(\gamma)\,d\gamma .
+\]
+
+\paragraph{The reverse test and the modular shadow} Two further shadows of the pair factorise under tensor products; both are defined in Section~\ref{shA:sec:shadows}. Let $T=\omega^{-1/2}\rho\,\omega^{-1/2}$ on $\Pi_\omega\cH$. The \emph{reverse test} is a classical pair $(p_T,q_T)$ on $\operatorname{spec}T$ that is mapped to $(\rho,\sigma)$ by a preparation. For operator convex $f$, $D^T_f:=D_f(p_T\|q_T)$ is the maximal $f$-divergence of $(\rho,\sigma)$ \cite{Matsumoto2018newf}, equal to $\Tr\omega^{1/2}h_f(T)\omega^{1/2}$ with $h_f(t)=(1-t)f(t/(1-t))$ (Theorem~\ref{cont:fundamental principle} and Lemma~\ref{cont:lem:mixing} in Chapter~\ref{cont:chapter}), and the profile of the reverse test is $E^T_\gamma(\rho\|\sigma):=E_\gamma(p_T\|q_T)=\Tr\,\omega^{1/2}\big(T-\gamma(\mathbf 1-T)\big)_+\omega^{1/2}$. The \emph{modular shadow} is the Nussbaum--Szko{\l}a pair, whose $f$-divergences are the Petz $f$-divergences $D^\Petz_f$ \cite{NussbaumSzkola2009,HiaiMosonyi2017}, and $D^\meas_f$ is the measured divergence. These quantities satisfy the Blackwell chain $D^\meas_f\le D^\HT_f\le D^T_f$ (Proposition~\ref{shA:prop:chain}).
+
+\section{Tensor products and the conjecture}\label{shB:sec:tensor}
+
+Since $T$ and the Nussbaum--Szko{\l}a pair factorise, the reverse test and the modular shadow are multiplicative: the shadow of $(\rho\otimes\rho',\sigma\otimes\sigma')$ is the multiplicative convolution of the two shadows. The testing region does not factorise, and the Hirche--Tomamichel R\'enyi divergences are not additive \cite{HircheTomamichel2024}. Section~\ref{shA:sec:tensor} therefore compares tensor powers with the factorising shadows, the modular shadow below order one and the pinched pair above it. We write $\eta_n$ for the error profile of $(\rho^{\otimes n},\sigma^{\otimes n})$, $v(\sigma)$ for the number of distinct eigenvalues of $\sigma$, $d$ for the dimension, and $\mathcal P_\sigma$ for the pinching in the eigenbasis of $\sigma$. For $\alpha\in(0,1)$, Proposition~\ref{shA:prop:petz} (order below one) gives $\frac12Q^\Petz_\alpha\le Q^\HT_\alpha\le Q^\Petz_\alpha$. For $\alpha>1$ and $\Pi_\rho\le\Pi_\sigma$, Proposition~\ref{shA:prop:pinch} (order above one) places both $Q^\HT_\alpha(\rho\|\sigma)$ and the sandwiched quasi-entropy $\widetilde Q_\alpha(\rho\|\sigma)$ between the classical quantity $Q_\alpha(\mathcal P_\sigma\rho\|\sigma)=\Tr(\mathcal P_\sigma\rho)^\alpha\sigma^{1-\alpha}$ and $v(\sigma)^\alpha\,Q_\alpha(\mathcal P_\sigma\rho\|\sigma)$. We use the resulting estimates: for $\alpha\in(0,1)$,
+\begin{gather*}
+D^\Petz_\alpha(\rho\|\sigma)\le D^\HT_\alpha(\rho\|\sigma)\le D^\Petz_\alpha(\rho\|\sigma)+\frac{\log2}{1-\alpha},\\
+\Big|\tfrac1nD^\HT_\alpha(\rho^{\otimes n}\|\sigma^{\otimes n})-D^\Petz_\alpha(\rho\|\sigma)\Big|\le\frac{\log2}{n(1-\alpha)},
+\end{gather*}
+and for $\alpha>1$ and $\Pi_\rho\le\Pi_\sigma$,
+\begin{gather*}
+\big|D^\HT_\alpha(\rho\|\sigma)-\widetilde D_\alpha(\rho\|\sigma)\big|\le\frac{\alpha}{\alpha-1}\log v(\sigma),\\
+\Big|\tfrac1nD^\HT_\alpha(\rho^{\otimes n}\|\sigma^{\otimes n})-\widetilde D_\alpha(\rho\|\sigma)\Big|\le\frac{\alpha(d-1)}{\alpha-1}\,\frac{\log(n+1)}{n}.
+\end{gather*}
+
+\begin{proposition}[Chernoff-type sandwich]\label{shB:prop:chernoff}
+For $\alpha\in(0,1)$,
+\[
+1-E^T_1(\rho\|\sigma)\ \le\ \eta(1)\ \le\ Q^\HT_\alpha(\rho\|\sigma)\ \le\ \eta(1)^\alpha+\eta(1)^{1-\alpha}-\eta(1).
+\]
+\end{proposition}
+
+\begin{proof}
+The first inequality is Theorem~\ref{shA:thm:Tlift}(a) at $\gamma=1$. By Lemma~\ref{shA:lem:profile}(a), $\eta(\gamma)\ge\eta(1)\min\{\gamma,1\}$ and $\eta(\gamma)\le\min\{\min\{\gamma,1\},\ \eta(1)\max\{\gamma,1\}\}$. Insert these into the Mellin formula of Proposition~\ref{shA:prop:mellin}: $\alpha(1-\alpha)\int_0^\infty\gamma^{\alpha-2}\min\{\gamma,1\}d\gamma=1$ gives the lower bound, and splitting at $\eta(1)$ and $1/\eta(1)$ gives the upper bound.
+\end{proof}
+
+Since $Q^\HT_\alpha\le Q^\Petz_\alpha$ \cite{BeigiHircheTomamichel2025}, the middle inequality sharpens the bound $\eta(1)\le\Tr\rho^\alpha\sigma^{1-\alpha}$ of Audenaert et al.\ \cite{AudenaertChernoff2007}. The first inequality says that the reverse test always gives a lower bound on the Bayesian error. This is the mechanism behind every converse built from Kubo--Ando means, including the geometric Chernoff converse of Theorem~\ref{chn:thm:main} in Chapter~\ref{chn:chapter}.
+
+\paragraph{The inequality $D^\HT_\alpha\le\widetilde D_\alpha$} It was proved in \cite{BeigiHircheTomamichel2025} for integers $\alpha\ge2$ and conjectured there for all $\alpha>1$. Liu, Hirche and Cheng \cite{LiuHircheCheng2025} proved it for all $\alpha>1$ through the trace formula $Q^\HT_\alpha(\rho\|\sigma)=(\alpha-1)\int_0^\infty\Tr\big((\sigma+t)^{-1/2}\rho(\sigma+t)^{-1/2}\big)^\alpha dt$. Proposition~\ref{shA:prop:pinch} bounds the gap by $\frac{\alpha}{\alpha-1}\log v(\sigma)$. We give a short independent proof for every real $\alpha\ge2$. It uses only the Helstrom projections, and it shows where the exponent $\alpha=2$ is critical.
+
+\begin{theorem}\label{shB:thm:bht2}
+For every $\alpha\ge2$ and all states, $D^\HT_\alpha(\rho\|\sigma)\le\widetilde D_\alpha(\rho\|\sigma)$.
+\end{theorem}
+
+\begin{proof}
+We may assume $\Pi_\rho\le\Pi_\sigma$ and work on $\Pi_\sigma\cH$, where $\sigma$ is invertible. Put $\kappa=\frac{\alpha}{\alpha-1}\in(1,2]$, $c=\frac1{2\kappa}$ and $X=\sigma^{-c}\rho\,\sigma^{-c}$, so that $\widetilde Q_\alpha=\Tr X^\alpha$.
+
+\emph{Step 1 (a variational lower bound).} For every $H\ge0$, H\"older's and Young's inequalities give $\Tr\rho H=\Tr X(\sigma^cH\sigma^c)\le\|X\|_\alpha\|\sigma^cH\sigma^c\|_\kappa\le\frac1\alpha\Tr X^\alpha+\frac1\kappa\Tr(\sigma^cH\sigma^c)^\kappa$, that is,
+\[
+\widetilde Q_\alpha(\rho\|\sigma)\ \ge\ \alpha\Tr\rho H-(\alpha-1)\Tr(\sigma^cH\sigma^c)^\kappa .
+\]
+
+\emph{Step 2 (the Helstrom layer cake).} Let $P_\gamma$ be the Helstrom projections and reparametrise by $u=\gamma^{\alpha-1}$, writing $M(u)=P_{u^{\kappa-1}}$. Choose $H=\int_0^\infty M(u)\,du=(\alpha-1)\int_0^\infty\gamma^{\alpha-2}P_\gamma\,d\gamma$, which is bounded because $P_\gamma=0$ beyond the largest generalised eigenvalue. Then $\alpha\Tr\rho H=\alpha(\alpha-1)\int\gamma^{\alpha-2}\Tr\rho P_\gamma\,d\gamma$.
+
+\emph{Step 3 (the derivative bound).} Put $H_U=\int_0^UM(u)\,du$, $K_U=\sigma^cH_U\sigma^c$, $\Phi(U)=\Tr K_U^\kappa$ and $\Psi(U)=\kappa\int_0^Uu^{\kappa-1}\Tr\sigma M(u)\,du$. Both vanish at $U=0$ and are absolutely continuous, with $\Phi'(U)=\kappa\Tr\big[\sigma^cK_U^{\kappa-1}\sigma^c\,M(U)\big]$. Since $0\le M\le\mathbf 1$, $H_U\le U\mathbf 1$, so $K_U\le U\sigma^{1/\kappa}$. As $0<\kappa-1\le1$, the function $x^{\kappa-1}$ is operator monotone, so $K_U^{\kappa-1}\le U^{\kappa-1}\sigma^{(\kappa-1)/\kappa}$ and
+\[
+\sigma^cK_U^{\kappa-1}\sigma^c\le U^{\kappa-1}\sigma^{2c+(\kappa-1)/\kappa}=U^{\kappa-1}\sigma .
+\]
+Hence $\Phi'(U)\le\kappa U^{\kappa-1}\Tr\sigma M(U)=\Psi'(U)$, and
+\[
+\Tr(\sigma^cH\sigma^c)^\kappa=\Phi(\infty)\le\Psi(\infty)=\alpha\int_0^\infty\gamma^{\alpha-1}\Tr\sigma P_\gamma\,d\gamma .
+\]
+
+\emph{Step 4.} Combining the steps with the Mellin formula of Proposition~\ref{shA:prop:mellin},
+\[
+\begin{aligned}\widetilde Q_\alpha&\ge\alpha(\alpha-1)\int_0^\infty\gamma^{\alpha-2}\Tr P_\gamma(\rho-\gamma\sigma)\,d\gamma\\&=\alpha(\alpha-1)\int_0^\infty\gamma^{\alpha-2}E_\gamma(\rho\|\sigma)\,d\gamma=Q^\HT_\alpha(\rho\|\sigma).\end{aligned}\qedhere
+\]
+\end{proof}
+
+\begin{remark}[The greedy argument and the range $(1,2)$]\label{shB:rem:bhtdual}
+Step~3 holds for every family $0\le M(u)\le\mathbf 1$, not only for Helstrom projections. In fact, minimising $\int\Tr\sigma M(u)\,d(u^\kappa)$ over families with $\int M=H$ is a linear program whose dual objective is $\Tr\Lambda H-C_\alpha Q^\HT_\alpha(\Lambda\|\sigma)$. So the ``operator bathtub inequality''
+\[
+\Tr\Big(\sigma^{\frac1{2\kappa}}\Big(\int_0^\infty M(u)\,du\Big)\sigma^{\frac1{2\kappa}}\Big)^\kappa\le\int_0^\infty\Tr\sigma M(u)\,d(u^\kappa)\qquad(0\le M(u)\le\mathbf 1)
+\]
+for a fixed $\kappa$ is equivalent to the inequality $Q^\HT_\alpha\le\widetilde Q_\alpha$ at $\alpha=\kappa/(\kappa-1)$ for all pairs $(\cdot,\sigma)$ (Corollary~\ref{shB:cor:bathtub}). For $\kappa>2$ the pointwise inequality of Step~3 would require $K\le A\Rightarrow\Tr K^{\kappa-1}N\le\Tr A^{\kappa-1}N$ for all $0\le N\le A$. That is operator monotonicity of $x^{\kappa-1}$, which fails, and we found violations numerically. The integrated inequality nevertheless held in all our tests, including $1{,}200$ random families with $\alpha\in\{1.2,1.5,1.8\}$. For $\alpha\in(1,2)$ the inequality holds by \cite{LiuHircheCheng2025}, but a direct operator proof of the bathtub inequality for $\kappa>2$ needs a non-greedy argument.
+\end{remark}
+
+\begin{corollary}[An operator layer-cake inequality]\label{shB:cor:bathtub}
+For every $\sigma\ge0$, every $\kappa\ge1$ and every measurable family $0\le M(u)\le\mathbf 1$ with $\int_0^\infty M(u)\,du$ finite,
+\[
+\Tr\Big(\sigma^{\frac1{2\kappa}}\Big(\int_0^\infty M(u)\,du\Big)\sigma^{\frac1{2\kappa}}\Big)^\kappa\le\int_0^\infty\Tr\sigma M(u)\,d(u^\kappa).
+\]
+For $\kappa\le2$ this is Step~3 of Theorem~\ref{shB:thm:bht2}. For $\kappa>2$ it follows from \cite{LiuHircheCheng2025}.
+\end{corollary}
+
+\begin{proof}
+Put $\alpha=\kappa/(\kappa-1)$, $H=\int M$, and $C=\kappa^{1-\alpha}/\alpha$. For every Hermitian $\Lambda$, the inequality $\Tr XM\ge-\Tr X_-$ for $0\le M\le\mathbf 1$ gives
+\[
+\int_0^\infty\Tr\sigma M(u)\,d(u^\kappa)\ge\Tr\Lambda H-\int_0^\infty\Tr\big(\Lambda-\kappa u^{\kappa-1}\sigma\big)_+du=\Tr\Lambda H-C\,Q^\HT_\alpha(\Lambda\|\sigma),
+\]
+by the substitution $\gamma=\kappa u^{\kappa-1}$ and the Mellin formula (both sides are homogeneous, so the formula extends to unnormalised $\Lambda$). By \cite{LiuHircheCheng2025}, $Q^\HT_\alpha\le\widetilde Q_\alpha$. Writing $Y=\sigma^{-1/(2\kappa)}\Lambda\sigma^{-1/(2\kappa)}$ and $K=\sigma^{1/(2\kappa)}H\sigma^{1/(2\kappa)}$, we get $\Tr\Lambda H-C\widetilde Q_\alpha(\Lambda\|\sigma)=\Tr YK-C\Tr Y^\alpha$. Its supremum over $Y\ge0$ is $\Tr K^\kappa$, because $\sup_y(yk-Cy^\alpha)=k^\kappa$ for this $C$.
+\end{proof}
+
+Super-multiplicativity would give a third route to these inequalities, and it is a structural statement about how testing regions tensorize.
+
+\begin{conjecture}[Super-multiplicativity]\label{shB:conj:super}
+For all $\alpha\in(0,1)\cup(1,\infty)$ and all pairs, $Q^\HT_\alpha(\rho\otimes\rho'\|\sigma\otimes\sigma')\ge Q^\HT_\alpha(\rho\|\sigma)\,Q^\HT_\alpha(\rho'\|\sigma')$.
+\end{conjecture}
+
+Below we prove the conjecture at $\alpha=2$, at every integer order $\alpha=n$ for pure states, at every integer order against pure partners (Theorem~\ref{shB:thm:purepartner}), at $\alpha=3$ for all sign-free pairs (Theorem~\ref{shB:thm:simplex}), for all pairs in which one of the two reference states has at most two distinct eigenvalues (Corollary~\ref{shB:cor:twolevel}), against partners with three eigenvalues and a nonnegative $3$-cycle (Corollary~\ref{shB:cor:threelevel}) and for weakly correlated negative $3$-cycles on both sides (Corollary~\ref{shB:cor:negative}), for one measured factor, to first order at $\alpha=\infty$, and for tensor powers with enough copies, and we show that it is the family of moment inequalities of a convex-order statement about one measure (Theorem~\ref{shB:thm:frenkel}).
+
+Equality holds when $\rho'$ and $\sigma'$ commute. In that case $E_\gamma(\rho\otimes\rho'\|\sigma\otimes\sigma')=\sum_ya_y\,e(\gamma b_y/a_y)$ and the Mellin transform factorises. For $\alpha>1$ the conjecture says that $D^\HT_\alpha$ is superadditive, and for $\alpha<1$ that it is subadditive.
+
+\begin{theorem}[Reduction]\label{shB:thm:reduction}
+Fix $\alpha>1$. If $Q^\HT_\alpha(\rho^{\otimes n}\|\sigma^{\otimes n})\ge Q^\HT_\alpha(\rho\|\sigma)^n$ for infinitely many $n$, then $D^\HT_\alpha(\rho\|\sigma)\le\widetilde D_\alpha(\rho\|\sigma)$. For $\alpha<1$ the same hypothesis gives $D^\HT_\alpha\ge D^\Petz_\alpha$. So Conjecture~\ref{shB:conj:super} would give independent proofs of \cite{LiuHircheCheng2025} and of \cite[(1.10)]{BeigiHircheTomamichel2025}, using only pinching and the inequalities of \cite{AudenaertChernoff2007}.
+\end{theorem}
+
+\begin{proof}
+For $\alpha>1$, Proposition~\ref{shA:prop:pinch} applied to $n$ copies gives $Q^\HT_\alpha(\rho\|\sigma)^n\le(n+1)^{\alpha(d-1)}\widetilde Q_\alpha(\rho\|\sigma)^n$. Take $n$-th roots and let $n\to\infty$. For $\alpha<1$, choose $0<s_1<\alpha<s_2<1$. The inequality of \cite{AudenaertChernoff2007} gives $\eta_n(\gamma)\le\gamma^{1-s}(Q^\Petz_s)^n$ for $s=s_1,s_2$. Using the bound with $s_1$ below $\gamma_*=(Q^\Petz_{s_2}/Q^\Petz_{s_1})^{n/(s_2-s_1)}$ and the bound with $s_2$ above it, the Mellin integral gives
+\[
+Q^\HT_\alpha(\rho^{\otimes n}\|\sigma^{\otimes n})\le\alpha(1-\alpha)\Big(\frac{1}{\alpha-s_1}+\frac{1}{s_2-\alpha}\Big)\big((Q^\Petz_{s_1})^{\theta}(Q^\Petz_{s_2})^{1-\theta}\big)^n,\qquad \theta=\frac{s_2-\alpha}{s_2-s_1}.
+\]
+Combine this with the hypothesis $Q^\HT_\alpha(\rho\|\sigma)^n\le Q^\HT_\alpha(\rho^{\otimes n}\|\sigma^{\otimes n})$, take $n$-th roots, and let $s_1,s_2\to\alpha$, using the continuity of $s\mapsto Q^\Petz_s$. This gives $Q^\HT_\alpha\le Q^\Petz_\alpha$.
+\end{proof}
+
+\section{Super-multiplicativity: three cases that can be proved}\label{shB:sec:three}
+
+We prove Conjecture~\ref{shB:conj:super} at $\alpha=2$, prove a one-sided version for every $f$ in which one factor is replaced by a measurement, and prove it to first order as $\alpha\to\infty$. Throughout, $L(a,b)=\frac{a-b}{\log a-\log b}$ is the logarithmic mean, with $L(a,a)=a$.
+
+\begin{theorem}[Super-multiplicativity at $\alpha=2$]\label{shB:thm:super2}
+For all pairs of states,
+\[
+Q^\HT_2(\rho\otimes\rho'\|\sigma\otimes\sigma')\ \ge\ Q^\HT_2(\rho\|\sigma)\,Q^\HT_2(\rho'\|\sigma'),
+\]
+so $D^\HT_2$ is superadditive. When the right-hand side is finite, equality holds if and only if $[\rho,\sigma]=0$ or $[\rho',\sigma']=0$.
+\end{theorem}
+
+\begin{proof}
+If $\Pi_\rho\not\le\Pi_\sigma$ or $\Pi_{\rho'}\not\le\Pi_{\sigma'}$, both sides are infinite, since $Q^\HT_2\ge1$. Otherwise we work on the supports. Write $\sigma=\sum_je^{x_j}|j\rangle\langle j|$ and $\rho_{jk}=\langle j|\rho|k\rangle$. The trace formula at $\alpha=2$ \cite[(2.11)]{BeigiHircheTomamichel2025} gives
+\[
+Q^\HT_2(\rho\|\sigma)=\int_0^\infty\Tr\big[\rho(\sigma+t)^{-1}\rho(\sigma+t)^{-1}\big]dt=\sum_{jk}\frac{|\rho_{jk}|^2}{L(e^{x_j},e^{x_k})}=1+\chi^2_{\mathrm{BKM}}(\rho,\sigma),
+\]
+where $\chi^2_{\mathrm{BKM}}$ is the Bogoliubov--Kubo--Mori $\chi^2$-divergence. Since
+\[
+L(e^x,e^y)=e^{(x+y)/2}\,\frac{\sinh((x-y)/2)}{(x-y)/2},
+\]
+\begin{gather*}
+Q^\HT_2(\rho\|\sigma)=\sum_{jk}w_{jk}\,k(x_j-x_k),\\
+w_{jk}=|\rho_{jk}|^2e^{-(x_j+x_k)/2}=w_{kj}\ge0,\qquad k(u)=\frac{u/2}{\sinh(u/2)} .
+\end{gather*}
+The product pair has eigenvalues $e^{x_j+x'_l}$ and matrix entries $\rho_{jk}\rho'_{lm}$. With $u=x_j-x_k$ and $v=x'_l-x'_m$, and using $w'_{lm}=w'_{ml}$,
+\[
+Q^\HT_2(\rho\otimes\rho'\|\sigma\otimes\sigma')=\sum_{jklm}w_{jk}w'_{lm}\,k(u+v)=\sum_{jklm}w_{jk}w'_{lm}\,\tfrac12\big(k(u+v)+k(u-v)\big).
+\]
+Euler's product $\frac{\sinh z}{z}=\prod_{n\ge1}\big(1+\frac{z^2}{\pi^2n^2}\big)$ gives $k(u)=\prod_n\big(1+\frac{u^2}{4\pi^2n^2}\big)^{-1}=\mathbb E\,e^{-u^2V}$, where $V=\sum_n\frac{Y_n}{4\pi^2n^2}$ and the $Y_n$ are independent standard exponential variables ($\mathbb E\,V=\frac1{24}$). Hence
+\[
+\begin{aligned}
+\tfrac12\big(k(u+v)+k(u-v)\big)&=\mathbb E\big[e^{-(u^2+v^2)V}\cosh(2uvV)\big]\\
+&\ge\mathbb E\big[e^{-u^2V}e^{-v^2V}\big]\ \ge\ \mathbb E\,e^{-u^2V}\ \mathbb E\,e^{-v^2V}=k(u)k(v).
+\end{aligned}
+\]
+The last step is Chebyshev's association inequality for the two nonincreasing functions $V\mapsto e^{-u^2V}$ and $V\mapsto e^{-v^2V}$. Summing over $j,k,l,m$ proves the inequality. If neither pair commutes, there is a term with $w_{jk}w'_{lm}>0$, $u\ne0$ and $v\ne0$. For that term both inequalities are strict, because $V$ is not almost surely constant. If one pair commutes, the product shadow factorises (the remark after Conjecture~\ref{shB:conj:super}).
+\end{proof}
+
+The proof uses the product structure in one place: the symmetrisation $v\mapsto-v$, which pairs the index $(l,m)$ with $(m,l)$. The pointwise inequality $k(u+v)\ge k(u)k(v)$ is false, since $k(2u)/k(u)^2=2\tanh(u/2)/u<1$ for $u>0$.
+
+\begin{theorem}[One factor measured]\label{shB:thm:supermeas}
+Let $(P,Q)$ be the classical pair carried by the shadow of $(\rho,\sigma)$, namely $Q=\mu+m_0\delta_0$ and $P(d\gamma)=\gamma\,\mu(d\gamma)+m_\infty\delta_\infty$ on $[0,\infty]$. Then $E_\gamma(P\|Q)=e(\gamma)$, and for every measurement $N=\{N_y\}$ on the second factor, with $a_y=\Tr\rho'N_y$, $b_y=\Tr\sigma'N_y$, and every $\gamma\ge0$,
+\[
+E_\gamma(\rho\otimes\rho'\|\sigma\otimes\sigma')\ \ge\ \sum_ya_y\,e(\gamma b_y/a_y)=E_\gamma(P\otimes a\|Q\otimes b),
+\]
+where $a\,e(\gamma b/a)$ is read as its limit when $a=0$ or $b=0$. The same holds with both pairs reversed. Consequently, for every convex $f$,
+\[
+D^\HT_f(\rho\otimes\rho'\|\sigma\otimes\sigma')\ \ge\ \sup_ND_f(P\otimes a\|Q\otimes b),
+\]
+and for every $\alpha\in(0,1)\cup(1,\infty)$,
+\[
+D^\HT_\alpha(\rho\otimes\rho'\|\sigma\otimes\sigma')\ \ge\ D^\HT_\alpha(\rho\|\sigma)+D^\meas_\alpha(\rho'\|\sigma') .
+\]
+\end{theorem}
+
+\begin{proof}
+$E_\gamma(P\|Q)=\int_{(\gamma,\infty)}(\lambda-\gamma)\,d\mu(\lambda)+m_\infty=e(\gamma)$ by the first identity in the proof of Proposition~\ref{shA:prop:rep}. Let $P_c$ be the Helstrom projection onto the positive part of $\rho-c\sigma$, with $P_\infty=0$, and put $M_\gamma=\sum_yP_{\gamma b_y/a_y}\otimes N_y$. Then $0\le M_\gamma\le\mathbf 1$ and
+\[
+\Tr M_\gamma(\rho\otimes\rho'-\gamma\,\sigma\otimes\sigma')=\sum_ya_y\Tr P_{c_y}(\rho-c_y\sigma)=\sum_ya_y\,e(c_y),\qquad c_y=\gamma b_y/a_y .
+\]
+On the classical side, $E_\gamma(P\otimes a\|Q\otimes b)=\sum_ya_yE_{c_y}(P\|Q)=\sum_ya_y\,e(c_y)$. Reversing both pairs gives the second family of hockey sticks. Definition~\ref{shA:def:HT} is monotone in both families, and $D^\HT_f$ agrees with $D_f$ on classical pairs, so the $f$-divergence bound follows. For $f=f_\alpha$, classical R\'enyi divergences are additive and $D_\alpha(P\|Q)=D^\HT_\alpha(\rho\|\sigma)$, since by Proposition~\ref{shA:prop:rep} the two pairs have the same $f$-divergences. Taking the supremum over $N$ gives $D^\meas_\alpha(\rho'\|\sigma')$.
+\end{proof}
+
+For $\alpha>1$ this is the inequality $Q^\HT_\alpha(\rho\otimes\rho'\|\sigma\otimes\sigma')\ge Q^\HT_\alpha(\rho\|\sigma)\,Q^\meas_\alpha(\rho'\|\sigma')$, the conjecture with the second factor measured. For $\alpha<1$ it gives $Q^\HT_\alpha(\rho\otimes\rho'\|\sigma\otimes\sigma')\le Q^\HT_\alpha Q^\meas_\alpha{}'$. So, if the conjecture holds, $Q^\HT_\alpha(\rho\otimes\rho'\|\sigma\otimes\sigma')$ lies between $Q^\HT_\alpha Q^\HT_\alpha{}'$ and $Q^\HT_\alpha Q^\meas_\alpha{}'$ for $\alpha<1$. Pointwise, the bound of Theorem~\ref{shB:thm:supermeas} combines Helstrom tests of the first factor with a fixed measurement of the second. To combine Helstrom tests of both factors one would need Helstrom projections that are nested in $\gamma$, and they are not.
+
+Near $\alpha=\infty$ the shadow concentrates at its top atom, where a second-order perturbation computation decides the question. Let $\sigma$ be invertible, and let $\gamma_{\max}=e^{D_{\max}(\rho\|\sigma)}$ be a simple eigenvalue of $\sigma^{-1/2}\rho\,\sigma^{-1/2}$. Let $v$ be a unit vector with $\rho v=\gamma_{\max}\sigma v$, and put $H=\rho-\gamma_{\max}\sigma\le0$, $m=\langle v|\sigma|v\rangle$, $a=\sigma v-mv\perp v$ and
+\[
+\kappa(\rho\|\sigma)=\frac{2\gamma_{\max}}{m}\,\langle a|(-H)^+|a\rangle\ \ge0,
+\]
+with ${}^+$ the Moore--Penrose inverse. Then $\kappa=0$ for commuting pairs.
+
+\begin{theorem}[First order at $\alpha=\infty$]\label{shB:thm:superinf}
+In this setting, as $\alpha\to\infty$,
+\[
+\log Q^\HT_\alpha(\rho\|\sigma)=\alpha\log\gamma_{\max}+\log m+\frac{\kappa(\rho\|\sigma)}{\alpha+1}+O(\alpha^{-2}),
+\]
+and for two such pairs $\kappa(\rho\otimes\rho'\|\sigma\otimes\sigma')\ge\kappa(\rho\|\sigma)+\kappa(\rho'\|\sigma')$. Hence
+\[
+\log\frac{Q^\HT_\alpha(\rho\otimes\rho'\|\sigma\otimes\sigma')}{Q^\HT_\alpha(\rho\|\sigma)\,Q^\HT_\alpha(\rho'\|\sigma')}=\frac{\kappa(\rho\otimes\rho'\|\sigma\otimes\sigma')-\kappa(\rho\|\sigma)-\kappa(\rho'\|\sigma')}{\alpha+1}+O(\alpha^{-2}).
+\]
+The leading coefficient is nonnegative, and when it is positive the conjecture holds for all sufficiently large $\alpha$.
+\end{theorem}
+
+\begin{proof}
+\emph{Asymptotics.} Let $\gamma_2<\gamma_{\max}$ be the next generalised eigenvalue. For $u\in(\gamma_2,\gamma_{\max}]$ exactly one eigenvalue $\lambda_1(u)$ of $\rho-u\sigma$ is positive, so $e(u)=\lambda_1(u)$ there. The eigenvalue is simple, so $\lambda_1$ is real-analytic near $\gamma_{\max}$, with $\lambda_1(\gamma_{\max})=0$, $\lambda_1'(\gamma_{\max})=-m$ and, by second-order perturbation theory, $\lambda_1''(\gamma_{\max})=2\langle a|(-H)^+|a\rangle$, because the other eigenvalues of $H$ are negative. In the Mellin formula $Q^\HT_\alpha=\alpha(\alpha-1)\int_0^{\gamma_{\max}}u^{\alpha-2}e(u)\,du$, the integral over $[0,\gamma_{\max}-\delta]$ is $O(\alpha^2(\gamma_{\max}-\delta)^\alpha)$. On the rest insert $e(u)=m(\gamma_{\max}-u)+\frac12\lambda_1''(\gamma_{\max})(\gamma_{\max}-u)^2+O((\gamma_{\max}-u)^3)$ and use $\alpha(\alpha-1)\int_0^{\gamma}u^{\alpha-2}(\gamma-u)^k\,du=\gamma^{\alpha+k-1}\,k!\,\Gamma(\alpha+1)/\Gamma(\alpha+k)$. This gives $Q^\HT_\alpha=m\gamma_{\max}^\alpha\big(1+\kappa/(\alpha+1)+O(\alpha^{-2})\big)$.
+
+\emph{Superadditivity of $\kappa$.} Put primes on the quantities of the second pair. The product has top generalised eigenvalue $\gamma_{\max}\gamma'_{\max}$, which is simple, with eigenvector $v\otimes v'$, and $\langle v\otimes v'|\sigma\otimes\sigma'|v\otimes v'\rangle=mm'$. Expanding $\rho=\gamma_{\max}\sigma+H$ and $\rho'=\gamma'_{\max}\sigma'+H'$,
+\[
+-H_{12}:=\gamma_{\max}\gamma'_{\max}\,\sigma\otimes\sigma'-\rho\otimes\rho'=A-H\otimes H',\qquad A=\gamma_{\max}\,\sigma\otimes(-H')+\gamma'_{\max}\,(-H)\otimes\sigma' .
+\]
+Since $H\otimes H'=(-H)\otimes(-H')\ge0$, we have $0\le-H_{12}\le A$. Both operators have kernel $\mathbb C\,v\otimes v'$, because $\langle x|A|x\rangle=0$ forces $x\in(\cH\otimes v')\cap(v\otimes\cH')$ when $\sigma,\sigma'>0$. Hence $(-H_{12})^+\ge A^+$. The vector for the product is
+\[
+a_{12}=(\sigma\otimes\sigma')(v\otimes v')-mm'\,v\otimes v'=m\,v\otimes a'+m'\,a\otimes v'+a\otimes a'\ \perp\ v\otimes v'.
+\]
+For $z$ in the range of $A$, $\langle z|A^+|z\rangle=\sup_x\big(2\,\mathrm{Re}\langle x|z\rangle-\langle x|A|x\rangle\big)$. Take $x=\gamma_{\max}^{-1}\,v\otimes b'+\gamma_{\max}'^{-1}\,b\otimes v'$, with $b=(-H)^+a$ and $b'=(-H')^+a'$. Using $Hv=0$, $(-H)b=a$ and $a\perp v$, we get $A(v\otimes b')=\gamma_{\max}\,\sigma v\otimes a'$ and $A(b\otimes v')=\gamma'_{\max}\,a\otimes\sigma'v'$. Therefore $\langle v\otimes b'|a_{12}\rangle=mc'$, $\langle b\otimes v'|a_{12}\rangle=m'c$, $\langle v\otimes b'|A|v\otimes b'\rangle=\gamma_{\max}mc'$, $\langle b\otimes v'|A|b\otimes v'\rangle=\gamma'_{\max}m'c$, and the cross term vanishes, where $c=\langle a|(-H)^+|a\rangle$ and $c'=\langle a'|(-H')^+|a'\rangle$. Hence
+\[
+\langle a_{12}|(-H_{12})^+|a_{12}\rangle\ \ge\ \langle a_{12}|A^+|a_{12}\rangle\ \ge\ \frac{mc'}{\gamma_{\max}}+\frac{m'c}{\gamma'_{\max}},
+\]
+and multiplying by $2\gamma_{\max}\gamma'_{\max}/(mm')$ gives $\kappa_{12}\ge\kappa+\kappa'$.
+\end{proof}
+
+\begin{remark}[Pure states]\label{shB:rem:superpure}
+If $\rho=\psi$ is pure, then $(\sigma+t)^{-1/2}\psi(\sigma+t)^{-1/2}$ has rank one, and the trace formula gives $Q^\HT_\alpha(\psi\|\sigma)=(\alpha-1)\int_0^\infty\big(\int\frac{\nu(dq)}{q+t}\big)^\alpha dt$ for $\alpha>1$, where $\nu$ is the spectral measure of $\sigma$ in $\psi$. For $\psi\otimes\psi'$ this measure is the multiplicative convolution of the two. With $t=e^x$ and $\mu(dy)=e^{(1/\alpha-1)y}\,(\log_*\nu)(dy)$, one finds $Q^\HT_\alpha(\psi\|\sigma)=\|\mu*K_\alpha\|_\alpha^\alpha/\|K_\alpha\|_\alpha^\alpha$ with $K_\alpha(x)=e^{x/\alpha}/(1+e^x)$. This is, up to normalisation, the density of $\log B$ for a beta-prime variable $B$ with parameters $(\frac1\alpha,1-\frac1\alpha)$, and it is the hyperbolic secant density at $\alpha=2$. So for pure states Conjecture~\ref{shB:conj:super} is the classical inequality
+\[
+\|\mu*\mu'*K_\alpha\|_\alpha\,\|K_\alpha\|_\alpha\ \ge\ \|\mu*K_\alpha\|_\alpha\,\|\mu'*K_\alpha\|_\alpha\qquad\text{for finite positive measures }\mu,\mu'\text{ on }\mathbb R .
+\]
+Minkowski's inequality gives the companion upper bound $\|\mu*K_\alpha\|_\alpha\le\mu(\mathbb R)\|K_\alpha\|_\alpha$, and since $\mu(\mathbb R)=\langle\psi|\sigma^{(1-\alpha)/\alpha}|\psi\rangle$ this is exactly $Q^\HT_\alpha\le\widetilde Q_\alpha$ for pure states. The lower bound is not a property of log-concave kernels in general: for $K=\mathbf 1_{[0,1)}$ and $\mu=\mu'=\delta_0+\delta_{1/2}$ it reads $(1+3^\alpha)\ge(1+2^{\alpha-1})^2$, which fails for every $\alpha\ge5$. Any proof must therefore use the shape of $K_\alpha$, as the Gaussian-mixture argument does at $\alpha=2$.
+
+In the language of R\'enyi entropies $h_\alpha(f)=\frac1{1-\alpha}\log\int f^\alpha$, with $X\sim\mu$, $X'\sim\mu'$ and $Z\sim K_\alpha$ independent, the pure-state conjecture reads
+\[
+h_\alpha(X+X'+Z)+h_\alpha(Z)\ \le\ h_\alpha(X+Z)+h_\alpha(X'+Z)\qquad(\alpha>1),
+\]
+a submodularity of the R\'enyi entropy of sums in which the common summand $Z$ has the law of $\log B$, $B\sim\mathrm{Beta}'(\frac1\alpha,1-\frac1\alpha)$. For the Shannon entropy and an arbitrary common summand this inequality is data processing: $h(X+X'+Z)-h(X'+Z)=I(X;X+X'+Z)\le I(X;X+Z)=h(X+Z)-h(Z)$, since $X\to X+Z\to X+Z+X'$ is a Markov chain; this is the pure-state shadow of the additivity of the Umegaki entropy. For $\alpha\ne1$ the inequality depends on the law of $Z$: it fails for $Z$ uniform on $[0,1)$ and fair coins $X,X'\in\{0,\frac12\}$ when $\alpha\ge5$ (the computation above), while for Gaussian $Z$ it holds at every integer $\alpha=n$, because $\int\prod_{i=1}^nG(x-a_i)\,dx\propto\exp(-\frac12\sum_i(a_i-\bar a)^2)$ depends on $a\in\mathbb R^n$ only through the $S_n$-invariant form $Q_0(a)=\sum_i(a_i-\bar a)^2$, and for such a kernel the symmetrisation of the proof of Theorem~\ref{shB:thm:super2} works in every dimension: with $a,b$ the i.i.d.\ samples, $\frac1{n!}\sum_{\pi\in S_n}e^{-\langle a-\bar a,\pi b-\bar b\rangle}\ge1$ by Jensen's inequality, because $\frac1{n!}\sum_\pi\pi b=\bar b\mathbf 1$. At $n=2$ the kernel of $K_2$ is $e^{-(a_1+a_2)/2}k(a_1-a_2)$, a Gaussian scale mixture, and the same argument with Chebyshev's association inequality is Theorem~\ref{shB:thm:super2}. For $n\ge3$ the kernel $\Psi_n(a)=\int\prod_iK_n(x-a_i)\,dx\propto e^{(1-n)\bar a}\int_0^\infty s^{n-2}\prod_i(1+se^{a_i-\bar a})^{-1}ds$ is not a function of $Q_0(a)$: for $n=3$ it decays like $e^{-|a-\bar a|/\sqrt6}$ along $(u,0,0)$ and like $|a-\bar a|e^{-|a-\bar a|/\sqrt2}$ along $(u,-u,0)$, and at $|a-\bar a|=4$ the two values are $0.379$ and $0.336$. A mixture of Gaussians in non-invariant quadratic forms does not support the symmetrisation step. So the integer case $n\ge3$, even for pure states, needs an argument that does not pass through Gaussian mixtures. Theorem~\ref{shB:thm:simplex} gives one, by majorization on a simplex, and proves the inequality above at every integer $\alpha\ge2$.
+\end{remark}
+
+At integer orders the pure-state case reduces to an inequality for one explicit function under the symmetric group, and the proof of Theorem~\ref{shB:thm:super2} is the case $n=2$ of that inequality.
+
+\begin{proposition}[Integer orders, pure states]\label{shB:prop:integer}
+Let $n\ge2$ be an integer and, for $w\in\mathbb R^n$ with $\sum_iw_i=0$,
+\[
+k_n(w)=(n-1)\int_0^\infty\frac{dt}{\prod_{i=1}^n(t+e^{w_i})},\qquad k_n(0)=1 .
+\]
+\begin{enumerate}[label=(\alph*)]
+\item For a pure state $\psi$ and faithful $\sigma$ with spectral measure $\nu$ of $\sigma$ in $\psi$, let $a_1,\dots,a_n$ be i.i.d.\ with the law of $\log q$ under $\nu$, and $\bar a$ their mean. Then $Q^\HT_n(\psi\|\sigma)=\mathbb E\big[e^{(1-n)\bar a}k_n(a-\bar a)\big]$, and $Q^\HT_n(\psi\otimes\psi'\|\sigma\otimes\sigma')=\mathbb E\big[e^{(1-n)(\bar a+\bar b)}k_n(a-\bar a+b-\bar b)\big]$ with $b$ an independent sample for the second pair.
+\item If
+\begin{equation}\label{shB:eq:Sn}
+\frac1{n!}\sum_{\pi\in S_n}k_n(u+\pi v)\ \ge\ k_n(u)\,k_n(v)\qquad\text{for all }u,v\text{ with }\textstyle\sum u_i=\sum v_i=0,
+\end{equation}
+then Conjecture~\ref{shB:conj:super} holds at $\alpha=n$ for all pure states and all faithful $\sigma,\sigma'$. Inequality \eqref{shB:eq:Sn} is implied by its logarithmic form $\frac1{n!}\sum_\pi\log k_n(u+\pi v)\ge\log k_n(u)+\log k_n(v)$.
+\item \eqref{shB:eq:Sn} holds at $n=2$, where $k_2(u,-u)=\frac{u}{\sinh u}$ and the logarithmic form holds factor by factor in Euler's product. For $n=3$, $k_3(w)=-2\sum_{i=1}^3w_i\big/\prod_{j\ne i}(e^{w_i}-e^{w_j})$.
+\item $\log k_n$ is concave on the hyperplane, so \eqref{shB:eq:Sn} and its logarithmic form are reverse Jensen inequalities: for a concave $L$ with $L(0)=0$ one has $L(u+\pi v)\le L(u)+L(\pi v)$ for each $\pi$, and the orbit average must make up the difference.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(a) By the trace formula,
+\[
+Q^\HT_n(\psi\|\sigma)=(n-1)\int_0^\infty\Big(\int\frac{\nu(dq)}{q+t}\Big)^ndt=\mathbb E\Big[(n-1)\int_0^\infty\prod_i(q_i+t)^{-1}dt\Big]
+\]
+with $q_i=e^{a_i}$ i.i.d., and the substitution $t=e^{\bar a}\tau$ gives the formula. The spectral measure of $\sigma\otimes\sigma'$ in $\psi\otimes\psi'$ is the multiplicative convolution $\nu\star\nu'$, so the samples for the product are $a_i+b_i$.
+(b) Since $b$ is exchangeable and $\bar b$ is permutation invariant, $\mathbb E\,k_n(a-\bar a+b-\bar b)=\mathbb E\,\frac1{n!}\sum_\pi k_n\big((a-\bar a)+\pi(b-\bar b)\big)$. Apply \eqref{shB:eq:Sn} with $u=a-\bar a$, $v=b-\bar b$ and take expectations; the factors $e^{(1-n)\bar a}$ and $e^{(1-n)\bar b}$ are positive and independent. The logarithmic form implies \eqref{shB:eq:Sn} by the arithmetic--geometric mean inequality.
+(c) For $n=2$, $k_2(u,-u)=\int_0^\infty\frac{dt}{(t+e^u)(t+e^{-u})}=\frac{2u}{e^u-e^{-u}}=\frac{u}{\sinh u}$, which is $k(2u)$ in the notation of Theorem~\ref{shB:thm:super2}, and \eqref{shB:eq:Sn} is the inequality $k(u+v)+k(u-v)\ge2k(u)k(v)$ proved there. For the logarithmic form, Euler's product gives $-\log k_2=\sum_{m\ge1}h_m(u^2)$ with $h_m(s)=\log(1+s/(\pi^2m^2))$ concave and vanishing at $0$, so $\frac12[h_m((u+v)^2)+h_m((u-v)^2)]\le h_m(u^2+v^2)\le h_m(u^2)+h_m(v^2)$ by concavity and subadditivity. For $n=3$, the partial fraction expansion of $t\mapsto\prod_i(t+x_i)^{-1}$ gives $\int_0^\infty\prod_i(t+x_i)^{-1}dt=-\sum_i\log x_i\big/\prod_{j\ne i}(x_i-x_j)$, the second divided difference of $-\log$, since $\sum_i\prod_{j\ne i}(x_i-x_j)^{-1}=0$.
+(d) With $x_i=e^{w_i}$, $\prod_i(t+x_i)^{-1}=\int_{\mathbb R_+^n}e^{-\langle r,x\rangle-t|r|_1}dr$, so $K(x):=\int_0^\infty\prod_i(t+x_i)^{-1}dt=\int_{\mathbb R_+^n}e^{-\langle r,x\rangle}\,dr/|r|_1$. In the coordinates $r_i=e^{\theta_i}$ this is $K(e^w)=\int F(\theta+w)G(\theta)\,d\theta$ with $F(z)=\exp(-\sum_ie^{z_i})$ and $G(\theta)=\exp\big(\sum_i\theta_i-\log\sum_ie^{\theta_i}\big)$, both log-concave on $\mathbb R^n$. A convolution of log-concave functions is log-concave by the Pr\'ekopa--Leindler inequality, and so is the restriction $w\mapsto k_n(w)$ to the hyperplane. The last statement is the subadditivity of concave functions vanishing at $0$.
+\end{proof}
+
+Inequality \eqref{shB:eq:Sn} is a statement about a single function of $2(n-1)$ real variables. For $n\ge3$, $k_n$ is neither even nor a function of the invariant quadratic form, so the two ingredients of the $n=2$ proof, the Gaussian mixture and the parallelogram law, are both unavailable. The divided-difference structure is what works: Theorem~\ref{shB:thm:simplex}(b) below proves \eqref{shB:eq:Sn} for every $n$, with equality only at $u=0$ or $v=0$. The logarithmic form remains open for $n\ge3$; it held in all our tests (Section~\ref{shB:sec:numerics}).
+
+\section{Integer orders as a correlation inequality on a simplex}\label{shB:sec:simplex}
+
+At integer orders the trace formula turns Conjecture~\ref{shB:conj:super} into a statement about one random point of a simplex, and a majorization argument proves it whenever the functions involved are real, convex and permutation invariant, possibly after symmetrisation. This is the multivariate form of the measure pictures used so far. The product quasi-entropy becomes the pairing of a measure on the simplex built from the first pair with a function built from the second.
+
+Fix an integer $n\ge2$, let $\Delta_{n-1}=\{\mu\in[0,1]^n:\sum_i\mu_i=1\}$, and let $U$ be uniformly distributed on $\Delta_{n-1}$. For faithful $\sigma=\sum_jq_j|j\rangle\langle j|$ and a word $a=(a_1,\dots,a_n)$ of indices, write $q_a=(q_{a_1},\dots,q_{a_n})$ and $W_a=\rho_{a_1a_2}\rho_{a_2a_3}\cdots\rho_{a_na_1}$ for the cycle weights of the trace formula, and put
+\[
+\mathcal F_{\rho,\sigma}(\mu)=\sum_aW_a\,(\mu\cdot q_a)^{1-n},\qquad \mathcal G_{\rho,\sigma}(\mu)=\sum_aW_a\,k_{q_a}(\mu),
+\]
+where $k_x(\mu)=\big(x_1\cdots x_n\sum_{i=1}^n\mu_i/x_i\big)^{-1}$ for $x\in(0,\infty)^n$. Grouping the words by eigenvalues shows that $\mathcal F$ and $\mathcal G$ depend only on the block weights $\Tr(P_{\lambda_1}\rho P_{\lambda_2}\rho\cdots P_{\lambda_n}\rho)$, where the $P_\lambda$ are the spectral projections of $\sigma$, so they do not depend on the choice of eigenbasis.
+
+\begin{proposition}[Simplex representation]\label{shB:prop:simplex}
+Let $\sigma,\sigma'$ be faithful and write $x\circ y$ for the entrywise product.
+\begin{enumerate}[label=(\alph*)]
+\item For $x,y\in(0,\infty)^n$,
+\[
+(n-1)\int_0^\infty\prod_{i=1}^n\frac{dt}{t+x_i}=\mathbb E\,(U\cdot x)^{1-n},\qquad \mathbb E\,(U\cdot(x\circ y))^{1-n}=\mathbb E\big[(U\cdot y)^{1-n}\,k_x(U)\big].
+\]
+\item $Q^\HT_n(\rho\|\sigma)=\mathbb E\,\mathcal F_{\rho,\sigma}(U)=\mathbb E\,\mathcal G_{\rho,\sigma}(U)$, and
+\[
+Q^\HT_n(\rho\otimes\rho'\|\sigma\otimes\sigma')=\mathbb E\big[\mathcal F_{\rho,\sigma}(U)\,\mathcal G_{\rho',\sigma'}(U)\big].
+\]
+So Conjecture~\ref{shB:conj:super} at $\alpha=n$ is the correlation inequality $\mathbb E[\mathcal F_{\rho,\sigma}\mathcal G_{\rho',\sigma'}]\ge\mathbb E\,\mathcal F_{\rho,\sigma}\,\mathbb E\,\mathcal G_{\rho',\sigma'}$ for the uniform law on $\Delta_{n-1}$.
+\item $\mathcal F_{\rho,\sigma}$ and $\mathcal G_{\rho,\sigma}$ are invariant under cyclic shifts of the coordinates of $\mu$, and the reversal $(\mu_1,\mu_2,\dots,\mu_n)\mapsto(\mu_1,\mu_n,\dots,\mu_2)$ replaces them by their complex conjugates. They are real when all cycle weights are real: always at $n=2$, where $W_{jk}=|\rho_{jk}|^2$; for qubit pairs; for pure $\rho$; and for $\rho$ with nonnegative entries in an eigenbasis of $\sigma$. For pure $\rho=|\psi\rangle\langle\psi|$, $W_a=\prod_i|\psi_{a_i}|^2$, and they are invariant under all permutations of the coordinates.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(a) Let $E_1,\dots,E_n$ be independent standard exponential variables and $S=\sum_iE_i$. Then $E/S$ is uniform on $\Delta_{n-1}$ and independent of $S$, which has the Gamma law with shape $n$, so $\mathbb E\,S^{1-n}=1/(n-1)!$. Since $z^{1-n}=\frac1{(n-2)!}\int_0^\infty r^{n-2}e^{-rz}dr$ and $\mathbb E\,e^{-rE\cdot x}=\prod_i(1+rx_i)^{-1}$,
+\[
+\frac{\mathbb E\,(U\cdot x)^{1-n}}{(n-1)!}=\mathbb E\,(E\cdot x)^{1-n}=\frac1{(n-2)!}\int_0^\infty\frac{r^{n-2}\,dr}{\prod_i(1+rx_i)}=\frac1{(n-2)!}\int_0^\infty\frac{dt}{\prod_i(t+x_i)},
+\]
+by the substitution $r=1/t$. For the second identity, $X_i=x_iE_i$ are independent exponential variables with means $x_i$. Writing $X=RV$ with $R=\sum_iX_i$ and $V\in\Delta_{n-1}$, the density of $(R,V)$ is $(\prod_ix_i)^{-1}R^{n-1}\exp(-R\sum_iV_i/x_i)$ with respect to $dR\,dV_1\cdots dV_{n-1}$, and the coordinate measure $dV_1\cdots dV_{n-1}$ gives $\Delta_{n-1}$ total mass $1/(n-1)!$. Integrating out $R$ gives $\mathbb E\,(X\cdot y)^{1-n}=\mathbb E[(U\cdot y)^{1-n}k_x(U)]/(n-1)!$, while $\mathbb E\,(X\cdot y)^{1-n}=\mathbb E\,(E\cdot(x\circ y))^{1-n}=\mathbb E\,(U\cdot(x\circ y))^{1-n}/(n-1)!$.
+
+(b) In the eigenbasis of $\sigma$, $\Tr[(\rho(\sigma+t)^{-1})^n]=\sum_aW_a\prod_i(t+q_{a_i})^{-1}$, so the trace formula $Q^\HT_n=(n-1)\int_0^\infty\Tr[(\rho(\sigma+t)^{-1})^n]\,dt$ and the first identity of (a) give $Q^\HT_n=\mathbb E\,\mathcal F$. The product pair has eigenvectors $|j\rangle\otimes|l\rangle$ with eigenvalues $q_jq'_l$, and its cycle weights are $W_aW'_b$. The second identity of (a), with $x=q'_b$ and $y=q_a$, gives $Q^\HT_n(\rho\otimes\rho'\|\sigma\otimes\sigma')=\sum_{a,b}W_aW'_b\,\mathbb E[(U\cdot q_a)^{1-n}k_{q'_b}(U)]=\mathbb E[\mathcal F_{\rho,\sigma}\mathcal G_{\rho',\sigma'}]$. With $y=(1,\dots,1)$ it gives $\mathbb E\,k_x(U)=\mathbb E\,(U\cdot x)^{1-n}$, hence $\mathbb E\,\mathcal G=Q^\HT_n$.
+
+(c) Permuting the coordinates of $\mu$ by $\pi$ replaces $W_a$ by $W_{a\circ\pi}$ after relabelling the sum. A cycle weight is invariant under cyclic shifts of its word, and reversing the word conjugates it, because $\rho$ is Hermitian. The remaining statements are direct.
+\end{proof}
+
+Recall that $\mu$ is \emph{majorized} by $\nu$, $\mu\prec\nu$, if $\mu$ is a convex combination of permutations of $\nu$, and that $\phi$ is \emph{Schur-convex} if $\mu\prec\nu$ implies $\phi(\mu)\le\phi(\nu)$. Schur-convex functions are permutation invariant, and every permutation-invariant convex function is Schur-convex \cite[Ch.~3]{MarshallOlkinArnold2011}.
+
+\begin{lemma}[Chebyshev's inequality on the simplex]\label{shB:lem:schur}
+Let $\phi,\chi:\Delta_{n-1}\to\mathbb R$ be bounded Borel functions that are Schur-convex. Then
+\[
+\mathbb E[\phi(U)\chi(U)]\ \ge\ \mathbb E\,\phi(U)\ \mathbb E\,\chi(U).
+\]
+If $\phi$ and $\chi$ are convex and permutation invariant, and neither is almost everywhere constant, the inequality is strict.
+\end{lemma}
+
+\begin{proof}
+Induction on $n$. For $n=2$ write $U=(V,1-V)$ with $V$ uniform on $[0,1]$. A Schur-convex function of $(v,1-v)$ is a nondecreasing function of $|v-\frac12|$, and Chebyshev's association inequality for the single variable $|V-\frac12|$ gives the claim.
+
+Let $n\ge3$, let $T=\min_iU_i$, and let $I$ be the index at which the minimum is attained, which is unique almost surely. By the law of total covariance,
+\[
+\mathrm{Cov}(\phi,\chi)=\mathbb E\big[\mathrm{Cov}(\phi,\chi\mid T,I)\big]+\mathrm{Cov}\big(\mathbb E[\phi\mid T,I],\,\mathbb E[\chi\mid T,I]\big).
+\]
+Put $\Delta(s)=\{\mu\in\Delta_{n-1}:\mu_j\ge s\ \forall j\}=c+(1-ns)(\Delta_{n-1}-c)$, where $c=(\frac1n,\dots,\frac1n)$. Given $T=s$ and $I=i$, $U$ is uniform on the facet $\{\mu_i=s\}$ of $\Delta(s)$. The map $\nu\mapsto\mu$ with $\mu_i=s$ and $\mu_j=s+(1-ns)\nu_j$ for $j\ne i$ carries $\Delta_{n-2}$ onto this facet and the uniform law to the uniform law. It preserves majorization, because a doubly stochastic matrix acting on $\nu$ extends to one acting on $\mu$ that fixes the $i$-th coordinate. So the restrictions of $\phi$ and $\chi$ to the facet are Schur-convex functions of $\nu$, and the first term is nonnegative by the induction hypothesis.
+
+Given $T=s$, $U$ is uniform on the boundary of $\Delta(s)$: the facets are congruent, and the gradient of $\min_i\mu_i$ has the same length on each of them. By permutation invariance, $\mathbb E[\phi\mid T,I]=A_\phi(1-nT)$, with $A_\phi(r)=\mathbb E\,\phi(c+r(X-c))$ and $X$ uniform on $\partial\Delta_{n-1}$. For $0\le r\le r'\le1$, the point $c+r(x-c)$ is a convex combination of $c+r'(x-c)$ and $c$, which is the average of the permutations of $c+r'(x-c)$; hence $c+r(x-c)\prec c+r'(x-c)$, and $A_\phi$ is nondecreasing. The same holds for $\chi$, and Chebyshev's inequality for the single variable $T$ makes the second term nonnegative.
+
+For strictness, let $\phi$ be convex and permutation invariant. Then $\phi(c)\le\phi(\mu)$ for all $\mu$, and $A_\phi$ is convex and nondecreasing with $A_\phi(0)=\phi(c)$. If $A_\phi=\phi(c)$ on $[0,1)$, then $\mathbb E\,\phi(U)=\mathbb E\,A_\phi(1-nT)=\phi(c)$, and since $\phi\ge\phi(c)$, $\phi$ is almost everywhere constant. Otherwise there is $r_\phi<1$ with $A_\phi(r_\phi)>\phi(c)$, and convexity gives $A_\phi(r')-A_\phi(r)\ge(r'-r)\big(A_\phi(r_\phi)-\phi(c)\big)/r>0$ for $r_\phi\le r<r'\le1$, so $A_\phi$ is strictly increasing on $[r_\phi,1]$. If the same holds for $\chi$, then both $s\mapsto A_\phi(1-ns)$ and $s\mapsto A_\chi(1-ns)$ are strictly decreasing on some $[0,s_0)$. The variable $T$ has positive density there, so, with $T'$ an independent copy, the second term $\frac12\mathbb E\big[(A_\phi(1-nT)-A_\phi(1-nT'))(A_\chi(1-nT)-A_\chi(1-nT'))\big]$ is strictly positive.
+\end{proof}
+
+Call a pair $(\rho,\sigma)$ \emph{sign-free} if $\Tr(P\rho Q\rho R\rho)\ge0$ for all pairwise distinct spectral projections $P,Q,R$ of $\sigma$, and \emph{weakly sign-free} if $\mathrm{Re}\Tr(P\rho Q\rho R\rho)\ge0$ for all of them. The condition is empty when $\sigma$ has at most two distinct eigenvalues, in particular for every qubit pair. It holds for pure $\rho$, for $\rho$ with nonnegative entries in an eigenbasis of $\sigma$, and for commuting pairs.
+
+\begin{theorem}[Integer orders through the simplex]\label{shB:thm:simplex}
+\begin{enumerate}[label=(\alph*)]
+\item ($n=2$.) $\mathcal F_{\rho,\sigma}(v,1-v)=\mathcal G_{\rho,\sigma}(v,1-v)=\sum_{jk}|\rho_{jk}|^2/(vq_j+(1-v)q_k)$, so $Q^\HT_2(\rho\otimes\rho'\|\sigma\otimes\sigma')=\int_0^1\mathcal F_{\rho,\sigma}\,\mathcal F_{\rho',\sigma'}\,dv$. These functions are convex and symmetric under $v\mapsto1-v$, so Lemma~\ref{shB:lem:schur} gives Theorem~\ref{shB:thm:super2} again.
+\item Inequality \eqref{shB:eq:Sn} holds for every $n\ge2$, strictly unless $u=0$ or $v=0$. Hence Conjecture~\ref{shB:conj:super} holds at every integer order $\alpha=n\ge2$ for all pure states $\psi,\psi'$, and when the right-hand side is finite, equality holds only if $[\psi,\sigma]=0$ or $[\psi',\sigma']=0$. More generally it holds at $\alpha=n$ when one pair is pure and all block weights $\Tr(P_{\lambda_1}\rho P_{\lambda_2}\rho\cdots P_{\lambda_n}\rho)$ of the other are nonnegative, for instance a qubit pair or a pair in which $\rho$ has nonnegative entries in an eigenbasis of $\sigma$. Theorem~\ref{shB:thm:purepartner} below removes the condition on the other pair.
+\item ($n=3$.) If $(\rho',\sigma')$ is sign-free and $(\rho,\sigma)$ is weakly sign-free, then
+\[
+Q^\HT_3(\rho\otimes\rho'\|\sigma\otimes\sigma')\ \ge\ Q^\HT_3(\rho\|\sigma)\,Q^\HT_3(\rho'\|\sigma'),
+\]
+and when the right-hand side is finite, equality holds if and only if $[\rho,\sigma]=0$ or $[\rho',\sigma']=0$. In particular this holds for all pairs in which $\sigma$ and $\sigma'$ have at most two distinct eigenvalues each, in any dimension. Corollary~\ref{shB:cor:twolevel} below removes the weak sign-freeness condition on $(\rho,\sigma)$ when $\sigma'$ has at most two distinct eigenvalues.
+\end{enumerate}
+If $\sigma$ or $\sigma'$ is not faithful, either both sides are infinite or one restricts to the supports, so for the inequalities the faithfulness assumption of Proposition~\ref{shB:prop:simplex} costs nothing.
+\end{theorem}
+
+\begin{proof}
+(a) At $n=2$, $k_{(q_j,q_k)}(v,1-v)=1/(vq_k+(1-v)q_j)$, and the sum is symmetric in $(j,k)$. Each term is convex in $v$.
+
+(b) Let $y=e^u$ and $x=e^v$, so that $k_n(u)=\mathbb E\,(U\cdot y)^{1-n}$ and $k_n(v)=\mathbb E\,(U\cdot x)^{1-n}$ by Proposition~\ref{shB:prop:simplex}(a). The same identity with $x\circ\pi$ in place of $x$ gives $k_n(u+\pi v)=\mathbb E[(U\cdot y)^{1-n}k_{x\circ\pi}(U)]$, and $k_{x\circ\pi}(\mu)=k_x(\mu\circ\pi^{-1})$. Averaging over $\pi$ and using the exchangeability of $U$,
+\begin{gather*}
+\frac1{n!}\sum_\pi k_n(u+\pi v)=\mathbb E\big[\phi_y(U)\chi_x(U)\big],\\
+\phi_y(\mu)=\frac1{n!}\sum_\pi(\mu\circ\pi\cdot y)^{1-n},\quad \chi_x(\mu)=\frac1{n!}\sum_\pi k_x(\mu\circ\pi),
+\end{gather*}
+with $\mathbb E\,\phi_y=k_n(u)$ and $\mathbb E\,\chi_x=k_n(v)$. Both functions are convex and permutation invariant, because $(\mu\cdot y)^{1-n}$ and $k_x$ are convex functions of a positive linear form. Lemma~\ref{shB:lem:schur} gives \eqref{shB:eq:Sn}. The function $\phi_y$ is a sum of convex functions, so it is almost everywhere constant only if every summand is affine, that is, only if $y$ is constant, i.e.\ $u=0$; likewise $\chi_x$ only if $v=0$. This gives strictness. For the states, let $\psi'$ be pure. Then $\mathcal G_{\psi',\sigma'}$ is a nonnegative combination of the convex functions $k_x$ and is permutation invariant, by Proposition~\ref{shB:prop:simplex}(c). If all block weights of $(\rho,\sigma)$ are nonnegative, $\mathcal F_{\rho,\sigma}$ is real and convex, and by exchangeability $\mathbb E[\mathcal F_{\rho,\sigma}\mathcal G_{\psi',\sigma'}]=\mathbb E[\bar{\mathcal F}\mathcal G_{\psi',\sigma'}]$, where $\bar{\mathcal F}$ is the average of $\mathcal F_{\rho,\sigma}$ over permutations of the coordinates; it is convex, permutation invariant and has the same mean. Lemma~\ref{shB:lem:schur} and Proposition~\ref{shB:prop:simplex}(b) give the inequality. For pure $\psi$, $\mathcal F_{\psi,\sigma}$ is the expectation of $(\mu\cdot q_a)^{1-n}$ over i.i.d.\ letters with law $|\psi_j|^2$; it is constant only if $\psi$ lies in one eigenspace of $\sigma$, that is, only if $[\psi,\sigma]=0$, which gives the equality statement.
+
+(c) Group the words by spectral projections: $\mathcal F_{\rho,\sigma}(\mu)=\sum w(\lambda_1,\lambda_2,\lambda_3)(\mu_1\lambda_1+\mu_2\lambda_2+\mu_3\lambda_3)^{-2}$, with $w(\lambda_1,\lambda_2,\lambda_3)=\Tr(P_{\lambda_1}\rho P_{\lambda_2}\rho P_{\lambda_3}\rho)$. If two of the $\lambda$'s coincide, $w$ is real and nonnegative. Up to cyclic order it is $\Tr[(P\rho P)^3]$, or $\Tr(AXX^*)$ with $A=P\rho P\ge0$ and $X=P\rho Q$. Hence $\mathrm{Re}\,\mathcal F_{\rho,\sigma}$ is a constant plus a nonnegative combination of convex functions for weakly sign-free pairs. It is invariant under all permutations, because by Proposition~\ref{shB:prop:simplex}(c) the reversal conjugates $\mathcal F$ and the cyclic shifts fix it. For a sign-free pair all block weights are real, so $\mathcal G_{\rho',\sigma'}$ is real, convex and permutation invariant. Since $\mathbb E\,\mathcal F=Q^\HT_3$ is real and the product formula is real,
+\[
+Q^\HT_3(\rho\otimes\rho'\|\sigma\otimes\sigma')-Q^\HT_3(\rho\|\sigma)\,Q^\HT_3(\rho'\|\sigma')=\mathrm{Cov}\big(\mathrm{Re}\,\mathcal F_{\rho,\sigma}(U),\,\mathcal G_{\rho',\sigma'}(U)\big)\ \ge\ 0
+\]
+by Lemma~\ref{shB:lem:schur}. For equality, suppose $[\rho,\sigma]\ne0$. Then $P\rho Q\ne0$ for two distinct spectral projections $P,Q$. The range of $X=P\rho Q$ lies in the range of $P\rho^{1/2}$, which is the range of $A=P\rho P$. So $A^{1/2}X\ne0$ and $w(\lambda,\lambda,\lambda')=\Tr(AXX^*)=\|A^{1/2}X\|_2^2>0$. The term $(\mu_1\lambda+\mu_2\lambda+\mu_3\lambda')^{-2}$ is not affine on $\Delta_2$, so $\mathrm{Re}\,\mathcal F_{\rho,\sigma}$ is not almost everywhere constant. The same argument applies to $\mathcal G_{\rho',\sigma'}$ when $[\rho',\sigma']\ne0$, and Lemma~\ref{shB:lem:schur} gives strict inequality. If one pair commutes, equality holds by the remark after Conjecture~\ref{shB:conj:super}.
+\end{proof}
+
+By Remark~\ref{shB:rem:superpure}, Theorem~\ref{shB:thm:simplex}(b) is equivalent to a classical statement. For every integer $n\ge2$, all independent real random variables $X,X'$, and $Z=\log B$ with $B\sim\mathrm{Beta}'(\frac1n,1-\frac1n)$ independent of them,
+\[
+h_n(X+X'+Z)+h_n(Z)\ \le\ h_n(X+Z)+h_n(X'+Z).
+\]
+This follows first for finitely supported laws, which come from pure states, and then for compactly supported laws by approximation, since the densities of $X+Z$ converge uniformly with uniform exponential tails. For general finite positive measures $\mu$ and their restrictions $\mu_M$ to $[-M,M]$, Minkowski's inequality gives $\|(\mu-\mu_M)*K_n\|_n\le(\mu-\mu_M)(\mathbb R)\,\|K_n\|_n\to0$, so the convolution inequality of Remark~\ref{shB:rem:superpure} holds for all finite positive measures at every integer order.
+
+\begin{remark}[What the simplex picture leaves open]\label{shB:rem:simplexopen}
+In the language of measures, Proposition~\ref{shB:prop:simplex} says that $Q^\HT_n(\rho\otimes\rho'\|\sigma\otimes\sigma')$ is the pairing of the complex measure $\mathcal F_{\rho,\sigma}\,dU$ on $\Delta_{n-1}$ with the continuous function $\mathcal G_{\rho',\sigma'}$. The conjecture asks that the centred measure $(\mathcal F_{\rho,\sigma}-Q^\HT_n)\,dU$ lie in the dual cone of all functions $\mathcal G_{\rho',\sigma'}$. Lemma~\ref{shB:lem:schur} exhibits one cone that is positive against itself: centred Schur-convex densities pair nonnegatively with Schur-convex functions. Theorem~\ref{shB:thm:simplex} is the observation that sign-free pairs land in that cone. Three things fall outside it.
+\begin{enumerate}[label=(\roman*)]
+\item \emph{Chirality.} For general pairs at $n=3$,
+\[
+Q^\HT_3(\rho\otimes\rho'\|\sigma\otimes\sigma')-Q^\HT_3Q'^\HT_3=\mathrm{Cov}(\mathrm{Re}\,\mathcal F_{\rho,\sigma},\mathrm{Re}\,\mathcal G_{\rho',\sigma'})-\mathbb E[\mathrm{Im}\,\mathcal F_{\rho,\sigma}\,\mathrm{Im}\,\mathcal G_{\rho',\sigma'}].
+\]
+The imaginary parts come from the orientation of $3$-cycles through three distinct eigenvalues, $\mathrm{Im}\Tr(P\rho Q\rho R\rho)$. They are odd under transpositions of the coordinates, and the last term has no sign. Numerically it is at most $1.4\cdot10^{-3}$ of the covariance for random $3\times3$ products.
+\item \emph{Schur-convexity.} The covariance term is covered by Lemma~\ref{shB:lem:schur} whenever $\mathrm{Re}\,\mathcal F_{\rho,\sigma}$ and $\mathrm{Re}\,\mathcal G_{\rho',\sigma'}$ are Schur-convex. This is weaker than sign-freeness, and it held for $\mathrm{Re}\,\mathcal F_3$ in all $600$ random pairs we drew in dimensions $3$ and $4$, but not always: $\mathrm{Re}\,\mathcal G_3$ failed in $4$ of them. Convexity of $\mathrm{Re}\,\mathcal F_3$ fails as well for some pairs found by adversarial search (see below). Super-multiplicativity held for every such pair against random partners.
+\item \emph{Order $n\ge4$.} $\mathrm{Re}\,\mathcal F_n$ is only dihedrally invariant. The induction in Lemma~\ref{shB:lem:schur} needs the full symmetric group on each facet, so two qubit pairs at $\alpha=4$, whose cycle weights are nonnegative but not permutation invariant, are already outside its reach.
+\end{enumerate}
+Against partners whose $\sigma'$ has at most two distinct eigenvalues, (i) and (ii) are bypassed by Theorem~\ref{shB:thm:LT} below, which never separates real and imaginary parts.
+
+At $n=3$, for a qubit pair $(\rho',\sigma')$ and an arbitrary $(\rho,\sigma)$, $\mathcal G_{\rho',\sigma'}$ is a constant plus a sum of convex functions of single coordinates. Conditioning on $U_1$ then reduces the conjecture to one variable: it holds for $(\rho,\sigma)$ against every qubit pair if and only if (for the converse, let $\rho'_{22}\to0$ with $|\rho'_{12}|^2\le\rho'_{11}\rho'_{22}$ to isolate one kernel)
+\[
+\Delta(a)=2\int_0^1\theta\,\big(R(\theta)-Q^\HT_3(\rho\|\sigma)\big)\frac{d\theta}{1+(a-1)\theta}\ \ge\ 0\qquad\text{for all }a>0,
+\]
+where $R(\theta)=\mathbb E[\mathrm{Re}\,\mathcal F_{\rho,\sigma}\mid U_1=1-\theta]=\sum_{ijk}\rho_{ij}\rho_{jk}\rho_{ki}\big/\big(((1-\theta)q_i+\theta q_j)((1-\theta)q_i+\theta q_k)\big)$. Exchangeability and the cyclic invariance of $\mathcal F$ give $2\int_0^1\theta R=3\int_0^1\theta^2R=Q^\HT_3$, so the measure $\theta(R-Q^\HT_3)\,d\theta$ annihilates affine functions on $[0,1]$. If $R-Q^\HT_3$ changes sign only twice and is positive near the ends, then $\Delta\ge0$, by comparing the convex kernel $\frac1{1+(a-1)\theta}$ with its linear interpolant at the two crossings. For weakly sign-free pairs $R$ is convex, being an average of $\mathrm{Re}\,\mathcal F$ over segments that move affinely with $\theta$, and the sign pattern follows. In general $R$ is not convex: adversarial searches in dimensions $3$ and $4$ found pairs with $R''<0$ near $\theta=0$ or $\theta=1$. In every case, including those, $R-Q^\HT_3$ had the pattern $+-+$ and $\Delta>0$. In fact $\Delta$ is the function $\mathcal D_{\rho\|\sigma}$ of Theorem~\ref{shB:thm:LT} below: Proposition~\ref{shB:prop:simplex}(a) with $x=(1,1,a)$, for which $k_x(\mu)=(a-(a-1)\mu_3)^{-1}$, writes $\mathcal D_{\rho\|\sigma}(a)=\mathbb E\big[(\mathrm{Re}\,\mathcal F_{\rho,\sigma}(U)-Q^\HT_3)(a-(a-1)U_3)^{-1}\big]$, and conditioning on $U_3=1-\theta$, whose density is $2\theta$, gives $\Delta$. So $\Delta(a)\ge0$ for every pair $(\rho,\sigma)$ and every $a>0$, with no condition on $R$.
+
+For a qutrit pair the matrix can be eliminated. Put $K_3(x)=2\int_0^\infty\prod_i(t+x_i)^{-1}dt$ and $J_x(a)=\frac13\sum_iK_3(x^{(i)})-K_3(1,1,a)\,K_3(x)$, where $x^{(i)}$ is $x$ with $x_i$ replaced by $ax_i$. Up to a positive factor, the contribution of a partner word $(\lambda,\lambda,a\lambda)$ is
+\[
+3\sum_{a'\ne b'}\rho_{a'a'}|\rho_{a'b'}|^2J_{(q_{a'},q_{a'},q_{b'})}(a)+6\,\mathrm{Re}(\rho_{12}\rho_{23}\rho_{31})\,J_{(q_1,q_2,q_3)}(a).
+\]
+Here $J\ge0$ by Theorem~\ref{shB:thm:simplex}(b), and only the $3$-cycle can be negative. For each labelling $\{a',b',c\}=\{1,2,3\}$ and each $s>0$, $|\rho_{12}\rho_{23}\rho_{31}|\le\frac12\big(s\rho_{b'b'}|\rho_{b'c}|^2+s^{-1}\rho_{a'a'}|\rho_{a'c}|^2\big)$. Splitting the $3$-cycle in this way at all three vertices and optimising $s$ shows that every qutrit pair is super-multiplicative at $\alpha=3$ against every pair whose $\sigma'$ has two distinct eigenvalues, provided
+\begin{equation}\label{shB:eq:split}
+J_{(q_1,q_2,q_3)}(a)\ \le\ \sum_{c=1}^3\Big(J_{(q_{a'},q_{a'},q_c)}(a)\,J_{(q_{b'},q_{b'},q_c)}(a)\Big)^{1/2}\qquad\text{for all }q\in(0,\infty)^3,\ a>0 .
+\end{equation}
+This is a scalar inequality between seven values of one explicit function, with equality when two of the $q_i$ coincide. It is proved in Corollary~\ref{shB:cor:split} below, through a rooted sum-of-squares form of the Lieb--Thirring gap; its pointwise analogue for $R''$, which would follow from a Peano-kernel form of $\Delta$ and the Cauchy--Schwarz inequality, fails near $\theta=0$. The same splitting with shared budgets does not suffice in dimension $5$, although the inequality it is meant to prove still held in our searches there. Corollary~\ref{shB:cor:twolevel} proves that conclusion directly, in every dimension.
+
+Splitting the partner side word by word is not possible. The pointwise condition of Section~\ref{shB:sec:numerics} would require the inequality for single partner words with three distinct entries, and it is false at extreme spectra. Super-multiplicativity against the actual partners still held there, because a partner always carries its own repeated words. This is the obstruction that survives Theorem~\ref{shB:thm:LT}: what remains open at $\alpha=3$ comes from partner words with three distinct eigenvalues.
+\end{remark}
+
+\section{Order three: the defect as an integral of Lieb--Thirring gaps}\label{shB:sec:order3}
+
+At $\alpha=3$ there is a second mechanism. It needs no sign condition on $\rho$ and no Schur-convexity, and it settles the conjecture against every partner whose reference state has at most two distinct eigenvalues. Throughout, $\sigma=\sum_kq_k|k\rangle\langle k|$ is faithful, $W_x=\rho_{x_1x_2}\rho_{x_2x_3}\rho_{x_3x_1}$ for words $x\in[d]^3$, $q_x=(q_{x_1},q_{x_2},q_{x_3})$, and
+\[
+K_3(z)=2\int_0^\infty\frac{dt}{\prod_{i=1}^3(t+z_i)}=2\int_0^\infty\frac{t\,dt}{\prod_{i=1}^3(1+tz_i)}\qquad(z\in(0,\infty)^3),
+\]
+the second form by the substitution $t\mapsto1/t$. This is the function $K_3$ of Remark~\ref{shB:rem:simplexopen}, and $K_3(e^w)=k_3(w)$ when $\sum_iw_i=0$, in the notation of Proposition~\ref{shB:prop:integer}. Moreover $K_3(z)=\mathbb E\,(U\cdot z)^{-2}$ by Proposition~\ref{shB:prop:simplex}(a), $K_3(1,1,1)=1$, and $K_3$ is symmetric and homogeneous of degree $-2$. Expanding traces in the eigenbasis of $\sigma$,
+\begin{equation}\label{shB:eq:wordtrace}
+\Tr\big[f(\sigma)\rho\,g(\sigma)\rho\,h(\sigma)\rho\big]=\sum_xW_x\,f(q_{x_1})g(q_{x_2})h(q_{x_3})
+\end{equation}
+for all functions $f,g,h$ on the spectrum, so $Q^\HT_3(\rho\|\sigma)=\sum_xW_xK_3(q_x)$. For $a>0$ put
+\[
+\begin{aligned}
+\mathcal D_{\rho\|\sigma}(a)&=2\int_0^\infty\Tr\big[\rho(\sigma+t)^{-1}\rho(\sigma+t)^{-1}\rho(a\sigma+t)^{-1}\big]dt-K_3(1,1,a)\,Q^\HT_3(\rho\|\sigma)\\
+&=\sum_xW_x\big[K_3(q_{x_1},q_{x_2},aq_{x_3})-K_3(1,1,a)K_3(q_x)\big],
+\end{aligned}
+\]
+where $K_3(1,1,a)=2(a-1-\log a)/(a-1)^2$. Since $W_x$ is invariant under cyclic shifts of $x$, the position of the dilated letter does not matter. The function $\mathcal D_{\rho\|\sigma}$ vanishes identically for commuting pairs, and $\mathcal D_{\rho\|\sigma}(1)=\mathcal D'_{\rho\|\sigma}(1)=0$ by Euler's identity $\sum_iz_i\partial_iK_3=-2K_3$.
+
+\begin{proposition}[A two-time representation]\label{shB:prop:twotime}
+Let $z\in(0,\infty)^3$ and $a>0$, and for $s,t>0$ put $m_i=1+tz_i$ and $n_i=(1+s)+t(a+s)z_i$. Then
+\begin{gather*}
+\text{(a)}\ \ 4\int_0^\infty\!\!\int_0^\infty ts\,\frac{m_3^2}{m_1m_2\,n_3^3}\,ds\,dt=K_3(z_1,z_2,az_3),\\
+\text{(b)}\ \ 4\int_0^\infty\!\!\int_0^\infty\frac{ts\,ds\,dt}{n_1n_2n_3}=K_3(1,1,a)K_3(z).
+\end{gather*}
+\end{proposition}
+
+\begin{proof}
+All integrands are positive, so the order of integration is free. (a) For $A,m>0$ the substitution $u=sm$ gives $\int_0^\infty s\,(A+sm)^{-3}ds=m^{-2}\int_0^\infty\big((A+u)^{-2}-A(A+u)^{-3}\big)du=\frac1{2Am^2}$. Since $n_3=(1+atz_3)+s\,m_3$, the $s$-integral of $s\,m_3^2n_3^{-3}$ is $\frac1{2(1+atz_3)}$, and the left side becomes $2\int_0^\infty t\,[(1+tz_1)(1+tz_2)(1+atz_3)]^{-1}dt=K_3(z_1,z_2,az_3)$.
+(b) Fix $s$ and put $u_s=1+s$ and $v_s=a+s$, so that $n_i=u_s+v_stz_i$. The substitution $t=(u_s/v_s)u$ gives $\int_0^\infty t\,dt/\prod_i(u_s+v_stz_i)=u_s^{-1}v_s^{-2}K_3(z)/2$. For $a\ne1$, the partial fractions $\frac{s}{(1+s)(a+s)^2}=\frac{-1}{(a-1)^2}\big(\frac1{1+s}-\frac1{a+s}\big)+\frac{a}{(a-1)(a+s)^2}$ give $\int_0^\infty\frac{s\,ds}{(1+s)(a+s)^2}=\frac{a-1-\log a}{(a-1)^2}=\frac12K_3(1,1,a)$, and the case $a=1$ follows by continuity. Hence the left side is $4\cdot\frac12K_3(z)\cdot\frac12K_3(1,1,a)$.
+\end{proof}
+
+Write $\xi_i=m_i/n_i$. Then the integrand of part (a) is $ts\,(m_1m_2m_3)^{-1}\xi_3^3$, and that of part (b) is $ts\,(m_1m_2m_3)^{-1}\xi_1\xi_2\xi_3$. Averaging (a) over the position of the dilated letter,
+\[
+J_z(a)=\tfrac13\sum_{i=1}^3K_3(z^{(i)})-K_3(1,1,a)K_3(z)=4\int_0^\infty\!\!\int_0^\infty\frac{ts}{m_1m_2m_3}\Big(\tfrac13\sum_i\xi_i^3-\xi_1\xi_2\xi_3\Big)ds\,dt\ \ge\ 0,
+\]
+with $J$ and $z^{(i)}$ as in Remark~\ref{shB:rem:simplexopen}. So the case of \eqref{shB:eq:Sn} at $n=3$ in which one argument has two equal coordinates is the arithmetic--geometric mean inequality. The noncommutative form of that inequality is the Lieb--Thirring inequality $\Tr[(AX)^3]\le\Tr[A^3X^3]$ for $A,X\ge0$, and it controls the defect for every $\rho$.
+
+\begin{theorem}[The defect against a two-level partner]\label{shB:thm:LT}
+Let $\rho\ge0$, let $\sigma$ be faithful and let $a>0$. For $s,t>0$ put $M_t=\mathbf 1+t\sigma$, $N_{t,s}=(1+s)\mathbf 1+t(a+s)\sigma$, $\rho_t=M_t^{-1/2}\rho\,M_t^{-1/2}$ and $X_{t,s}=M_tN_{t,s}^{-1}$. Then
+\[
+\mathcal D_{\rho\|\sigma}(a)=4\int_0^\infty\!\!\int_0^\infty ts\Big(\Tr\big[\rho_t^3X_{t,s}^3\big]-\Tr\big[(\rho_tX_{t,s})^3\big]\Big)\,ds\,dt\ \ge\ 0,
+\]
+and the integrand is nonnegative at every $(t,s)$. If $[\rho,\sigma]\ne0$ and $a\ne1$, then $\mathcal D_{\rho\|\sigma}(a)>0$.
+\end{theorem}
+
+\begin{proof}
+$M=M_t$ and $N=N_{t,s}$ are positive functions of $\sigma$, so they commute. Since $\rho_tX=M^{-1/2}(\rho N^{-1})M^{1/2}$, we have $\Tr[(\rho_tX)^3]=\Tr[(\rho N^{-1})^3]$, and $\Tr[\rho_t^3X^3]=\Tr[\rho M^{-1}\rho M^{-1}\rho\,M^2N^{-3}]$. With $m(q)=1+tq$ and $n(q)=(1+s)+t(a+s)q$, \eqref{shB:eq:wordtrace} gives
+\[
+\Tr[\rho_t^3X^3]=\sum_xW_x\frac{m(q_{x_3})^2}{m(q_{x_1})m(q_{x_2})\,n(q_{x_3})^3},\qquad\Tr[(\rho_tX)^3]=\sum_xW_x\prod_{i=1}^3n(q_{x_i})^{-1}.
+\]
+These are finite sums of positive kernels that are $ts\,ds\,dt$-integrable by Proposition~\ref{shB:prop:twotime}. Integrating term by term, parts (a) and (b) give the two terms of $\mathcal D_{\rho\|\sigma}(a)$. Since $\rho_t\ge0$ and $X\ge0$, the Lieb--Thirring inequality $\Tr[(X^{1/2}AX^{1/2})^r]\le\Tr[X^{r/2}A^rX^{r/2}]$ for $r\ge1$ \cite{LiebThirring1976,Araki1990}, with $r=3$ and $A=\rho_t$, gives $\Tr[(\rho_tX)^3]=\Tr[(X^{1/2}\rho_tX^{1/2})^3]\le\Tr[\rho_t^3X^3]$.
+
+For strictness we use the identity, valid for $B\ge0$ with eigenvalues $b_i$ and Hermitian $Y$ written in an eigenbasis of $B$,
+\begin{equation}\label{shB:eq:commsq}
+\Tr[Y^2B^3]-\Tr[BYBYB]=\tfrac12\sum_{ij}|Y_{ij}|^2(b_i+b_j)(b_i-b_j)^2\ \ge0,
+\end{equation}
+with equality if and only if $[B,Y]=0$. Fix $s$ and let $t\to0$. Then $X=(1+s)^{-1}\big(\mathbf 1+t\beta\sigma+O(t^2)\big)$ with $\beta=(1-a)/(1+s)$, and $\rho_t=\rho+O(t)$. Expanding $\Tr[A^3(\mathbf 1+tY)^3]-\Tr[(A(\mathbf 1+tY))^3]$ to second order in $t$, the terms of orders $0$ and $1$ cancel, and
+\[
+\Tr[\rho_t^3X^3]-\Tr[(\rho_tX)^3]=3t^2(1-a)^2(1+s)^{-5}\big(\Tr[\sigma^2\rho^3]-\Tr[\rho\sigma\rho\sigma\rho]\big)+O(t^3).
+\]
+If $[\rho,\sigma]\ne0$ and $a\ne1$, the bracket is positive by \eqref{shB:eq:commsq}. So the continuous, nonnegative integrand is positive on a nonempty open set, and $\mathcal D_{\rho\|\sigma}(a)>0$.
+\end{proof}
+
+\begin{corollary}[Super-multiplicativity at $\alpha=3$ against two-level partners]\label{shB:cor:twolevel}
+Let $\sigma'=\lambda_1P+\lambda_2P^\perp$ with $\lambda_1,\lambda_2>0$, a projection $P$ and $P^\perp=\mathbf 1-P$, and let $\rho\ge0$, faithful $\sigma$ and $\rho'\ge0$ be arbitrary, in any dimensions. With $a=\lambda_2/\lambda_1$,
+\[
+Q^\HT_3(\rho\otimes\rho'\|\sigma\otimes\sigma')-Q^\HT_3(\rho\|\sigma)\,Q^\HT_3(\rho'\|\sigma')=\lambda_1^{-2}\Big[S_1\,\mathcal D_{\rho\|\sigma}(a)+S_2\,a^{-2}\mathcal D_{\rho\|\sigma}(1/a)\Big]\ \ge\ 0,
+\]
+where $S_1=3\Tr[P\rho'P\rho'P^\perp\rho']\ge0$ and $S_2=3\Tr[P^\perp\rho'P^\perp\rho'P\rho']\ge0$. Hence Conjecture~\ref{shB:conj:super} holds at $\alpha=3$ whenever $\sigma$ or $\sigma'$ has at most two distinct eigenvalues, with no condition on $\rho$, $\rho'$ or the other reference state. When the right-hand side of the conjecture is finite, equality holds if and only if $[\rho,\sigma]=0$ or $[\rho',\sigma']=0$.
+\end{corollary}
+
+\begin{proof}
+Replacing $\sigma'$ by $\sigma'/\lambda_1$ multiplies both sides by $\lambda_1^2$, so let $\lambda_1=1$ and $\lambda_2=a$. In an eigenbasis of $\sigma'$ adapted to $P$, with eigenvalues $y_l\in\{1,a\}$, the product pair has cycle weights $W_xW'_{x'}$ and eigenvalues $q_x\circ y_{x'}$, so the defect is $\sum_{x,x'}W_xW'_{x'}\big[K_3(q_x\circ y_{x'})-K_3(q_x)K_3(y_{x'})\big]$. If all letters of $x'$ lie in one eigenspace, $y_{x'}$ is constant and the bracket vanishes by homogeneity. If exactly one letter lies in $\operatorname{ran}P^\perp$, $y_{x'}$ is a cyclic shift of $(1,1,a)$, and by cyclic invariance of $W_x$ the sum over $x$ is $\mathcal D_{\rho\|\sigma}(a)$; by \eqref{shB:eq:wordtrace} for $\rho'$, with one term for each position of the odd letter, the total weight of these words is $S_1$. If exactly two letters lie in $\operatorname{ran}P^\perp$, $y_{x'}$ is a cyclic shift of $(a,a,1)=a(1,1,1/a)$, and homogeneity gives $a^{-2}\mathcal D_{\rho\|\sigma}(1/a)$, with total weight $S_2$. Next, $S_1=3\Tr\big[(P\rho'P)(P\rho'P^\perp)(P\rho'P^\perp)^*\big]=3\big\|(P\rho'P)^{1/2}P\rho'P^\perp\big\|_2^2\ge0$, and likewise $S_2\ge0$. Theorem~\ref{shB:thm:LT} gives the inequality, and exchanging the two factors gives the case in which $\sigma$ has at most two eigenvalues.
+
+For equality, if $[\rho',\sigma']=0$ then $P\rho'P^\perp=0$ and $S_1=S_2=0$, and if $[\rho,\sigma]=0$ then $\mathcal D_{\rho\|\sigma}\equiv0$. Suppose neither pair commutes. Then $a\ne1$, so $\mathcal D_{\rho\|\sigma}(a)>0$ by Theorem~\ref{shB:thm:LT}, and $P\rho'P^\perp\ne0$. The range of $P\rho'P^\perp$ lies in the range of $P\rho'^{1/2}$, which is the range of $P\rho'P$, so $(P\rho'P)^{1/2}P\rho'P^\perp\ne0$ and $S_1>0$. If $\sigma$ or $\sigma'$ is not faithful, either both sides are infinite or one restricts to the supports, as in Theorem~\ref{shB:thm:simplex}.
+\end{proof}
+
+\begin{remark}[What the identity does and does not reach]\label{shB:rem:LTscope}
+\begin{enumerate}[label=(\roman*)]
+\item The proof treats the $3$-cycles of $\rho$, negative or complex, exactly like the other words. So the chirality and the failures of Schur-convexity in Remark~\ref{shB:rem:simplexopen}(i),(ii) play no role against two-level partners. Corollary~\ref{shB:cor:twolevel} contains the inequality and the equality cases of Corollary~\ref{shB:thm:qubit3}, and the case of Theorem~\ref{shB:thm:simplex}(c) in which one reference state has at most two eigenvalues. The function $\Delta(a)$ of Remark~\ref{shB:rem:simplexopen} equals $\mathcal D_{\rho\|\sigma}(a)$, so $\Delta\ge0$ for every pair. For qutrits, Corollary~\ref{shB:cor:twolevel} makes inequality \eqref{shB:eq:split} unnecessary for the conjecture; \eqref{shB:eq:split} itself is proved in Corollary~\ref{shB:cor:split}.
+\item The mechanism does not reach partner words with three distinct eigenvalues. A Lieb--Thirring gap $\Tr[A^3X^3]-\Tr[(AX)^3]$ in which $A$ is $\rho$ conjugated by a function of $\sigma$ produces kernels with two equal outer factors, as in Proposition~\ref{shB:prop:twotime}(a), whereas a partner word with eigenvalues $(1,a,b)$ needs $K_3(z_1,az_2,bz_3)$. Such words are not positive one at a time (Section~\ref{shB:sec:numerics}). So a proof of the remaining case must use the positivity of $\rho'$ as well, through the repeated words that every partner carries.
+\item In one variable, let $Z_s$ solve $\sigma Z_s+sZ_s\sigma=\rho$, so that $(Z_s)_{jk}=\rho_{jk}/(q_j+sq_k)$, and put $p(s)=\Tr[Z_s^*\rho Z_s]$. Then $\mathbb P_{\rho\|\sigma}(ds)=\frac3{Q^\HT_3}p(s)(1+s)^{-2}ds$ and $\mathbb P_0(ds)=3(1+s)^{-4}ds$ are probability measures with mean $\frac12$, the second being the value of the first for commuting pairs, and $\mathcal D_{\rho\|\sigma}(a)=\frac23Q^\HT_3(\rho\|\sigma)(1-a)^2\int(\mathbb P_{\rho\|\sigma}-\mathbb P_0)(ds)/(a+s)$. So Theorem~\ref{shB:thm:LT} says that the Stieltjes transform of $\mathbb P_{\rho\|\sigma}$ dominates that of $\mathbb P_0$. The stronger statement $\mathbb P_{\rho\|\sigma}\ge_{\mathrm{cx}}\mathbb P_0$ holds for weakly sign-free pairs. Indeed, for an eigenvalue triple $\lambda=(\lambda_1,\lambda_2,\lambda_3)$ of $\sigma$ let $\mathbb P_\lambda(ds)=\frac13\sum_k(1+s)^{-2}\big((\lambda_j+s\lambda_k)(\lambda_l+s\lambda_k)\big)^{-1}ds$, the sum over the three positions $k$ with $\{j,l\}$ the other two. It has mass $\frac13K_3(\lambda)$ and mean $\frac16K_3(\lambda)$, and grouping the words by eigenvalues gives $\mathbb P_{\rho\|\sigma}=\frac3{Q^\HT_3}\sum_\lambda\mathrm{Re}\,w(\lambda)\,\mathbb P_\lambda$, with the block weights $w(\lambda)=\Tr(P_{\lambda_1}\rho P_{\lambda_2}\rho P_{\lambda_3}\rho)$ of Theorem~\ref{shB:thm:simplex}(c). These have nonnegative real parts for weakly sign-free pairs. In the variable $\theta=s/(1+s)$ the density of $\mathbb P_\lambda$ with respect to $\mathbb P_0$ is a sum of products of reciprocals of the positive affine functions $(1-\theta)\lambda_j+\theta\lambda_k$, hence log-convex. So the set where it lies below its mean $\frac13K_3(\lambda)$ is an interval. Equal masses and means exclude a single sign change, so the difference has the sign pattern $+\,-\,+$ or vanishes, and comparing a convex test function with its chord through the two crossings gives $\mathbb P_\lambda\ge_{\mathrm{cx}}\frac13K_3(\lambda)\mathbb P_0$. Whether $\mathbb P_{\rho\|\sigma}\ge_{\mathrm{cx}}\mathbb P_0$ for all pairs is open.
+\end{enumerate}
+\end{remark}
+
+The same identity gives the conjecture to second order around trivial partners $\sigma'\propto\mathbf 1$, for every $\rho'$, and it reduces the remaining case to singular states.
+
+\begin{proposition}[Second order around a trivial partner]\label{shB:prop:local3}
+Let $\rho,\rho'\ge0$, let $\sigma$ be faithful, let $H'$ be Hermitian and $\sigma'_\varepsilon=e^{\varepsilon H'}$. Then
+\[
+Q^\HT_3(\rho\otimes\rho'\|\sigma\otimes\sigma'_\varepsilon)-Q^\HT_3(\rho\|\sigma)\,Q^\HT_3(\rho'\|\sigma'_\varepsilon)=\tfrac32\,(\tau_1-\tau_2)\,\ell_{\rho\|\sigma}\,\varepsilon^2+O(\varepsilon^3),
+\]
+where $\tau_1=\Tr[\rho'^3H'^2]$, $\tau_2=\Tr[H'\rho'H'\rho'^2]$ and
+\[
+\ell_{\rho\|\sigma}=\mathcal D''_{\rho\|\sigma}(1)=2\int_0^\infty t\Big(\Tr\big[\rho_t^3S_t^2\big]-\Tr\big[\rho_tS_t\rho_tS_t\rho_t\big]\Big)dt,
+\]
+with $\rho_t=(\mathbf 1+t\sigma)^{-1/2}\rho(\mathbf 1+t\sigma)^{-1/2}$ and $S_t=t\sigma(\mathbf 1+t\sigma)^{-1}$. Both factors are nonnegative: $\ell_{\rho\|\sigma}>0$ if and only if $[\rho,\sigma]\ne0$, and $\tau_1>\tau_2$ if and only if $[\rho',H']\ne0$. When both hold, there is $\varepsilon_0>0$, depending on $\rho,\sigma,\rho',H'$, such that the conjecture at $\alpha=3$ holds strictly for $0<|\varepsilon|<\varepsilon_0$.
+\end{proposition}
+
+\begin{proof}
+By \eqref{shB:eq:commsq} with $B=\rho'$ and $Y=H'$, $\tau_1-\tau_2\ge0$, with equality if and only if $[\rho',H']=0$.
+
+\emph{The expansion.} Diagonalise $H'$ with eigenvalues $h_l$. The defect is $\sum_{x,x'}W_xW'_{x'}\varphi_{x,x'}(\varepsilon)$ with $\varphi_{x,x'}(\varepsilon)=K_3(q_x\circ e^{\varepsilon h_{x'}})-K_3(q_x)K_3(e^{\varepsilon h_{x'}})$, a real-analytic function with $\varphi(0)=0$. By \eqref{shB:eq:wordtrace} for $\rho'$, $\sum_{x'}W'_{x'}h_{x'_i}=\Tr[\rho'^3H']$ and $\sum_{x'}W'_{x'}h^2_{x'_i}=\tau_1$ for each $i$, and $\sum_{x'}W'_{x'}h_{x'_i}h_{x'_j}=\tau_2$ for each $i\ne j$. At $(1,1,1)$, $\partial_iK_3=-\frac23$, $\partial_i^2K_3=1$ and $\partial_i\partial_jK_3=\frac12$ for $i\ne j$, from $K_3(z)=\mathbb E\,(U\cdot z)^{-2}$, $\mathbb E\,U_i=\frac13$, $\mathbb E\,U_i^2=\frac16$ and $\mathbb E\,U_iU_j=\frac1{12}$. Write $u=q_x$ and $K=K_3(u)$. Euler's identities $\sum_iu_i\partial_iK=-2K$ and $\sum_{ij}u_iu_j\partial_i\partial_jK=6K$ give
+\[
+\sum_{x'}W'_{x'}\varphi'_{x,x'}(0)=\Tr[\rho'^3H']\Big(\sum_iu_i\partial_iK+2K\Big)=0,
+\]
+\[
+\begin{aligned}
+\sum_{x'}W'_{x'}\varphi''_{x,x'}(0)&=\tau_1\Big(\sum_iu_i\partial_iK+\sum_iu_i^2\partial_i^2K-K\Big)+\tau_2\Big(\sum_{i\ne j}u_iu_j\partial_i\partial_jK-3K\Big)\\
+&=(\tau_1-\tau_2)\Big(\sum_iu_i^2\partial_i^2K-3K\Big).
+\end{aligned}
+\]
+On the other hand $\mathcal D''_{\rho\|\sigma}(1)=\sum_xW_x\big(u_3^2\partial_3^2K-K\big)=\frac13\sum_xW_x\big(\sum_iu_i^2\partial_i^2K-3K\big)$, by cyclic invariance and $\partial_a^2K_3(1,1,a)|_{a=1}=1$. So the second derivative of the defect at $0$ is $3(\tau_1-\tau_2)\ell_{\rho\|\sigma}$.
+
+\emph{The formula for $\ell_{\rho\|\sigma}$.} Put $m_i=1+tz_i$ and $s_i=tz_i/m_i\in(0,1)$. From the second form of $K_3$, $z_i^2\partial_i^2K_3(z)=2\int_0^\infty t\prod_jm_j^{-1}\,2s_i^2\,dt$, so $\lambda(z):=\frac13\sum_iz_i^2\partial_i^2K_3-K_3=2\int_0^\infty t\prod_jm_j^{-1}\big(\frac23\sum_is_i^2-1\big)dt$. For a polynomial $G(s_1,s_2,s_3)$, using $\frac{d}{dt}m_i^{-1}=-z_im_i^{-2}$ and $\frac{ds_i}{dt}=s_i(1-s_i)/t$,
+\[
+\frac{d}{dt}\Big[t^2\prod_jm_j^{-1}G\Big]=t\prod_jm_j^{-1}\,\mathcal TG,\qquad\mathcal TG=\Big(2-\sum_is_i\Big)G+\sum_is_i(1-s_i)\partial_iG,
+\]
+and the boundary terms vanish at $0$ and at $\infty$, so $\int_0^\infty t\prod_jm_j^{-1}\mathcal TG\,dt=0$. For $G=-\frac16\sum_is_i-\frac12$ one finds $\mathcal TG=\frac13\sum_is_i^2+\frac13\sum_{i<j}s_is_j-1$, hence
+\[
+\lambda(z)=\frac23\int_0^\infty t\prod_jm_j^{-1}\Big(\sum_is_i^2-\sum_{i<j}s_is_j\Big)dt .
+\]
+Summing against $W_x$ and using \eqref{shB:eq:wordtrace} with cyclic invariance, $\sum_xW_x\prod_jm(q_{x_j})^{-1}\cdot\frac13\sum_is(q_{x_i})^2=\Tr[\rho_t^3S_t^2]$ and $\sum_xW_x\prod_jm(q_{x_j})^{-1}\cdot\frac13\sum_{i<j}s(q_{x_i})s(q_{x_j})=\Tr[\rho_tS_t\rho_tS_t\rho_t]$, which gives the formula for $\ell_{\rho\|\sigma}=\sum_xW_x\lambda(q_x)$. By \eqref{shB:eq:commsq} with $B=\rho_t$ and $Y=S_t$, the integrand is nonnegative and vanishes identically if and only if $[S_t,\rho_t]=0$ for all $t$. Since $S_t$ is an injective function of $\sigma$ commuting with $(\mathbf 1+t\sigma)^{\pm1/2}$, this happens if and only if $[\rho,\sigma]=0$.
+\end{proof}
+
+\begin{corollary}[Reduction to singular states]\label{shB:cor:singular}
+Fix pairs $(\rho,\sigma)$ and $(\rho',\sigma')$ with $\sigma,\sigma'$ faithful. Let $\mathrm{diag}_\sigma(\rho)$ be the diagonal part of $\rho$ in a fixed eigenbasis of $\sigma$ (when $\sigma$ is degenerate it depends on the basis, which does no harm), assume $O=\rho-\mathrm{diag}_\sigma(\rho)\ne0$, put $\rho_s=\mathrm{diag}_\sigma(\rho)+sO$ and $s_+=\max\{s:\rho_s\ge0\}$. Then $s_+\in[1,\infty)$, $\rho_{s_+}$ is singular, and
+\[
+Q^\HT_3(\rho_s\otimes\rho'\|\sigma\otimes\sigma')-Q^\HT_3(\rho_s\|\sigma)\,Q^\HT_3(\rho'\|\sigma')=s^2A+s^3B,\qquad A\ge0 .
+\]
+Consequently, if the conjecture at $\alpha=3$ holds for $(\rho_{s_+},\sigma)$ against $(\rho',\sigma')$, it holds for $(\rho,\sigma)$ against $(\rho',\sigma')$. Applying this to both factors, Conjecture~\ref{shB:conj:super} at $\alpha=3$ holds for all pairs if and only if it holds whenever $\rho$ and $\rho'$ are both singular and $\sigma$ and $\sigma'$ both have at least three distinct eigenvalues.
+\end{corollary}
+
+\begin{proof}
+A word $x$ has $e(x)\in\{0,2,3\}$ edges $x_ix_{i+1}$ with distinct letters, and $W_x(\rho_s)=s^{e(x)}W_x(\rho)$. Words with $e(x)=0$ are constant and contribute nothing, by homogeneity. A word with $e(x)=2$ is a cyclic shift of $(b,b,c)$ with $b\ne c$, and $W_x(\rho)=\rho_{bb}|\rho_{bc}|^2\ge0$. By homogeneity and the symmetry of $K_3$, the sum over the partner words is $\sum_{x'}W'_{x'}\big[K_3(q_x\circ y_{x'})-K_3(q_x)K_3(y_{x'})\big]=q_b^{-2}\mathcal D_{\rho'\|\sigma'}(q_c/q_b)$, which is nonnegative by Theorem~\ref{shB:thm:LT} applied to the partner. This gives $A\ge0$. The off-diagonal part $O$ is traceless, Hermitian and nonzero, so it has a negative eigenvalue and $s_+<\infty$. Moreover $s_+\ge1$ because $\rho_1=\rho$, and $\rho_{s_+}$ is singular by maximality. If the defect at $s_+$ is nonnegative, then $A+s_+B\ge0$, and since $A\ge0$ and $s\mapsto A+sB$ is affine, $A+B\ge0$, which is the defect at $s=1$. For the last statement, the case in which one reference state has at most two eigenvalues is Corollary~\ref{shB:cor:twolevel}.
+\end{proof}
+
+The Lieb--Thirring inequality also gives a family of upper bounds for $Q^\HT_3$ in one line. It contains the case $\alpha=3$ of Theorem~\ref{shB:thm:bht2}.
+
+\begin{corollary}[Upper bounds at order three]\label{shB:cor:gamma}
+For $\rho\ge0$, faithful $\sigma$ and every real $\gamma$,
+\[
+Q^\HT_3(\rho\|\sigma)\ \le\ \Tr\big[\rho\,\sigma^{-\gamma}\rho\,\sigma^{-\gamma}\rho\,\sigma^{2\gamma-2}\big].
+\]
+At $\gamma=\frac23$ the right-hand side is the sandwiched quasi-entropy $\widetilde Q_3(\rho\|\sigma)$, and at $\gamma=0$ it is the Petz quasi-entropy $\Tr\rho^3\sigma^{-2}$.
+\end{corollary}
+
+\begin{proof}
+By the second form of $K_3$, $Q^\HT_3(\rho\|\sigma)=2\int_0^\infty t\,\Tr[(\rho Y_t)^3]\,dt$ with $Y_t=(\mathbf 1+t\sigma)^{-1}$. Apply the Lieb--Thirring inequality to $A=\sigma^{-\gamma/2}\rho\,\sigma^{-\gamma/2}$ and $X=\sigma^\gamma Y_t$: since $AX=\sigma^{-\gamma/2}(\rho Y_t)\sigma^{\gamma/2}$, it gives $\Tr[(\rho Y_t)^3]\le\Tr[\rho\sigma^{-\gamma}\rho\sigma^{-\gamma}\rho\,\sigma^{2\gamma}Y_t^3]$. Multiply by $2t$, integrate, and use $2\int_0^\infty t(1+tq)^{-3}dt=q^{-2}$.
+\end{proof}
+
+\section{Pure partners, a cycle inequality and negative cycles}\label{shB:sec:purecycle}
+
+Three further cases of the conjecture can be reached: pure partners at every integer order; partners with three eigenvalues and a nonnegative $3$-cycle; and pairs whose $3$-cycles are negative on both sides and not too strongly correlated. The tools are the Lieb--Thirring inequality, the Hermite--Genocchi formula, positivity of the two-letter terms (Theorem~\ref{shB:thm:LT}), a cycle inequality for positive matrices and the symmetric-group inequality \eqref{shB:eq:Sn}. Throughout this section $\sigma$ and $\sigma'$ are faithful, which costs nothing by the remark after Theorem~\ref{shB:thm:simplex}. For $z,w\in(0,\infty)^3$ put
+\[
+\begin{aligned}
+\Theta(z,w)&=K_3(z\circ w)-K_3(z)K_3(w),\\
+\mathcal D_{\rho\|\sigma}[w]&=\sum_xW_x\,\Theta(q_x,w)\\
+&=2\int_0^\infty\Tr\big[(w_1\sigma+t)^{-1}\rho(w_2\sigma+t)^{-1}\rho(w_3\sigma+t)^{-1}\rho\big]dt-K_3(w)\,Q^\HT_3(\rho\|\sigma),
+\end{aligned}
+\]
+the \emph{three-point defect}, so that $\mathcal D_{\rho\|\sigma}(a)=\mathcal D_{\rho\|\sigma}[1,1,a]$ and the defect of a product is $\sum_{x'}W'_{x'}\mathcal D_{\rho\|\sigma}[y_{x'}]$. If $\sigma'=\sum_ey_eP'_e$ has spectral projections $P'_e$, grouping the partner words by eigenvalues gives
+\begin{equation}\label{shB:eq:blockdefect}
+Q^\HT_3(\rho\otimes\rho'\|\sigma\otimes\sigma')-Q^\HT_3(\rho\|\sigma)\,Q^\HT_3(\rho'\|\sigma')=\sum_{e,f,g}w'_{efg}\,\mathcal D_{\rho\|\sigma}[y_e,y_f,y_g],
+\end{equation}
+with the block weights $w'_{efg}=\Tr(P'_e\rho'P'_f\rho'P'_g\rho')$, and the same formula with the roles exchanged. The block weights $w'$ are cyclically invariant and conjugated by reversal. A two-letter block weight $w'_{eef}=\Tr\big[(P'_e\rho'P'_e)(P'_e\rho'P'_f)(P'_e\rho'P'_f)^*\big]$ is nonnegative, and $\mathcal D_{\rho\|\sigma}[y_e,y_e,y_f]=y_e^{-2}\mathcal D_{\rho\|\sigma}(y_f/y_e)\ge0$ by Theorem~\ref{shB:thm:LT}.
+
+\begin{theorem}[Pure partners at every integer order]\label{shB:thm:purepartner}
+Let $n\ge2$ be an integer, let $\rho\ge0$ and faithful $\sigma$ act on $\mathbb C^d$, let $\sigma'$ be faithful on $\mathbb C^{d'}$ and let $\psi\in\mathbb C^{d'}$. Then
+\[
+Q^\HT_n(\rho\otimes\psi\psi^*\|\sigma\otimes\sigma')\ \ge\ Q^\HT_n(\rho\|\sigma)\,Q^\HT_n(\psi\psi^*\|\sigma').
+\]
+The inequality is strict unless $[\rho,\sigma]=0$ or $[\psi\psi^*,\sigma']=0$. There is no condition on $\rho$: its cycle weights may be negative or complex.
+\end{theorem}
+
+\begin{proof}
+Both sides are homogeneous of degree $2n$ in $\psi$, so let $\|\psi\|=1$. Let $\sigma'=\sum_iy_i|i\rangle\langle i|$, $p_i=|\langle i|\psi\rangle|^2$, let $Y$ be a random variable with law $\sum_ip_i\delta_{y_i}$, and put $m_t(z)=\mathbb E\,(t+Yz)^{-1}$ and $M_t=m_t(\sigma)=\sum_ip_i(t+y_i\sigma)^{-1}$. We use the trace formula $Q^\HT_n(\rho\|\sigma)=(n-1)\int_0^\infty\Tr[(\rho(\sigma+t)^{-1})^n]\,dt$.
+
+\emph{Step 1: the partner integrates out.} $(\mathbf 1\otimes\psi^*)(\sigma\otimes\sigma'+t)^{-1}(\mathbf 1\otimes\psi)=M_t$, so $\Tr[((\rho\otimes\psi\psi^*)(\sigma\otimes\sigma'+t)^{-1})^n]=\Tr[(\rho M_t)^n]$, and $Q'_n:=Q^\HT_n(\psi\psi^*\|\sigma')=(n-1)\int_0^\infty m_t(1)^n\,dt$.
+
+\emph{Step 2: the $n$-th power of a mixture of resolvents.} For $\zeta\in\mathbb R$ and $a\in\mathbb R^n$ with $\zeta+a_i>0$ for all $i$, the Hermite--Genocchi formula
+\[
+\prod_{i=1}^n\frac1{\zeta+a_i}=\int_{\mathbb R_+^n}e^{-\sum_ir_i(\zeta+a_i)}dr=\int_{\Delta_{n-1}}\!\!du\int_0^\infty R^{n-1}e^{-R(\zeta+u\cdot a)}dR=\mathbb E\,(\zeta+U\cdot a)^{-n}
+\]
+holds, by the polar coordinates $r=Ru$ and because $(n-1)!\,du$ is the uniform law on $\Delta_{n-1}$. Let $Y_1,\dots,Y_n$ be independent copies of $Y$, independent of $U$, put $\nu=\sum_cU_c/Y_c$, and define a finite positive measure $\kappa_t$ on $(0,\infty)$ by $\int\varphi\,d\kappa_t=\mathbb E\big[\varphi(t\nu)/(Y_1\cdots Y_n)\big]$. For $z>0$, the formula with $\zeta=z$ and $a_c=t/Y_c$ gives
+\[
+\int(z+s)^{-n}\kappa_t(ds)=\mathbb E\Big[\frac1{Y_1\cdots Y_n}\prod_c\frac1{z+t/Y_c}\Big]=\mathbb E\prod_c\frac1{t+Y_cz}=m_t(z)^n,
+\]
+so $\int(\sigma+s)^{-n}\kappa_t(ds)=M_t^n$ by the functional calculus.
+
+\emph{Step 3: the $t$-marginal.} For $\varphi\ge0$, $\int_0^\infty\!\int\varphi\,d\kappa_t\,dt=\mathbb E\big[(Y_1\cdots Y_n)^{-1}\int_0^\infty\varphi(t\nu)dt\big]=c_n\int_0^\infty\varphi(s)\,ds$ with $c_n=\mathbb E[(Y_1\cdots Y_n\nu)^{-1}]$. For $\varphi=(1+s)^{-n}$, Step 2 with $z=1$ gives $Q'_n=(n-1)\int_0^\infty\!\int(1+s)^{-n}\kappa_t(ds)\,dt=c_n$. So $\int_0^\infty\kappa_t\,dt=Q'_n\,ds$.
+
+\emph{Step 4: Lieb--Thirring.} For fixed $t$ and $s$ put $A=M_t^{1/2}\rho M_t^{1/2}\ge0$ and $X_s=(\sigma+s)^{-1}M_t^{-1}\ge0$, which commutes with $M_t$. Then $AX_s=M_t^{1/2}\rho(\sigma+s)^{-1}M_t^{-1/2}$, and $\Tr[A^nX_s^n]=\Tr[(\rho M_t)^{n-1}\rho\,(\sigma+s)^{-n}M_t^{1-n}]$. The Lieb--Thirring inequality gives $\Tr[(\rho(\sigma+s)^{-1})^n]=\Tr[(AX_s)^n]\le\Tr[A^nX_s^n]$, and by Step 2 the right-hand side integrates against $\kappa_t$ to $\Tr[(\rho M_t)^n]$. By Step 3, Tonelli's theorem and Step 1,
+\[
+\begin{aligned}
+Q^\HT_n(\rho\|\sigma)\,Q'_n&=(n-1)\int_0^\infty\!dt\int\Tr\big[(\rho(\sigma+s)^{-1})^n\big]\kappa_t(ds)\\
+&\le(n-1)\int_0^\infty\Tr[(\rho M_t)^n]\,dt=Q^\HT_n(\rho\otimes\psi\psi^*\|\sigma\otimes\sigma').
+\end{aligned}
+\]
+
+\emph{Strictness.} The defect is $(n-1)\int_0^\infty dt\,\mathbb E\big[\Gamma(t,t\nu)/(Y_1\cdots Y_n)\big]$ with the continuous, nonnegative Lieb--Thirring gap $\Gamma(t,s)=\Tr[A^nX_s^n]-\Tr[(AX_s)^n]$. If $[\psi\psi^*,\sigma']=0$, then $Y$ is constant, all partner words are constant and the defect vanishes; if $[\rho,\sigma]=0$ it vanishes as well. Otherwise $Y$ has at least two values. Let $\eta_k=\mathbb E\,Y^{-k}$. As $t\to0$ with $\nu$ fixed, $M_t=\sigma^{-1}(\eta_1-t\eta_2\sigma^{-1}+O(t^2))$ and $(\sigma+t\nu)^{-1}=\sigma^{-1}(\mathbf 1-t\nu\sigma^{-1}+O(t^2))$, so $X=\eta_1^{-1}(\mathbf 1+tB_1+O(t^2))$ with $B_1=(\eta_2/\eta_1-\nu)\sigma^{-1}$, and $A=A_t\to A_0=\eta_1\sigma^{-1/2}\rho\,\sigma^{-1/2}$. For a fixed $A\ge0$ and $X=\theta(\mathbf 1+tB_1+t^2B_2+O(t^3))$ with $X,B_1,B_2$ commuting, the terms of order $1$ and $t$ of $\Tr[A^nX^n]-\Tr[(AX)^n]$ cancel, and so do the terms containing $B_2$. In an eigenbasis of $A$, with eigenvalues $a_i$, the coefficient of $t^2$ is
+\[
+\theta^n\,\frac n4\sum_{i,j}|(B_1)_{ij}|^2\sum_{k=1}^{n-1}(a_i^k-a_j^k)(a_i^{n-k}-a_j^{n-k})\ \ge0,
+\]
+because the $t^2$-part of $\Tr[(AX)^n]$ is $\theta^n\big(n\Tr[A^nB_2]+\frac n2\sum_{k=1}^{n-1}\Tr[B_1A^kB_1A^{n-k}]\big)$. It is positive if and only if $[A,B_1]\ne0$. Since the gap vanishes to second order in $X-\theta\mathbf 1$ for every $A$, replacing $A_t$ by $A_0$ changes $\Gamma(t,t\nu)$ only by $O(t^3)$. Since $[A_0,\sigma^{-1}]\ne0$, $\Gamma(t,t\nu)/t^2$ therefore has a positive limit for every $\nu\ne\eta_2/\eta_1$, locally uniformly in $\nu$. The variable $\nu$ has a continuous distribution on the event that $Y_1,\dots,Y_n$ are not all equal, which has positive probability. So the integrand is positive on a set of positive measure, and the defect is positive.
+\end{proof}
+
+The argument is a noncommutative H\"older inequality, a special case of Epstein's concavity theorem \cite{Epstein1973}: the partner contributes only the classical law of $Y$, and the $n$-th power of the mixed resolvent $M_t$ is an integral of $n$-th powers of single resolvents. For a mixed partner $\rho'=VV^*$, $\sigma'=\sum_ey_eP'_e$, the same route at $n=3$ would need a positive matrix-valued measure with $\big(\sum_e(t+y_e\sigma)^{-1}\otimes F_e\big)^3=\int(\sigma+s)^{-3}\otimes\boldsymbol\kappa_t(ds)$, where $F_e=V^*P'_eV\ge0$. At $d=1$ such a measure is unique, by Stieltjes inversion, and already for two non-commuting rank-one weights it is indefinite: for $F_1=e_1e_1^*$ and $F_2=gg^*$ with $g=(\cos\phi,\sin\phi)$, its density near the left end of its support is a positive multiple of a $2\times2$ matrix with determinant $-\cos^2\phi\sin^2\phi<0$. So Theorem~\ref{shB:thm:purepartner} and Corollary~\ref{shB:cor:twolevel} are genuinely different mechanisms.
+
+\begin{corollary}[Adding commuting noise]\label{shB:cor:noise}
+At $\alpha=3$, adding to $\rho'$ a positive operator that commutes with $\sigma'$ does not decrease the defect of $(\rho,\sigma)$ against $(\rho',\sigma')$, and likewise for $\rho$. In particular Conjecture~\ref{shB:conj:super} holds at $\alpha=3$ for $\rho'=\psi\psi^*+N$ with $N\ge0$ and $[N,\sigma']=0$, against every $(\rho,\sigma)$.
+\end{corollary}
+
+\begin{proof}
+In \eqref{shB:eq:blockdefect}, constant block words contribute nothing, and three-letter block weights depend only on the off-diagonal blocks $P'_e\rho'P'_f$, $e\ne f$. A two-letter block weight changes from $\Tr[(P'_e\rho'P'_e)O_{ef}O_{ef}^*]$ to $\Tr[(P'_e(\rho'+N)P'_e)O_{ef}O_{ef}^*]$, with $O_{ef}=P'_e\rho'P'_f$. This does not decrease it, and its coefficient $\mathcal D_{\rho\|\sigma}[y_e,y_e,y_f]$ is nonnegative. Combine with Theorem~\ref{shB:thm:purepartner}.
+\end{proof}
+
+The Lieb--Thirring gap at exponent three also has a rooted Schur-product structure. It turns the three-vertex splitting before \eqref{shB:eq:split} in Remark~\ref{shB:rem:simplexopen} into an identity, and it proves inequality \eqref{shB:eq:split}.
+
+\begin{proposition}[A rooted sum of squares for the Lieb--Thirring gap]\label{shB:prop:rootedLT}
+Let $g(\xi)=\frac13\sum_i\xi_i^3-\xi_1\xi_2\xi_3$ and, for $z,u,v>0$,
+\[
+H(z;u,v)=\frac{(u-z)(v-z)(z+2u)(z+2v)}{z+u+v}.
+\]
+\begin{enumerate}[label=(\alph*)]
+\item For each $z>0$, $(u,v)\mapsto H(z;u,v)$ is a positive semidefinite kernel, $H(z;z,v)=0$ and $H(z;u,u)=3g(u,u,z)$. Moreover, for all $\xi\in(0,\infty)^3$,
+\[
+H(\xi_2;\xi_1,\xi_3)+H(\xi_3;\xi_2,\xi_1)+H(\xi_1;\xi_3,\xi_2)=3g(\xi).
+\]
+\item For Hermitian $A$ and $X=\mathrm{diag}(\xi)>0$,
+\[
+\Tr[A^3X^3]-\Tr[(AX)^3]=\sum_c\sum_{a,b}H(\xi_c;\xi_a,\xi_b)\,A_{ac}A_{cb}A_{ba}=\int_0^\infty\Tr\big[e^{-\lambda X}Y_\lambda^*AY_\lambda\big]d\lambda,
+\]
+where $Y_\lambda=e^{-\lambda X}\big(2X[X,A]+[X,A]X\big)$.
+For $A\ge0$ the last integrand is nonnegative, which proves $\Tr[(AX)^3]\le\Tr[A^3X^3]$ by a sum of squares.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(a) Since $(z+u+v)^{-1}=\int_0^\infty e^{-\lambda(z+u+v)}d\lambda$, $H(z;u,v)=\int_0^\infty e^{-\lambda z}\phi_\lambda(u)\phi_\lambda(v)\,d\lambda$ with $\phi_\lambda(u)=(u-z)(z+2u)e^{-\lambda u}$, a positive semidefinite kernel. The next two identities are direct. For the rotation identity put $S=\xi_1+\xi_2+\xi_3$ and $P_i=(\xi_j-\xi_i)(\xi_k-\xi_i)$ for $\{i,j,k\}=\{1,2,3\}$. The three terms are $P_i(\xi_i+2\xi_j)(\xi_i+2\xi_k)/S$, and $(\xi_i+2\xi_j)(\xi_i+2\xi_k)=S^2-(\xi_j-\xi_k)^2$. With $D=(\xi_1-\xi_2)(\xi_2-\xi_3)(\xi_3-\xi_1)$ one checks $P_1(\xi_2-\xi_3)=P_2(\xi_3-\xi_1)=P_3(\xi_1-\xi_2)=-D$, so $\sum_iP_i(\xi_j-\xi_k)^2=-D\sum_i(\xi_j-\xi_k)=0$. Hence the sum is $S\sum_iP_i=S\big(\sum_i\xi_i^2-\sum_{i<j}\xi_i\xi_j\big)=\sum_i\xi_i^3-3\xi_1\xi_2\xi_3=3g(\xi)$.
+
+(b) By \eqref{shB:eq:wordtrace}, $\Tr[A^3X^3]-\Tr[(AX)^3]=\sum_xW_x(A)g(\xi_x)$ after averaging $\xi_{x_1}^3$ over the rotations of $x$. By the rotation identity in (a),
+\[
+\sum_xW_x(A)g(\xi_x)=\frac13\sum_x\sum_{\mathrm{rot}}W_x(A)H(\xi_{x_2};\xi_{x_1},\xi_{x_3})=\sum_xW_x(A)H(\xi_{x_2};\xi_{x_1},\xi_{x_3}),
+\]
+which is the double sum. For the integral, $(Y_\lambda)_{ac}=\phi_\lambda(\xi_a)A_{ac}$ with $z=\xi_c$, and summing $e^{-\lambda\xi_c}(Y_\lambda e_c)^*A(Y_\lambda e_c)$ over $c$ gives the integrand.
+\end{proof}
+
+Call a function $C$ on $(0,\infty)^3$ \emph{AM--GM representable} if
+\[
+C(z)=\int\omega(d\theta)\,\mu_\theta(z_1)\mu_\theta(z_2)\mu_\theta(z_3)\,g\big(\xi_\theta(z_1),\xi_\theta(z_2),\xi_\theta(z_3)\big)
+\]
+for a positive measure $\omega$ and positive measurable functions $\mu_\theta,\xi_\theta$, with an absolutely convergent integral. Such functions are symmetric and nonnegative.
+
+\begin{corollary}[Rooted inequality; inequality \eqref{shB:eq:split}]\label{shB:cor:split}
+If $C$ is AM--GM representable, then for all $z\in(0,\infty)^3$
+\[
+C(z_1,z_2,z_3)\ \le\ \sum_{c=1}^3\sqrt{C(z_a,z_a,z_c)\,C(z_b,z_b,z_c)}\qquad(\{a,b\}=\{1,2,3\}\setminus\{c\}).
+\]
+This applies to $z\mapsto J_z(a)$ for every $a>0$, so inequality \eqref{shB:eq:split} holds. It also applies to the pure-partner kernel $G_Y(z)=\mathbb E\,K_3(z\circ(Y_1,Y_2,Y_3))-\mathbb E\,K_3(Y_1,Y_2,Y_3)\,K_3(z)$, for independent copies $Y_c$ of a positive random variable with finite support.
+\end{corollary}
+
+\begin{proof}
+By Proposition~\ref{shB:prop:rootedLT}(a), $3g(\xi)=\sum_cH(\xi_c;\xi_a,\xi_b)$ over the three rotations, and the $2\times2$ matrix of $H(\xi_c;\cdot,\cdot)$ at $(\xi_a,\xi_b)$ is positive semidefinite, so $|H(\xi_c;\xi_a,\xi_b)|\le3\sqrt{g(\xi_a,\xi_a,\xi_c)g(\xi_b,\xi_b,\xi_c)}$. With $\mu_1\mu_2\mu_3=\sqrt{\mu_a^2\mu_c\cdot\mu_b^2\mu_c}$ this gives
+\[\mu_1\mu_2\mu_3g(\xi)\le\sum_c\sqrt{\mu_a^2\mu_cg(\xi_a,\xi_a,\xi_c)\cdot\mu_b^2\mu_cg(\xi_b,\xi_b,\xi_c)}
+\]
+pointwise in $\theta$, and the Cauchy--Schwarz inequality in $\omega$ gives the claim. For $J_z(a)$, the identity after Proposition~\ref{shB:prop:twotime} is a representation with $\omega=4ts\,ds\,dt$, $\mu(z)=(1+tz)^{-1}$ and $\xi(z)=(1+tz)/((1+s)+t(a+s)z)$. For $G_Y$, take $\omega=2\,dt\,\kappa_t(ds)$ from the proof of Theorem~\ref{shB:thm:purepartner} at $n=3$, $\mu(z)=m_t(z)$ and $\xi(z)=(z+s)^{-1}/m_t(z)$. Then $\mu_1\mu_2\mu_3g(\xi)=\frac13\sum_c\big(\prod_{c'}m_t(z_{c'})\big)m_t(z_c)^{-3}(z_c+s)^{-3}-\prod_c(z_c+s)^{-1}$. By Steps 2 and 3 of that proof, the first term integrates to $2\int_0^\infty\prod_cm_t(z_c)\,dt=\mathbb E\,K_3(z\circ Y)$ and the second to $\mathbb E K_3(Y)\cdot K_3(z)$.
+\end{proof}
+
+An elementary proof of the case $\omega=\delta$ (the rooted arithmetic--geometric mean inequality $g(\xi)\le\sum_c\sqrt{g(\xi_a,\xi_a,\xi_c)g(\xi_b,\xi_b,\xi_c)}$) also follows from $\sqrt{u(u+2v)}\ge u+v-v^2/(u+v)$ applied to the three square roots, which share the value $u+v=\xi_1+\xi_2+\xi_3$.
+
+For partners with three eigenvalues the remaining terms are the $3$-cycles, and a trace inequality decides how much of a $3$-cycle the two-letter terms can absorb.
+
+\begin{theorem}[A cycle inequality]\label{shB:thm:cycle}
+For positive semidefinite $A,B,C$ of the same size,
+\[
+|\Tr(ABC)|^3\ \le\ \Tr(A^2B)\,\Tr(B^2C)\,\Tr(C^2A).
+\]
+\end{theorem}
+
+\begin{proof}
+Since $\Tr(ABC)=\Tr\big[(A^{2/3}B^{1/3})(B^{2/3}C^{1/3})(C^{2/3}A^{1/3})\big]$, H\"older's inequality for Schatten norms gives
+\[
+|\Tr(ABC)|\le\|A^{2/3}B^{1/3}\|_3\,\|B^{2/3}C^{1/3}\|_3\,\|C^{2/3}A^{1/3}\|_3 .
+\] Now $\|A^{2/3}B^{1/3}\|_3^3=\Tr[(B^{1/3}A^{4/3}B^{1/3})^{3/2}]$. The Araki--Lieb--Thirring inequality
+\[
+\Tr[(R^{r/2}P^rR^{r/2})^q]\le\Tr[(R^{1/2}PR^{1/2})^{rq}]\qquad\text{for }P,R\ge0,
+\] $0<r\le1$ and $q>0$ \cite{Araki1990}, applied with $P=A^2$, $R=B$, $r=\frac23$ and $q=\frac32$, bounds it by $\Tr(B^{1/2}A^2B^{1/2})=\Tr(A^2B)$. The other two factors are bounded in the same way.
+\end{proof}
+
+\begin{lemma}[Domination by a pure profile]\label{shB:lem:domination}
+Let $\Pi_1,\Pi_2,\Pi_3\ge0$, $W=\Tr(\Pi_1\Pi_2\Pi_3)\ne0$ and $w_{bbc}=\Tr(\Pi_b^2\Pi_c)$ for $b\ne c$. Then there is $p\in(0,\infty)^3$ with $p_1p_2p_3=|W|$ and $p_b^2p_c\le w_{bbc}$ for all six ordered pairs $b\ne c$.
+\end{lemma}
+
+\begin{proof}
+By the Cauchy--Schwarz inequality, $|W|=|\langle\Pi_3\Pi_2^{1/2},\Pi_1\Pi_2^{1/2}\rangle_2|\le\sqrt{w_{112}w_{332}}$, and cyclically $|W|^2\le w_{221}w_{331}$ and $|W|^2\le w_{223}w_{113}$. These three ``V'' inequalities show that all $w_{bbc}>0$. In logarithmic coordinates $x_b=\log p_b$ we need $x\in\mathbb R^3$ with $\sum_bx_b=\log|W|$ and $2x_b+x_c\le L_{bc}:=\log w_{bbc}$. By Farkas' lemma this system is feasible unless there are $\theta\in[0,\infty)^6$, indexed by ordered pairs, with $\sum\theta_{bc}(2e_b+e_c)=\ell(1,1,1)$ for some $\ell$, necessarily $\ell=\sum\theta_{bc}$, and $\sum\theta_{bc}L_{bc}<\ell\log|W|$. The condition on $\theta$ says that $\sum\theta_{bc}v_{bc}=0$, where $v_{bc}=2e_b+e_c-(1,1,1)=e_b-e_a$, $a$ being the third index. The six vectors $v_{bc}$ are the vertices of a regular hexagon in the plane $\{\sum_i x_i=0\}$, and the cone of such $\theta$ is generated by the minimal positive dependencies of the hexagon. These are the three opposite pairs $\{\theta_{12},\theta_{32}\}$, $\{\theta_{21},\theta_{31}\}$, $\{\theta_{23},\theta_{13}\}$ and the two alternating triples $\{\theta_{12},\theta_{23},\theta_{31}\}$, $\{\theta_{21},\theta_{32},\theta_{13}\}$. On the pairs, $\sum\theta L\ge\ell\log|W|$ is a V inequality. On the triples it reads $w_{112}w_{223}w_{331}\ge|W|^3$ and $w_{221}w_{332}w_{113}\ge|W|^3$, which are Theorem~\ref{shB:thm:cycle} for $(\Pi_1,\Pi_2,\Pi_3)$ and $(\Pi_2,\Pi_1,\Pi_3)$, since $|\Tr(\Pi_2\Pi_1\Pi_3)|=|W|$.
+\end{proof}
+
+\begin{corollary}[Partners with three eigenvalues]\label{shB:cor:threelevel}
+Let $\sigma'=\sum_{e=1}^3y_eP'_e$ have three distinct eigenvalues, of arbitrary multiplicities, let $\rho'\ge0$ and let $(\rho,\sigma)$ be arbitrary. With $W'=\Tr(P'_1\rho'P'_2\rho'P'_3\rho')$ and $Z=\mathcal D_{\rho\|\sigma}[y_1,y_2,y_3]$,
+\[
+Q^\HT_3(\rho\otimes\rho'\|\sigma\otimes\sigma')-Q^\HT_3(\rho\|\sigma)\,Q^\HT_3(\rho'\|\sigma')\ \ge\ 6\big(\mathrm{Re}(W'Z)-|W'|\,\mathrm{Re}\,Z\big).
+\]
+In particular Conjecture~\ref{shB:conj:super} holds at $\alpha=3$ whenever $W'$ is real and nonnegative, for every $(\rho,\sigma)$.
+\end{corollary}
+
+\begin{proof}
+By \eqref{shB:eq:blockdefect}, the defect is $3\sum_{b\ne c}w'_{bbc}E_{bc}+6\,\mathrm{Re}(W'Z)$ with $E_{bc}=\mathcal D_{\rho\|\sigma}[y_b,y_b,y_c]\ge0$. If $W'=0$ we are done. Otherwise apply Lemma~\ref{shB:lem:domination} to $\Pi_e=\rho'^{1/2}P'_e\rho'^{1/2}$, for which $\Tr(\Pi_1\Pi_2\Pi_3)=W'$ and $\Tr(\Pi_b^2\Pi_c)=w'_{bbc}$, and let $\psi$ be a vector with $\|P'_e\psi\|^2=p_e$. By Theorem~\ref{shB:thm:purepartner} the pure partner $(\psi\psi^*,\sigma')$, whose block weights are $p_ep_fp_g$, has nonnegative defect $3\sum p_b^2p_cE_{bc}+6p_1p_2p_3\,\mathrm{Re}\,Z$. Since $E_{bc}\ge0$ and $p_b^2p_c\le w'_{bbc}$, the defect of $(\rho',\sigma')$ is at least $3\sum p_b^2p_cE_{bc}+6\,\mathrm{Re}(W'Z)$, which is at least $6(\mathrm{Re}(W'Z)-|W'|\mathrm{Re}Z)$.
+\end{proof}
+
+For two qutrit pairs with nondegenerate reference states, Corollaries~\ref{shB:cor:twolevel} and~\ref{shB:cor:threelevel} and the symmetry of the conjecture leave the case in which neither $3$-cycle lies in $[0,\infty)$. The next result covers the case in which both $3$-cycles are negative and not too strongly correlated, in every dimension.
+
+\begin{theorem}[Negative cycles on both sides]\label{shB:thm:doubling}
+Let $(\rho,\sigma)$ and $(\rho',\sigma')$ be pairs with $\sigma,\sigma'$ faithful, let $\Delta$ be the pinching of $\rho$ by the spectral projections of $\sigma$ and $O=\rho-\Delta$, and likewise $\Delta',O'$. Suppose:
+\begin{enumerate}[label=(\roman*)]
+\item every block $3$-cycle $\Tr(P_a\rho P_b\rho P_c\rho)$ of $\rho$, over distinct spectral projections of $\sigma$, is real and $\le0$, and likewise for $\rho'$;
+\item there are $\beta,\beta'>0$ with $\frac1\beta+\frac1{\beta'}\le1$, $\Delta+\beta O\ge0$ and $\Delta'+\beta'O'\ge0$.
+\end{enumerate}
+Then $Q^\HT_3(\rho\otimes\rho'\|\sigma\otimes\sigma')\ge Q^\HT_3(\rho\|\sigma)\,Q^\HT_3(\rho'\|\sigma')$.
+\end{theorem}
+
+\begin{proof}
+Write the block expansion of the defect, $\sum_{x,x'}w_xw'_{x'}\Theta(q_x,y_{x'})$ over block words $x$ of $\sigma$ and $x'$ of $\sigma'$, with $q_x,y_{x'}$ the corresponding eigenvalue words; constant words contribute nothing. Let $\mathcal A\mathcal A'$, $\mathcal B\mathcal A'$, $\mathcal A\mathcal B'$ and $\mathcal B\mathcal B'$ be the partial sums over the pairs $(x,x')$ in which $x$ is a two-letter word ($\mathcal A$) or a three-letter word ($\mathcal B$), and likewise $x'$ ($\mathcal A'$ or $\mathcal B'$). Then $\mathrm{Def}=\mathcal A\mathcal A'+\mathcal B\mathcal A'+\mathcal A\mathcal B'+\mathcal B\mathcal B'$. A block weight scales as $w_x(\Delta+sO)=s^{e(x)}w_x(\rho)$, with $e=2$ for two-letter and $e=3$ for three-letter words. So for every $s>0$,
+\[
+\mathcal A\mathcal A'+s\,\mathcal B\mathcal A'=s^{-2}\sum_{x'\ \text{two-letter}}w'_{x'}\,\mathcal D_{\Delta+sO\|\sigma}[y_{x'}],
+\]
+where $\mathcal D_{\tau\|\sigma}$ is defined by the same block formula for a Hermitian $\tau$. If $\Delta+sO\ge0$, each term is nonnegative, by Theorem~\ref{shB:thm:LT} and $w'_{x'}\ge0$ for two-letter $x'$. Put $\lambda=1/\beta$. The set of $s\ge0$ with $\Delta'+sO'\ge0$ is an interval containing $\beta'$, and $(1-\lambda)^{-1}\le\beta'$, so in
+\[
+\mathrm{Def}=\lambda\big[\mathcal A\mathcal A'+\lambda^{-1}\mathcal B\mathcal A'\big]+(1-\lambda)\big[\mathcal A\mathcal A'+(1-\lambda)^{-1}\mathcal A\mathcal B'\big]+\mathcal B\mathcal B'
+\]
+both brackets are nonnegative, the second by the same argument with the factors exchanged, using $\Theta(z,w)=\Theta(w,z)$. Finally, by (i), the block weight of a three-letter word depends only on the set $T$ of its three eigenvalues, because it is real and conjugated by reversal; call it $w_T\le0$. Hence $\mathcal B\mathcal B'=36\sum_{T,T'}w_Tw'_{T'}\,\Psi(q_T;y_{T'})$, with $q_T,y_{T'}$ the eigenvalue triples in any order and $\Psi(z;w)=\frac16\sum_{\pi\in S_3}K_3(z_\pi\circ w)-K_3(z)K_3(w)\ge0$ by Theorem~\ref{shB:thm:simplex}(b), and $w_Tw'_{T'}\ge0$.
+\end{proof}
+
+\begin{corollary}[Two families with negative cycles]\label{shB:cor:negative}
+\begin{enumerate}[label=(\alph*)]
+\item Let $\rho=D-N$ and $\rho'=D'-N'$ in eigenbases of $\sigma$ and $\sigma'$, with $D,D'\ge0$ diagonal and $N,N'$ entrywise nonnegative with zero diagonal. If $D_{bb}\ge2\sum_cN_{bc}$ and $D'_{ee}\ge2\sum_fN'_{ef}$ for all $b,e$, the conjecture holds at $\alpha=3$.
+\item Let $d=d'=3$, let $\sigma,\sigma'$ have three distinct eigenvalues, and let the $3$-cycles $W$, $W'$ be real and negative. Put $r_{bc}=|\rho_{bc}|/\sqrt{\rho_{bb}\rho_{cc}}$ and $r_{\max}(\rho)=\max_{b\ne c}r_{bc}$, and likewise for $\rho'$. If $r_{\max}(\rho)+r_{\max}(\rho')\le1$, the conjecture holds at $\alpha=3$.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+(a) All block $3$-cycles are $-\Tr(P_aNP_bNP_cN)\le0$, and $D-2N$ and $D'-2N'$ are diagonally dominant, so Theorem~\ref{shB:thm:doubling} applies with $\beta=\beta'=2$; entries of $N$ inside an eigenspace of $\sigma$ belong to $\Delta$ and only help.
+(b) In the proof of Theorem~\ref{shB:thm:doubling} the bracket $\mathcal A\mathcal A'+s\mathcal B\mathcal A'$ is nonnegative under the weaker condition that $\mathcal D_{\Delta+sO\|\sigma}[y_e,y_e,y_f]\ge0$ for the two-letter words of $\sigma'$. Averaging over the position of the odd letter gives
+\[
+\mathcal D_{\Delta+sO\|\sigma}[y_e,y_e,y_f]=3s^2y_e^{-2}\Big[\sum_{b\ne c}w_{bbc}J_{bc}+2sW\,J_{123}\Big],\qquad w_{bbc}=\rho_{bb}|\rho_{bc}|^2,
+\]
+with $J_{bc}=J_{(q_b,q_b,q_c)}(y_f/y_e)$ and $J_{123}=J_{(q_1,q_2,q_3)}(y_f/y_e)\ge0$. By Corollary~\ref{shB:cor:split}, $J_{123}\le\sum_c\sqrt{J_{ac}J_{bc}}$, and $2s|W|\sqrt{J_{ac}J_{bc}}\le w_{aac}J_{ac}+w_{bbc}J_{bc}$ as soon as $s^2W^2\le w_{aac}w_{bbc}$. Since $\sqrt{w_{aac}w_{bbc}}/|W|=1/r_{ab}$, this holds for $s\le1/r_{\max}(\rho)$. Each ordered pair occurs at exactly one vertex, so the bracket is nonnegative. Take $\lambda=r_{\max}(\rho)$, so that $\lambda^{-1}=1/r_{\max}(\rho)$ and $(1-\lambda)^{-1}\le1/r_{\max}(\rho')$, and conclude as in Theorem~\ref{shB:thm:doubling}.
+\end{proof}
+
+Part (b) covers, for instance, the singular states $D_p^{1/2}\big(\frac32\mathbf 1-\frac12ee^{\mathsf T}\big)D_p^{1/2}$, with $D_p=\mathrm{diag}(p)$, $e=(1,1,1)$ and all $r_{bc}=\frac12$, on both sides. For pairs with a nonnegative $3$-cycle the conjecture is Corollary~\ref{shB:cor:threelevel}. What remains for qutrits is the chiral case and the strongly correlated negative case $r_{\max}(\rho)+r_{\max}(\rho')>1$. Both reduce to one inequality for the kernel $K_3$ alone, on data that are not the cycle weights of any qutrit state.
+
+For $p\in(0,\infty)^3$ and $\varphi\in\mathbb R$, the \emph{twisted pure data} are $w^{p,\varphi}_x=p_{x_1}p_{x_2}p_{x_3}e^{i\varphi n(x)}$ on $x\in[3]^3$, where $n(x)=1$ on the rotations of $(1,2,3)$, $n(x)=-1$ on the rotations of $(1,3,2)$ and $n(x)=0$ otherwise. For $\varphi\notin2\pi\mathbb Z$ they are the cycle weights of the indefinite Hermitian matrix $D_p^{1/2}T_\varphi D_p^{1/2}$, where $T_\varphi$ has unit diagonal, $(T_\varphi)_{12}=(T_\varphi)_{23}=(T_\varphi)_{31}=e^{i\varphi/3}$ and $(T_\varphi)_{21}=(T_\varphi)_{32}=(T_\varphi)_{13}=e^{-i\varphi/3}$. They are not the cycle weights of any qutrit state: for a state, $\rho_{bb}|\rho_{bc}|^2=p_b^2p_c$ for all $b\ne c$ and $|\rho_{12}\rho_{23}\rho_{31}|=p_1p_2p_3$ force $\rho_{bb}=p_b$ and $|\rho_{bc}|^2=\rho_{bb}\rho_{cc}$, so $\rho$ has rank one and its $3$-cycle is positive.
+
+\begin{conjecture}[Twisted pure data]\label{shB:conj:TT}
+For all $q,y\in(0,\infty)^3$ with distinct entries, all $p,p'\in(0,\infty)^3$ and all $\varphi,\varphi'$,
+\[
+\sum_{x,x'\in[3]^3}w^{p,\varphi}_x\,w^{p',\varphi'}_{x'}\,\Theta(q_x,y_{x'})\ \ge\ 0 .
+\]
+\end{conjecture}
+
+\begin{proposition}[Reduction of the three-eigenvalue case]\label{shB:prop:twisted}
+\begin{enumerate}[label=(\alph*)]
+\item If Conjecture~\ref{shB:conj:TT} holds, then Conjecture~\ref{shB:conj:super} holds at $\alpha=3$ for all pairs in which $\sigma$ and $\sigma'$ each have at most three distinct eigenvalues, of any multiplicities. For given pairs only the eigenvalue triples of $\sigma,\sigma'$ and the phases $\varphi=\arg W$, $\varphi'=\arg W'$ of their block $3$-cycles are needed.
+\item Conjecture~\ref{shB:conj:TT} holds when $\varphi\in2\pi\mathbb Z$ or $\varphi'\in2\pi\mathbb Z$.
+\item At real phases, $\varphi,\varphi'\in\pi\mathbb Z$, Conjecture~\ref{shB:conj:TT} reduces to the single case $\varphi=\varphi'=\pi$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+For data $w,w'$ on $[3]^3$ write $\mathrm{Def}(w,w')=\sum_{x,x'}w_xw'_{x'}\Theta(q_x,y_{x'})$. By \eqref{shB:eq:blockdefect} and its symmetric form this is the defect when $w,w'$ are block weights, and it is bilinear. For a two-letter word $x$ and genuine block weights $w'$, the coefficient $\sum_{x'}w'_{x'}\Theta(q_x,y_{x'})=\mathcal D_{\rho'\|\sigma'}[q_x]$ is nonnegative.
+
+For twisted data $w^{p,\varphi}$ and a two-letter word $x'$ with eigenvalues $(y_e,y_e,y_f)$, the cyclic invariance of the data and of $\Theta$ gives
+\[
+\sum_xw^{p,\varphi}_x\,\Theta(q_x,y_{x'})=y_e^{-2}\Big[3\sum_{b\ne c}p_b^2p_c\,J_{bc}+6p_1p_2p_3\cos\varphi\,J_{123}\Big]\ \ge0,
+\]
+where $J_{bc}=J_{(q_b,q_b,q_c)}(y_f/y_e)$ and $J_{123}=J_{(q_1,q_2,q_3)}(y_f/y_e)$.
+The inequality holds because $0\le J_{123}\le\sum_c\sqrt{J_{ac}J_{bc}}$ (Corollary~\ref{shB:cor:split}) and $2p_1p_2p_3\sqrt{J_{ac}J_{bc}}\le p_a^2p_cJ_{ac}+p_b^2p_cJ_{bc}$.
+
+(a) If $\sigma$ or $\sigma'$ has at most two eigenvalues, use Corollary~\ref{shB:cor:twolevel}. If $W=0$, the defect is the sum of its two-letter terms in $w$, which are nonnegative; similarly if $W'=0$. Otherwise Lemma~\ref{shB:lem:domination} gives $p$ with $p_b^2p_c\le w_{bbc}$ and $p_1p_2p_3e^{i\varphi}=W$. Replacing the two-letter weights of $w$ by $p_b^2p_c$ does not increase $\mathrm{Def}$, because their coefficients are nonnegative, and leaves the three-letter part unchanged. So $\mathrm{Def}(w,w')\ge\mathrm{Def}(w^{p,\varphi},w')$. In the same way, using the nonnegative coefficients of the display, $\mathrm{Def}(w^{p,\varphi},w')\ge\mathrm{Def}(w^{p,\varphi},w^{p',\varphi'})\ge0$.
+
+(b) If $\varphi'=0$, then $w^{p',0}$ are the cycle weights of the pure partner $\sqrt{p'}\sqrt{p'}^{\mathsf T}$ against $\mathrm{diag}(y)$, and $\mathrm{Def}=\sum_xw^{p,\varphi}_xG(q_x)$ with $G=(\sum_ep'_e)^3G_Y$, where $G_Y$ is the pure-partner kernel of Corollary~\ref{shB:cor:split} for the law $p'/\sum_ep'_e$ on $\{y_e\}$. That corollary and the argument of the display give $3\sum p_b^2p_cG_{bbc}+6p_1p_2p_3\cos\varphi\,G_{123}\ge0$. The case $\varphi=0$ follows from $\Theta(z,w)=\Theta(w,z)$.
+
+(c) The data depend on the phases only through $e^{i\varphi}$ and $e^{i\varphi'}$, so at real phases there are four cases, and three of them are covered by (b).
+\end{proof}
+
+Numerically Conjecture~\ref{shB:conj:TT} holds with a margin. Over $8{,}000$ random instances, the minimum over a grid of phases, divided by the value at $\varphi=\varphi'=0$, is $+0.0079$, always attained at $\varphi=\varphi'=\pi$, and it approaches $0$ only at degenerate configurations (Section~\ref{shB:sec:numerics}).
+
+\subsection*{A polynomial criterion}
+
+The kernel $K_3$ can be expanded into polynomial moments, which gives a sufficient condition for the conjecture at $\alpha=3$ in terms of finitely many traces at each order. For $\rho\ge0$ and $A\ge0$ put
+\begin{gather*}
+\mathcal Q_k(\rho\|A)=\binom{k+2}2^{-1}\sum_{i+j+l=k}\Tr\big[A^i\rho A^j\rho A^l\rho\big],\\
+ D_k=\mathcal Q_k(\rho\otimes\rho'\|A\otimes B)-\mathcal Q_k(\rho\|A)\,\mathcal Q_k(\rho'\|B),
+\end{gather*}
+with $D_k=D_k(\rho,A;\rho',B)$.
+With $T_\lambda(\rho,A)=\Tr[A^{\lambda_1}\rho A^{\lambda_2}\rho A^{\lambda_3}\rho]$ and $\lambda$ uniform on the $\binom{k+2}2$ compositions of $k$ into three parts, $\mathcal Q_k(\rho\otimes\rho'\|A\otimes B)$ is the mean of $T_\lambda(\rho,A)T_\lambda(\rho',B)$. So $D_k$ is the covariance of $T_\lambda(\rho,A)$ and $T_\lambda(\rho',B)$. It vanishes when $[\rho,A]=0$ or $[\rho',B]=0$, and $D_0=D_1=0$.
+
+\begin{theorem}[Polynomial reduction]\label{shB:thm:polycrit}
+Let $\sigma,\sigma'$ be faithful. For $t>0$ put $s_t=t\|\sigma\|_\infty$, $A_t=s_t\mathbf 1-t\sigma\ge0$, $B_t=\sigma'(\mathbf 1+s_t\sigma')^{-1}$ and $\rho'_t=(\mathbf 1+s_t\sigma')^{-1/2}\rho'(\mathbf 1+s_t\sigma')^{-1/2}$. Then
+\[
+Q^\HT_3(\rho\otimes\rho'\|\sigma\otimes\sigma')-Q^\HT_3(\rho\|\sigma)\,Q^\HT_3(\rho'\|\sigma')=2\int_0^\infty t\sum_{k\ge2}\binom{k+2}2D_k(\rho,A_t;\rho'_t,B_t)\,dt .
+\]
+Consequently, if $D_k(\rho,A;\rho',B)\ge0$ for all integers $k\ge2$ and all positive semidefinite $\rho,\rho',A,B$, then Conjecture~\ref{shB:conj:super} holds at $\alpha=3$.
+\end{theorem}
+
+\begin{proof}
+By the second form of $K_3$, $K_3(z\circ w)=2\int_0^\infty t\prod_i(1+tz_iw_i)^{-1}dt$. Also $K_3(z)K_3(w)=\mathbb E_U[(U\cdot z)^{-2}K_3(w)]=\mathbb E_U\,K_3((U\cdot z)w)=2\int_0^\infty t\,\mathbb E_U\prod_j(1+t(U\cdot z)w_j)^{-1}dt$. So the defect is $2\int_0^\infty t\,\Delta_t\,dt$ with $\Delta_t=\sum_{x,x'}W_xW'_{x'}k(tq_x,y_{x'})$ and
+\[
+k(s,y)=\prod_i\frac1{1+s_iy_i}-\mathbb E_U\prod_j\frac1{1+(U\cdot s)y_j}.
+\]
+For $s_0>0$, $1+s_iy_j=(1+s_0y_j)\big(1+(s_i-s_0)y'_j\big)$ with $y'_j=y_j/(1+s_0y_j)$, and $U\cdot s-s_0=U\cdot(s-s_0\mathbf 1)$. So $k(s,y)=\prod_j(1+s_0y_j)^{-1}\,k(s-s_0\mathbf 1,y')$. The factor $\prod_j(1+s_0y_{x'_j})^{-1}$ turns $W'_{x'}(\rho')$ into $W'_{x'}(\rho'_t)$ when $s_0=s_t$. Put $\tilde s=s_t\mathbf 1-tq_x$, the eigenvalue word of $A_t$, and note that $0\le\tilde s_iy'_j<1$. The Hermite--Genocchi formula of Theorem~\ref{shB:thm:purepartner} gives $\prod_i(1-x_i)^{-1}=\mathbb E_V(1-V\cdot x)^{-3}$ for $x\in[0,1)^3$. Expanding $(1-u)^{-3}=\sum_k\binom{k+2}2u^k$, which converges uniformly on the relevant compact range, gives
+\[
+k(-\tilde s,y')=\sum_{k\ge0}\binom{k+2}2\Big[\mathbb E_V\big(V\cdot(\tilde s\circ y')\big)^k-\mathbb E_U(U\cdot\tilde s)^k\,\mathbb E_V(V\cdot y')^k\Big].
+\]
+Since $\mathbb E_U(U\cdot a)^k=\binom{k+2}2^{-1}h_k(a)$ with $h_k$ the complete homogeneous symmetric polynomial, \eqref{shB:eq:wordtrace} turns $\sum_xW_x\mathbb E_U(U\cdot a_x)^k$ into $\mathcal Q_k(\rho\|A_t)$, and likewise on the product space. Summing over the finitely many words gives $\Delta_t=\sum_k\binom{k+2}2D_k(\rho,A_t;\rho'_t,B_t)$, and the terms $k=0,1$ vanish.
+\end{proof}
+
+\begin{proposition}[The first two orders]\label{shB:prop:D2}
+$D_2(\rho,A;\rho',B)=\frac14E(\rho,A)E(\rho',B)\ge0$, where $E(\rho,A)=\Tr[\rho^3A^2]-\Tr[\rho^2A\rho A]=\Tr\big[[A,\rho]^*\rho[A,\rho]\big]$. For $k=3$, with $T_{300}=\Tr[\rho^3A^3]$, $T_{210}=\Tr[A^2\rho A\rho^2]$, $T_{111}=\Tr[(A\rho)^3]$, $u=T_{300}-\mathrm{Re}\,T_{210}$, $v=\mathrm{Re}\,T_{210}-T_{111}$ and primed quantities for $(\rho',B)$,
+\[
+D_3=\tfrac{18}{100}uu'+\tfrac3{100}(u+v)(u'+v')+\tfrac6{100}vv'-\tfrac6{10}\,\mathrm{Im}\,T_{210}\,\mathrm{Im}\,T'_{210} .
+\]
+Here $u+v$ is the Lieb--Thirring gap and $u-v=\Tr[AK\rho K]\ge0$ with $K=-i[A,\rho]$, so $u\ge|v|$. Consequently $D_3\ge0$ whenever
+\begin{equation}\label{shB:eq:chiral}
+|\mathrm{Im}\,\Tr[A^2\rho A\rho^2]|\ \le\ \tfrac1{\sqrt{20}}\big(\Tr[\rho^3A^3]-\Tr[(\rho A)^3]\big)
+\end{equation}
+holds for $(\rho,A)$ and for $(\rho',B)$.
+\end{proposition}
+
+\begin{proof}
+On the compositions of $2$, $T_\lambda$ equals $\Tr[\rho^3A^2]$ on the three rotations of $(2,0,0)$ and the real number $\Tr[\rho^2A\rho A]$ on the three rotations of $(1,1,0)$. A two-point covariance with equal masses is a quarter of the product of the differences. The commutator form of $E$ follows by expansion, and $E\ge0$ by \eqref{shB:eq:commsq}. On the ten compositions of $3$, $T_\lambda$ equals $T_{300}$ on the three rotations of $(3,0,0)$, $T_{210}$ on the three rotations of $(2,1,0)$, $\overline{T_{210}}$ on those of $(2,0,1)$, and $T_{111}$ at $(1,1,1)$. The covariance splits into the covariance of the real parts, a three-point covariance with masses $(\frac3{10},\frac6{10},\frac1{10})$, minus that of the imaginary parts, which have mean zero; this gives the formula. Expanding $\Tr[A(A\rho-\rho A)\rho(A\rho-\rho A)]$ gives $v-u$, so $u-v=\Tr[AK\rho K]=\Tr[A^{1/2}K\rho KA^{1/2}]\ge0$. Under \eqref{shB:eq:chiral}, $\frac6{10}|\mathrm{Im}T_{210}\,\mathrm{Im}T'_{210}|\le\frac3{100}(u+v)(u'+v')$, so $D_3\ge\frac{18}{100}uu'+\frac6{100}vv'\ge\frac{12}{100}uu'\ge0$.
+\end{proof}
+
+In our tests $D_k\ge0$ for $k=2,\dots,12$, and the ratio in \eqref{shB:eq:chiral} stayed below $0.07$, against the $0.224$ allowed. Our attempts to certify \eqref{shB:eq:chiral} by universal rooted kernels of the type of Proposition~\ref{shB:prop:rootedLT} failed: at very spread spectra the constants such a kernel must satisfy can be met only with equality. A proof will probably have to use the positivity of $\rho$ across different roots.
+
+\section{What the conjecture is a shadow of: the Frenkel measure and the convex order}\label{shB:sec:frenkel}
+
+We now identify the measure that controls Conjecture~\ref{shB:conj:super} for all $\alpha$ at once. In this section all states are faithful, so that $m_0=m_\infty=0$ and all quantities below are finite.
+
+\begin{definition}[Frenkel measure]\label{shB:def:frenkel}
+The \emph{Frenkel measure} of $(\rho,\sigma)$ is $\nu_{\rho\|\sigma}(dv)=g(v)\,v^{-2}\,dv$ on $(0,\infty)$, where $g(v)=e(v)-(1-v)_+$.
+\end{definition}
+
+The measure is positive and supported in $[\gamma_{\min},\gamma_{\max}]$, the convex hull of the relative spectrum, because $e(v)=1-v$ below $\gamma_{\min}$ and $e=0$ above $\gamma_{\max}$. By the first formula of Proposition~\ref{shA:prop:rep},
+\[
+D^\HT_f(\rho\|\sigma)=\int v^2f''(v)\,\nu_{\rho\|\sigma}(dv)\qquad\text{for every convex }f,
+\]
+so $\nu$ has total mass $D(\sigma\|\rho)$ (take $f=-\log$), first moment $D(\rho\|\sigma)$ (take $f=v\log v$; this is Frenkel's formula \cite{Frenkel2023}), and $Q^\HT_\alpha=1+\alpha(\alpha-1)\int v^\alpha\,d\nu$ for every real $\alpha$. For a classical pair $(P,Q)$ with $Q(dv)=\mu(dv)$, $P(dv)=v\,\mu(dv)$ the same formulas hold with the classical $f$-divergence, since both are $\int f\,d\mu$.
+
+Let $(\rho,\sigma)$ and $(\rho',\sigma')$ be two pairs, $(P,Q)$ and $(P',Q')$ the classical pairs carried by their shadows (Theorem~\ref{shB:thm:supermeas}), and write
+\[
+e_{12}(v)=E_v(\rho\otimes\rho'\|\sigma\otimes\sigma'),\qquad e_{\mathrm{cl}}(v)=E_v(P\otimes P'\|Q\otimes Q')=\int\Tr(\lambda'\rho-v\sigma)_+\,d\mu'(\lambda'),
+\]
+and $\delta=e_{12}-e_{\mathrm{cl}}$,
+and $\nu_{12}$, $\nu_{\mathrm{cl}}$ for the Frenkel measures of the two product pairs, so that $\nu_{12}-\nu_{\mathrm{cl}}$ has density $\delta(v)v^{-2}$. Recall that a finite measure $\nu_2$ dominates $\nu_1$ in the \emph{convex order}, $\nu_2\ge_{\mathrm{cx}}\nu_1$, if $\int\psi\,d\nu_2\ge\int\psi\,d\nu_1$ for every convex $\psi$; this forces equal masses and equal first moments.
+
+\begin{theorem}[The conjecture as a moment inequality]\label{shB:thm:frenkel}
+In this setting:
+\begin{enumerate}[label=(\alph*)]
+\item $\nu_{12}$ and $\nu_{\mathrm{cl}}$ have the same mass $D(\sigma\|\rho)+D(\sigma'\|\rho')$ and the same first moment $D(\rho\|\sigma)+D(\rho'\|\sigma')$, and for every real $\alpha\ne0,1$,
+\[
+\begin{aligned}
+Q^\HT_\alpha(\rho\otimes\rho'\|\sigma\otimes\sigma')-Q^\HT_\alpha(\rho\|\sigma)\,Q^\HT_\alpha(\rho'\|\sigma')&=\alpha(\alpha-1)\int v^\alpha\,d(\nu_{12}-\nu_{\mathrm{cl}})(v)\\&=\alpha(\alpha-1)\int_0^\infty v^{\alpha-2}\delta(v)\,dv .
+\end{aligned}
+\]
+So Conjecture~\ref{shB:conj:super} says that $M(s)=\int_0^\infty v^{s-1}\delta(v)\,dv$ has the sign of $s(s+1)$ for all $s$; it vanishes at $s=0$ and $s=-1$.
+\item If $\nu_{12}\ge_{\mathrm{cx}}\nu_{\mathrm{cl}}$, then Conjecture~\ref{shB:conj:super} holds for the two pairs and all $\alpha\in\mathbb R\setminus\{0,1\}$. More generally, $D^\HT_f(\rho\otimes\rho'\|\sigma\otimes\sigma')\ge D_f(P\otimes P'\|Q\otimes Q')$ for every convex $f$ such that $v\mapsto v^2f''(v)$ is convex, and the reverse inequality holds when $v^2f''$ is concave. Equality holds for $f=v\log v$ and $f=-\log v$.
+\item The convex-order statement is equivalent to $U(c)\ge0$ for all $c>0$, where
+\[
+U(c)=\int_c^\infty\frac{(v-c)\,\delta(v)}{v^2}\,dv=D_{f_c}(\rho\otimes\rho'\|\sigma\otimes\sigma')-D_{f_c}(P\otimes P'\|Q\otimes Q'),
+\]
+with $f_c(v)=(v+c)\log v$ on $[c,\infty)$, continued affinely and $C^1$ below $c$. Equivalently, with the single function $j(u)=\big((u+1)\log u-2(u-1)\big)_+$, the Jeffreys kernel cut off at the Helstrom point,
+\[
+U(c)=D^\HT_j(\rho\otimes\rho'\|c\,\sigma\otimes\sigma')-D_j(P\otimes P'\|c\,Q\otimes Q')\qquad(c>0).
+\]
+Here $U(0)=U(\infty)=U'(0)=U'(\infty)=0$ and $U''(c)=\delta(c)/c^2$.
+\item If $\delta$ changes sign at most twice on $(0,\infty)$ and both pairs are non-commuting, then $\nu_{12}\ge_{\mathrm{cx}}\nu_{\mathrm{cl}}$, $\delta$ changes sign exactly twice, and it is positive near both ends of its support and negative in between.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) Classical R\'enyi quasi-entropies are multiplicative and relative entropies are additive, so the moments of $\nu_{\mathrm{cl}}$ are $\int v^\alpha d\nu_{\mathrm{cl}}=\big(Q^\HT_\alpha Q'^\HT_\alpha-1\big)/(\alpha(\alpha-1))$, and the mass and first moment are the sums of the relative entropies. For $\nu_{12}$ use additivity of $D$ under tensor products. Subtracting the two formulas $Q_\alpha=1+\alpha(\alpha-1)\int v^\alpha d\nu$ gives the identity. The zeros of $M$ at $s=0$ and $s=-1$ are the equalities of first moments and of masses.
+
+(b) Apply the definition of the convex order to $\psi=v^2f''$, which is admissible because both measures have compact support in $(0,\infty)$. For $f_\alpha$, $v^2f_\alpha''=\alpha v^\alpha$ is convex for $\alpha\notin(0,1)$ and concave for $\alpha\in(0,1)$; in both cases $\alpha(\alpha-1)\int v^\alpha d(\nu_{12}-\nu_{\mathrm{cl}})\ge0$. For $f=v\log v$ and $f=-\log v$ the function $v^2f''$ is affine, and both inequalities hold.
+
+(c) For measures with equal mass and mean, the convex order is equivalent to $\int(v-c)_+\,d(\nu_{12}-\nu_{\mathrm{cl}})\ge0$ for all $c$, since the functions $(v-c)_+$ and the affine functions generate the convex cone. This is $U(c)\ge0$. The boundary values follow from (a): $U(0)=M(0)$, $U'(c)=-\int_c^\infty\delta v^{-2}dv$, so $U'(0)=-M(-1)$, and both vanish. The identification of $f_c$: $f_c''(v)=(v-c)_+/v^2$, and $(v+c)\log v$ has second derivative $1/v-c/v^2$. For the second form, $j$ vanishes on $(0,1]$, $j(1)=j'(1)=0$ and $j''(u)=(u-1)_+/u^2$, so only the first family of hockey sticks enters Definition~\ref{shA:def:HT}, and $E_u(\rho\|c\sigma)=E_{cu}(\rho\|\sigma)$ with the substitution $v=cu$ gives $D^\HT_j(\rho\|c\sigma)=\int_c^\infty(v-c)v^{-2}e(v)\,dv$.
+
+(d) Suppose $\delta\not\equiv0$ changes sign at most twice. $U$ is $C^1$ with $U''=\delta/c^2$ and vanishes with its derivative at $0$ and $\infty$. If $\delta$ had no sign change, $U$ would be convex or concave with zero boundary values, hence $U\equiv0$ and $\delta\equiv0$. If $\delta$ had one sign change, $U'$ would be monotone on each side of it and vanish at both ends, hence of one sign, and $U$ would be monotone with zero boundary values; again $\delta\equiv0$. So $\delta$ changes sign exactly twice, at $a<b$. If $\delta>0$ on $(0,a)$, then $U$ is convex on $(0,a)$ and on $(b,\infty)$ and concave on $(a,b)$. On $(0,a)$, $U(0)=U'(0)=0$ gives $U\ge0$; on $(b,\infty)$, convexity with $U(\infty)=U'(\infty)=0$ gives $U\ge0$; on $(a,b)$ concavity gives $U\ge\min\{U(a),U(b)\}\ge0$. If instead $\delta<0$ on $(0,a)$, the same argument gives $U\le0$, hence $\int\psi\,d(\nu_{12}-\nu_{\mathrm{cl}})\le0$ for all convex $\psi$, in particular $Q^\HT_2(\rho\otimes\rho'\|\sigma\otimes\sigma')\le Q^\HT_2Q'^\HT_2$, which contradicts the strict inequality of Theorem~\ref{shB:thm:super2} for non-commuting pairs.
+\end{proof}
+
+Theorem~\ref{shB:thm:frenkel} identifies the structure behind Conjecture~\ref{shB:conj:super}. The quantity that tensorizes badly is the Frenkel measure, and the conjecture says that its Mellin transform is super-multiplicative at every order. The natural stronger statement is domination in the convex order,
+\begin{equation}\label{shB:eq:cx}
+\nu_{\rho\otimes\rho'\|\sigma\otimes\sigma'}\ \ge_{\mathrm{cx}}\ \nu_{P\otimes P'\|Q\otimes Q'} ,
+\end{equation}
+which says that a quantum product pair is a mean-preserving spread of the classical product of the two shadows: the same relative entropies in both directions, more mass at the ends of the testing region. The one-shot picture behind \eqref{shB:eq:cx} is the sign structure of $\delta$. Near both ends of the support $\delta\ge0$ to second order when the extreme relative eigenvalues are simple, by Theorem~\ref{shB:thm:superinf} applied to the pairs and to the reversed pairs ($\delta(v)=v\,\delta_{\mathrm{rev}}(1/v)$ by Lemma~\ref{shA:lem:profile}(c)); this is where entangled tests beat every test built from one factor at a time. In between, $\delta<0$ on a middle interval: the classical product of the shadows, which tests the first factor by its Helstrom test at the level set by an ideal measurement of the second, is easier to discriminate there than the quantum product. The two sign changes are the one-shot counterparts of the three asymptotic comparisons: for $n$ copies and $v=e^{nr}$, the quantum product loses in the Chernoff and Hoeffding regimes, where its exponents are governed by $D^\Petz_\alpha\le D^\HT_\alpha$ ($\alpha<1$), and wins in the strong-converse regime, where they are governed by $\widetilde D_\alpha\ge D^\HT_\alpha$ ($\alpha>1$), by \cite{AudenaertChernoff2007,Hayashi2007,Nagaoka2006,MosonyiOgawa2015} and the ordering of Proposition~\ref{shA:prop:petzorder}.
+
+Numerically (Section~\ref{shB:sec:numerics}), $\delta$ changes sign exactly twice for every pair of qubit pairs we generated, so (d) applies and \eqref{shB:eq:cx} holds for them. In dimensions $2\times3$ and higher, $\delta$ can change sign four, six and eight times, so (d) does not apply, but $U\ge0$ held in every case, including adversarial searches. We therefore record \eqref{shB:eq:cx} as the conjecture behind Conjecture~\ref{shB:conj:super}. Theorem~\ref{shB:thm:super2} is the case $\psi(v)=v^2$ of \eqref{shB:eq:cx}, and the second-order statement at $\alpha=1$ is the case $\psi=v\log v$: superadditivity of the testing-region variance $\int v\log^2v\,d\mu-D^2$.
+
+Finally, the conjecture does hold for tensor powers once there are enough copies, with an explicit threshold, because the regularised values of Theorem~\ref{shA:thm:htreg} lie on the right side of the one-shot value.
+
+\begin{proposition}[Tensor powers]\label{shB:prop:manycopies}
+Let $\rho,\sigma$ be states on $\mathbb C^d$ with $\Pi_\rho\le\Pi_\sigma$.
+\begin{enumerate}[label=(\alph*)]
+\item If $\alpha>1$ and $D^\HT_\alpha(\rho\|\sigma)<\widetilde D_\alpha(\rho\|\sigma)$, then $Q^\HT_\alpha(\rho^{\otimes n}\|\sigma^{\otimes n})>Q^\HT_\alpha(\rho\|\sigma)^n$ for every $n$ with $n\big(\widetilde D_\alpha-D^\HT_\alpha\big)>\frac{\alpha(d-1)}{\alpha-1}\log(n+1)$.
+\item If $\alpha\in(0,1)$ and $D^\HT_\alpha(\rho\|\sigma)>D^\Petz_\alpha(\rho\|\sigma)$, then the same holds for every $n$ with $n\big(D^\HT_\alpha-D^\Petz_\alpha\big)>\frac{\log2}{1-\alpha}$.
+\end{enumerate}
+The hypotheses hold for every non-commuting pair in our tests, and for pure $\rho$ and $\alpha>1$ they hold whenever $[\rho,\sigma]\ne0$, by the strict Minkowski inequality in Remark~\ref{shB:rem:superpure}.
+\end{proposition}
+
+\begin{proof}
+(a) Proposition~\ref{shA:prop:pinch} for $n$ copies gives $\frac1nD^\HT_\alpha(\rho^{\otimes n}\|\sigma^{\otimes n})\ge\widetilde D_\alpha(\rho\|\sigma)-\frac{\alpha(d-1)}{\alpha-1}\frac{\log(n+1)}{n}$, which exceeds $D^\HT_\alpha(\rho\|\sigma)$ under the stated condition; for $\alpha>1$ this is the claim. (b) Proposition~\ref{shA:prop:petz} gives $D^\HT_\alpha(\rho^{\otimes n}\|\sigma^{\otimes n})\le nD^\Petz_\alpha(\rho\|\sigma)+\frac{\log2}{1-\alpha}<nD^\HT_\alpha(\rho\|\sigma)$, and for $\alpha<1$ super-multiplicativity of $Q$ is subadditivity of $D$.
+\end{proof}
+
+\section{Why channels cannot close the gap: the shadow discrepancy and restricted tests}\label{shB:sec:restricted}
+
+The standard tools for comparing statistical experiments act through positive maps. These include Blackwell's theorem and Le~Cam deficiencies, the Alberti--Uhlmann theorem for qubits \cite{AlbertiUhlmann1980}, Buscemi's comparison with quantum side information \cite{Buscemi2012}, Matsumoto's reverse test \cite{Matsumoto2018newf}, and Gour's bracketing of quantum Lorenz curves by classical polygons \cite{Gour2026}. In Gour's language, inclusion of testing regions is the convex order of the shadows $\mu$ themselves \cite[Cor.~7]{Gour2026}, while \eqref{shB:eq:cx} is the convex order of the Frenkel measures, which sits two integrations higher. The next two results show that tools of this kind cannot prove Conjecture~\ref{shB:conj:super} on their own, and they locate the missing ingredient in entangled tests.
+
+\begin{proposition}[The shadow discrepancy is two-sided]\label{shB:prop:twosided}
+Let $(\rho,\sigma)$ and $(\rho',\sigma')$ be pairs of faithful states, neither commuting, and let $(P',Q')$ be the classical pair carried by the shadow of $(\rho',\sigma')$. Then $\delta=e_{12}-e_{\mathrm{cl}}$ changes sign at least twice. In particular:
+\begin{enumerate}[label=(\alph*)]
+\item there are levels $v_\pm$ with $E_{v_+}(\rho\otimes\rho'\|\sigma\otimes\sigma')>E_{v_+}(\rho\otimes P'\|\sigma\otimes Q')$ and $E_{v_-}(\rho\otimes\rho'\|\sigma\otimes\sigma')<E_{v_-}(\rho\otimes P'\|\sigma\otimes Q')$;
+\item there is no positive trace-preserving map $\Lambda$ with $\Lambda(P')=\rho'$, $\Lambda(Q')=\sigma'$, and none with $\Lambda(\rho')=P'$, $\Lambda(\sigma')=Q'$, although $(\rho',\sigma')$ and $(P',Q')$ have the same testing region. The ancilla pair $(\rho,\sigma)$ witnesses both failures at once.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+By Theorem~\ref{shB:thm:frenkel}(a), $\int_0^\infty\delta(v)v^{-2}dv=M(-1)=0$ and $Q^\HT_2(\rho\otimes\rho'\|\sigma\otimes\sigma')-Q^\HT_2Q'^\HT_2=2\int_0^\infty\delta(v)\,dv$. The right-hand side is strictly positive by the equality case of Theorem~\ref{shB:thm:super2}. So $\delta>0$ somewhere and, because of the vanishing mass, $\delta<0$ somewhere. The argument of Theorem~\ref{shB:thm:frenkel}(d) shows that a nonzero $\delta$ with $M(0)=M(-1)=0$ cannot change sign only once. This proves (a), since $e_{\mathrm{cl}}(v)=E_v(\rho\otimes P'\|\sigma\otimes Q')$ by the testing-region equality of $(\rho,\sigma)$ and $(P,Q)$. (b) A positive map whose domain is commutative, or whose range is commutative, is completely positive. If $\Lambda$ maps $(P',Q')$ to $(\rho',\sigma')$, then $\mathrm{id}\otimes\Lambda$ maps $(\rho\otimes P',\sigma\otimes Q')$ to the product pair, and data processing gives $e_{12}\le e_{\mathrm{cl}}$, which contradicts $v_+$. If $\Lambda$ is a measurement producing $(P',Q')$, Theorem~\ref{shB:thm:supermeas} with that measurement gives $e_{12}\ge e_{\mathrm{cl}}$, which contradicts $v_-$.
+\end{proof}
+
+Part (b) is known in other forms. The first half follows from the minimality of the reverse test \cite{Matsumoto2018newf} and Corollary~\ref{shA:cor:rigidity}, and the second half from the strict inequality between measured and testing-region divergences; \cite{Matsumoto2014} gives an example of the same phenomenon. The new point is (a): a single product with any non-commuting ancilla shows that the shadow is incomparable with the pair in both directions. So Conjecture~\ref{shB:conj:super} cannot be proved by sending either factor to or from its shadow through a positive map, nor by any pointwise comparison of profiles. The comparison has to be integrated, and the next result says which tests make it possible.
+
+For a level $v\ge0$ put $h_v(\lambda)=\Tr(\lambda\rho-v\sigma)_+$ and $h'_v(\lambda)=\Tr(\lambda\rho'-v\sigma')_+$. Both are convex and positively homogeneous in $\lambda\ge0$. A \emph{one-way LOCC test} measures one factor with a POVM $\{N_y\}$ and then applies a test $M_y$ on the other factor that depends on the outcome, so that $M=\sum_yM_y\otimes N_y$ or $M=\sum_yN_y\otimes M_y$. A \emph{separable test} is one with both $M$ and $\mathbf 1-M$ separable.
+
+\begin{proposition}[One-way tests never beat the shadow product]\label{shB:prop:oneway}
+In the setting of Theorem~\ref{shB:thm:frenkel},
+\[
+e_{\mathrm{cl}}(v)=D^\HT_{h_v}(\rho'\|\sigma')=D^\HT_{h'_v}(\rho\|\sigma)\qquad(v\ge0),
+\]
+and every one-way LOCC test $M$, in either direction, satisfies $\Tr M(\rho\otimes\rho'-v\,\sigma\otimes\sigma')\le e_{\mathrm{cl}}(v)$. Consequently, at every level $v_+$ of Proposition~\ref{shB:prop:twosided} the product pair has a test that beats every one-way LOCC test by at least $\delta(v_+)>0$. Such levels exist for every two non-commuting pairs.
+\end{proposition}
+
+\begin{proof}
+For the classical product, $E_v(P\otimes P'\|Q\otimes Q')=\int\Tr(\lambda\rho-v\sigma)_+\,Q'(d\lambda)=D_{h_v}(P'\|Q')$, where $P'=\lambda\,Q'$ on the finite part. By Proposition~\ref{shA:prop:rep}, this equals $D^\HT_{h_v}(\rho'\|\sigma')$; the second identity is the same computation with the roles exchanged. For $M=\sum_yM_y\otimes N_y$ with $a_y=\Tr N_y\rho'$ and $b_y=\Tr N_y\sigma'$,
+\begin{multline*}
+\Tr M(\rho\otimes\rho'-v\,\sigma\otimes\sigma')=\sum_y\Tr M_y(a_y\rho-vb_y\sigma)\\
+\le\sum_y\Tr(a_y\rho-vb_y\sigma)_+=D_{h_v}(a\|b)\le D^\HT_{h_v}(\rho'\|\sigma')
+\end{multline*}
+by data processing for $D^\HT_{h_v}$ under the measurement $N$. The other direction uses $h'_v$.
+\end{proof}
+
+Proposition~\ref{shB:prop:oneway} is in the spirit of Piani's inequalities for relative entropies under one-way LOCC measurements \cite{Piani2009}, now for every hockey stick and against the shadow. Numerically the bound extends much further, as the following conjecture records.
+
+\begin{conjecture}[Separable tests]\label{shB:conj:sep}
+Every separable test satisfies $\Tr M(\rho\otimes\rho'-v\,\sigma\otimes\sigma')\le e_{\mathrm{cl}}(v)$ for all $v\ge0$. Equivalently, the testing region of $(\rho\otimes\rho',\sigma\otimes\sigma')$ under separable tests is contained in the testing region of the classical product of the shadows $(P\otimes P',Q\otimes Q')$.
+\end{conjecture}
+
+We tested the stronger statement with PPT tests ($M$, $\mathbf 1-M$, $M^{\Gamma}$, $(\mathbf 1-M)^{\Gamma}\ge0$), which coincide with separable tests in dimensions $2\times2$ and $2\times3$ \cite{Horodecki1996}. It held for $97$ random product pairs in dimensions $2\times2$, $2\times3$ and $3\times3$, and against adversarial search in $2\times2$, to the accuracy of the semidefinite solver (Section~\ref{shB:sec:numerics}). It is not a consequence of Proposition~\ref{shB:prop:oneway}: computed exactly by a linear program over measurements on a great circle, the one-way LOCC value stays below the PPT value by up to two thirds of the gap $e_{\mathrm{cl}}-e_{\mathrm{PPT}}$.
+
+Conjecture~\ref{shB:conj:sep} has a Blackwell form. After refinement a separable test is a coarse-graining of a POVM $\{G_j\otimes H_j\}$ with product elements. The claim is that the outcome experiment $p_j=\Tr G_j\rho\,\Tr H_j\rho'$, $q_j=\Tr G_j\sigma\,\Tr H_j\sigma'$ is a garbling of $(P\otimes P',Q\otimes Q')$, that is, the law of $x_jx'_j$ under $q$ is dominated in convex order by the law of $\lambda\lambda'$ under $Q\otimes Q'$, where $x_j=\Tr G_j\rho/\Tr G_j\sigma$ and $x'_j=\Tr H_j\rho'/\Tr H_j\sigma'$. For every state $\tau$ on the second factor, $\{\Tr(H_j\tau)\,G_j\}_j$ is a POVM on the first. This controls the law of $x$ conditionally on any grouping of the outcomes in which the $H_j$ add up to a POVM element, which is the case for one-way protocols, and it then gives the claim by conditioning and Blackwell's theorem on each factor. For general separable POVMs no such grouping exists. A proof would need a ``quasi-preparation'' of the shadow that is positive only on the cone generated by the $G_j$, which is a Blackwell problem for a polyhedral operator system.
+
+Taken together, Propositions~\ref{shB:prop:twosided}--\ref{shB:prop:oneway} and Conjecture~\ref{shB:conj:sep} split the profile difference as
+\[
+\delta=\underbrace{(e_{12}-e_{\mathrm{SEP}})}_{\ge0:\ \text{gain of entangled tests}}-\underbrace{(e_{\mathrm{cl}}-e_{\mathrm{SEP}})}_{\ge0\ \text{(conjecturally)}:\ \text{deficit of separable tests}} ,
+\]
+so Conjecture~\ref{shB:conj:super} says that, in the Frenkel convex order, entangled tests on a product pair gain more than separable tests lose against the classical product of the shadows. This is the opposite of quantum data hiding \cite{MatthewsWehnerWinter2009}, where entangled tests gain a lot against a restricted class. Here the gain is of second order, near the two ends of the testing region (Theorem~\ref{shB:thm:superinf}), and the restricted class is benchmarked by the shadow and not by the full product. Any proof must therefore use the entangled optimal tests, as the proof of Theorem~\ref{shB:thm:super2} does implicitly through the symmetrisation $v\mapsto-v$, which pairs the matrix element $\rho'_{lm}$ with $\rho'_{ml}$ across the tensor product.
+
+Theorems~\ref{shB:thm:bht2} and~\ref{shB:thm:super2} also settle the sign of the regularisation gap $\Delta^+_\alpha=\widetilde D_\alpha-D^\HT_\alpha$ of \cite[(45)]{Gour2026} at $\alpha=2$ for all non-commuting pairs, not only for qubits.
+
+\begin{corollary}[Strict regularisation gaps]\label{shB:cor:strictgap}
+Let $\rho,\sigma$ be faithful with $[\rho,\sigma]\ne0$.
+\begin{enumerate}[label=(\alph*)]
+\item $D^\HT_2(\rho\|\sigma)<\widetilde D_2(\rho\|\sigma)$.
+\item If the largest eigenvalue $\gamma_{\max}$ of $\sigma^{-1/2}\rho\sigma^{-1/2}$ is simple and its eigenvector $v$ (with $\rho v=\gamma_{\max}\sigma v$) is not an eigenvector of $\sigma$, then $D^\HT_\alpha(\rho\|\sigma)<\widetilde D_\alpha(\rho\|\sigma)$ for all sufficiently large $\alpha$.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+$\widetilde D_\alpha$ is additive and dominates $D^\HT_\alpha$ for $\alpha>1$ (\cite{LiuHircheCheng2025}; for $\alpha\ge2$ also Theorem~\ref{shB:thm:bht2}), so
+\[
+\widetilde D_\alpha(\rho\|\sigma)=\tfrac12\widetilde D_\alpha(\rho^{\otimes2}\|\sigma^{\otimes2})\ge\tfrac12D^\HT_\alpha(\rho^{\otimes2}\|\sigma^{\otimes2}).
+\] It therefore suffices that $Q^\HT_\alpha(\rho^{\otimes2}\|\sigma^{\otimes2})>Q^\HT_\alpha(\rho\|\sigma)^2$. At $\alpha=2$ this is the equality case of Theorem~\ref{shB:thm:super2}. For (b), by Theorem~\ref{shB:thm:superinf} it suffices that $\kappa_{12}>2\kappa$ for the doubled pair. In the proof of Theorem~\ref{shB:thm:superinf}, $\langle z|A^+|z\rangle-\big(2\,\mathrm{Re}\langle x|z\rangle-\langle x|A|x\rangle\big)=\langle x-x_*|A|x-x_*\rangle$ with $Ax_*=z=a_{12}$, and the chosen $x$ satisfies $Ax=a_{12}+a\otimes a'$. Hence the inequality $\langle a_{12}|A^+|a_{12}\rangle\ge\frac{mc'}{\gamma_{\max}}+\frac{m'c}{\gamma'_{\max}}$ is strict as soon as $a\otimes a'\ne0$. For the doubled pair $a'=a$, and $a\ne0$ exactly when $\sigma v\notin\mathbb Cv$.
+\end{proof}
+
+\section{Modular clocks, dephasing flows and two qubit pairs}\label{shB:sec:clocks}
+
+The results so far treat Conjecture~\ref{shB:conj:super} through measures on the testing region. A second family of measures lives on the time axis of the modular group of $\sigma$. Write $\sigma=\sum_je^{x_j}|j\rangle\langle j|$. In this basis $\sigma^{iT}\rho\,\sigma^{-iT}$ has entries $\rho_{jk}e^{iT\omega_{jk}}$ with frequencies $\omega_{jk}=x_j-x_k$. Averaging over a random time $T$ with law $\pi$ multiplies each entry by the characteristic function $\hat\pi(\omega_{jk})$. For product pairs, $(\sigma\otimes\sigma')^{iT}=\sigma^{iT}\otimes\sigma'^{iT}$, so both factors are driven by one clock.
+
+\begin{proposition}[The logistic clock]\label{shB:prop:clock}
+Let $\sigma$ be faithful, $Y=\sigma^{-1/4}\rho\,\sigma^{-1/4}$ and
+\[
+g_{\rho,\sigma}(t)=\Tr\big[Y\sigma^{it}Y\sigma^{-it}\big]=\sum_{jk}|Y_{jk}|^2\cos(\omega_{jk}t).
+\] Let $T$ have the logistic density $\frac\pi2\operatorname{sech}^2(\pi t)$. Then
+\[
+Q^\HT_2(\rho\|\sigma)=\mathbb E\,g_{\rho,\sigma}(T),\qquad Q^\HT_2(\rho\otimes\rho'\|\sigma\otimes\sigma')=\mathbb E\big[g_{\rho,\sigma}(T)\,g_{\rho',\sigma'}(T)\big].
+\]
+So Theorem~\ref{shB:thm:super2} says that the modular autocorrelation functions of two pairs are positively correlated under a common logistic clock: synchronising the clocks of the two factors can only increase $Q^\HT_2$.
+\end{proposition}
+
+\begin{proof}
+$|Y_{jk}|^2=w_{jk}$ in the notation of the proof of Theorem~\ref{shB:thm:super2}, and $\mathbb E\cos(\omega T)=\frac{\omega/2}{\sinh(\omega/2)}=k(\omega)$ is the characteristic function of the logistic law. For products, $Y_{12}=Y\otimes Y'$ and the frequencies add. In this language, the proof of Theorem~\ref{shB:thm:super2} represents $T$ as a Gaussian scale mixture, $T\mid V\sim N(0,2V)$. For a centred Gaussian $T$ one has $\mathbb E[\cos(aT)\cos(bT)]-\mathbb E\cos(aT)\,\mathbb E\cos(bT)=e^{-(a^2+b^2)V}(\cosh(2abV)-1)\ge0$, and Chebyshev's inequality handles the mixture over $V$.
+\end{proof}
+
+At integer orders the same Fourier analysis applies to all $n$. With the Mellin--Barnes formula $\frac1{t+q}=\frac1{2\pi i}\int_{\mathrm{Re}\,z=c}\frac{\pi}{\sin\pi z}q^{-z}t^{z-1}dz$ on the lines $c=1-\frac1n$, the $t$-integral of the trace formula produces $\delta(\sum_ky_k)$. This gives
+\[
+Q^\HT_n(\rho\|\sigma)=\int_{H_n}W_n(y)\,G_{\rho,\sigma}(y)\,dy,\qquad G_{\rho,\sigma}(y)=\Tr\big[\hat\rho\,\sigma^{-iy_1}\hat\rho\,\sigma^{-iy_2}\cdots\hat\rho\,\sigma^{-iy_n}\big],
+\]
+where $\hat\rho=\sigma^{-\frac{n-1}{2n}}\rho\,\sigma^{-\frac{n-1}{2n}}$, on the hyperplane $H_n=\{\sum_ky_k=0\}$, with the weight $W_n(y)\propto\prod_k\pi/\sin(\frac\pi n-i\pi y_k)$ normalised so that $\int_{H_n}W_n=1$. The multi-time correlation function is multiplicative, $G_{\rho\otimes\rho',\sigma\otimes\sigma'}=G_{\rho,\sigma}G_{\rho',\sigma'}$, so Conjecture~\ref{shB:conj:super} at order $n$ says $\int W_nGG'\ge\int W_nG\int W_nG'$. At $n=2$ the weight is the positive logistic density of Proposition~\ref{shB:prop:clock}. For $n\ge3$ it is complex. One may move the $n$ contours to lines $\mathrm{Re}\,z_k=c_k$ with $\sum_kc_k=n-1$. Each factor $\pi/\sin(\pi z_k)$ is real on its line only when $c_k=\frac12$, and then $\sum_kc_k=n-1$ forces $n=2$. This is the Fourier-side form of the obstruction in Proposition~\ref{shB:prop:integer}. The simplex representation of Proposition~\ref{shB:prop:simplex} avoids it. There the reference law is the uniform law on $\Delta_{n-1}$, which is positive for every $n$, and the two factors enter through different functions, $\mathcal F$ and $\mathcal G$, instead of through one multiplicative correlation function.
+
+The clock picture suggests interpolating instead of comparing directly. Let $\mathcal E^\sigma_s(\rho)=\mathbb E\,\sigma^{iT}\rho\,\sigma^{-iT}$ with $T\sim N(0,2s)$. This is the \emph{modular heat flow}: the quantum Markov semigroup $e^{s\mathcal L_\sigma}$ with $\mathcal L_\sigma(X)=-[\log\sigma,[\log\sigma,X]]$, which multiplies the $(j,k)$ entry by $e^{-s\omega_{jk}^2}$. It is unital and fixes $\sigma$. As $s\to\infty$ the Gaussian laws converge, on the frequency group, to the Haar average, so $\mathcal E^\sigma_s(\rho)$ tends to the pinching of $\rho$ with respect to $\sigma$.
+
+\begin{theorem}[Reduction to a local supermodularity]\label{shB:thm:flow}
+Let $\rho,\sigma,\rho',\sigma'$ be faithful, $\alpha\in(0,1)\cup(1,\infty)$, and
+\[
+\Psi(s,t)=\log Q^\HT_\alpha\big(\mathcal E^\sigma_s\rho\otimes\mathcal E^{\sigma'}_t\rho'\,\big\|\,\sigma\otimes\sigma'\big)-\log Q^\HT_\alpha(\mathcal E^\sigma_s\rho\|\sigma)-\log Q^\HT_\alpha(\mathcal E^{\sigma'}_t\rho'\|\sigma').
+\]
+Then $\Psi(s,\infty)=\Psi(\infty,t)=0$, and
+\[
+\log\frac{Q^\HT_\alpha(\rho\otimes\rho'\|\sigma\otimes\sigma')}{Q^\HT_\alpha(\rho\|\sigma)\,Q^\HT_\alpha(\rho'\|\sigma')}=\Psi(0,0)=\int_0^\infty\!\!\int_0^\infty\partial_s\partial_t\log Q^\HT_\alpha\big(\mathcal E^\sigma_s\rho\otimes\mathcal E^{\sigma'}_t\rho'\,\big\|\,\sigma\otimes\sigma'\big)\,ds\,dt .
+\]
+Consequently Conjecture~\ref{shB:conj:super} holds at order $\alpha$ for all pairs if the following local condition holds for all faithful pairs:
+\[
+(\mathrm S_\alpha)\qquad \partial_s\partial_t\big|_{s=t=0}\log Q^\HT_\alpha\big(\mathcal E^\sigma_s\rho\otimes\mathcal E^{\sigma'}_t\rho'\,\big\|\,\sigma\otimes\sigma'\big)\ \ge\ 0 .
+\]
+The same holds with the Gaussian law replaced by any symmetric infinitely divisible law whose exponent vanishes only at $0$, for instance the Poisson flow $e^{-s|\omega_{jk}|}$.
+\end{theorem}
+
+\begin{proof}
+$\mathcal E^\sigma_s$ is a mixture of unitaries that commute with $\sigma$, so $\mathcal E^\sigma_s\rho$ is faithful and converges exponentially fast, with rate $e^{-s\min\omega_{jk}^2}$ over $\omega_{jk}\ne0$, to a state commuting with $\sigma$. If one pair commutes, the product shadow factorises (the remark after Conjecture~\ref{shB:conj:super}), so $\Psi(\infty,t)=\Psi(s,\infty)=0$. By the trace formula, $Q^\HT_\alpha$ is real-analytic on faithful states. The single-factor terms of $\Psi$ have zero mixed derivative, so the double integral of $\partial_s\partial_t\Psi$ over $[0,\infty)^2$ equals $\Psi(0,0)-\Psi(\infty,0)-\Psi(0,\infty)+\Psi(\infty,\infty)=\Psi(0,0)$. The semigroup property $\mathcal E_{s+h}=\mathcal E_h\mathcal E_s$ turns the mixed derivative at $(s,t)$ into the mixed derivative at $(0,0)$ for the pairs $(\mathcal E_s\rho,\sigma)$ and $(\mathcal E_t\rho',\sigma')$, so $(\mathrm S_\alpha)$ for all pairs makes the integrand nonnegative.
+\end{proof}
+
+Condition $(\mathrm S_\alpha)$ is local and stronger than the conjecture: it asks that $\log Q^\HT_\alpha$ of a product be supermodular along the two independent flows. Numerically it holds for every pair and every order we tested (Section~\ref{shB:sec:numerics}). For two qubit pairs it takes an especially concrete form. In the eigenbasis of $\sigma$ write $\rho=\begin{pmatrix}p_1&c\\ \bar c&p_2\end{pmatrix}$. The flow multiplies $c$ by $e^{-s\omega^2}$, so along the flows only $X=|c|^2$ and $Y=|c'|^2$ change, and $(\mathrm S_\alpha)$ says that $(X,Y)\mapsto\log Q^\HT_\alpha$ is supermodular.
+
+\begin{proposition}[Two qubit pairs at integer orders]\label{shB:prop:qubitn}
+Let $(\rho,\sigma)$ and $(\rho',\sigma')$ be faithful qubit pairs and $n\ge2$ an integer. With the diagonals in the eigenbases of $\sigma,\sigma'$ fixed, $Q^\HT_n(\rho\otimes\rho'\|\sigma\otimes\sigma')$ is a polynomial of degree $\lfloor n/2\rfloor$ in each of $X=|c|^2$ and $Y=|c'|^2$. For $n=2,3$ it is bilinear, $c_{00}+c_{10}X+c_{01}Y+c_{11}XY$. Then $(\mathrm S_n)$ on the qubit flows, Conjecture~\ref{shB:conj:super} and $c_{00}c_{11}\ge c_{10}c_{01}$ are equivalent.
+\begin{enumerate}[label=(\alph*)]
+\item For $n=2$ the condition is $\mathbb E[\cos(\omega T)\cos(\omega'T)]\ge\mathbb E\cos(\omega T)\,\mathbb E\cos(\omega'T)$, which holds by Theorem~\ref{shB:thm:super2}.
+\item For $n=3$ the conjecture for all pairs of qubit pairs is equivalent to (and proved in Corollary~\ref{shB:thm:qubit3})
+\[
+\Phi(a,b):=D(1,ab)+2D(a,b)-6D(1,a)D(1,b)\ \ge\ 0\qquad\text{for all }a,b>0,
+\]
+where $D(x,y)=\int_0^\infty\frac{dt}{(t+1)(t+x)(t+y)}=\frac{L(x)-L(y)}{y-x}$ and $L(\gamma)=\frac{\log\gamma}{\gamma-1}$, the reciprocal of the logarithmic mean of $\gamma$ and $1$. Here $a$ and $b$ range over the eigenvalue ratios of $\sigma$ and $\sigma'$ and their inverses.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+In $Q_n=(n-1)\int_0^\infty\Tr[(\rho_{12}(\sigma_{12}+t)^{-1})^n]\,dt$, every term is a closed walk of length $n$ on the product basis. Its first coordinate crosses between the two levels an even number of times, each crossing contributing $c$ or $\bar c$, and the same holds for the second coordinate. This gives the polynomial structure. For a bilinear $f$, $\partial_X\partial_Y\log f=(c_{00}c_{11}-c_{10}c_{01})/f^2$ and $f(1,1)f(0,0)-f(1,0)f(0,1)=c_{00}c_{11}-c_{10}c_{01}$, which gives the equivalences. (a) is the computation in Proposition~\ref{shB:prop:clock} with one frequency per factor.
+
+(b) The term $c_{00}$ is the product of the diagonal parts, and $c_{10}=c_{00}'E$, $c_{01}=c_{00}E'$, where $E$ is the coefficient of $X$ in $Q_3(\rho\|\sigma)$. So the condition is $c_{11}\ge EE'$. Walks with two crossings in a factor visit one level twice and the other once, in all three cyclic positions. Hence $c_{11}$ is a sum over the two choices of doubled level in each factor of $\frac13\sum_{\pi\in S_3}$ of the kernel $\int_0^\infty\prod_k(t+q_{i_k}q'_{\pi(i_k)})^{-1}dt$ with positive weights $W_\epsilon W'_{\epsilon'}$, which are the same weights that appear in $E$ and $E'$. After scaling out the homogeneity, the difference $c_{11}-EE'$ becomes $\frac23\sum_{\epsilon,\epsilon'}W_\epsilon W'_{\epsilon'}\,\Phi(a^{\epsilon},b^{\epsilon'})$ times positive factors, with $a=q_2/q_1$ and $b=q'_2/q'_1$, and the kernel is $D(1,ab)$ when the singly visited levels of the two factors occupy the same position of the walk and $D(a,b)$ otherwise. The ratio $W_+/W_-=(p_1/p_2)(q_2/q_1)^{2/3}$ can take any positive value, so each term must be nonnegative separately.
+\end{proof}
+
+Inequality (b) is the case of the symmetric-group inequality \eqref{shB:eq:Sn} at $n=3$ in which each of $u$ and $v$ has two equal coordinates, so it is covered by Theorem~\ref{shB:thm:simplex}.
+
+\begin{corollary}[Super-multiplicativity at $\alpha=3$ for qubits]\label{shB:thm:qubit3}
+For all pairs of qubit states,
+\[
+Q^\HT_3(\rho\otimes\rho'\|\sigma\otimes\sigma')\ \ge\ Q^\HT_3(\rho\|\sigma)\,Q^\HT_3(\rho'\|\sigma'),
+\]
+with equality if and only if $[\rho,\sigma]=0$ or $[\rho',\sigma']=0$. Equivalently, $\Phi(a,b)\ge0$ for all $a,b>0$, with equality exactly when $a=1$ or $b=1$.
+\end{corollary}
+
+\begin{proof}
+Qubit pairs are sign-free, because $\sigma$ has at most two distinct eigenvalues, so Theorem~\ref{shB:thm:simplex}(c) gives the inequality and the equality cases. The statement about $\Phi$ is \eqref{shB:eq:Sn} at $n=3$ for $u$ and $v$ proportional to centred versions of $(0,0,\log a)$ and $(0,0,\log b)$, with the strictness of Theorem~\ref{shB:thm:simplex}(b); it is also equivalent to the first statement by Proposition~\ref{shB:prop:qubitn}(b). The inequality and its equality cases are also the case of Corollary~\ref{shB:cor:twolevel} in which both pairs are qubit pairs.
+\end{proof}
+
+We first proved Corollary~\ref{shB:thm:qubit3} by a one-variable Stieltjes-transform argument of the same kind as the $\theta$-reduction in Remark~\ref{shB:rem:simplexopen}, and we record it because it is explicit. Substituting $t=1/\lambda$ gives $D(1,x)=\frac12\mathbb E_\mu f_x$ and $D(x,y)=\frac12\mathbb E_\mu[f_xf_y]$, with $\mu(d\lambda)=\frac{2\lambda\,d\lambda}{(1+\lambda)^3}$ and $f_x(\lambda)=\frac{1+\lambda}{1+x\lambda}$. The identity $f_{ab}(\lambda)=f_a(\lambda)f_b(a\lambda)$ then writes $2\Phi(a,b)=(1-\frac1b)\int_0^\infty\frac{\kappa_a(d\lambda)}{1+b\lambda}$, where $\kappa_a$ is a signed measure of mass $0$ whose density is $\frac{2\lambda}{(1+\lambda)^3}$ times a rational function with a cubic numerator $N_a$. Since $N_a(-a)=-(a-1)^3(a+1)$ and $N_a(-1)=3c_a(a-1)^3$, with $c_a=2D(1,a)>0$, have opposite signs, $\kappa_a$ changes sign at most twice on $(0,\infty)$. The variation-diminishing property of the Cauchy kernel \cite[Ch.~5, Thm.~3.1]{Karlin1968} and the signs of $\Phi$ at the ends of each line then locate the only zero at $b=1$. The ingredients were checked symbolically and numerically (Section~\ref{shB:sec:numerics}). This route needs the bilinearity of $Q^\HT_3$ in the flow variables, so it does not extend beyond qubits. The simplex route does, because it needs only convexity and symmetry.
+
+Section~\ref{shB:sec:numerics} summarises the numerical evidence; we mention four checks here. For Theorem~\ref{shB:thm:bht2}, $Q^\HT_\alpha/\widetilde Q_\alpha\le0.9980$ for $160$ random pairs with $\alpha\in\{2,2.5,4,7\}$. In the range $(1,2)$, which is covered by \cite{LiuHircheCheng2025}, $Q^\HT_\alpha/\widetilde Q_\alpha\le1.0000$ for $120$ random pairs in dimensions $2$--$5$ and $\alpha\in\{1.2,1.5\}$. The Helstrom layer-cake inequality of Step~3 held for $30$ pairs with $\alpha\in\{1.2,1.5\}$. Super-multiplicativity was tested on $40$ random pairs of qubit pairs with $\alpha\in\{0.3,0.7,1.5,2,4\}$, and all $200$ ratios are at least $1$ to six decimal places. An adversarial search (Nelder--Mead on the ratio, well-conditioned states) for $\alpha$ from $0.05$ to $40$ found no violation. In every run the minimiser drove one pair towards commuting, the equality case, and $30$-digit arithmetic at the minimisers gives ratios above $1$ by exactly the predicted second-order amount. Apparent violations at near-singular $\sigma'$ were rounding artefacts. At $\alpha=40$, $30$-digit arithmetic with the tensor products formed exactly gives ratio $-1=+1.4\cdot10^{-10}$, where double precision had given $-1.2\cdot10^{-6}$. Finally, for tensor powers, $\frac1nD^\HT_2$ increases monotonically towards $\widetilde D_2$ for qubit powers up to $n=32$, and $\frac1nD^\HT_{1/2}$ decreases towards $D^\Petz_{1/2}$ up to $n=16$.
+
+\section{Numerical checks}\label{shB:sec:numerics}
+
+Random states are Wishart-normalised.
+{\small
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.38\linewidth}>{\raggedright\arraybackslash}p{0.55\linewidth}}
+\toprule
+Claim & Result\\
+\midrule
+\endhead
+Proposition~\ref{shB:prop:chernoff} & no violation over $40$ pairs and $\alpha\in\{0.2,0.5,0.8\}$\\
+$D^\HT_\alpha\le\widetilde D_\alpha$ \cite{LiuHircheCheng2025} & $Q^\HT_\alpha/\widetilde Q_\alpha\in[0.665,1.0000]$ over $120$ pairs, $d\in\{2,\dots,5\}$, $\alpha\in\{1.2,1.5,2,3\}$\\
+Conjecture~\ref{shB:conj:super} & all $200$ ratios $Q^\HT_\alpha(\rho\otimes\rho'\|\sigma\otimes\sigma')/(Q^\HT_\alpha Q'^\HT_\alpha)$ lie in $[1.000000,\,1.0169]$: $40$ random pairs of qubit pairs, $\alpha\in\{0.3,0.7,1.5,2,4\}$. Adversarial minimisation over well-conditioned states, $2\times2$ for $\alpha\in\{0.05,0.2,0.5,0.8,0.95,1.05,1.5,2,3,6,15,40\}$ and $2\times3$ for $\alpha\in\{0.5,1.5,3\}$: every minimiser approaches a commuting pair, with ratio $-1$ in $[-3\cdot10^{-11},10^{-11}]$, the rounding floor (an exactly commuting pair returns $-3\cdot10^{-12}$ at $\alpha=15$). Along the minimising direction the ratio is $1+Ct^2$ with $C=+1.2\cdot10^{-6}$ ($\alpha=15$) and $+6.2\cdot10^{-5}$ ($\alpha=40$). With exact inputs in $30$-digit arithmetic the two minimisers have ratio $-1=+2.49\cdot10^{-14}$ and $+1.62\cdot10^{-12}$, which equals $Ct_0^2$ at their distances $t_0=1.45\cdot10^{-4}$ and $1.62\cdot10^{-4}$ from commuting.\\
+Theorem~\ref{shB:thm:frenkel}(d), sign pattern of $\delta$ & $2\times2$: $100$ random pairs, all $+\,-\,+$ (the signs near both ends verified with an exact routine at relative distances $10^{-3}$ and $10^{-2}$; one apparent extra change at relative distance $2\cdot10^{-6}$ from $\gamma_{\max}$ is below the accuracy); $2\times3$: $25$ pairs $+-+$ and $15$ pairs $+-+-+$ of $40$; $3\times3$: $16$, $11$, $3$ pairs with two, four, six sign changes of $30$; $3\times4$: $5$, $4$, $1$ of $10$\\
+Convex order \eqref{shB:eq:cx} & $U\ge0$ in all $180$ pairs above: computed from both ends by piecewise Gauss--Legendre quadrature (breakpoints at every kink of $\delta$), $\min U\ge-2\cdot10^{-11}$ in absolute terms against peaks of $10^{-6}$ to $10^{-2}$, with quadrature defects $|M(0)|,|M(-1)|\le6\cdot10^{-11}$; an adversarial Nelder--Mead minimisation of the dip of $U$ over the middle $80\%$ of its support, relative to its peak, moved it from $1.3\cdot10^{-4}$ to $1.1\cdot10^{-4}$ ($2\times2$) and from $1.9\cdot10^{-3}$ to $1.6\cdot10^{-3}$ ($2\times3$) in $1{,}000$ evaluations, never approaching zero\\
+Theorem~\ref{shB:thm:frenkel}(a) & $M(s)$ has the sign of $s(s+1)$ at $s\in\{-3,-2,-1.5,-0.7,-0.3,0.5,1,2,4\}$ for every pair above\\
+$\varphi(\alpha)=\log Q^\HT_\alpha(\rho\otimes\rho'\|\sigma\otimes\sigma')-\log Q^\HT_\alpha-\log Q'^\HT_\alpha$ on $\alpha\in[-3,6]$ & $\varphi\ge0$ on the whole grid (step $0.25$) for $85$ pairs ($2\times2$, $2\times3$, $3\times3$), with $\min\varphi=3.4\cdot10^{-7}$ on $[-3,0)$; $\varphi$ has double zeros at $\alpha=0,1$ and is not convex in any of the $85$ cases (a local maximum inside $(0,1)$ and another beyond $2$), so super-additivity of the tilted testing-region variance is not available as a route\\
+Proposition~\ref{shB:prop:integer}, inequality \eqref{shB:eq:Sn} (proved in Theorem~\ref{shB:thm:simplex}(b)) & $n=3$: $\min\frac1{n!}\sum_\pi k_n(u+\pi v)/(k_n(u)k_n(v))=1.0000079$ over $300$ random pairs; $n=4$: $1.0000296$ over $150$; $n=5$: $1.00051$ over $40$; adversarial minimisation ($4$ starts each) returns $1.0000000$ at $u=0$ or $v=0$ only. Logarithmic form: minimum gap $+6.3\cdot10^{-6}$ ($n=3$, $200$ pairs) and $+3.5\cdot10^{-5}$ ($n=4$, $100$ pairs), adversarial minima $\ge+4\cdot10^{-16}$ at the equality cases. The closed form of $k_3$ agrees with the integral to $10^{-15}$\\
+Proposition~\ref{shB:prop:simplex} (simplex representation) & $\mathbb E\,\mathcal F$, $\mathbb E\,\mathcal G$ and $\mathbb E[\mathcal F\mathcal G']$, computed by a tensor Gauss--Legendre rule on $\Delta_{n-1}$, agree with the trace formula to relative error $2\cdot10^{-12}$ for $n=2$ ($3\times3$), $n=3$ ($3\times2$, $3\times3$) and $n=4$ ($2\times2$, $3\times2$), $3$ random pairs each; for generic $3$-dimensional pairs $\mathcal F$ is complex ($|\mathrm{Im}\,\mathcal F|/|\mathcal F|$ up to $1.7\cdot10^{-3}$), cyclically invariant and conjugated by reversal to $10^{-15}$, and $\mathrm{Re}\,\mathcal F_4$ is not $S_4$-invariant (relative deviation $4\cdot10^{-5}$)\\
+Lemma~\ref{shB:lem:schur} & $\mathrm{Cov}\ge0$ for random pairs of Schur-convex functions (symmetrised exponentials of linear forms, symmetrised $(\mu\cdot y)^{-p}$, symmetrised maxima of affine functions, $-\prod_i\mu_i$, increasing functions of $\sum_i\mu_i^2$ and of $\max_i\mu_i$) on $\Delta_2$, $\Delta_3$, $\Delta_4$: minimum correlation $+3.8\cdot10^{-2}$ ($n=3$, $369$ pairs), $+6.0\cdot10^{-3}$ ($n=4$, $383$ pairs) and $+1.0\cdot10^{-1}$ ($n=5$, $288$ pairs), after discarding numerically constant functions; the quadrature reproduces $\mathbb E\,U_1$ and $\mathbb E\,U_1^2$ to $10^{-14}$\\
+Theorem~\ref{shB:thm:simplex}(b) & pure$\otimes$pure ratios minus $1$: $\ge9.7\cdot10^{-6}$, $1.7\cdot10^{-6}$, $1.5\cdot10^{-4}$, $1.4\cdot10^{-7}$ at $n=3,4,5,6$ ($24$ products each, dimensions $2\times2$ to $2\times4$); pairs with nonnegative entries (including qubits) tensored with pure pairs: $\ge3.6\cdot10^{-5}$, $9.4\cdot10^{-6}$, $2.0\cdot10^{-5}$ at $n=4,5,6$ ($20$ products each)\\
+Theorem~\ref{shB:thm:simplex}(c) & $64$ products of sign-free pairs drawn from four classes ($\sigma$ with two distinct eigenvalues and random $\rho$ in dimensions $3,4$; nonnegative $\rho$; pure $\rho$; qubits): ratio minus $1$ at least $2.7\cdot10^{-7}$; smallest relative Hessian eigenvalue of $\mathrm{Re}\,\mathcal F_3$ on a grid $+6.9\cdot10^{-3}$, $+6.1\cdot10^{-2}$, $+1.3\cdot10^{-1}$ for the first three classes\\
+Remark~\ref{shB:rem:simplexopen} & $\mathrm{Re}\,\mathcal F_3$ Schur-convex in all $600$ random pairs in dimensions $3,4$, $\mathrm{Re}\,\mathcal G_3$ in $596$; for the $4$ exceptions the ratio minus $1$ is at least $2.0\cdot10^{-4}$ against $4$ random partners each; the chirality term $|\mathbb E[\mathrm{Im}\,\mathcal F\,\mathrm{Im}\,\mathcal G']|$ is at most $1.4\cdot10^{-3}$ of the covariance (median $10^{-4}$) over $20$ random $3\times3$ products; the pointwise condition $\frac16\sum_{\pi\in S_3}I_\pi(x)\ge2\int_0^\infty\prod_i(t+x_i)^{-1}dt\;Q^\HT_3(\rho\|\sigma)$, with $I_\pi(x)=2\int_0^\infty\Tr[\rho(t+x_{\pi1}\sigma)^{-1}\rho(t+x_{\pi2}\sigma)^{-1}\rho(t+x_{\pi3}\sigma)^{-1}]\,dt$, which would give super-multiplicativity against every sign-free partner, held at $360$ random points $(\rho,\sigma,x)$ in dimensions $3,4$ (minimum relative margin $4.5\cdot10^{-7}$) but is false at extreme spectra: for $q=(2.03\cdot10^{-5},\,1.04\cdot10^{3},\,1.08\cdot10^{-2})$, $x=(2.82,\,2.08\cdot10^{5},\,1.48\cdot10^{-4})$ and a rank-$2$ qutrit $\rho$ with a negative $3$-cycle the difference is $-1.27\cdot10^{-9}$ in $60$-digit arithmetic ($-8.6\%$ of the sum of the absolute values of its terms), while against pure partners with eigenvalues $x$ the full defect stays positive; inequality \eqref{shB:eq:split}: minimum of the ratio right side/left side $1.0000$ over $60{,}000$ samples ($\log q_i,\log a$ uniform in $[-S,S]$, $S=2,6,12$), attained at coinciding $q_i$; the exact worst phase for qutrits against two-equal partner words gives a normalised defect $\ge+0.029$ ($600$ samples, $S=6,12$), and for $d=4,5$ an adversarial search over all $\rho$ gives minima $\ge-4\cdot10^{-14}$ (rounding at degenerate spectra); an adversarial search of the full defect for $3\times2$ and $3\times3$ products with $\log$-eigenvalues in $[-12,12]$ (and in $[-6,6]$, $[-3,3]$) found no violation, its minimisers approaching commuting pairs (two apparent violations at $-10^{-15}$ were rounding: $+10^{-25}$ in $60$-digit arithmetic); $R(\theta)$ convex in all $600$ random pairs in dimensions $2,3,4,6$, while three adversarial pairs have $R''<0$ (down to $-243$) yet $R-Q^\HT_3$ has two sign changes, $2\int\theta R=3\int\theta^2R$ to $12$ digits, and $\Delta(a)/Q^\HT_3>0$ for $a$ from $10^{-4}$ to $10^4$\\
+Theorem~\ref{shB:thm:LT}, Proposition~\ref{shB:prop:twotime}, Corollaries~\ref{shB:cor:twolevel} and~\ref{shB:cor:gamma}, Proposition~\ref{shB:prop:local3} & the Lieb--Thirring double integral reproduces $\mathcal D_{\rho\|\sigma}(a)$ to $12$ digits for a random qutrit pair and for a pair with a strongly negative $3$-cycle ($a=0.15,\,3.7$), with a pointwise nonnegative integrand; the defect of qutrit$\otimes$qutrit products with $\sigma'=\mathrm{diag}(1,1,a)$ equals $S_1\mathcal D(a)+S_2a^{-2}\mathcal D(1/a)$ to $10$--$12$ digits; the defect divided by $\varepsilon^2$ tends linearly to $\frac32(\tau_1-\tau_2)\ell_{\rho\|\sigma}$; the bounds of Corollary~\ref{shB:cor:gamma} hold for $200$ random pairs ($d\le4$, $\gamma\in\{-1,0,\frac13,\frac23,1,2\}$), with minimal relative slack $6\cdot10^{-6}$\\
+Theorem~\ref{shB:thm:purepartner}, Proposition~\ref{shB:prop:rootedLT}, Corollaries~\ref{shB:cor:split}, \ref{shB:cor:threelevel}, \ref{shB:cor:negative}, Theorems~\ref{shB:thm:cycle}, \ref{shB:thm:doubling}, \ref{shB:thm:polycrit}, Proposition~\ref{shB:prop:D2} & pure partners against chiral $3\times3$ pairs: ratio minus $1$ at least $2.3\cdot10^{-4}$, $9.3\cdot10^{-5}$, $5.0\cdot10^{-5}$ at $n=3,4,5$ ($25$ products); the rotation identity of $H$ to $5\cdot10^{-15}$, $[H(z;a_i,a_j)]$ positive semidefinite in $500$ random $7\times7$ instances, the trace identity to $12$ digits; \eqref{shB:eq:split}: maximal ratio $0.9992$ over $400$ samples with eigenvalue ratios up to $e^{12}$; Theorem~\ref{shB:thm:cycle}: minimal ratio $1.012$ over $2\cdot10^4$ random triples of sizes $2$--$4$ and random ranks; Corollary~\ref{shB:cor:threelevel} against partners with a degenerate three-level $\sigma'$; negative-cycle pairs of both families of Corollary~\ref{shB:cor:negative}: all defects positive; $\Delta_t$ equals the $D_k$-series of Theorem~\ref{shB:thm:polycrit} to $9$ digits; the formulas for $D_2$, $D_3$ and $u-v$ to $10^{-14}$; ratio in \eqref{shB:eq:chiral} at most $0.036$ over $3000$ random pairs and about $0.06$ after adversarial search; $D_k\ge0$ for $k=2,\dots,12$ in $3000$ random trials; Conjecture~\ref{shB:conj:TT}: over $8000$ random instances the minimum over a $73\times73$ phase grid, divided by the value at $(0,0)$, is $+0.0079$, always at $(\pi,\pi)$\\
+Proposition~\ref{shB:prop:twosided} & $\delta$ takes both signs in all $180$ random pairs of non-commuting pairs of the census above (it must, by the proposition)\\
+Proposition~\ref{shB:prop:oneway} & one-way LOCC value computed exactly (linear program over rank-one POVMs on a great circle of the Bloch sphere, $2400$ directions, both directions of communication): $\max_v(e_{\mathrm{1LOCC}}-e_{\mathrm{cl}})=-1.1\cdot10^{-8}$ over $6$ qubit product pairs and $40$ levels (discretisation error of the circle)\\
+Conjecture~\ref{shB:conj:sep} (PPT tests) & $\max_v(e_{\mathrm{PPT}}-e_{\mathrm{cl}})/\max|\delta|$: $\le-3.5\cdot10^{-9}$ over $60$ random $2\times2$ pairs ($80$ levels each) and $\le-5.8\cdot10^{-9}$ after adversarial Nelder--Mead search ($4$ starts, $250$ evaluations, $25$ levels); $\le-7.9\cdot10^{-10}$ over $25$ random $2\times3$ pairs; $\le+2.9\cdot10^{-8}$ over $12$ random $3\times3$ pairs (solver tolerance, where PPT tests include PPT-entangled ones). The PPT tests capture a fraction $\le3\cdot10^{-9}$ of the positive part of $\delta$, while all tests exceed $e_{\mathrm{cl}}$ on about $70\%$ of the levels. PPT tests beat one-way LOCC tests by up to $0.66\max_v(e_{\mathrm{cl}}-e_{\mathrm{PPT}})$\\
+Proposition~\ref{shB:prop:clock} & $Q^\HT_2$ by the trace formula and by the logistic modular-clock average agree to $10$ digits ($3\times3$ example)\\
+Theorem~\ref{shB:thm:flow}, flow monotonicity & dephasing the second factor by the modular heat flow or the Poisson flow, $R(t)=Q^\HT_\alpha(\rho\otimes\mathcal E_t\rho'\|\sigma\otimes\sigma')/Q^\HT_\alpha(\mathcal E_t\rho'\|\sigma')$ is nonincreasing in $t$ in all $240$ cases ($30$ random qubit products, $\alpha\in\{0.5,2,3,6\}$, both flows)\\
+Condition $(\mathrm S_\alpha)$ & discrete mixed differences of $\log Q^\HT_\alpha$ on a grid in $(s,t)$, with $s,t$ from $0$ to $\infty$: no negative cell beyond $-10^{-11}$ (the accuracy of $\log Q$) in $119$ random products: $\alpha\in\{0.3,0.5,0.7,1.5,2,3,6,15\}$, dimensions $2\times2$ and $2\times3$, Gaussian flows, and Poisson flows at $\alpha=0.3$\\
+Proposition~\ref{shB:prop:qubitn}, Corollary~\ref{shB:thm:qubit3} & bilinearity of $Q^\HT_3$ in $(X,Y)$ to $4\cdot10^{-15}$ ($5$ random pairs of qubit pairs); the closed form $2e^{-2(s+r)}\Phi$ matches the direct computation of $F$ to $12$ digits; $\Phi\ge0$ in $40$-digit arithmetic on a $121\times121$ grid of $\log a,\log b\in[-30,30]$, with minimum of $\Phi\max(1,a)\max(1,b)/(\log a\log b)^2$ equal to $6.5\cdot10^{-5}$, attained at the corner $(30,30)$, where the leading term is $(2\log a-7)/a^2$; adversarial minimisation ($40$ starts) moves only towards infinity along the diagonal. The ingredients of the Stieltjes proof were checked symbolically (sympy: $\partial_b\Phi(a,1)=0$, the four limits, $N_a(-a)$ and $N_a(-1)$) and numerically ($2\Phi=(1-\frac1b)S_a(b)$ to $12$ digits; $\kappa_a$ has mass $0$ and two sign changes for $a\in\{0.2,3,40\}$). At $\alpha=4$, where $Q^\HT_4$ is biquadratic, the coefficient matrix is not always totally positive (relative minor $-9\cdot10^{-3}$), so that sufficient condition fails\\
+Local form of Conjecture~\ref{shB:conj:super} & for $\rho'_t=\rho'_c+tX$ with $[\rho'_c,\sigma']=0$, the coefficient $C(\alpha)=\lim_t t^{-2}\big(Q(\rho\otimes\rho'_t\|\sigma\otimes\sigma')-QQ'_t\big)$ is positive for $\alpha\in\{0.1,0.3,0.5,0.7,0.9,1.1,1.5,2,3,5,10\}$ in $4$ random qubit cases ($C/(QQ')$ between $1.5\cdot10^{-5}$ and $3\cdot10^{-2}$), and $\lim_t t^{-2}\delta$ has the pattern $+-+$\\
+Theorem~\ref{shB:thm:super2} & $\min Q^\HT_2(\rho\otimes\rho'\|\sigma\otimes\sigma')/(Q^\HT_2Q'^\HT_2)=1.000006$ over $150$ random pairs ($d\in\{2,3\}$); the logarithmic-mean formula matches the trace formula to $6\cdot10^{-14}$\\
+Theorem~\ref{shB:thm:supermeas} & $\min_\gamma\big[E_\gamma(\rho\otimes\rho'\|\sigma\otimes\sigma')-\sum_ya_ye(\gamma b_y/a_y)\big]=-10^{-15}$ over $60$ qubit pairs, random $3$-outcome measurements and $25$ levels; $D^\HT_\alpha(\text{prod})-D^\HT_\alpha-D_\alpha(N\rho'\|N\sigma')\ge0.039$ for $\alpha\in\{0.5,2\}$\\
+Theorem~\ref{shB:thm:superinf} & $(\log Q^\HT_\alpha-\alpha\log\gamma_{\max}-\log m)(\alpha+1)=0.1669,\,0.1576,\,0.1526,\,0.1501$ at $\alpha=10,20,40,80$, against $\kappa=0.1475$; $\kappa_{12}\ge\kappa+\kappa'$ in $2{,}000$ random $2\times2$ and $500$ random $2\times3$ cases, and at an adversarial point in $30$- and $60$-digit arithmetic ($+4.9\cdot10^{-13}$)\\
+Tensor powers (qubits, Schur--Weyl blocks) & $\frac1nD^\HT_2=0.3058,\,0.3070,\,0.3090,\,0.3120,\,0.3159,\,0.3203$ for $n=1,2,4,8,16,32$ (limit $\widetilde D_2=0.3361$); $\frac1nD^\HT_{1/2}=0.1356,\,0.1355,\,0.1352,\,0.1348,\,0.1340$ for $n=1,2,4,8,16$ (limit $D^\Petz_{1/2}=0.1281$); both monotone, at the slow rate allowed by Propositions~\ref{shA:prop:petz} and~\ref{shA:prop:pinch}\\
+Theorem~\ref{shB:thm:bht2} & $Q^\HT_\alpha/\widetilde Q_\alpha\le0.9980$ over $160$ pairs, $d\in\{2,\dots,5\}$, $\alpha\in\{2,2.5,4,7\}$; the Helstrom layer-cake inequality of Step~3 held for $15$ pairs at each of $\alpha\in\{1.2,1.5,2,3,5\}$ (ratio $\le0.9998$), and for $1{,}200$ random rank-one families with $\alpha\in\{1.2,1.5,1.8\}$ (ratio $\le0.988$)\\
+\bottomrule
+\end{longtable}
+}
+
+\section{Open problems}\label{shB:sec:open}
+
+\begin{enumerate}[leftmargin=1.5em]
+\item Prove the convex-order statement \eqref{shB:eq:cx}, or at least Conjecture~\ref{shB:conj:super}. The conjecture holds at $\alpha=2$ (Theorem~\ref{shB:thm:super2}), at every integer order for pure states and at $\alpha=3$ for sign-free pairs (Theorem~\ref{shB:thm:simplex}), at every integer order against pure partners (Theorem~\ref{shB:thm:purepartner}), at $\alpha=3$ whenever one of the two reference states has at most two distinct eigenvalues (Corollary~\ref{shB:cor:twolevel}), at $\alpha=3$ in the further cases of Corollaries~\ref{shB:cor:threelevel} and~\ref{shB:cor:negative}, at $\alpha=3$ to second order around trivial partners $\sigma'\propto\mathbf 1$ (Proposition~\ref{shB:prop:local3}), to first order at $\alpha=\infty$ (Theorem~\ref{shB:thm:superinf}), for $\alpha>1$ with one factor measured (Theorem~\ref{shB:thm:supermeas}), and for tensor powers with enough copies (Proposition~\ref{shB:prop:manycopies}). By Theorem~\ref{shB:thm:reduction} it would give independent proofs of \cite{LiuHircheCheng2025} and of \cite[(1.10)]{BeigiHircheTomamichel2025}; the full regularised identity has since been proved directly in \cite{HMT2026}, by Haagerup reduction. Theorem~\ref{shB:thm:frenkel} reduces \eqref{shB:eq:cx} to $U(c)\ge0$: the truncated Jeffreys divergence $D_j$, $j(u)=((u+1)\log u-2(u-1))_+$, of the quantum product pair dominates that of the classical product of the shadows for every scaling $c$ of the second argument; for qubit pairs it reduces further to the two-sign-change property of $\delta$, which held in every test. Two special cases of the conjecture are of independent interest: the pure-state case at non-integer orders, which is the R\'enyi submodularity of Remark~\ref{shB:rem:superpure} (proved here at integer orders through \eqref{shB:eq:Sn}, Theorem~\ref{shB:thm:simplex}(b); the stronger logarithmic form of \eqref{shB:eq:Sn} is open for $n\ge3$); and the second-order case at $\alpha=1$, superadditivity of the testing-region variance $\int\gamma\log^2\gamma\,d\mu-D^2$, which is the case $\psi=v\log v$ of \eqref{shB:eq:cx}. Pointwise comparison of profiles cannot prove the conjecture, and neither can positive maps between a pair and its shadow: $\delta$ changes sign for every two non-commuting pairs (Proposition~\ref{shB:prop:twosided}). One-way LOCC tests, and numerically all separable and PPT tests, never beat the classical product of the shadows (Proposition~\ref{shB:prop:oneway}, Conjecture~\ref{shB:conj:sep}), so a proof must use entangled tests. A related question is a direct, non-greedy operator proof of Corollary~\ref{shB:cor:bathtub} for $\kappa>2$.
+\item Extend Lemma~\ref{shB:lem:schur} beyond Schur-convex functions. Is $\mathrm{Cov}(\phi(U),\chi(U))\ge0$ for convex functions on $\Delta_{n-1}$ that are only invariant under the dihedral group $D_n$ of cyclic shifts and reversals? This would give the conjecture at every integer order for all pairs with nonnegative cycle weights, in particular for all pairs of qubit pairs, by Proposition~\ref{shB:prop:simplex}. Our induction fails because the stabiliser of a facet in $D_n$ is too small. Numerically the answer looks positive: the minimum correlation over $600$ random pairs of $D_4$-invariant convex functions was $+7.7\cdot10^{-6}$, and for $40$ random pairs of qubit pairs at $n=4$ the correlation of $\mathcal F_4$ and $\mathcal G'_4$ was at least $0.23$. At integer orders $n\ge4$ the conjecture is now known for pure partners against arbitrary pairs (Theorem~\ref{shB:thm:purepartner}); the dihedral question would add all pairs of pairs with nonnegative cycle weights. At $\alpha=3$ the conjecture is proved whenever $\sigma$ or $\sigma'$ has at most two distinct eigenvalues, for pure partners and pure partners with commuting noise, against partners with three eigenvalues and a nonnegative block $3$-cycle, and for pairs whose block $3$-cycles are negative on both sides and not too strongly correlated (Corollaries~\ref{shB:cor:twolevel}, \ref{shB:cor:noise}, \ref{shB:cor:threelevel}, \ref{shB:cor:negative}, Theorems~\ref{shB:thm:purepartner}, \ref{shB:thm:doubling}). What remains has both reference states with at least three distinct eigenvalues, and by Corollary~\ref{shB:cor:singular} both states may be taken singular: pairs with chiral block $3$-cycles, strongly correlated pairs with negative $3$-cycles on both sides, and, when a reference state has four or more eigenvalues, pairs whose real block $3$-cycles have mixed signs, or are nonnegative on one side and nonpositive on the other. Three concrete targets would settle parts of it. (a) Conjecture~\ref{shB:conj:TT}, an inequality for the kernel $K_3$ alone, which by Proposition~\ref{shB:prop:twisted} gives every pair whose reference states have at most three eigenvalues, including $d=d'=3$; at real phases it is the single corner $\varphi=\varphi'=\pi$. (b) The chirality inequality \eqref{shB:eq:chiral}, which gives $D_3\ge0$ in the polynomial criterion of Theorem~\ref{shB:thm:polycrit}; more ambitiously, $D_k\ge0$ for all $k\ge2$, which gives the conjecture at $\alpha=3$. (c) For a qutrit $\rho$ against an arbitrary partner, with the partner kernel $C_x=\mathcal D_{\rho'\|\sigma'}[q_x]$, the bound $|C_{123}|\le\min_{p>0}\sum_{b\ne c}p_b^2p_cC_{bbc}/(2p_1p_2p_3)$, which by Lemma~\ref{shB:lem:domination} implies the conjecture for every qutrit $\rho$; Theorem~\ref{shB:thm:purepartner} gives its negative real direction, and Corollary~\ref{shB:cor:split} gives the stronger rooted bound $|C_{123}|\le\sum_c\sqrt{C_{aac}C_{bbc}}$ for two-level and pure partners. Partner words with three distinct eigenvalues are not positive one at a time (the pointwise condition of Section~\ref{shB:sec:numerics} is false at extreme spectra), the product-space Lieb--Thirring and matrix-measure versions of Theorem~\ref{shB:thm:purepartner} fail for structural reasons (Remark~\ref{shB:rem:LTscope}(ii) and the remark after Theorem~\ref{shB:thm:purepartner}), and no universal rooted kernel certifies \eqref{shB:eq:chiral}, so a proof must use the positivity of both pairs together and across different roots. Remark~\ref{shB:rem:LTscope}(iii) records a stronger one-variable convex-order statement, open beyond weakly sign-free pairs. The local supermodularity $(\mathrm S_\alpha)$ of Theorem~\ref{shB:thm:flow}, which implies the conjecture and held in every test, is a different route with the same first open cases.
+\item Prove Conjecture~\ref{shB:conj:sep}: separable tests on a product pair are dominated by the classical product of the shadows. It holds for one-way LOCC tests (Proposition~\ref{shB:prop:oneway}). Does it hold for two-way LOCC tests? In its Blackwell form it asks whether every outcome experiment of a product-element POVM is a garbling of $(P\otimes P',Q\otimes Q')$.
+\item Is the adaptive Chernoff exponent, $-\lim\frac1n\log\inf\eta_n(1)$, the minimum over $\alpha$ of a regularised testing-region cumulant function? Proposition~\ref{shB:prop:chernoff} gives one inequality for every strategy.
+\end{enumerate}
+
+\endgroup

@@ -1,0 +1,31 @@
+\documentclass[11pt,oneside]{book}
+\input{preamble}
+
+\title{Continuity, Testing Regions and Fragility\\ of Quantum Channel Divergences}
+\author{M. Jones}
+\date{October 2026}
+
+\begin{document}
+\frontmatter
+\maketitle
+\input{chapters/abstract}
+\clearpage\pdfbookmark[0]{Contents}{contents}
+\tableofcontents
+
+\mainmatter
+\input{chapters/ch01_noisy_gates}           %
+\input{chapters/ch02_overview}
+\input{chapters/ch03_notation}
+\input{chapters/ch04_continuity}       %
+\input{chapters/ch05_shadows}          %
+\input{chapters/ch06_supermult}        %
+\input{chapters/ch07_chernoff}         %
+\input{chapters/ch08_gate_proofs}      %
+\input{chapters/ch09_open_problems}
+
+\backmatter
+% list the bibliography in the table of contents (and hence in the PDF bookmarks)
+\renewcommand{\bibsection}{\chapter*{\bibname}\addcontentsline{toc}{chapter}{\bibname}\markboth{\MakeUppercase{\bibname}}{\MakeUppercase{\bibname}}}
+\bibliographystyle{plainnat}
+\bibliography{bib/references}
+\end{document}

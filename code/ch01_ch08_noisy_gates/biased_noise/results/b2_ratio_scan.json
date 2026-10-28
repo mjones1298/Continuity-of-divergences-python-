@@ -1,0 +1,14 @@
+{
+ "points": 22952,
+ "max_RX": "1.99999880000156",
+ "argmax_RX_t_s": [
+  1e-06,
+  1e-07
+ ],
+ "max_RZ": "1.4999999375",
+ "argmax_RZ_t_s": [
+  1.0,
+  1e-07
+ ],
+ "grid": "t=p_perp/p_z in [1e-6,1] (151 log pts), s=2(p_z+p_perp) in [1e-7,0.9999] (152 pts), 30 digits"
+}
